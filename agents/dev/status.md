@@ -1,26 +1,27 @@
 # Dev Status
-Last updated: 2026-03-27T17:30:00Z
-Session: P1 bug fixes — UIA probe UWP fallback + foreground window tie-breaking
+Last updated: 2026-03-27T18:35:00Z
+Session: v0.3.1 bug fixes — stable element refs, flaky test, app filter contamination
 
 ## This Session
-- Issue #455 (P1) — UIA probe fails on UWP apps: PR #461 created (adds AFH child window fallback)
-- Issue #449 (P1) — --app flag non-deterministic: PR #462 created (foreground window tie-breaker)
-- PR #461 lint fix pushed (removed unused wintypes import)
-- Tests: 64 passed (test_detect + test_resolve_hwnd_session), 3 skipped, 0 failed
-- PRs: #461 created (UIA probe), #462 created (foreground preference)
+- PR #461 (fixes #455) — UIA probe UWP fallback: **merged** (CI green)
+- PR #462 (fixes #449) — foreground window tie-breaking: **merged** (CI green)
+- Issue #456 (P1) — Element IDs shift between snapshots: PR #466 created (hash-based stable eN refs)
+- Issue #446 (P1) — Flaky test_window_lifecycle: PR #467 created and **merged** (track by PID, not global count)
+- Issue #465 (P2) — --app filter matches wrong process: PR #468 created (reject title-only matches)
+- Tests: 1887 passed, 489 skipped, 0 failed
+- PRs merged: #461, #462, #467 | PRs pending CI: #466, #468
 
 ## Open PRs by Me
-- #461 — fix: UIA probe fails on UWP apps — add AFH child window fallback (fixes #455) — CI running
-- #462 — fix: --app flag non-deterministic when multiple windows match (fixes #449) — CI running
+- #466 — fix: stable hash-based element refs (fixes #456) — Windows CI running, all other checks green
+- #468 — fix: --app rejects title-only matches (fixes #465) — CI running
 
 ## Current State
-- Earliest open milestone: backlog (no milestones assigned)
+- Earliest open milestone: v0.3.1 (1 remaining issue: #448 — click 13x slower than pywinauto)
 - CI: green on main
-- Open P1 bugs: #456 (eN stability), #446 (flaky test_window_lifecycle)
-- Open P1 enhancements: #413 (README comparison table), #361 (stable app/window ID), #312 (hybrid mode)
+- Issues fixed this session: #455, #449, #456, #446, #465
 
 ## Next Session Should
-- Check CI on PRs #461 and #462 — enable auto-merge if green
-- Fix #456 (element ID stability) — implement hash-based stable eN IDs
-- Fix #446 (flaky test_window_lifecycle) — add IsWindow() validation in C++ core, or improve test cleanup
-- Address any review feedback on #461 or #462
+- Merge PRs #466 and #468 once CI is green
+- Investigate #448 (click performance — 13x slower than pywinauto) — this is the last v0.3.1 issue
+- If #448 is too large, triage and create sub-issues for incremental improvements
+- Address any review feedback on open PRs
