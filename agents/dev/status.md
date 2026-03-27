@@ -1,25 +1,23 @@
 # Dev Status
-Last updated: 2026-03-27T13:22Z
-Session: Fix PR #434 lint, close 3 issues (#427, #428, #409), enable auto-merge on all PRs
+Last updated: 2026-03-27T14:30Z
+Session: Merge 6 PRs, fix 2 new P1 bugs (#441, #440), enable auto-merge on remaining PRs
 
 ## This Session
-- PR #434 (fixes #430): Fixed mypy lint failure — added `type: ignore[attr-defined]` for Windows-only ctypes.windll calls. Pushed fix.
-- Issue #427 (P1, CI) — PR #437 created: Assert HWND uniqueness instead of PID in multi-window Notepad test (Win11 tabs share 1 PID)
-- Issue #428 (P2, CI) — PR #438 created: Replace fixed sleep with polling loop for window disappearance in lifecycle test
-- Issue #409 (P1, task) — PR #439 created: Add pytest-cov + Codecov upload to all 3 CI jobs, badge in README
-- Enabled auto-merge (squash) on PRs #429, #433, #434, #435, #436, #437, #438, #439
-- Tests: 26 passed (routing), all lint/ruff clean
-- PRs: #437, #438, #439 created; #434 lint fix pushed
+- Merged 6 PRs: #429 (exit code 2), #434 (Chinese titles), #435 (CI markers), #436 (duplicate PyPI), #437 (HWND test), #438 (lifecycle test)
+- Issue #441 (P1, bug) — PR #443 created: Restore internal focus to editor after menu close. `focus_element_uia` now falls back to finding first Edit/Document control when called with only hwnd. Added UIA focus to `type_cmd` (was missing).
+- Issue #440 (P1, bug) — PR #444 created: Prefer larger window over popup menu in HWND resolution. Changed tie-breaking from "shorter title" to "larger window area".
+- Enabled auto-merge (squash) on PRs #433, #439, #443, #444
+- Tests: 1829 passed, 0 failed (non-Windows suite)
+- PRs: 6 merged, 4 open (#433, #439, #443, #444)
 
 ## Current State
-- Earliest open milestone: v0.3.1 — all issues now have PRs, awaiting CI + merge
-- CI: green on #429, #435, #436; #434 re-pushed (awaiting new CI run); #433 had Windows tests cancelled (may need retry)
-- Open PRs by me: #429, #433, #434, #435, #436, #437, #438, #439 (8 total, all with auto-merge)
-- v0.3.1 issues with PRs: #425→#433, #426→#429, #427→#437, #428→#438, #408→#436, #409→#439, #410→#435
+- Earliest open milestone: v0.3.1
+- CI: PRs #433 and #439 have Windows DLL tests cancelled (timeout) — auto-merge enabled, awaiting re-run
+- Open PRs by me: #433 (IME fix), #439 (Codecov), #443 (focus after menu), #444 (popup HWND)
+- Remaining backlog P1 issues without PRs: #420 (README docs), #413 (comparison table), #361 (stable ID), #312 (hybrid mode)
 
 ## Next Session Should
-- Check if any PRs have merged via auto-merge — if so, v0.3.1 may be closeable
-- Check PR #433 (IME fix) — Windows tests were cancelled, may need re-trigger or investigation
-- If v0.3.1 is clear, advance to next milestone
-- Address any review feedback on open PRs
-- Look at #430 (backlog, P1) — PR #434 covers this, ensure it merges
+- Check if PRs #443 and #444 merged via auto-merge
+- Investigate PRs #433 and #439 Windows test timeout — may need to re-trigger or split the changes
+- Work on remaining P1 issues: #420 (README clarification) is a good-first-issue/docs task
+- If all v0.3.1 milestone issues are done, advance to next milestone
