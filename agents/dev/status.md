@@ -1,27 +1,26 @@
 # Dev Status
-Last updated: 2026-03-27T16:45:00Z
-Session: P1 bug fixes + P2 help command
+Last updated: 2026-03-27T17:30:00Z
+Session: P1 bug fixes — UIA probe UWP fallback + foreground window tie-breaking
 
 ## This Session
-- Issue #442 (P1) — click --on fails for short text: PR #458 created
-- Issue #457 (P2) — naturo help returns error: PR #459 created
-- Issue #455 (P1) — test_detect_notepad_has_uia: investigated, commented analysis (cannot fix from Linux)
-- Issue #456 (P1) — element IDs shift: analyzed, commented suggested approach
-- Tests: 1627 passed, 334 skipped, 0 failed
-- PRs: #458 created (click fallback), #459 created (help command)
+- Issue #455 (P1) — UIA probe fails on UWP apps: PR #461 created (adds AFH child window fallback)
+- Issue #449 (P1) — --app flag non-deterministic: PR #462 created (foreground window tie-breaker)
+- PR #461 lint fix pushed (removed unused wintypes import)
+- Tests: 64 passed (test_detect + test_resolve_hwnd_session), 3 skipped, 0 failed
+- PRs: #461 created (UIA probe), #462 created (foreground preference)
 
 ## Open PRs by Me
-- #458 — fix: click --on fallback for localized text (fixes #442) — CI blocked (pending #454 merge)
-- #459 — fix: naturo help command alias (fixes #457) — CI blocked (pending #454 merge)
+- #461 — fix: UIA probe fails on UWP apps — add AFH child window fallback (fixes #455) — CI running
+- #462 — fix: --app flag non-deterministic when multiple windows match (fixes #449) — CI running
 
 ## Current State
-- Earliest open milestone: v0.3.1 (multiple P1 bugs remaining)
-- CI: broken on main (actions/checkout@v5 doesn't exist) — PR #454 by Orc-Mycelium fixes this
-- Open P1 bugs: #455 (Windows-only, needs runner), #456 (eN stability design), #449 (--app non-deterministic), #446 (flaky test)
+- Earliest open milestone: backlog (no milestones assigned)
+- CI: green on main
+- Open P1 bugs: #456 (eN stability), #446 (flaky test_window_lifecycle)
+- Open P1 enhancements: #413 (README comparison table), #361 (stable app/window ID), #312 (hybrid mode)
 
 ## Next Session Should
-- Check if PR #454 (CI fix) merged — then #458 and #459 should auto-merge or re-enable auto-merge
-- Address any review feedback on #458 or #459
+- Check CI on PRs #461 and #462 — enable auto-merge if green
 - Fix #456 (element ID stability) — implement hash-based stable eN IDs
-- Fix #449 (--app non-deterministic) — investigate window resolution logic
-- #455 and #446 require Windows runner testing
+- Fix #446 (flaky test_window_lifecycle) — add IsWindow() validation in C++ core, or improve test cleanup
+- Address any review feedback on #461 or #462
