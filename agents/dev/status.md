@@ -1,28 +1,30 @@
 # Dev Status
-Last updated: 2026-03-28T16:20:00Z
-Session: Self-driven mode — fix CLI help bug, add config tests, document MCP setup
+Last updated: 2026-03-28T17:20:00Z
+Session: PR cleanup + CLI reference generator (#414)
 
 ## This Session
-- **Issue #543 created & fixed**: highlight --help examples wrapped into unreadable mess
-  - PR #545: shortened example lines, added regression test
-- **Issue #544 created & fixed**: config command had zero test coverage
-  - PR #546: 25 new tests covering setup/show/clear, credential I/O, redaction
-- **Issue #547 created & fixed**: README missing MCP server setup instructions
-  - PR #549: added Claude Desktop config example, transport options, verify steps
-- **Issue #548 created & closed**: deps.py print() statements are actually correct (interactive progress)
-- Tests: 2096 passed, 557 skipped, 0 failures (+ 25 new config tests)
-- PRs: #545, #546, #549 created (CI Gate green, awaiting merge)
+- **Merged 3 PRs** from previous session:
+  - PR #545 → `b1b68a7` (fixes #543 — highlight help formatting)
+  - PR #546 → `032f76a` (fixes #544 — config command tests)
+  - PR #549 → `341a3ca` (fixes #547 — MCP setup README)
+- **Issue #414 — Auto-generate CLI reference**: implemented
+  - PR #550: `scripts/generate_cli_reference.py` introspects all Click commands
+  - Generated `docs/CLI_REFERENCE.md` (1474 lines, 24 commands with options/examples)
+  - 12 tests in `tests/test_cli_reference_gen.py`
+- **Issue #551 created**: ROADMAP lists Excel COM as not done, but it shipped in v0.1.1
+- Code health scan: clean — no TODOs, no bare excepts, linter passes
+- Tests: 2192 passed, 499 skipped, 0 failures
+- PRs: #550 created (CI running)
 
 ## Current State
 - Earliest open milestone: none (all milestones clear)
-- CI: green on main; all 3 new PRs pass CI Gate
-- Open PRs by me: #545, #546, #549 (auto-merge not available — may need repo settings)
-- All open issues are backlog P2 tasks/enhancements (42 issues)
+- CI: green on main
+- Open PRs by me: #550 (docs: CLI reference generator)
+- All open issues are backlog P2 tasks/enhancements (41 issues + #551)
 
 ## Next Session Should
-1. **Merge PRs**: #545, #546, #549 — check if they're merged or need manual merge
-2. **Code health**: backends/windows.py at 4064 lines — splitting is overdue (#411)
-3. **ROADMAP v0.4.0**: Unified Selector engine (SelectorBuilder + SelectorResolver)
-4. **Test coverage**: Run coverage report, find untested code paths
-5. **JSON consistency**: Standardize indent across CLI commands (some use indent=2, others none)
-6. **Backlog triage**: Consider which P2 items should be promoted to a v0.4.0 milestone
+1. **Merge PR #550** if CI green, or fix if CI fails
+2. **Fix ROADMAP** per #551 — mark Excel COM as done
+3. **Backlog triage**: backends/windows.py splitting (#411) is the biggest tech debt
+4. **Consider v0.4.0 milestone**: Unified Selector engine items need a milestone
+5. **README badges**: add CI status, PyPI version, license badges for professional appearance
