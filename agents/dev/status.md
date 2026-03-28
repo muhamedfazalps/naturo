@@ -1,28 +1,28 @@
 # Dev Status
-Last updated: 2026-03-28T18:20:00Z
-Session: PR merges + docs fixes + dead code cleanup
+Last updated: 2026-03-28T19:20:00Z
+Session: Fixed 2 v0.3.2 bugs — escape sequences in type + capture --pid
 
 ## This Session
-- **Merged PR #550** (commit `9e81e49`): CLI reference generator (fixes #414)
-- **Fixed #551**: marked Excel COM as shipped in ROADMAP.md
-  - PR #552 created and merged (commit `587042c`)
-- **Fixed #553**: removed dead java/sap CLI stubs (130 lines of unreachable code)
-  - PR #554 created, CI running
-- **Created #553**: dead code issue for unregistered java/sap command stubs
-- Product gap analysis: CLI help output is clean, README is accurate
-- Tests: 2192 passed, 497 skipped, 0 failures
+- **Fixed #555 (P1)**: type command now interprets escape sequences (\t, \n, \r, \\)
+  - PR #557 created and merged (commit `19646f1`)
+  - 6 new tests in TestTypeEscapeSequences
+- **Fixed #556 (P2)**: added --pid flag to capture command for API consistency
+  - PR #558 created and merged (commit `ddd2797`)
+  - 2 new tests (flag existence + functional pid routing)
+- Code health scan: no TODOs/FIXMEs/bare-excepts found
+- All modules have test coverage
+- Tests: 2194 passed, 497 skipped, 0 failures
 - Linter: clean
-- PRs: #550 merged, #552 merged, #554 pending CI
 
 ## Current State
-- Earliest open milestone: none (all milestones clear)
+- Earliest open milestone: v0.3.2 (0 bugs remaining — both fixed this session)
 - CI: green on main
-- Open PRs by me: #554 (refactor: remove dead java/sap stubs)
-- All open issues are backlog P2 tasks/enhancements (40 issues)
+- Open PRs by me: none
+- All remaining open issues are backlog P2 tasks/enhancements (42 issues)
 
 ## Next Session Should
-1. **Merge PR #554** if CI green, or fix if CI fails
-2. **Backlog triage**: backends/windows.py splitting (#411) is the biggest tech debt (4064 lines)
-3. **Consider v0.4.0 milestone**: Unified Selector engine items need a milestone
-4. **README badges**: add CI status, PyPI version, license badges for professional appearance
-5. **Excel hidden=True**: issue #551 suggested unhiding the excel group — evaluate if it should be visible in --help
+1. **Backlog triage**: backends/windows.py splitting (#411) is the biggest tech debt (4064 lines)
+2. **Consider v0.4.0 milestone**: Unified Selector engine items need a milestone
+3. **README badges**: add CI status, PyPI version, license badges for professional appearance
+4. **Check for new QA-reported bugs**: QA may file new issues after verifying the fixes
+5. **Input strategy refactor (#412)**: evaluate complexity for pluggable input pattern
