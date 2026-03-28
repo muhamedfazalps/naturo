@@ -1,27 +1,28 @@
 # Dev Status
-Last updated: 2026-03-28T22:20:00Z
-Session: Fixed P0 re-regression #565 — click --app nonexistent silent success
+Last updated: 2026-03-28T23:25:00Z
+Session: Merged P0 fix #565, fixed flaky CI test #567, reviewed external PR #568
 
 ## This Session
-- **Fixed #565 (P0)**: `click --app nonexistent --coords 100 100` reported success with exit 0
-  - Root cause: `_auto_route()` silently fell back to vision method when app not found
-  - Fix: check `result.pid is None` when `--app` explicitly provided → exit 1 with APP_NOT_FOUND
-  - Fixes click, type, press, and hotkey simultaneously (all share `_auto_route()`)
-  - PR #566 created, auto-merge pending CI
-  - 5 new tests in `test_app_not_found_error.py`
-- Code health scan: no TODOs/FIXMEs/bare-excepts, all modules have tests
-- Tests: 2143 passed, 564 skipped, 0 failures (Linux)
-- Linter: ruff clean, mypy clean
-- CI on PR #566: 3/7 checks passed so far (Lint, Version, macOS), rest in progress
+- **Merged PR #566 (P0 fix for #565)**: `click --app nonexistent` silent success re-regression
+  - Updated branch to latest main, CI Gate passed, merged via squash
+  - Commit: c126e268
+- **Fixed #567 (P2)**: Flaky CI test `test_window_minimize_restore_cycle` Notepad polling race
+  - Root cause: redundant `skipif(CI or GITHUB_ACTIONS)` on `TestAppLifecycleE2EWindows` blocked tests on self-hosted desktop runner (GitHub Actions sets CI=true even on self-hosted). The `@pytest.mark.desktop` marker is the correct and sufficient guard.
+  - Also increased `_poll_for_notepad` timeout from 10s to 20s for slow UWP Notepad launches
+  - PR #572 created and merged. Commit: 015b4e7a
+- **Reviewed PR #568** (external from @Adraca): Issue #420 already closed, PR removes accurate macOS/Peekaboo info. Left feedback recommending closure.
+- **Code health scan**: no TODOs/FIXMEs/bare-excepts. 102 typed `except ... pass` patterns (intentional cleanup/fallback code). 30 modules lack dedicated test files (mostly CLI/platform-specific).
+- PRs: #566 merged, #572 created + merged, #568 reviewed
 
 ## Current State
-- Earliest open milestone: backlog (no numbered milestones have open issues)
-- CI: checks running on PR #566
-- Open PRs by me: #566 (fix #565)
+- Earliest open milestone: v0.3.2 (0 issues remaining after #567 fix)
+- CI: green (CI Gate passes; Windows DLL job fails as expected with continue-on-error)
+- Open PRs by me: none
+- Open PRs by others: #568 (external, recommended closure)
 
 ## Next Session Should
-1. **Check PR #566 CI** — enable auto-merge if green, fix if red
+1. **Check if PR #568 was closed** by Adraca or needs further action
 2. **Backlog triage**: prioritize P2 items — backends/windows.py splitting (#411, 4079 lines) is biggest tech debt
 3. **v0.4.0 milestone**: Unified Selector engine items need a milestone created
-4. **Input strategy refactor (#412)**: evaluate complexity for pluggable input pattern
-5. **README badges/hero GIF (#47)**: check feasibility
+4. **Test coverage gaps**: 30 modules lack dedicated tests (cli/*, detect/*, providers/*)
+5. **README badges**: small visible improvement for open-source presence
