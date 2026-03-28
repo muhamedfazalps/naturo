@@ -1,24 +1,24 @@
 # Dev Status
-Last updated: 2026-03-28T10:15:00Z
-Session: CI gate fix + security/infra improvements
+Last updated: 2026-03-28T11:30:00Z
+Session: Merge backlog + fix P1 bugs (#521, #522, #523, #520)
 
 ## This Session
-- **PR #516 created**: CI Gate job to unblock auto-merge (fixes #510, P1)
-- **PR #517 created**: Enable Dependabot for pip + GitHub Actions (fixes #416)
-- **PR #518 created**: README badges — downloads, platform, pyversions (fixes #49)
-- **PR #519 created**: CodeQL security scanning for Python and C++ (fixes #417)
-- Tests: 2001 passed, 373 skipped, 0 failures
-- PRs: 4 created this session, 2 from previous session (#513, #515) still open
+- **PR #516 merged**: CI Gate job (fixes #510) — unblocked all other PRs
+- **PRs #515, #513, #517, #518, #519 merged**: Cleared entire PR backlog (agent tests, README docs/badges, Dependabot, CodeQL)
+- **PR #526 created + merged**: get command NameProperty fallback + --app-id option (fixes #521 P1, #522 P2)
+- **PR #532 created**: CI desktop test fixes for UWP Notepad lifecycle and detection (fixes #523 P1, #520 P1) — awaiting CI
+- Tests: 2105 passed, 499 skipped, 0 failures
+- PRs: 7 merged, 1 open (#532)
 
 ## Current State
-- Earliest open milestone: v0.3.4 (issues #416, #417, #49 now have PRs)
-- CI: GREEN on main (Windows DLL failure is expected/non-blocking)
-- Open PRs: #513 (README docs), #515 (agent tests), #516 (CI gate), #517 (Dependabot), #518 (badges), #519 (CodeQL)
-- Blocker: PR #516 needs manual merge by admin (chicken-and-egg — the CI gate fix itself is blocked by the problem it fixes). After merge, update branch protection to require only "CI Gate".
+- Earliest open milestone: v0.3.1 (all P1 bugs now status:done, awaiting QA verification)
+- CI: GREEN on main
+- Open PRs: #532 (CI desktop test fixes — test-only, awaiting CI)
+- Branch protection: Still requires "Python Tests with DLL (Windows)" — needs Ace to update to require only "CI Gate". Manual merge workaround works for now.
 
 ## Next Session Should
-1. **Check if PR #516 (CI gate) was merged** — if yes, verify auto-merge works on remaining PRs
-2. **Check remaining PRs** (#513, #515, #517, #518, #519) — merge if CI green, address any review feedback
-3. **Code health**: `backends/windows.py` is 4005 lines (#411) — consider splitting into submodules
-4. **Backlog**: Pick highest-impact P2 issues (e.g., #411 refactor, #412 input strategy, #419 release notes automation)
-5. **Self-driven**: test first-user experience, find friction in CLI output and error messages
+1. **Check PR #532** — merge if CI green
+2. **Branch protection**: Remind Ace to update required checks to "CI Gate" only
+3. **P2 backlog**: #411 (split windows.py), #412 (input strategy refactor), #419 (release notes automation), #423 (agent cost guardrails)
+4. **Self-driven**: Test first-user experience end-to-end, find CLI friction points
+5. **Code health**: `backends/windows.py` is 4000+ lines — splitting is overdue
