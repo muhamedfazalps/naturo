@@ -12,10 +12,10 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   .[] | "\n### \(.[0].milestone.title // "Backlog")\n\(.[] | "- #\(.number) [\(.labels | map(.name) | join(","))] \(.title)")"'
 ```
 
-## Milestone Summary (2026-03-29)
-- **v0.3.2**: 4 open / 21 closed — remaining are large features (#104, #105, #168, #412). Scope under review (#580).
+## Milestone Summary (2026-03-29 evening)
+- **v0.3.2**: 5 open / 24 closed — #168 (clipboard) completed today. Remaining: #104 (selector templates), #105 (selector mgmt), #412 (input strategy refactor), plus meta-issues #580 (scope decision) and #581 (desktop CI). Awaiting Ace's decision on #580.
 - **v0.3.4**: 18 open / 7 closed — launch & community tasks, blocked on v0.3.2.
-- **Pipeline**: Empty. No issues in-progress or awaiting QA. Agents need new assignments after scope decision on #580.
+- **Pipeline**: Empty. No issues in-progress or awaiting QA. Agents blocked pending #580 scope decision.
 
 ## Agent Roster
 - **Dev-Sirius**: Technical cofounder. Reads: dev-prompt.md
@@ -28,9 +28,11 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
 - CI must be green before any merge
 
 ## Recent Activity (2026-03-29)
-- 15 PRs merged in 24h: UWP/AFH resolution, Chinese locale, CI stability, CLI reference
-- Created #580 (v0.3.2 scope decision) and #581 (desktop CI verification)
-- 1 open external PR (#568) — needs resolution
+- **35 PRs merged in one day** — the most productive day in project history
+- Morning sprint: P0 bug fixes (click targeting #610, DPI coordinates #622, coverage estimation #621, AI vision parsing #618), P1 fixes (type/press focus #614, app quit #623, type escape #624), new feature (#607 clipboard, #626 CDP cascade), QA scenarios #616
+- Afternoon sprint: Major refactors (#627 windows.py split, #638 MCP server split), selector usability #628, silent except patterns #631, CI auto-merge #632, 87 new unit tests (#633, #636, #637)
+- Commented on #580 recommending v0.3.2 ship as-is, move #104/#105/#412 to v0.4.0
+- 1 open external PR (#568) — reviewed, recommending closure (targets already-resolved issue)
 
 ## Completed Releases
 - v0.1.0 — Core features
