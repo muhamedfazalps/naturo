@@ -6,9 +6,9 @@ priority: P1
 source_issue: 442
 created: 2026-03-27
 last_run: 2026-03-31
-last_result: blocked
-consecutive_passes: 0
-notes: "2026-03-31 R70: BLOCKED — Chinese Windows Calculator has Chinese labels, cannot test English short text."
+last_result: pass
+consecutive_passes: 1
+notes: "2026-03-31 R72: PASS — click --on 'Backspace' and --on '清除' both work on Chinese Calculator. Short text matching functional."
 
 preconditions:
   - "naturo is installed and in PATH"

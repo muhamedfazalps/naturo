@@ -19,7 +19,7 @@
 - [TC-0007](regression/click-on-short-text.yaml) — P1: click --on fails for short English text ('C', 'CE', 'MC') (#442) — **active**
 
 - [TC-0009](regression/uia-detection-after-hybrid.yaml) — P1: UIA detection missing after hybrid tree merge (#455) — **retired** (5 passes, #455 closed)
-- [TC-0012](regression/pid-targeting-ignored.yaml) — P0: --pid flag ignored, always returns foreground window — **active**
+- [TC-0012](regression/pid-targeting-ignored.yaml) — P0: --pid flag ignored, always returns foreground window — **retired** (5 passes, #471 closed)
 - [TC-0013](regression/type-app-not-found-silent-failure.yaml) — P1: type --app exits 0 on "App not found", types to wrong window (#474) — **retired** (5 passes, #474 closed)
 
 ## Exploratory Tests
@@ -36,7 +36,7 @@
 - [TC-0019](exploratory/explorer-matches-program-manager.yaml) — P1: --app explorer matches Program Manager instead of File Explorer — **retired** (5 passes, #524 closed)
 - [TC-0020](regression/click-nonexistent-app-silent-success.yaml) — P0: click --app nonexistent exits 0 and claims success (silent failure) — **retired** (5 passes, #533 closed)
 - [TC-0021](regression/type-escape-sequences-literal.yaml) — P1: naturo type treats \t and \n as literal text, not escape sequences — **retired** (5 passes, #563 closed)
-- [TC-0030](regression/type-backslash-escape-missing.yaml) — P1: naturo type has no \\\\ escape for literal backslash, breaks Windows paths — **active**
+- [TC-0030](regression/type-backslash-escape-missing.yaml) — P1: naturo type has no \\\\ escape for literal backslash, breaks Windows paths — **retired** (6 passes, #619 closed)
 - [TC-0022](exploratory/capture-missing-pid-flag.yaml) — P2: capture command missing --pid flag (API inconsistency) — **retired** (5 passes, #556 closed)
 - [TC-0023](exploratory/mcp-launch-missing-pid.yaml) — P2: MCP launch_app returns success but omits PID in response — **active**
 
