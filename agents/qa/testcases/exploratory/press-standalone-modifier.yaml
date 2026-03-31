@@ -1,0 +1,32 @@
+id: TC-0035
+title: "naturo press fails for standalone modifier keys (alt, ctrl, shift)"
+status: active
+category: exploratory
+priority: P2
+source_issue: null
+created: 2026-03-31
+last_run: 2026-03-31
+last_result: fail
+consecutive_passes: 0
+notes: "2026-03-31 R71: FAIL — naturo press 'alt' returns 'Invalid argument'. Blocks keyboard-only menu activation (Alt key to focus menu bar). Discovered during: Accessibility User simulation."
+
+preconditions:
+  - "naturo is installed and in PATH"
+  - "Any app with a menu bar is running (e.g. Notepad)"
+
+steps:
+  - description: "Try pressing standalone Alt key"
+    command: "naturo press 'alt' --app notepad"
+    expect: "Alt key pressed successfully, menu bar activates"
+  - description: "Try pressing standalone Ctrl key"
+    command: "naturo press 'ctrl' --app notepad"
+    expect: "Ctrl key pressed successfully (no error)"
+  - description: "Try pressing standalone Shift key"
+    command: "naturo press 'shift' --app notepad"
+    expect: "Shift key pressed successfully (no error)"
+  - description: "Verify compound modifiers still work"
+    command: "naturo press 'ctrl+a' --app notepad"
+    expect: "Select all works (compound modifiers are fine)"
+
+pass_criteria: "Standalone modifier keys can be pressed without 'Invalid argument' error"
+fail_action: "File P2 issue: press command rejects standalone modifier keys, blocking keyboard-only accessibility workflows"

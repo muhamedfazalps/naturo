@@ -50,3 +50,4 @@
 - [TC-0031](exploratory/notepad-menu-click-targeting.yaml) — P1: click eN on Notepad UWP menu item does not open menu — **active**
 - [TC-0032](exploratory/app-title-matching-multiwindow.yaml) — P1: --app cannot match by window title for multi-window processes — **active**
 - [TC-0033](exploratory/mcp-click-element-id-fails.yaml) — P1: MCP click by element_id fails, see_ui_tree refs not usable in click tool — **active**
+- [TC-0035](exploratory/press-standalone-modifier.yaml) — P2: naturo press fails for standalone modifier keys (alt, ctrl, shift) — **active**
