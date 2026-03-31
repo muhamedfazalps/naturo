@@ -11,12 +11,14 @@
 - [TC-0002](regression/click-exit-code.yaml) — P1: click/press returns exit code 2 on success (#426) — **retired** (5 passes, #426 closed)
 - [TC-0003](regression/chinese-app-name-matching.yaml) — P1: --app with Chinese titles inconsistent across commands — **active**
 
+- [TC-0038](regression/uwp-notepad-enumeration.yaml) — P0: UWP Notepad intermittently invisible to list apps after launch — **active**
+
 ## E2E Tests
 - [TC-0004](e2e/calculator-basic-flow.yaml) — P1: Calculator see→click→verify flow — **active**
 - [TC-0010](e2e/mcp-agent-workflow.yaml) — P1: MCP server E2E: initialize→tools/list→type_text→verify — **active**
 - [TC-0014](e2e/scripted-notepad-workflow.yaml) — P1: Scripted workflow: launch→JSON parse→click→type→verify→close — **active**
 
-- [TC-0007](regression/click-on-short-text.yaml) — P1: click --on fails for short English text ('C', 'CE', 'MC') (#442) — **active**
+- [TC-0007](regression/click-on-short-text.yaml) — P1: click --on fails for short English text ('C', 'CE', 'MC') (#442) — **retired** (5 passes, #442 closed)
 
 - [TC-0009](regression/uia-detection-after-hybrid.yaml) — P1: UIA detection missing after hybrid tree merge (#455) — **retired** (5 passes, #455 closed)
 - [TC-0012](regression/pid-targeting-ignored.yaml) — P0: --pid flag ignored, always returns foreground window — **retired** (5 passes, #471 closed)
