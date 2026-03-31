@@ -886,7 +886,7 @@ def app_focus(ctx, name, app_name, window_title, hwnd, json_output):
     Examples:
       naturo app focus feishu
       naturo app focus --app feishu
-      naturo app focus feishu --window "群聊"
+      naturo app focus feishu --window "Chat"
       naturo app focus --app feishu
       naturo app focus --hwnd 12345
     """
@@ -928,7 +928,7 @@ def app_close(ctx, name, app_name, window_title, hwnd, force, json_output):
     Examples:
       naturo app close notepad
       naturo app close --app notepad
-      naturo app close feishu --window "群聊"
+      naturo app close feishu --window "Chat"
       naturo app close --hwnd 12345 --force
     """
     json_output = json_output or (ctx.obj or {}).get("json", False)

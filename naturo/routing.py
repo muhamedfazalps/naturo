@@ -59,7 +59,7 @@ def _find_pid_by_window_title(name: str) -> int | None:
     """Find a process PID by matching its window title.
 
     Used as a fallback when ``find_process`` (process-name match) fails.
-    This handles localized app names (e.g. Chinese "计算器" for Calculator)
+    This handles Chinese/localized app names (e.g., Calculator "计算器", Notepad "记事本")
     that are window titles, not process names (#430).
 
     Args:
@@ -162,7 +162,7 @@ def resolve_method(
                 logger.debug("Resolved app %r → PID %d (%s)", app, proc.pid, proc.name)
             else:
                 # (#430) Process name didn't match — try window title.
-                # Chinese/localized app names (e.g. "计算器", "记事本") are
+                # Chinese/localized app names (e.g., Calculator "计算器", Notepad "记事本") are
                 # window titles, not process names.  Fall back to window
                 # enumeration before giving up.
                 title_pid = _find_pid_by_window_title(app)

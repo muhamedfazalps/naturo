@@ -202,7 +202,7 @@ naturo see --app feishu --cascade --fill-gaps --stats
 #   vision   133 elements   72s   [ok]
 
 # Click an AI-discovered element by ref
-naturo click e805 --app feishu    # "视频会议" found by AI Vision
+naturo click e805 --app feishu    # "视频会议" (Video Meeting) found by AI Vision
 ```
 
 **How it works:**

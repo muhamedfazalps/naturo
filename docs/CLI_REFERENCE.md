@@ -685,7 +685,7 @@ Close an application window (graceful or forced).
 ```bash
 naturo app close notepad
 naturo app close --app notepad
-naturo app close feishu --window "群聊"
+naturo app close feishu --window "Chat"
 naturo app close --hwnd 12345 --force
 ```
 
@@ -730,7 +730,7 @@ Focus an application window (bring to foreground).
 ```bash
 naturo app focus feishu
 naturo app focus --app feishu
-naturo app focus feishu --window "群聊"
+naturo app focus feishu --window "Chat"
 naturo app focus --app feishu
 naturo app focus --hwnd 12345
 ```

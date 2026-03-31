@@ -278,7 +278,7 @@ def click_cmd(query: str | None, on_text: str | None, ref_alias: str | None,
                 # (#442) Fallback: search the app's element tree when C++
                 # exact UIA Name match fails.  Handles localized apps where
                 # UIA Name differs from visible text (e.g. Calculator "C"
-                # button has UIA Name "清除").
+                # button has UIA Name "Clear" (清除 on Chinese Windows)).
                 fallback = _common._find_element_by_text_fallback(
                     backend, target_id,
                     app=app, hwnd=hwnd, window_title=window_title,
