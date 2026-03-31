@@ -100,6 +100,29 @@ class VisionProvider(Protocol):
         """
         ...
 
+    def enumerate_elements(
+        self,
+        image_path: str,
+        prompt: str,
+        *,
+        max_tokens: int = 16384,
+    ) -> VisionResult:
+        """Enumerate all UI elements in a screenshot.
+
+        Unlike ``identify_element`` which wraps the description in a
+        template for single-element lookup, this sends the prompt directly
+        to the AI.  Used by cascade AI vision for full element enumeration.
+
+        Args:
+            image_path: Path to screenshot file.
+            prompt: Complete prompt text (no template wrapping).
+            max_tokens: Maximum tokens in the response.
+
+        Returns:
+            VisionResult with all identified elements.
+        """
+        ...
+
 
 def encode_image_base64(image_path: str) -> str:
     """Read an image file and return its base64-encoded contents.
@@ -175,11 +198,29 @@ def parse_ai_elements_json(raw_text: str) -> list[dict[str, Any]]:
     try:
         parsed = json.loads(json_text)
     except json.JSONDecodeError:
-        logger.warning(
-            "Failed to parse element identification as JSON: %s",
-            raw_text[:200],
+        # AI sometimes returns Python tuples (x, y, w, h) instead of
+        # JSON arrays [x, y, w, h]. Convert and retry.
+        import re as _re
+        fixed = _re.sub(
+            r'"bounds"\s*:\s*\(([^)]+)\)',
+            r'"bounds": [\1]',
+            json_text,
         )
-        return []
+        if fixed != json_text:
+            try:
+                parsed = json.loads(fixed)
+            except json.JSONDecodeError:
+                logger.warning(
+                    "Failed to parse element identification as JSON: %s",
+                    raw_text[:200],
+                )
+                return []
+        else:
+            logger.warning(
+                "Failed to parse element identification as JSON: %s",
+                raw_text[:200],
+            )
+            return []
 
     return _normalize_parsed(parsed)
 

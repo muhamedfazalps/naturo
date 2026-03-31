@@ -312,8 +312,23 @@ def _fetch_ai_elements(
     screenshot_path: str,
     window_bounds: tuple[int, int, int, int],
     provider_name: str = "auto",
+    scale_factor: float = 1.0,
 ) -> List[ElementInfo]:
     """Use AI vision to identify additional elements from a screenshot.
+
+    Parameters
+    ----------
+    screenshot_path:
+        Path to the screenshot image file.
+    window_bounds:
+        (x, y, w, h) of the captured window in screen coordinates.
+        AI pixel coords are offset by (x, y) to convert to screen coords.
+    provider_name:
+        AI provider to use.
+    scale_factor:
+        DPI scale factor of the captured monitor (e.g. 1.5 for 150% DPI).
+        AI returns coords in screenshot pixels; UIA uses physical (scaled)
+        pixels.  We multiply AI coords by scale_factor to align them.
 
     Returns a flat list of elements identified by the AI provider.
     Falls back gracefully if the provider is unavailable.
@@ -327,9 +342,33 @@ def _fetch_ai_elements(
         except AIProviderUnavailableError:
             return []
 
-        result = provider.identify_element(
+        logger.info("AI vision: calling provider '%s' with screenshot '%s'",
+                    provider_name, screenshot_path)
+
+        # (#694) Read actual screenshot dimensions for coordinate scaling.
+        # Claude vision API downscales large images internally; AI returns
+        # coords in that smaller space. We need to scale back up.
+        img_w, img_h = 0, 0
+        try:
+            from PIL import Image as _PILImage
+            with _PILImage.open(screenshot_path) as _img:
+                img_w, img_h = _img.size
+            logger.info("AI vision: screenshot dimensions %dx%d", img_w, img_h)
+        except Exception as exc:
+            logger.debug("AI vision: could not read screenshot dimensions: %s", exc)
+
+        # Include image dimensions in prompt so AI can return accurate coords
+        dim_hint = ""
+        if img_w > 0 and img_h > 0:
+            dim_hint = (
+                f"\n\nIMPORTANT: This image is {img_w}x{img_h} pixels. "
+                f"Return all bounding box coordinates in this {img_w}x{img_h} pixel space. "
+                f"x ranges from 0 to {img_w}, y ranges from 0 to {img_h}."
+            )
+
+        result = provider.enumerate_elements(
             screenshot_path,
-            element_description=(
+            prompt=(
                 "You are a UI element detector. Analyze this screenshot and list EVERY "
                 "individual clickable or interactive element you can see. Be exhaustive.\n\n"
                 "Rules:\n"
@@ -344,19 +383,118 @@ def _fetch_ai_elements(
                 "- Use standard roles: Button, Link, Tab, MenuItem, Edit, Text, Image, "
                 "CheckBox, ListItem, TreeItem.\n\n"
                 "Return a JSON array where each item has: "
-                "role, name, bounds (x, y, width, height). "
+                'role, name, bounds [x, y, width, height] (use JSON arrays like [100, 200, 50, 30], NOT tuples). '
                 "Return ONLY the JSON array, no markdown fences, no explanation."
+                + dim_hint
             ),
             max_tokens=16384,
         )
 
+        # (#694) Window offset: AI coords are relative to the screenshot
+        # (which is a window capture). Add window position to get screen coords.
+        win_x, win_y = window_bounds[0], window_bounds[1]
+
+        logger.info("AI vision: provider returned %d elements (window offset: %d,%d)",
+                     len(result.elements), win_x, win_y)
+        if not result.elements:
+            raw = result.raw_response
+            if raw:
+                logger.warning("AI vision: 0 elements parsed from response: %.500s",
+                               str(raw))
+
+        # (#694) Auto-detect coordinate scale: if the AI returned coords in a
+        # smaller image space (Claude API downscales large images), compute the
+        # ratio from AI-max-coord to actual screenshot size.
+        # Use the screenshot dimensions (img_w, img_h) as ground truth.
+        ai_scale_x, ai_scale_y = 1.0, 1.0
+
+        # (#694) Auto-detect bounds format: AI may return [x1,y1,x2,y2]
+        # (top-left + bottom-right) instead of the requested [x,y,w,h].
+        # Detect by checking if 3rd value >= 1st value for most elements.
+        is_xyxy = False
+        if result.elements:
+            xyxy_count = 0
+            total_checked = 0
+            for raw_el in result.elements:
+                if not isinstance(raw_el, dict):
+                    continue
+                b = raw_el.get("bounds", {})
+                if isinstance(b, (list, tuple)) and len(b) >= 4:
+                    v0, v1, v2, v3 = b[0], b[1], b[2], b[3]
+                elif isinstance(b, dict):
+                    v0 = b.get("x", 0)
+                    v1 = b.get("y", 0)
+                    v2 = b.get("width", 0)
+                    v3 = b.get("height", 0)
+                else:
+                    continue
+                total_checked += 1
+                # In [x1,y1,x2,y2] format, x2 > x1 and y2 > y1 always.
+                # In [x,y,w,h] format, w is typically much smaller than x
+                # for elements not at the left edge.
+                if v2 >= v0 and v3 >= v1:
+                    xyxy_count += 1
+            if total_checked > 0 and xyxy_count / total_checked > 0.8:
+                is_xyxy = True
+                logger.info("AI vision: detected [x1,y1,x2,y2] bounds format (%d/%d)",
+                            xyxy_count, total_checked)
+
+        if img_w > 0 and img_h > 0 and result.elements:
+            max_ai_x = 0.0
+            max_ai_y = 0.0
+            for raw_el in result.elements:
+                if not isinstance(raw_el, dict):
+                    continue
+                b = raw_el.get("bounds", {})
+                if isinstance(b, (list, tuple)) and len(b) >= 4:
+                    if is_xyxy:
+                        # b[2],b[3] are already x2,y2 (max coords)
+                        max_ai_x = max(max_ai_x, b[2])
+                        max_ai_y = max(max_ai_y, b[3])
+                    else:
+                        max_ai_x = max(max_ai_x, b[0] + b[2])
+                        max_ai_y = max(max_ai_y, b[1] + b[3])
+                elif isinstance(b, dict):
+                    max_ai_x = max(max_ai_x, b.get("x", 0) + b.get("width", 0))
+                    max_ai_y = max(max_ai_y, b.get("y", 0) + b.get("height", 0))
+            # Only apply scaling if AI coords are significantly smaller than
+            # the actual image (at least 1.5x smaller — means API downscaled)
+            if max_ai_x > 0 and img_w / max_ai_x > 1.5:
+                ai_scale_x = img_w / max_ai_x
+            if max_ai_y > 0 and img_h / max_ai_y > 1.5:
+                ai_scale_y = img_h / max_ai_y
+            if ai_scale_x != 1.0 or ai_scale_y != 1.0:
+                logger.info(
+                    "AI vision: auto-scale %.2fx,%.2fy (AI max: %.0f,%.0f → img: %d,%d)",
+                    ai_scale_x, ai_scale_y, max_ai_x, max_ai_y, img_w, img_h,
+                )
+
         elements: List[ElementInfo] = []
         for i, raw in enumerate(result.elements):
             if not isinstance(raw, dict):
+                logger.debug("AI vision: skipping non-dict element at index %d: %r", i, raw)
                 continue
             b = raw.get("bounds", {})
-            ex, ey = int(b.get("x", 0)), int(b.get("y", 0))
-            ew, eh = int(b.get("width", 50)), int(b.get("height", 20))
+            if isinstance(b, (list, tuple)) and len(b) >= 4:
+                bx, by, bw, bh = b[0], b[1], b[2], b[3]
+            elif isinstance(b, dict):
+                bx = b.get("x", 0)
+                by = b.get("y", 0)
+                bw = b.get("width", 50)
+                bh = b.get("height", 20)
+            else:
+                logger.debug("AI vision: skipping element %d with bad bounds: %r", i, b)
+                continue
+            # Convert [x1,y1,x2,y2] → [x,y,w,h] if detected
+            if is_xyxy:
+                bw = bw - bx  # x2 - x1 = width
+                bh = bh - by  # y2 - y1 = height
+            # Scale AI coords to physical screenshot pixels, then offset.
+            # Clamp to >= 0 since negative screen coords aren't useful.
+            ex = max(0, int(bx * ai_scale_x) + win_x)
+            ey = max(0, int(by * ai_scale_y) + win_y)
+            ew = int(bw * ai_scale_x)
+            eh = int(bh * ai_scale_y)
             role = raw.get("role", "Unknown").capitalize()
             name = raw.get("name", "")
             elements.append(ElementInfo(
@@ -370,8 +508,139 @@ def _fetch_ai_elements(
             ))
         return elements
     except Exception as exc:
-        logger.debug("AI vision element fetch failed: %s", exc)
+        logger.warning("AI vision element fetch failed: %s", exc, exc_info=True)
         return []
+
+
+# ── AI → UIA tree merge (IoU dedup) ──────────────────────────────────────────
+
+
+def _iou(a: ElementInfo, b: ElementInfo) -> float:
+    """Compute Intersection-over-Union of two element bounding boxes."""
+    x1 = max(a.x, b.x)
+    y1 = max(a.y, b.y)
+    x2 = min(a.x + a.width, b.x + b.width)
+    y2 = min(a.y + a.height, b.y + b.height)
+    inter = max(0, x2 - x1) * max(0, y2 - y1)
+    if inter == 0:
+        return 0.0
+    area_a = a.width * a.height
+    area_b = b.width * b.height
+    union = area_a + area_b - inter
+    return inter / union if union > 0 else 0.0
+
+
+def _merge_ai_into_tree(
+    root: ElementInfo,
+    ai_elements: List[ElementInfo],
+    iou_threshold: float = 0.3,
+) -> tuple[List[ElementInfo], int, int]:
+    """Merge AI vision elements into the UIA tree, deduplicating by IoU.
+
+    For each AI element:
+    - If it overlaps an existing UIA leaf with IoU >= threshold, skip it
+      (UIA already found this element).
+    - Otherwise, attach it as a child of the deepest UIA node whose
+      bounding box contains the AI element's center point.
+
+    Parent lookup uses a snapshot of the UIA tree taken *before* any AI
+    elements are added, so AI elements are always flat siblings under
+    UIA containers and never nest inside each other.
+
+    Returns
+    -------
+    (novel_elements, added_count, skipped_count)
+        novel_elements: AI elements that were added (for stats).
+        added_count: Number of elements inserted into tree.
+        skipped_count: Number of duplicates skipped.
+    """
+    if not ai_elements:
+        return [], 0, 0
+
+    # Snapshot UIA tree before modifications — used for both IoU comparison
+    # and parent lookup, so AI elements don't affect each other's placement.
+    uia_flat = _flatten(root)
+    uia_visible = [e for e in uia_flat if e.width > 0 and e.height > 0]
+
+    # Build a parent lookup list: (node, depth) pairs from the original tree.
+    # This is a frozen snapshot — adding AI children to nodes won't change it.
+    uia_parents: list[tuple[ElementInfo, int]] = []
+
+    def _collect_parents(node: ElementInfo, depth: int) -> None:
+        uia_parents.append((node, depth))
+        for child in node.children:
+            _collect_parents(child, depth + 1)
+
+    _collect_parents(root, 0)
+
+    added: List[ElementInfo] = []
+    skipped = 0
+
+    for ai_el in ai_elements:
+        if ai_el.width <= 0 or ai_el.height <= 0:
+            skipped += 1
+            continue
+
+        # Check if any existing UIA element overlaps significantly
+        is_duplicate = False
+        best_iou = 0.0
+        best_match: Optional[ElementInfo] = None
+        for uia_el in uia_visible:
+            score = _iou(ai_el, uia_el)
+            if score > best_iou:
+                best_iou = score
+                best_match = uia_el
+            if score >= iou_threshold:
+                is_duplicate = True
+                break
+
+        if is_duplicate:
+            skipped += 1
+            logger.debug(
+                "AI merge: skip '%s' (%d,%d %dx%d) IoU=%.2f with UIA '%s'",
+                ai_el.name, ai_el.x, ai_el.y, ai_el.width, ai_el.height,
+                best_iou, best_match.name if best_match else "?",
+            )
+            continue
+
+        # Find deepest UIA parent whose bounds contain the AI element's center.
+        # Uses the pre-snapshot parent list, not the live (modified) tree.
+        cx = ai_el.x + ai_el.width // 2
+        cy = ai_el.y + ai_el.height // 2
+        best_parent = root
+        best_depth = -1
+        for node, depth in uia_parents:
+            if (node.x <= cx <= node.x + node.width
+                    and node.y <= cy <= node.y + node.height
+                    and depth > best_depth):
+                best_parent = node
+                best_depth = depth
+
+        best_parent.children.append(ai_el)
+        added.append(ai_el)
+
+    return added, len(added), skipped
+
+
+def _find_containing_node(
+    root: ElementInfo, cx: int, cy: int,
+) -> Optional[ElementInfo]:
+    """Find the deepest tree node whose bounding box contains point (cx, cy)."""
+    best: Optional[ElementInfo] = None
+    best_depth = -1
+
+    def _walk(node: ElementInfo, depth: int) -> None:
+        nonlocal best, best_depth
+        if (node.x <= cx <= node.x + node.width
+                and node.y <= cy <= node.y + node.height):
+            if depth > best_depth:
+                best = node
+                best_depth = depth
+        for child in node.children:
+            _walk(child, depth + 1)
+
+    _walk(root, 0)
+    return best
 
 
 # ── Hybrid tree helpers ───────────────────────────────────────────────────────
@@ -901,6 +1170,7 @@ def run_cascade(
     fill_gaps_ai: bool = False,
     ai_provider: str = "auto",
     screenshot_path: Optional[str] = None,
+    screenshot_scale_factor: float = 1.0,
 ) -> CascadeResult:
     """Run progressive recognition and return a merged element tree.
 
@@ -933,6 +1203,9 @@ def run_cascade(
         AI provider name (``"auto"`` | ``"anthropic"`` | ``"openai"`` | ``"ollama"``).
     screenshot_path:
         Path to existing screenshot for AI vision (avoids re-capture).
+    screenshot_scale_factor:
+        DPI scale factor of the screenshot's monitor (e.g. 1.5 for 150%).
+        Used to convert AI pixel coordinates to UIA screen coordinates.
 
     Returns
     -------
@@ -1111,20 +1384,28 @@ def run_cascade(
         if current_coverage < coverage_target or coverage_target == 0.0 or shallow_fallback:
             t0 = time.monotonic()
             bounds = (root_tree.x, root_tree.y, root_tree.width, root_tree.height)
-            ai_elements = _fetch_ai_elements(screenshot_path, bounds, ai_provider)
+            ai_elements = _fetch_ai_elements(
+                screenshot_path, bounds, ai_provider,
+                scale_factor=screenshot_scale_factor,
+            )
             elapsed = (time.monotonic() - t0) * 1000
 
             trigger = "shallow_tree" if shallow_fallback else "fill_gaps"
             if ai_elements:
-                for el in ai_elements:
-                    merged_elements.append(el)
+                # (#694) Merge AI elements into the UIA tree with IoU dedup
+                # instead of flat append — skip duplicates, attach novel
+                # elements to the deepest matching parent node.
+                novel, added_count, skipped_count = _merge_ai_into_tree(
+                    root_tree, ai_elements,
+                )
+                merged_elements.extend(novel)
                 stats.providers.append(ProviderStat(
-                    name="vision", elements=len(ai_elements), elapsed_ms=elapsed,
+                    name="vision", elements=added_count, elapsed_ms=elapsed,
                     status="ok",
                 ))
                 logger.info(
-                    "AI vision added %d elements (trigger: %s)",
-                    len(ai_elements), trigger,
+                    "AI vision: %d added, %d duplicates skipped (trigger: %s)",
+                    added_count, skipped_count, trigger,
                 )
             else:
                 stats.providers.append(ProviderStat(

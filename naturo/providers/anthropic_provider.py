@@ -489,26 +489,17 @@ class AnthropicVisionProvider:
             raw_response=response,
         )
 
-    def identify_element(
+    def _call_vision(
         self,
         image_path: str,
-        element_description: str,
+        text_prompt: str,
         *,
         max_tokens: int = 4096,
     ) -> VisionResult:
-        """Find a specific UI element in a screenshot.
+        """Send an image + text prompt to the Anthropic API.
 
-        Args:
-            image_path: Path to screenshot file.
-            element_description: Natural language description of the element.
-            max_tokens: Maximum tokens in the response.
-
-        Returns:
-            VisionResult with element location info in the elements list.
-
-        Raises:
-            AIProviderUnavailableError: API key not set or package missing.
-            AIAnalysisFailedError: API request failed.
+        Low-level helper shared by ``identify_element`` and
+        ``enumerate_elements``.  Callers provide the final prompt text.
         """
         if not self.is_available:
             raise AIProviderUnavailableError(
@@ -519,10 +510,6 @@ class AnthropicVisionProvider:
         client = self._get_client()
         image_data = encode_image_base64(image_path)
         media_type = detect_media_type(image_path)
-
-        text_prompt = _DEFAULT_IDENTIFY_PROMPT.format(
-            element_description=element_description
-        )
 
         try:
             response = client.messages.create(
@@ -563,7 +550,6 @@ class AnthropicVisionProvider:
         if hasattr(response, "usage"):
             tokens_used = (response.usage.input_tokens or 0) + (response.usage.output_tokens or 0)
 
-        # Parse the JSON response
         elements = parse_ai_elements_json(raw_text)
 
         return VisionResult(
@@ -573,6 +559,37 @@ class AnthropicVisionProvider:
             tokens_used=tokens_used,
             raw_response=response,
         )
+
+    def identify_element(
+        self,
+        image_path: str,
+        element_description: str,
+        *,
+        max_tokens: int = 4096,
+    ) -> VisionResult:
+        """Find a specific UI element in a screenshot.
+
+        Wraps the description in the standard identify prompt template.
+        Used by ``ai_find`` for single-element lookup.
+        """
+        text_prompt = _DEFAULT_IDENTIFY_PROMPT.format(
+            element_description=element_description
+        )
+        return self._call_vision(image_path, text_prompt, max_tokens=max_tokens)
+
+    def enumerate_elements(
+        self,
+        image_path: str,
+        prompt: str,
+        *,
+        max_tokens: int = 16384,
+    ) -> VisionResult:
+        """Enumerate all UI elements in a screenshot.
+
+        Sends the prompt directly without wrapping. Used by cascade
+        AI vision to get a full element inventory.
+        """
+        return self._call_vision(image_path, prompt, max_tokens=max_tokens)
 
 
 # Register this provider
