@@ -154,19 +154,19 @@ class TestResolveAuth:
 # ---------------------------------------------------------------------------
 
 class TestCredentialsIO:
-    @patch("naturo.providers.anthropic_provider._CREDENTIALS_PATH")
+    @patch("naturo.config.CREDENTIALS_PATH")
     def test_load_missing_file(self, mock_path: MagicMock) -> None:
         mock_path.exists.return_value = False
         assert _load_credentials() == {}
 
-    @patch("naturo.providers.anthropic_provider._CREDENTIALS_PATH")
+    @patch("naturo.config.CREDENTIALS_PATH")
     def test_load_valid_json(self, mock_path: MagicMock) -> None:
         mock_path.exists.return_value = True
         mock_path.read_text.return_value = '{"anthropic": {"token": "abc"}}'
         result = _load_credentials()
         assert result == {"anthropic": {"token": "abc"}}
 
-    @patch("naturo.providers.anthropic_provider._CREDENTIALS_PATH")
+    @patch("naturo.config.CREDENTIALS_PATH")
     def test_load_invalid_json(self, mock_path: MagicMock) -> None:
         mock_path.exists.return_value = True
         mock_path.read_text.return_value = "not-json"
@@ -174,7 +174,7 @@ class TestCredentialsIO:
 
     def test_save_and_load(self, tmp_path: Path) -> None:
         creds_path = tmp_path / "credentials.json"
-        with patch("naturo.providers.anthropic_provider._CREDENTIALS_PATH", creds_path):
+        with patch("naturo.config.CREDENTIALS_PATH", creds_path):
             _save_credentials({"anthropic": {"token": "test"}})
             result = _load_credentials()
             assert result["anthropic"]["token"] == "test"
@@ -290,7 +290,7 @@ class TestGetOAuthAccessToken:
 class TestPersistRefreshToken:
     def test_persist(self, tmp_path: Path) -> None:
         creds_path = tmp_path / "credentials.json"
-        with patch("naturo.providers.anthropic_provider._CREDENTIALS_PATH", creds_path):
+        with patch("naturo.config.CREDENTIALS_PATH", creds_path):
             _persist_refresh_token("sk-ant-oat01-new")
             data = json.loads(creds_path.read_text())
             assert data["anthropic"]["token"] == "sk-ant-oat01-new"
