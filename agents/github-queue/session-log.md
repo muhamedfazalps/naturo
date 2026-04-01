@@ -2,20 +2,20 @@
 > Date: 2026-04-01
 
 ## Completed
-- fix/issue-785-uwp-launch-pid: Resolve real app PID after Windows cmd /c start launch (fixes #785)
-  - `launch_app()` now waits for cmd.exe to exit, then polls `find_process` to locate the actual app process
-  - Handles both `wait_until_ready` and normal launch modes
-  - Falls back to cmd.exe PID if process not found within 3s
-  - 5 new tests, all 94 process tests pass, ruff clean, mypy clean
-- fix/issue-784-type-newline-drop: Send Enter/Tab for control chars in keystroke simulation (fixes #784)
-  - `naturo_key_type()` and `naturo_phys_key_type()` in input.cpp now detect \n, \r, \t
-  - Sends VK_RETURN/VK_TAB virtual-key (or scan code) events instead of Unicode events
-  - Both normal and hardware input modes fixed
-  - Needs desktop CI verification
+- feat/issue-723-cost-guardrails: Add cost guardrails for scheduled agents (fixes #723)
+  - Daily run limit (default 20/day) via GitHub API check before QA-Mariana sessions
+  - Global pause_all emergency kill switch in agents/config/cost-guardrails.yaml
+  - Per-agent budget config for QA-Mariana and Dev-Sirius
+  - 11 tests for config validation, all pass
+- test/browser-cmd-coverage: Add 56 tests for browser CLI subcommands
+  - Covers all 16 browser commands with mocked BrowserPage
+  - Tests argument parsing, JSON output, error handling, connection failures
+  - Fills coverage gap — browser_cmd.py had zero tests
+  - 4222 total tests pass, ruff clean
 
 ## Pushed branches (awaiting PR)
-- fix/issue-785-uwp-launch-pid: Resolve real app PID after Windows cmd /c start launch (fixes #785)
-- fix/issue-784-type-newline-drop: Send Enter/Tab for control chars in keystroke simulation (fixes #784)
+- feat/issue-723-cost-guardrails: ops: add cost guardrails for scheduled agents (fixes #723)
+- test/browser-cmd-coverage: test: add 56 tests for browser CLI subcommands
 
 ## Rebased branches
 - docs/issue-721-example-scripts: rebased onto develop, force-pushed
@@ -26,16 +26,21 @@
 - feat/issue-762-browser-wait-mechanisms: rebased onto develop, force-pushed
 - feat/issue-764-iframe-support: rebased onto develop, force-pushed
 - feat/issue-765-network-interception: rebased onto develop, force-pushed
+- fix/issue-784-type-newline-drop: rebased onto develop, force-pushed
+- fix/issue-785-uwp-launch-pid: rebased onto develop, force-pushed
 - refactor/config-cmd-deduplicate-credentials: rebased onto develop, force-pushed
+- refactor/issue-719-cli-by-domain: rebased onto develop, force-pushed
 
 ## Issues found but not fixed
-- #786 (P1 menu click regression): No code changed between pass (R86) and fail (R87) — intermittent UWP desktop issue. Needs desktop debugging session to diagnose timing/focus root cause.
-- Many PR requests still pending — Orc-Mycelium needs to process and create PRs for 9+ branches
-- #763 (client script validation) and #766 (migration guide) still blocked on browser dependency PRs merging
+- No TODOs/FIXMEs/bare excepts in codebase — code health is clean
+- browser/_page.py still has no tests (needs more complex CDP mocking)
+- backends/windows/_shell.py has no tests (needs @pytest.mark.desktop)
+- 14 PR branches still pending — Orc-Mycelium needs to create/merge PRs
+- #763 and #766 blocked on browser dependency PRs merging
 
 ## Next session should
-- Check if Orc-Mycelium created/merged any PRs from the queue
-- If browser PRs merged: implement #763 and #766
-- Desktop debug #786 (menu click intermittent failure) if desktop runner available
-- Work on P2 items (#723 cost guardrails, #727 good-first-issue tasks)
-- Consider adding tests for browser_cmd.py once browser PRs merge
+- Check if Orc-Mycelium processed any PR requests from the queue
+- If browser PRs merged: implement #763 (client script validation) and #766 (migration guide tests)
+- Write tests for browser/_page.py (CDP mocking)
+- Work on #727 (good-first-issue tasks) if GitHub tools become available
+- Update README with browser automation section once browser PRs merge
