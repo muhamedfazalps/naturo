@@ -16,3 +16,11 @@ Format:
 
 ---
 
+## PR Request: fix/issue-776-app-id-promotion
+- **Base**: develop
+- **Title**: fix: promote --app aN to --app-id in window/dialog/desktop commands (fixes #776)
+- **Body**: The #752 fix added app ID pattern detection (`--app a1` → `--app-id a1`) to core and interaction commands but missed window_cmd (8 commands), dialog_cmd (5 commands), and desktop_cmd (1 command). Users passing `--app a1` to these commands got silent failure because fuzzy process-name matching was used instead of app ID resolution. Added `maybe_promote_app_to_app_id` call before `resolve_app_id_to_hwnd` in all 14 affected call sites. Tests: 2 new tests verify promotion in window focus and dialog detect. Full suite: 3804 passed, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-01
+- **Status**: pending
+
