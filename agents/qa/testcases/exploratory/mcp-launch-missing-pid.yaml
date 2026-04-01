@@ -5,10 +5,10 @@ category: exploratory
 priority: P2
 source_issue: 575
 created: 2026-03-29
-last_run: 2026-04-01
+last_run: 2026-04-02
 last_result: pass
-consecutive_passes: 4
-notes: "2026-04-01 R75: PASS — MCP launch_app returns {success: true, pid: 74700}."
+consecutive_passes: 5
+notes: "2026-04-02 R84: PASS — MCP launch_app returns PID 99852."
 
 preconditions:
   - "naturo is installed and in PATH"
