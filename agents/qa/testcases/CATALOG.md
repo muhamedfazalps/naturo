@@ -13,6 +13,7 @@
 
 - [TC-0038](regression/uwp-notepad-enumeration.yaml) — P0: UWP Notepad intermittently invisible to list apps after launch — **active**
 - [TC-0040](regression/capture-unicode-path-dll.yaml) — P1: naturo_core.dll capture_screen fails with Unicode file path — **active**
+- [TC-0041](regression/json-mode-exit-code-zero-on-failure.yaml) — P1: JSON mode (-j) returns exit code 0 on failure, breaking scripts — **active**
 
 ## E2E Tests
 - [TC-0004](e2e/calculator-basic-flow.yaml) — P1: Calculator see→click→verify flow — **active**
@@ -33,7 +34,7 @@
 
 - [TC-0015](regression/app-quit-silent-failure.yaml) — P1: app quit reports success but fails to close windows with unsaved changes — **active**
 - [TC-0016](regression/uwp-app-name-matching.yaml) — P1: --app flag fails to match UWP apps by common name (#469) — **retired** (5 passes, #469 closed)
-- [TC-0034](regression/capture-chinese-filepath.yaml) — P1: naturo capture fails with Chinese/Unicode file paths — **active**
+- [TC-0034](regression/capture-chinese-filepath.yaml) — P1: naturo capture fails with Chinese/Unicode file paths — **retired** (6 passes, #693 closed)
 - [TC-0017](regression/click-en-ref-not-found.yaml) — P0: click eN ref always fails with 'Element ref not found' even after see — **retired** (5 passes, #502 closed)
 - [TC-0018](exploratory/get-value-unreadable.yaml) — P1: get command returns 'no readable pattern' for Calculator display element — **active**
 - [TC-0019](exploratory/explorer-matches-program-manager.yaml) — P1: --app explorer matches Program Manager instead of File Explorer — **retired** (5 passes, #524 closed)

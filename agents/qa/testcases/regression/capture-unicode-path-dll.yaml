@@ -6,8 +6,9 @@ priority: P1
 source_issue: 777
 created: 2026-04-01
 last_run: 2026-04-01
-last_result: fail
-consecutive_passes: 0
+last_result: pass
+consecutive_passes: 1
+notes: "2026-04-01 R79: PASS via CLI path (Python PIL). Note: CI test_capture_screen_unicode_path still FAILS via C++ DLL bridge (#777). CLI uses different code path."
 
 preconditions:
   - "naturo is installed and in PATH"

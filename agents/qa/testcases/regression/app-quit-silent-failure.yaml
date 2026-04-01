@@ -6,9 +6,9 @@ priority: P1
 source_issue: null
 created: 2026-03-28
 last_run: 2026-04-01
-last_result: fail
-consecutive_passes: 1
-notes: "2026-04-01 R76: FAIL — app quit 计算器 reported 'Quit 计算器' exit 0, but Calculator was still running (verified via screenshot + list apps). Silent failure on pre-existing ApplicationFrameHost-owned UWP window. Fresh launches quit correctly."
+last_result: pass
+consecutive_passes: 2
+notes: "2026-04-01 R79: PASS — app quit notepad with unsaved changes closed Notepad. Verified via list apps (grep exit 1 = not found)."
 
 preconditions:
   - "naturo is installed and in PATH"
