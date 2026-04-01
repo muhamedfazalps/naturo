@@ -2,34 +2,27 @@
 > Date: 2026-04-01
 
 ## Completed
-- refactor/config-cmd-deduplicate-credentials: removed 31 lines of duplicate credential code from config_cmd.py, now imports from naturo.config (25 tests pass, ruff clean)
+- fix/issue-776-app-id-promotion: added `maybe_promote_app_to_app_id` to 14 call sites in window_cmd.py (8), dialog_cmd.py (5), desktop_cmd.py (1). 6 new tests. (fixes #776)
+- fix/trajectory-and-registry-quality: consistent `int(round())` in linear trajectory, empty-string guards in model registry. 7 new tests.
+- refactor/config-cmd-deduplicate-credentials: replaced 31 lines of private credential code with imports from naturo.config. 25 tests updated.
+- docs/issue-774-roadmap-browser-scope: added v0.3.1 (quality sprint) and v0.3.2 (browser automation) sections to ROADMAP.md (fixes #774)
 
 ## Pushed branches (awaiting PR)
-- refactor/config-cmd-deduplicate-credentials: refactor: deduplicate credential functions in config_cmd.py
+- fix/issue-776-app-id-promotion: force-pushed clean version (old branch had merge conflicts with develop)
+- fix/trajectory-and-registry-quality: force-pushed clean version
+- refactor/config-cmd-deduplicate-credentials: force-pushed clean version
+- docs/issue-774-roadmap-browser-scope: force-pushed clean version
 
-## Rebased branches
-- fix/issue-776-app-id-promotion: rebased onto develop, pushed
-- docs/issue-774-roadmap-browser-scope: rebased onto develop, pushed
-- fix/trajectory-and-registry-quality: rebased onto develop, pushed
-- docs/issue-721-example-scripts: rebased onto develop, pushed
-- docs/issue-722-mcp-server-reference: rebased onto develop, pushed
-
-## Code health scan results
-- 3802 tests pass, 645 skipped (desktop-only), ruff clean, mypy clean
-- No TODOs, FIXMEs, bare excepts found
-- Largest files: _element.py (1,473 lines, tracked by #720), app_cmd.py (1,237 lines), _shell.py (1,216 lines)
-
-## Good-first-issue candidates for #727 (for Orc-Mycelium to create)
-1. **Improve error messages in desktop_cmd.py** — Add `suggested_action` hints to 3 validation errors (lines 116, 194, 252) telling users to run `naturo desktop list` for valid indices
-2. **Add return type hints to CLI option decorators** — naturo/cli/options.py lines 33-102: 8 decorator functions missing `-> Callable` return types
-3. **Add docstrings to interaction helper functions** — naturo/cli/interaction/_common.py: `_flatten()` (line 214) and `_to_dict()` (line 254) missing docstrings
-4. **Add docstring to _resolve_app_id()** — naturo/cli/interaction/_common.py line 371: frequently used utility missing parameter/return documentation
+## Branches lost from remote (need recreation)
+- docs/issue-721-example-scripts: branch gone, PR request exists but needs branch recreated
+- docs/issue-722-mcp-server-reference: branch gone, PR request exists but needs branch recreated
 
 ## Issues found but not fixed
-- app_cmd.py (1,237 lines) and _shell.py (1,216 lines) are large but no tracking issues exist for splitting them
-- #726 (hero GIF) and #727 (good-first-issues) require GitHub access or Windows desktop — need Orc-Mycelium
+- app_cmd.py (1,237 lines) and _shell.py (1,216 lines) are large but no tracking issues exist
+- #721 and #722 need branch recreation (docs work from previous session lost)
 
 ## Next session should
-- Verify all 6 pending PRs were created and merged by Orc-Mycelium
-- If PRs merged, pick up #719 (CLI reorganization) — Large task, dedicate full session
-- If time permits after #719, consider #723 (cost guardrails) or start browser subcommand work (#759)
+- Verify 4 pushed branches have PRs created by Orc-Mycelium
+- Recreate docs/issue-721-example-scripts branch (example scripts)
+- Recreate docs/issue-722-mcp-server-reference branch (MCP reference)
+- If time permits, start #719 (CLI reorganization) — large task, full session
