@@ -28,32 +28,56 @@ cat agents/VISION.md
 cat docs/ROADMAP.md
 ```
 
-## Phase 0.5 — Process Dev-Sirius GitHub Queue
+## Phase 0.5 — Process Dev-Sirius Work
 
-Dev-Sirius may not have GitHub MCP tools in scheduled sessions. Check for queued requests:
+Dev-Sirius pushes branches and writes PR requests but cannot interact with GitHub directly. You are responsible for creating PRs, managing issues, and cleaning up branches.
 
+### Read Dev-Sirius session log
 ```bash
+cat agents/github-queue/session-log.md
 cat agents/github-queue/pr-requests.md
-cat agents/github-queue/status-updates.md
-cat agents/github-queue/branch-cleanup.md
 ```
 
-For each **pending** PR request:
+### Process pending PR requests
+For each **pending** entry in `pr-requests.md`:
 1. Verify the branch exists: `gh api repos/AcePeak/naturo/branches/<branch-name>`
-2. Check if branch has conflicts with develop: `gh api repos/AcePeak/naturo/compare/develop...<branch>`
-3. If clean: create the PR with `gh pr create --head <branch> --base develop --title "..." --body "..."`
-4. Enable auto-merge: `gh pr merge <number> --auto --squash`
-5. Mark the request as `created (PR #X)` in the file
+2. Check for conflicts: `gh api repos/AcePeak/naturo/compare/develop...<branch> --jq '"ahead: \(.ahead_by), behind: \(.behind_by), status: \(.status)"'`
+3. If clean: create PR and enable auto-merge:
+   ```bash
+   gh pr create --head <branch> --base develop --title "<title>" --body "<body>"
+   gh pr merge <number> --auto --squash
+   ```
+4. If conflicting: note in pr-requests.md as `conflict` — Dev-Sirius will rebase next session
+5. Mark processed requests as `created (PR #X)` in the file
 
-For each **pending** status update:
-1. Apply the label/comment/assignment change on GitHub
-2. Mark as `done` in the file
+### Check for orphan branches (pushed but no PR request written)
+```bash
+gh api repos/AcePeak/naturo/branches --jq '.[].name' | grep -v main | grep -v develop
+```
+For any branch without a corresponding PR or pr-request entry, check `git log` to understand what it does, then create a PR if it looks complete.
 
-For each **pending** branch cleanup:
-1. Delete the branch: `gh api -X DELETE repos/AcePeak/naturo/git/refs/heads/<branch>`
-2. Mark as `done` in the file
+### Clean up merged branches
+```bash
+# Find branches whose PRs have been merged
+gh pr list --state merged --limit 20 --json headRefName --jq '.[].headRefName'
+# Delete any that still exist as remote branches
+gh api -X DELETE repos/AcePeak/naturo/git/refs/heads/<branch-name>
+```
 
-After processing, update `agents/github-queue/pending-issues.md` with current open issues snapshot, then commit and push.
+### Update issue labels
+For issues Dev-Sirius completed (from session-log), update GitHub:
+```bash
+gh issue edit N --add-label "status:done" --remove-label "status:in-progress"
+gh issue comment N --body "**[Orc-Mycelium]** Dev-Sirius completed this in branch <branch>. PR #X created."
+```
+
+### Refresh pending-issues.md
+After processing everything, regenerate the issue snapshot for Dev-Sirius:
+```bash
+gh issue list --state open --milestone "v0.3.2" --limit 50 --json number,title,labels,assignees \
+  --jq 'sort_by(.number) | .[] | "#\(.number) [\(.labels | map(.name) | join(","))] \(.title)"'
+```
+Update `agents/github-queue/pending-issues.md` with the fresh snapshot, then commit and push to develop.
 
 ## Phase 1 — Progress Assessment
 
