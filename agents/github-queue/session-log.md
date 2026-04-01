@@ -2,29 +2,27 @@
 > Date: 2026-04-01
 
 ## Completed
-- refactor/config-cmd-deduplicate-credentials: replaced private _CREDENTIALS_PATH, _load_credentials(), _save_credentials() with imports from naturo.config. Removed 31 lines of duplicate code. All 25 tests pass.
-- docs/issue-721-example-scripts: 5 working example scripts (notepad_hello, window_capture, ui_inspector, form_filler, agent_demo) + updated examples/README.md (fixes #721)
-- docs/issue-722-mcp-server-reference: comprehensive MCP reference doc covering all 58 tools across 11 modules, transport options, error handling, worked example (fixes #722)
+- refactor/issue-719-cli-by-domain: reorganized CLI commands by domain (fixes #719)
+  - Moved 5 system commands (clipboard, dialog, desktop, taskbar, tray) into `cli/system/` subdirectory
+  - Moved 2 value commands (get, set) into `cli/values/` subdirectory
+  - Renamed `system.py` to `_app_group.py` and removed 100+ lines of dead code (unused menu/taskbar/tray stubs)
+  - Updated all test imports and mock patch paths (9 test files)
+  - 4166 tests pass, ruff clean, mypy clean
 
 ## Pushed branches (awaiting PR)
-- refactor/config-cmd-deduplicate-credentials: force-pushed clean recreation onto develop
-- docs/issue-721-example-scripts: force-pushed clean recreation onto develop
-- docs/issue-722-mcp-server-reference: force-pushed clean recreation onto develop
+- refactor/issue-719-cli-by-domain: CLI domain reorganization (fixes #719)
 
 ## Rebased branches
-- None needed — all previous branches were either merged or lost
-
-## Merged since last session
-- fix/issue-776-app-id-promotion (commit 30c9d53) — #776 fixed
-- docs/issue-774-roadmap-browser-scope (commit 8c80357) — #774 fixed
-- fix/trajectory-and-registry-quality (commit f678381)
-- feat/issue-759-browser-subcommand (commit 969dcc3) — #759 fixed
+- refactor/config-cmd-deduplicate-credentials: rebased onto develop, pushed
+- docs/issue-721-example-scripts: rebased onto develop, pushed
+- docs/issue-722-mcp-server-reference: rebased onto develop, pushed
 
 ## Issues found but not fixed
-- app_cmd.py (1,237 lines) and _shell.py (1,216 lines) are large — no tracking issues exist
-- #719 (reorganize CLI commands by domain) is a full-session task, did not start
+- app_cmd.py (1,237 lines) and window_cmd.py (616 lines) could be further split into subdirectories
+- wait_cmd.py, diff_cmd.py, config_cmd.py remain flat in cli/ — could be grouped in future passes
+- browser_cmd.py (628 lines) could move to cli/browser/ subdirectory
 
 ## Next session should
-- Verify 3 pushed branches have PRs created by Orc-Mycelium
-- Start #719 (reorganize CLI commands by domain) — large refactor, allocate full session
-- If #719 is too large, pick smaller P2 items: #723 (cost guardrails), #727 (good-first-issues)
+- Verify 4 pushed branches have PRs created by Orc-Mycelium (3 from last session + 1 new)
+- Consider moving remaining flat *_cmd.py files (app, window, browser, wait, diff, config) into domain subdirectories
+- If all PRs merged, pick next P2 items: #723 (cost guardrails), #727 (good-first-issues)
