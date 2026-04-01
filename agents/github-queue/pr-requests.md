@@ -32,6 +32,14 @@ Format:
 - **Date**: 2026-04-01
 - **Status**: pending (rebased 2026-04-01)
 
+## PR Request: docs/issue-721-example-scripts
+- **Base**: develop
+- **Title**: docs: create working example scripts (fixes #721)
+- **Body**: Five working example scripts covering core naturo automation patterns: notepad_hello.py (app lifecycle + typing + dialog), window_capture.py (bulk screenshots with JSON parsing), ui_inspector.py (interactive UI tree exploration), form_filler.py (form field filling with Calculator demo), agent_demo.py (AI agent integration via CLI loop, MCP, and AI vision). Updated examples/README.md with usage instructions and common patterns. All scripts are ruff-clean and mypy-clean, Python 3.9+ compatible.
+- **Auto-merge**: yes
+- **Date**: 2026-04-01
+- **Status**: pending
+
 ## PR Request: fix/trajectory-and-registry-quality
 - **Base**: develop
 - **Title**: fix: consistent rounding in trajectory + model registry edge cases
