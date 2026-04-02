@@ -2,45 +2,30 @@
 > Date: 2026-04-02
 
 ## Completed
-- Rebased 23 stale branches onto latest develop (all succeeded, 0 conflicts)
-- test/browser-selectors-coverage: 40 tests for browser._selectors parse/CDP generation
-- Confirmed #105 (selector management) is already fully implemented in selector_cmd.py
+- fix/issue-788-stale-pid-routing: validate HWND liveness before routing keystrokes (fixes #788) — 4 new tests
+- fix/issue-789-app-filter-basename: extract process basename before --app matching (fixes #789) — 7 new tests
+- fix/issue-781-json-exit-code: exit non-zero when JSON mode reports failure (fixes #781) — 3 new tests
+- fix/issue-783-json-duplicate-stderr: suppress stderr output in JSON mode (fixes #783) — 2 new tests
+- fix/issue-787-coords-bounds: reject out-of-bounds click coordinates (fixes #787) — 4 new tests
+- fix/issue-786-uwp-menu-click: detect WinUI 3 apps for UIA click path (fixes #786) — 5 new tests
 
 ## Pushed branches (awaiting PR)
-- test/browser-selectors-coverage: 40 tests for naturo.browser._selectors
+- fix/issue-788-stale-pid-routing: Two-layer HWND validation using IsWindow()
+- fix/issue-789-app-filter-basename: ntpath.basename() in 3 matching functions
+- fix/issue-781-json-exit-code: return → sys.exit(1) in 3 locations
+- fix/issue-783-json-duplicate-stderr: NullHandler + log level downgrades
+- fix/issue-787-coords-bounds: GetSystemMetrics validation for click coords
+- fix/issue-786-uwp-menu-click: _is_winui_window() detection + click path
 
 ## Rebased branches
-- fix/issue-785-winui3-uia-probe
-- fix/issue-788-stale-pid-routing
-- fix/issue-789-app-filter-basename
-- fix/issue-781-json-exit-code
-- fix/issue-783-json-duplicate-stderr
-- fix/issue-786-uwp-menu-click
-- fix/issue-787-coords-bounds
-- feat/issue-758-chrome-profiles
-- feat/issue-759-browser-download
-- feat/issue-760-stealth-check
-- feat/issue-761-drag-from-element
-- feat/issue-762-browser-wait
-- feat/issue-764-iframe-support
-- feat/issue-723-cost-guardrails
-- feat/issue-90-recording-playback-cli
-- feat/issue-91-visual-regression-enterprise
-- feat/issue-104-builtin-selector-templates
-- test/browser-cmd-coverage
-- test/visual-cmd-coverage
-- test/cascade-coverage-gaps
-- docs/readme-browser-section
-- refactor/config-cmd-deduplicate-credentials
-- refactor/issue-719-cli-by-domain
+- All 6 branches rebased onto remote counterparts from previous sessions
 
 ## Issues found but not fixed
-- #105 is already implemented — Orc-Mycelium should mark as status:done or verify
-- 3 superseded branches still on remote: fix/issue-788-stale-pid-hwnd, fix/issue-788-stale-pid-app-id, feat/issue-90-recording-cli (Orc-Mycelium can delete)
-- docs/issue-722-mcp-reference branch on remote but content not in develop (PR #791 was merged from different branch name?)
+- Many previous feature branches (pending PRs) were deleted from remote without being merged into develop
+- P1 features #90 (recording), #104 (selector templates) need re-implementation if branches are truly lost
+- #785 winui3-uia-probe branch still pending from previous sessions
 
 ## Next session should
-- Check if Orc-Mycelium has merged any of the 23 pending branches
-- If PRs are merged, work on remaining P2 items (#727 good-first-issue tasks)
-- If PRs still pending, investigate any CI failures blocking merges
-- Consider writing integration tests for recording/playback (feat #90) once merged
+- Check if any of the 6 fix branches have been merged
+- If merged, work on remaining items: #90 recording, #104 selector templates, #785 winui3-uia-probe
+- Investigate why previous feature branches were deleted without merging
