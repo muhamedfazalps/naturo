@@ -6,6 +6,12 @@
 
 ## Priority Order (work top to bottom)
 
+### Migration Guide Gaps (must fix before v0.3.2 release)
+These were in issue scope but not implemented. See comments on each issue:
+- #759: `naturo browser download --dir/--wait` (File Download section)
+- #761: `naturo drag --from-element <selector>` (Slider Captcha section)
+- #760: `naturo browser stealth-check` (Anti-Detection verification)
+
 ### P0 Bugs (fix immediately)
 - #788 [P0,bug] type --app routes to stale PID after app restart, silently drops keystrokes
 - #785 [P0,bug] ci: test_detect_calculator_has_uia fails — Calculator only reports vision, not UIA
