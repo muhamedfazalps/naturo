@@ -310,3 +310,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: feat/issue-104-builtin-selector-templates
+- **Base**: develop
+- **Title**: feat: add built-in selector templates for Top 20 Windows apps (fixes #104)
+- **Body**: 20 JSON template files in naturo/selectors_builtin/ covering Notepad, Chrome, Firefox, Edge, Explorer, VS Code, Word, Excel, PowerPoint, Calculator, Settings, Task Manager, Windows Terminal, Outlook, Teams, CMD, Paint, Snipping Tool, Control Panel, and Registry Editor (119 selectors total). Templates use automationid where available for locale-independence, with wildcard name patterns for cross-version compatibility. 70 new tests. Ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
