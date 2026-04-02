@@ -207,3 +207,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: fix/issue-776-app-subcommands (round 4)
+- **Base**: develop
+- **Title**: fix: resolve app IDs (a1, a2, …) in all app subcommands (fixes #776)
+- **Body**: Round 1 (30c9d53) fixed window/dialog/desktop commands but missed the 15 app subcommands. Added `_resolve_app_id()` helper that detects `a<N>` pattern and resolves via the session app ID map. Process commands (quit, relaunch, find, inspect, hide, unhide, switch) get process name/PID; window commands (focus, close, minimize, maximize, restore, move) get HWND; launch rejects app IDs with a helpful message; windows filters by resolved process name/PID. 15 new tests, 3908 total pass, ruff + mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
