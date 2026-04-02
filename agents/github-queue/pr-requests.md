@@ -239,3 +239,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: fix/issue-789-app-filter-basename
+- **Base**: develop
+- **Title**: fix: extract process basename before --app matching (fixes #789)
+- **Body**: process_name from the C++ bridge includes the full executable path (e.g. C:\Windows\System32\notepad.exe). The --app filter did substring matching against the full path, so `--app system` would incorrectly match any process in System32. Now uses ntpath.basename() to extract just the filename before matching in _resolve_hwnd, _resolve_hwnds, and _afh_has_content_window. 6 new tests covering path components, basename exact/substring, and _resolve_hwnds. 4334 tests pass, ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
