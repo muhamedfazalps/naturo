@@ -237,7 +237,7 @@ Format:
 - **Body**: After an app restarts, cached app-ID entries (HWND + PID) become stale. Returning them caused focus_window/SendInput to silently drop keystrokes. Two-layer fix: (1) _resolve_app_id validates PID liveness via OpenProcess/kill(0); when dead, extracts process-name basename for live window enumeration. (2) _resolve_hwnd validates HWND with IsWindow(); raises WindowNotFoundError or falls through to PID/name resolution. 6 new tests (PID alive/dead, path stripping, HWND validation). Existing tests updated to mock _is_pid_alive. 4334 tests pass, ruff clean, mypy clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
-- **Status**: pending
+- **Status**: superseded by fix/issue-788-stale-pid-app-id
 
 ## PR Request: fix/issue-789-app-filter-basename
 - **Base**: develop
@@ -325,7 +325,7 @@ Format:
 - **Body**: Two-layer fix: (1) _resolve_app_id validates PID liveness via os.kill(0); when dead, extracts process-name basename for live window enumeration. (2) _resolve_hwnd validates HWND with IsWindow(); raises WindowNotFoundError when the handle is stale. 6 new tests, 3 existing tests updated. 4375 tests pass, ruff clean, mypy clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
-- **Status**: pending
+- **Status**: superseded by fix/issue-788-stale-pid-app-id
 
 ## PR Request: fix/issue-789-app-filter-basename
 - **Base**: develop
@@ -363,6 +363,14 @@ Format:
 - **Base**: develop
 - **Title**: fix: detect WinUI 3 apps for UIA click path (fixes #786)
 - **Body**: WinUI 3 apps (Win11 Notepad, Paint) run as standalone processes, not under ApplicationFrameHost. The UIA click path was only triggered for AFH-hosted apps, so menu items in WinUI 3 apps were clicked via SendInput which doesn't reliably reach XAML content. Added _is_winui_window() that detects DesktopWindowXamlSource child windows. When detected, click uses ExpandCollapsePattern/InvokePattern instead of SendInput. 6 new tests, 2 existing tests updated. 4432 tests pass, ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
+
+## PR Request: fix/issue-788-stale-pid-app-id
+- **Base**: develop
+- **Title**: fix: detect stale PID in app ID resolution, fail loudly (fixes #788)
+- **Body**: When an app restarts after `naturo app list`, the cached HWND+PID become stale. Previously, _resolve_app_id returned them without validation, causing focus_window to silently fail and keystrokes to be delivered to the wrong foreground window. Now validates the cached PID is still alive via find_process(pid=) before returning. If the process is gone, exits with a clear error (APP_ID_STALE) telling the user to re-run `naturo app list`. 2 new tests (stale PID exits, alive PID succeeds), 3 existing tests updated to mock find_process. 4091 tests pass, ruff clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
