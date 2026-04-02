@@ -1,6 +1,6 @@
 id: TC-0025
 title: "Element coordinates wrong on high-DPI display (4K + 150% scaling)"
-status: active
+status: retired
 category: exploratory
 priority: P0
 source_issue: 613

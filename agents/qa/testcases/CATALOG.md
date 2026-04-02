@@ -50,7 +50,7 @@
 
 ## Real-World Verification (from Ace's v0.3.1 testing — 2026-03-29)
 - [TC-0024](exploratory/click-background-window.yaml) — P0: click --app hits wrong window when target is behind others (#608) — **active**
-- [TC-0025](exploratory/dpi-coordinate-verification.yaml) — P0: Element coordinates wrong on 4K + 150% DPI (#613) — **active**
+- [TC-0025](exploratory/dpi-coordinate-verification.yaml) — P0: Element coordinates wrong on 4K + 150% DPI (#613) — **retired** (5 passes, #613 closed)
 - [TC-0026](exploratory/ai-vision-fill-gaps.yaml) — P0: AI Vision fill-gaps returns 0 elements, JSON parsing fails (#611) — **active**
 - [TC-0027](exploratory/ai-vision-coverage-false-100.yaml) — P0: AI Vision skipped because coverage falsely reports 100% (#609) — **active**
 - [TC-0028](exploratory/uwp-multi-tab-quit.yaml) — P1: app quit fails to close UWP Notepad with multiple tabs (#586) — **retired** (5 passes, #586 closed)
