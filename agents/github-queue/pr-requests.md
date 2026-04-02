@@ -247,3 +247,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: fix/issue-781-json-exit-code
+- **Base**: develop
+- **Title**: fix: exit non-zero when JSON mode reports failure (fixes #781)
+- **Body**: selector clear, selector export, and visual report emitted {"success": false} JSON but exited with code 0. Automation scripts relying on exit codes could not detect failure. Changed `return` to `sys.exit(1)` in all three affected locations, matching the pattern used by every other error path in the CLI. 6 new tests. 4334 tests pass, ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
