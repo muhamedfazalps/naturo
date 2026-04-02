@@ -199,3 +199,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: feat/issue-723-cost-guardrails (round 2)
+- **Base**: develop
+- **Title**: ops: add cost guardrails for scheduled agents (fixes #723)
+- **Body**: Daily run limit (default 20/day) per agent, consecutive failure auto-pause (default 3), global pause_all emergency switch, and notification thresholds. Config in agents/config/cost-guardrails.yaml with per-agent budgets for Dev-Sirius and QA-Mariana. 11 tests validate config structure and value constraints.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
