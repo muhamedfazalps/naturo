@@ -2,28 +2,22 @@
 > Date: 2026-04-02
 
 ## Completed
-- fix/issue-776-app-subcommands: resolve app IDs (a1, a2, ...) in all 14 app subcommands — launch, quit, relaunch, find, inspect, hide, unhide, switch, focus, close, minimize, maximize, restore, move, windows (fixes #776 round 2). 13 new tests, 112 total app_cmd tests pass.
-- feat/issue-758-chrome-profiles: Chrome profile management — auto-discovery across platforms, profile-based user-data dirs, CDP health check, ChromeProcess wrapper. Three CLI commands: browser launch, profiles, profile-delete (fixes #758). 37 new tests.
-- feat/issue-760-anti-detection: anti-detection stealth flags and 6 JS patches (navigator.webdriver, plugins, languages, permissions, chrome.runtime, WebGL vendor). Two CLI commands: browser stealth, stealth-flags (fixes #760). 18 new tests.
-- feat/issue-764-iframe-support: iframe frame listing and context switching via Page.createIsolatedWorld. One CLI command: browser frames (fixes #764). 17 new tests.
-- feat/issue-765-network-interception: network monitoring and request interception via JS injection. Two CLI commands: browser requests, browser intercept (fixes #765). 20 new tests.
+- fix/issue-776-app-subcommands: resolve app IDs (a1, a2, ...) in all 15 app subcommands — launch, quit, relaunch, find, inspect, hide, unhide, switch, focus, close, minimize, maximize, restore, move, windows (fixes #776). Added `_resolve_app_id()` helper with consistent error messages in text and JSON modes. 15 new tests, 116 total app_cmd tests pass, 3814 total pass, ruff clean, mypy clean.
+- feat/issue-761-captcha-handling: captcha detection and solving architecture — CaptchaManager, CaptchaSolver ABC, ManualSolver (polls for user solution), TokenInjectionSolver (injects pre-obtained tokens). Detection via JS covers reCAPTCHA v2/v3, hCaptcha, Cloudflare Turnstile, and generic iframe captchas. Two CLI commands: browser captcha-detect, browser captcha-solve (fixes #761). 37 new tests, ruff clean, mypy clean.
 
 ## Pushed branches (awaiting PR)
-- fix/issue-776-app-subcommands: app ID resolution in app subcommands
-- feat/issue-758-chrome-profiles: Chrome profile management
-- feat/issue-760-anti-detection: stealth flags and JS patches
-- feat/issue-764-iframe-support: iframe support
-- feat/issue-765-network-interception: network monitoring and interception
+- fix/issue-776-app-subcommands: app ID resolution in all app subcommands (force-pushed, replacing stale branch)
+- feat/issue-761-captcha-handling: captcha handling architecture (force-pushed, replacing stale branch)
 
 ## Rebased branches
-- None (no stale branches found)
+- None (stale remote branches were replaced via force-push)
 
 ## Issues found but not fixed
-- Many pending PR branches from previous sessions still need re-implementation: #761 (captcha handling), #784 (type newline drop), #785 (UWP launch PID), #719 (CLI reorganization), #721 (example scripts), #722 (MCP docs), #723 (cost guardrails)
-- Browser feature #763 (client script validation) and #766 (migration guide) depend on all browser features being merged first
+- Many pending PR branches from previous sessions still need re-implementation: #784 (type newline drop — C++ fix, cannot build on Linux), #785 (UWP launch PID), #719 (CLI reorganization), #721 (example scripts), #722 (MCP docs), #723 (cost guardrails)
+- Browser features #763 (client script validation) and #766 (migration guide) depend on all browser features being merged first
 
 ## Next session should
-- Re-implement #761 (captcha handling architecture) — last remaining browser feature before #763/#766
-- Re-implement lost fix branches: #784 (type newline drop), #785 (UWP launch PID)
-- Re-implement lost P2 branches: #719 (CLI reorganization), #721 (example scripts), #722 (MCP docs), #723 (cost guardrails)
-- Monitor PR merges and clean up merged branches
+- Re-implement #785 (UWP launch PID resolution) — Python-only fix in process.py
+- Re-implement #784 (type newline drop) — C++ fix, needs careful implementation without build verification
+- Re-implement P2 branches: #719 (CLI reorganization), #721 (example scripts), #722 (MCP docs), #723 (cost guardrails)
+- Monitor PR merges for fix/issue-776-app-subcommands and feat/issue-761-captcha-handling
