@@ -215,3 +215,19 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: feat/issue-723-cost-guardrails (round 3)
+- **Base**: develop
+- **Title**: ops: add cost guardrails for scheduled agents (fixes #723)
+- **Body**: Daily run limit (default 20/day) per agent, consecutive failure auto-pause (default 3), global pause_all emergency switch, and notification thresholds. Config in agents/config/cost-guardrails.yaml with per-agent budgets for Dev-Sirius and QA-Mariana. 11 tests validate config structure and value constraints.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
+
+## PR Request: docs/issue-721-example-scripts (round 2)
+- **Base**: develop
+- **Title**: docs: create working example scripts (fixes #721)
+- **Body**: Five example scripts covering core naturo automation patterns: notepad_hello.py (app lifecycle + typing), window_capture.py (bulk screenshots), ui_inspector.py (interactive UI tree exploration), form_filler.py (Calculator demo), agent_demo.py (CLI/MCP/vision integration patterns). Updated examples/README.md with usage instructions and common patterns. Ruff clean, Python 3.9+.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
