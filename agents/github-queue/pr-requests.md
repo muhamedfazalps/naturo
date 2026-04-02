@@ -263,3 +263,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: fix/issue-786-uwp-menu-click
+- **Base**: develop
+- **Title**: fix: detect WinUI 3 apps for UIA click path (fixes #786)
+- **Body**: WinUI 3 apps (Win11 Notepad, Paint) run as standalone processes, not under ApplicationFrameHost. The UIA click path was only triggered for AFH-hosted apps, so menu items in WinUI 3 apps were clicked via SendInput which doesn't reliably reach XAML content. Added `_is_winui_window()` that detects DesktopWindowXamlSource child windows. When detected, click uses UIA ExpandCollapsePattern/InvokePattern instead of SendInput. 4 new tests, 3 existing tests updated. 4215 tests pass, ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
