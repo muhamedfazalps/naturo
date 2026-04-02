@@ -231,3 +231,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: fix/issue-788-stale-pid-hwnd
+- **Base**: develop
+- **Title**: fix: detect stale PID/HWND after app restart, fall back to process name (fixes #788)
+- **Body**: After an app restarts, cached app-ID entries (HWND + PID) become stale. Returning them caused focus_window/SendInput to silently drop keystrokes. Two-layer fix: (1) _resolve_app_id validates PID liveness via OpenProcess/kill(0); when dead, extracts process-name basename for live window enumeration. (2) _resolve_hwnd validates HWND with IsWindow(); raises WindowNotFoundError or falls through to PID/name resolution. 6 new tests (PID alive/dead, path stripping, HWND validation). Existing tests updated to mock _is_pid_alive. 4334 tests pass, ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
