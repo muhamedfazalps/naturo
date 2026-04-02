@@ -478,3 +478,59 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: fix/issue-788-stale-pid-routing
+- **Base**: develop
+- **Title**: fix: validate HWND liveness before routing keystrokes (fixes #788)
+- **Body**: After app restart, stale HWNDs from app_ids silently dropped keystrokes because focus_window sent to a dead window. Two-layer fix using IsWindow(): (1) _resolve_app_id validates stored HWND before returning, emits APP_ID_STALE error with clear message. (2) _resolve_hwnd validates any direct HWND param, raises WindowNotFoundError for dead handles. 8 new tests. 4093 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
+
+## PR Request: fix/issue-785-winui3-uia-probe
+- **Base**: develop
+- **Title**: fix: detect UIA for standalone WinUI 3 apps like Calculator (fixes #785)
+- **Body**: Win11 Calculator and Paint are standalone WinUI 3 apps not hosted by ApplicationFrameHost. The UIA probe only checked AFH child windows when the main HWND returned an empty tree, so these apps fell through to vision-only detection. Added _find_winui_content_children() that enumerates DesktopWindowXamlSource children regardless of parent class, used as fallback when AFH child search returns empty. 4 new tests. 4088 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
+
+## PR Request: fix/issue-789-app-filter-basename
+- **Base**: develop
+- **Title**: fix: extract process basename before --app matching (fixes #789)
+- **Body**: process_name from the C++ bridge may contain a full path (e.g. C:\Windows\System32\notepad.exe). Substring matching against the full path caused --app system to incorrectly match any process in System32. Now uses ntpath.basename() in _resolve_hwnd, _resolve_hwnds, and _is_afh_window. 7 new tests. 4092 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
+
+## PR Request: fix/issue-786-uwp-menu-click
+- **Base**: develop
+- **Title**: fix: detect WinUI 3 apps for UIA click path (fixes #786)
+- **Body**: WinUI 3 apps (Win11 Notepad, Paint) run as standalone processes, not under ApplicationFrameHost. The UIA click path was only triggered for AFH-hosted apps, so menu items in WinUI 3 apps were clicked via SendInput which doesn't reliably reach XAML content. Added _is_winui_window() that detects DesktopWindowXamlSource child windows. When detected, click uses ExpandCollapsePattern/InvokePattern instead of SendInput. 6 new tests, 2 existing tests updated. 4090 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
+
+## PR Request: fix/issue-781-json-exit-code
+- **Base**: develop
+- **Title**: fix: exit non-zero when JSON mode reports failure (fixes #781)
+- **Body**: selector clear, selector export, and visual report emitted {"success": false} JSON but exited with code 0. Automation scripts relying on exit codes could not detect failure. Changed return to sys.exit(1) in all three affected locations. 5 new tests. 4090 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
+
+## PR Request: fix/issue-783-json-duplicate-stderr
+- **Base**: develop
+- **Title**: fix: suppress stderr output in JSON mode (fixes #783)
+- **Body**: Python's logging lastResort handler emits WARNING+ to stderr when no handlers are configured. In JSON mode, this caused human-readable error text to mix with JSON stdout, breaking piping workflows. Three-part fix: (1) add NullHandler to root logger when --json is active, (2) downgrade routing.py app-not-found from WARNING to DEBUG, (3) downgrade press focus-failure from WARNING to DEBUG. 4 new tests. 4089 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
+
+## PR Request: fix/issue-787-coords-bounds
+- **Base**: develop
+- **Title**: fix: reject out-of-bounds click coordinates with clear error (fixes #787)
+- **Body**: click --coords silently accepted coordinates outside the virtual screen, resulting in no-op clicks. Now validates against GetSystemMetrics (Windows) or 65535 generic bound (non-Windows). Out-of-bounds coordinates produce a COORDS_OUT_OF_BOUNDS error in both JSON and text modes. 5 new tests. 4090 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
