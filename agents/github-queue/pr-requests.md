@@ -398,3 +398,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-02
 - **Status**: pending
+
+## PR Request: docs/readme-browser-section
+- **Base**: develop
+- **Title**: docs: add browser automation and visual regression sections to README
+- **Body**: README had no documentation for `naturo browser` (23 CDP commands) or `naturo visual` (6 regression testing commands), despite both being on develop. Adds feature bullets, CLI command tables, usage examples section with common patterns, and browser automation row in comparison table.
+- **Auto-merge**: yes
+- **Date**: 2026-04-02
+- **Status**: pending
