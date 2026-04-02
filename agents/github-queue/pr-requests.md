@@ -91,10 +91,10 @@ Format:
 ## PR Request: feat/issue-760-anti-detection
 - **Base**: develop
 - **Title**: feat: add anti-detection defaults — stealth flags and JS patches (fixes #760)
-- **Body**: New `_stealth.py` module with Chrome launch flags (disable AutomationControlled, infobars, extensions, realistic window size) and 6 runtime JS patches (navigator.webdriver, plugins, languages, permissions, chrome.runtime, WebGL vendor). Patches registered via `Page.addScriptToEvaluateOnNewDocument` for persistence across navigations. Two CLI commands: `browser stealth` (apply to running browser), `browser stealth-flags` (print flags for manual launch). 22 new tests, all mocked. Ruff clean.
+- **Body**: New `_stealth.py` module with Chrome launch flags (disable AutomationControlled, infobars, extensions, realistic window size) and 6 runtime JS patches (navigator.webdriver, plugins, languages, permissions, chrome.runtime, WebGL vendor). Patches registered via `Page.addScriptToEvaluateOnNewDocument` for persistence across navigations. Two CLI commands: `browser stealth` (apply to running browser), `browser stealth-flags` (print flags for manual launch). 18 new tests, all mocked. Ruff clean, mypy clean.
 - **Auto-merge**: yes
-- **Date**: 2026-04-01
-- **Status**: pending (branch recreated and force-pushed 2026-04-01)
+- **Date**: 2026-04-02
+- **Status**: pending (branch re-created and force-pushed 2026-04-02)
 
 ## PR Request: feat/issue-764-iframe-support
 - **Base**: develop
