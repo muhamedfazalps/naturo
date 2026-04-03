@@ -606,3 +606,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-784-type-newline
+- **Base**: develop
+- **Title**: fix: convert newline chars to Enter keypresses in type_text (fixes #784)
+- **Body**: SendInput with KEYEVENTF_UNICODE sends raw Unicode codepoints, but \n (U+000A) is a control character that most Windows apps silently drop. Now type_text splits text on newline boundaries (\n, \r\n, \r) and inserts Enter keypresses between segments. 4 new tests. 28 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
