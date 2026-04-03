@@ -677,4 +677,12 @@ Format:
 - **Body**: In JSON mode, naturo logger uses NullHandler with CRITICAL+1 level to prevent duplicate human-readable errors on stderr alongside JSON stdout. Also adds verbose mode StreamHandler configuration. 1 new test.
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
-- **Status**: pending (branch force-pushed 2026-04-03 with improved implementation: NullHandler on naturo root logger in _json_ok/_json_err, downgraded routing.py and press.py warnings to DEBUG. 3 new tests.)
+- **Status**: pending (branch rebased onto develop 2026-04-03)
+
+## PR Request: feat/issue-105-user-selector-load
+- **Base**: develop
+- **Title**: feat: add selector load command and @app/name resolution (fixes #105)
+- **Body**: New `naturo selector load <app> <name>` command retrieves saved selectors by name. All interaction commands (click, type, press, etc.) now auto-resolve @app/name references in --selector, e.g. `naturo click --selector @notepad/save-btn`. Public `resolve_named_selector()` API searches user selectors first, then built-in templates. 12 new tests. Ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
