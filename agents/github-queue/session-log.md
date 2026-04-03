@@ -2,18 +2,19 @@
 > Date: 2026-04-03
 
 ## Completed
-- feat/issue-105-selector-management: Add `selector load` command and @app/name reference resolution in interaction commands (fixes #105)
+- feat/issue-105-selector-management: Cleaned up duplicate code after rebase — removed redundant resolve_selector_ref, keeping canonical resolve_named_selector. Added resolve_named_selector, is_named_selector, selector load command, @app/name resolution in --selector flag. All 4134 tests pass, ruff and mypy clean. (fixes #105)
 
 ## Pushed branches (awaiting PR)
-- feat/issue-105-selector-management: Adds `naturo selector load` CLI command and transparent @app/name resolution in --selector flags for click/type/press/scroll/move/drag
+- feat/issue-105-selector-management: `selector load` command + `@app/name` reference resolution in interaction commands (fixes #105)
 
 ## Rebased branches
-- None needed — no stale branches found
+- feat/issue-105-selector-management: rebased onto remote branch (previous session's work existed on remote)
 
 ## Issues found but not fixed
 - None
 
 ## Next session should
-- Check if PRs for existing branches (bug fixes #781-#789, browser features, etc.) have been created and merged
-- Pick up #763 (client script validation) or #766 (migration guide acceptance tests) if #105 PR is merged
+- Check if PR for feat/issue-105-selector-management has been created and merged
+- Pick up #763 (client script validation) or #766 (migration guide acceptance tests) if #105 is merged
+- Check status of all other pending PRs (bug fixes #781-#789, browser features, etc.)
 - Continue with P2 items if P1 features are done
