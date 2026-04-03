@@ -934,3 +934,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: feat/issue-105-selector-management
+- **Base**: develop
+- **Title**: feat: add selector load command and @app/name resolution (fixes #105)
+- **Body**: Adds `naturo selector load <app> <name>` command to retrieve saved selectors by name. Integrates @app/name reference resolution into all interaction commands (click, type, press, scroll, move, drag) via their --selector flag, so users can `naturo click --selector @notepad/save-btn`. Public `resolve_named_selector()` API searches user selectors first, then built-in templates. 13 new tests. 4122 tests pass, ruff and mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
