@@ -870,3 +870,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: test/detect-probes-coverage-v2
+- **Base**: develop
+- **Title**: test: add 67 tests for detect/probes.py framework detection and probe logic
+- **Body**: Fills test coverage gap for naturo/detect/probes.py (879 lines, previously untested). Tests DLL signature set invariants (10 sets non-empty, all lowercase), detect_frameworks_from_dlls with exe-name heuristics (Electron/Chrome/Java/UWP/Win32/Unknown) and DLL-based detection for all 10 framework types (Electron, CEF, Chrome, WPF, WinForms, Qt5/Qt6, Java, GTK, UWP, Win32). Tests probe_ia2 (Firefox/Thunderbird/LibreOffice), probe_vision (always-available fallback), probe_jab (with/without JAB bridge), platform-gated probes (CDP/UIA/MSAA return None on non-Windows), and helper function non-Windows codepaths. All mocked — no Windows APIs required. 4250 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
