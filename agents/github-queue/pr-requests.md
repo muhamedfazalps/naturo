@@ -590,3 +590,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-785-calculator-uia-probe
+- **Base**: develop
+- **Title**: fix: pass exe= and use retry for Calculator UIA detection tests (fixes #785)
+- **Body**: Calculator tests called detect_chain without exe= param, so _find_window_by_process_name fallback could not resolve the window when the UWP broker PID differs from the window owner. Also added _detect_with_retry with cache bypass on retries, matching the pattern already used for Notepad tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
