@@ -566,3 +566,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-783-json-duplicate-stderr
+- **Base**: develop
+- **Title**: fix: suppress stderr output in JSON mode (fixes #783)
+- **Body**: Python's logging lastResort handler sends WARNING+ messages to stderr even when no handler is configured. In JSON mode, this produces duplicate human-readable errors alongside JSON stdout. Now adds a NullHandler to the naturo logger when -j is active. 2 new tests. 3995 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
