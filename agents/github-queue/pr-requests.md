@@ -558,3 +558,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-781-json-exit-code
+- **Base**: develop
+- **Title**: fix: exit non-zero when JSON mode reports failure (fixes #781)
+- **Body**: Three locations output {"success": false} in JSON mode but returned with exit code 0: selector clear (no selectors), selector export (no selectors), visual report (no baselines). All now call sys.exit(1). 6 new tests verify both text and JSON modes exit with code 1. 3997 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
