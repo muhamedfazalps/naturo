@@ -598,3 +598,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-789-app-filter-basename
+- **Base**: develop
+- **Title**: fix: extract process basename before --app matching (fixes #789)
+- **Body**: process_name from the backend may contain a full path (e.g. C:\Windows\System32\notepad.exe). Substring matching against the full path caused --app system to incorrectly match any process in System32. Now uses ntpath.basename() in _resolve_hwnd, _resolve_hwnds, and _is_afh_window. 4 new tests. 16 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
