@@ -2,23 +2,23 @@
 > Date: 2026-04-03
 
 ## Completed
-- fix/issue-788-stale-pid-routing: add PID liveness check in AppIdMap.resolve() (fixes #788)
-- fix/issue-789-app-filter-basename: extract process basename before --app matching (fixes #789)
-- fix/issue-786-uwp-menu-click: use UIA click for menu items on all apps, not just UWP (fixes #786)
-- fix/issue-781-json-exit-code: exit code 1 when JSON output contains verified:false (fixes #781)
-- fix/issue-787-coords-bounds: reject out-of-bounds click coordinates (fixes #787)
-- fix/issue-783-json-duplicate-stderr: suppress logging stderr in JSON mode (fixes #783)
+- fix/issue-788-stale-pid-routing: added HWND liveness validation via IsWindow() in _resolve_hwnd on top of existing PID check (fixes #788)
+- fix/issue-785-winui3-uia-probe: added _find_winui_content_children() for standalone WinUI 3 apps (Calculator/Paint) (fixes #785)
+- fix/issue-789-app-filter-basename: extract ntpath.basename() in _resolve_hwnd, _resolve_hwnds, _is_afh_window (fixes #789)
+- fix/issue-781-json-exit-code: changed return to sys.exit(1) in selector clear/export and visual report (fixes #781)
+- fix/issue-787-coords-bounds: coordinate validation with negative and >65535 bounds rejection (fixes #787)
+- fix/issue-783-json-duplicate-stderr: NullHandler on naturo logger in JSON mode, downgraded 2 WARNINGs to DEBUG (fixes #783)
 
 ## Pushed branches (awaiting PR)
-- fix/issue-788-stale-pid-routing: _is_pid_alive() in resolve(), 6 new tests
-- fix/issue-789-app-filter-basename: ntpath.basename in _resolve_hwnd + _resolve_hwnds, 3 new tests
-- fix/issue-786-uwp-menu-click: UIA click for MenuItem/Menu/MenuBar roles, 1 new + 1 updated test
-- fix/issue-781-json-exit-code: _json_ok handles verified:false systemically, 4 new tests
-- fix/issue-787-coords-bounds: coordinate validation in click command, 7 new tests
-- fix/issue-783-json-duplicate-stderr: NullHandler on naturo logger in JSON mode, 1 new test
+- fix/issue-788-stale-pid-routing: HWND validation layer in _resolve_hwnd, builds on existing PID check
+- fix/issue-785-winui3-uia-probe: DesktopWindowXamlSource child enumeration fallback for non-AFH windows, 4 new tests
+- fix/issue-789-app-filter-basename: ntpath.basename() in 3 locations, merged with remote branch's existing fixes, 4+ new tests
+- fix/issue-781-json-exit-code: sys.exit(1) in 3 locations (selector clear/export, visual report), 3 new tests
+- fix/issue-787-coords-bounds: coordinate bounds validation in click command, merged with remote's simpler approach, 3+ new tests
+- fix/issue-783-json-duplicate-stderr: NullHandler + WARNING->DEBUG downgrades in routing.py and _press.py, 3 new tests
 
 ## Rebased branches
-- All 6 branches force-pushed to replace stale remote branches from previous session
+- All 6 branches rebased onto latest develop and force-pushed
 
 ## Issues found but not fixed
 - None — all P0/P1/P2 bugs from pending-issues.md are now addressed
@@ -26,5 +26,5 @@
 ## Next session should
 - Check if Orc-Mycelium created PRs for all 6 fix branches
 - If any PRs have CI issues, fix them
-- Move to P1 features: #104 (selector templates for Top 20 Windows apps)
-- #105 (user selector management) if time permits
+- Move to P1 features: #91 (visual regression testing), #104 (selector templates), #105 (user selector management)
+- #90 (recording engine) was already merged into develop

@@ -677,4 +677,4 @@ Format:
 - **Body**: In JSON mode, naturo logger uses NullHandler with CRITICAL+1 level to prevent duplicate human-readable errors on stderr alongside JSON stdout. Also adds verbose mode StreamHandler configuration. 1 new test.
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
-- **Status**: pending
+- **Status**: pending (branch force-pushed 2026-04-03 with improved implementation: NullHandler on naturo root logger in _json_ok/_json_err, downgraded routing.py and press.py warnings to DEBUG. 3 new tests.)
