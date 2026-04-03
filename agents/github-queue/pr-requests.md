@@ -710,3 +710,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-783-json-stderr-suppress
+- **Base**: develop
+- **Title**: fix: suppress stderr output in JSON mode (fixes #783)
+- **Body**: Python's logging lastResort handler emits WARNING+ to stderr when no handlers are configured. In JSON mode this breaks piping workflows. Three-part fix: (1) add NullHandler to root logger when --json is active, (2) downgrade routing.py app-not-found from WARNING to DEBUG (caller handles the condition), (3) downgrade press focus-failure from WARNING to DEBUG. 3 new tests. 4112 tests pass, ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
