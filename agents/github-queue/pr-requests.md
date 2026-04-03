@@ -718,3 +718,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: feat/issue-760-stealth-check
+- **Base**: develop
+- **Title**: feat: add browser stealth-check verification command (fixes #760)
+- **Body**: New check_stealth() function runs 6 JS checks (webdriver, plugins, languages, chrome.runtime, WebGL vendor, permissions) against the browser and reports pass/fail for each. CLI command `naturo browser stealth-check` supports text and JSON output, exits non-zero when any check fails. 12 new tests. 4121 tests pass, ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending (branch force-pushed with clean version)
