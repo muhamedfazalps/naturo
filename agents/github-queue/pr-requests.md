@@ -542,3 +542,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-789-app-filter-basename
+- **Base**: develop
+- **Title**: fix: extract process basename before --app matching (fixes #789)
+- **Body**: process_name may contain full paths (e.g. C:\Program Files\...\chrome.exe). Substring matching against the full path caused --app to match directory components like "program" or "files". Now uses ntpath.basename() in both _resolve_hwnd and _resolve_hwnds. 4 new tests. 3997 tests pass, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
