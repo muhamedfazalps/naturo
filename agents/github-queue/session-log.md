@@ -2,27 +2,20 @@
 > Date: 2026-04-03
 
 ## Completed
-- test/recording-cmd-coverage: 75 tests for recording CLI and engine (recording_cmd.py, recording.py)
+- feat/issue-105-selector-load: `naturo selector load` command + @app/name reference resolution in --selector (fixes #105)
 
 ## Pushed branches (awaiting PR)
-- test/recording-cmd-coverage: comprehensive test coverage for record start/stop/play/list/show/delete/export
+- feat/issue-105-selector-load: selector load command, @app/name refs in --selector, 13 tests
 
 ## Rebased branches
-- fix/issue-781-json-exit-code: rebased onto develop, pushed
-- fix/issue-783-json-duplicate-stderr: rebased onto develop, pushed
-- fix/issue-785-winui3-uia-probe: rebased onto develop, pushed
-- fix/issue-786-uwp-menu-click: rebased onto develop, pushed
-- fix/issue-787-coords-bounds: rebased onto develop, pushed
-- fix/issue-788-stale-pid-routing: rebased onto develop, pushed
-- fix/issue-789-app-filter-basename: rebased onto develop, pushed
-- feat/issue-105-user-selector-load: rebased onto develop, pushed
+- (none — all previous branches no longer exist on remote)
 
 ## Issues found but not fixed
-- #763 (client script validation) and #766 (migration guide acceptance tests) are blocked on browser feature branches being merged
-- naturo/detect/probes.py (879 lines) has no test coverage and no existing branch covering it
-- naturo/browser/_captcha.py has no test coverage
+- All previous feature/fix branches (fix/issue-788, fix/issue-789, fix/issue-786, fix/issue-781, fix/issue-787, fix/issue-783, fix/issue-785, feat/issue-91, feat/issue-104, feat/issue-758, feat/issue-759, feat/issue-760-stealth-check, feat/issue-761, feat/issue-762, feat/issue-764, refactor/issue-719, feat/issue-723, test/* branches, docs/*) no longer exist on remote — code was never merged and branches are lost
+- #763 (client script validation) and #766 (migration guide acceptance tests) remain blocked on browser feature branches being merged
+- Previous PR requests in pr-requests.md for lost branches still show status: pending
 
 ## Next session should
-- Check if Orc-Mycelium created PRs for all rebased branches and test/recording-cmd-coverage
-- Work on probes.py test coverage if browser merges are still blocked
+- Investigate why previous branches disappeared from remote (pushed but not persisted?)
+- Re-implement lost bug fixes (#788, #789, #786, #781, #787, #783, #785) if Orc-Mycelium confirms they were never merged
 - Pick up #763/#766 once browser features are merged into develop

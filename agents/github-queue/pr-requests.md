@@ -694,3 +694,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: feat/issue-105-selector-load
+- **Base**: develop
+- **Title**: feat: add selector load command and @app/name references (fixes #105)
+- **Body**: New `naturo selector load <app> <name>` command retrieves a single saved selector by name and prints its value, designed for piping into `--selector` on interaction commands. Named references (`@notepad/save-btn`) are now resolved automatically in `--selector` on all interaction commands (click, type, press, scroll, drag, move). User selectors override built-in templates. `resolve_named_selector()` public function added for programmatic use. 13 new tests covering load command (user/builtin/override/not-found/JSON), resolve_named_selector (valid/invalid refs), and help output. 4122 tests pass, ruff clean, mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
