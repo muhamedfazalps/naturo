@@ -630,3 +630,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending (force-pushed improved version)
+
+## PR Request: fix/issue-788-stale-pid-routing
+- **Base**: develop
+- **Title**: fix: reject stale PIDs in AppIdMap.resolve() (fixes #788)
+- **Body**: After an app restarts with a new PID, the stored app ID entry becomes stale. resolve() now checks PID liveness via os.kill(pid, 0) before returning an entry, preventing silent keystroke drops. Added _is_pid_alive() helper and 6 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
