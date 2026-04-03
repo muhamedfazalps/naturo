@@ -654,3 +654,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-781-json-exit-code
+- **Base**: develop
+- **Title**: fix: exit code 1 when JSON output contains verified:false (fixes #781)
+- **Body**: _json_ok() now checks for verified:false in data and emits success:false with exit code 1. Systemic fix covering click, type, press, mouse and all interaction commands. Removed duplicate verification check from type_cmd. Added json_fail() helper. 4 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-03
+- **Status**: pending
