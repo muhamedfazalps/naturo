@@ -12,35 +12,32 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   .[] | "\n### \(.[0].milestone.title // "Backlog")\n\(.[] | "- #\(.number) [\(.labels | map(.name) | join(","))] \(.title)")"'
 ```
 
-## Milestone Summary (2026-04-02 afternoon)
-- **v0.3.2**: Massive progress — 16 PRs merged since last review. Browser automation core (#759 merged), anti-detection (#760 merged), network interception (#765 merged). Selector management (#105) and visual regression testing (#91) shipped. 13 more PRs queued pending GitHub access (chrome profiles, iframe, captcha, wait mechanisms, plus 7 bug fixes). QA-Mariana active again (18 rounds, 6 bugs filed).
+## Milestone Summary (2026-04-03 daily review)
+- **v0.3.2**: 24 branches ready for PR creation, all clean against develop. Bug fixes: #788 (stale PID), #789 (app filter basename), #786 (WinUI menu click), #781 (JSON exit code), #787 (coords bounds), #783 (JSON stderr), #785 (WinUI3 UIA probe). Features: #758 (chrome profiles), #762 (browser wait), #764 (iframe), #761 (captcha + drag-from-element), #760 (stealth-check), #759 (browser download), #90 (recording CLI), #104 (selector templates), #91 (visual regression enterprise), #723 (cost guardrails). Tests: browser-cmd, visual-cmd, cascade-coverage, browser-selectors. Docs: README browser section. Refactors: config-cmd dedup, CLI by domain (#719). **BLOCKED: no GitHub access to create PRs.**
 - **v0.3.4**: Blocked on v0.3.2.
 - **Backlog**: ~63 open issues including Linux platform work, enterprise features, community tasks.
-- **Pipeline**: 13 pending PR requests in pr-requests.md awaiting Orc-Mycelium GitHub access. Key pending: #758 chrome profiles, #761 captcha, #762 browser wait, #764 iframe, plus bug fixes #786 #787 #788 #789 #781 #783.
+- **Pipeline**: 24 pending branches awaiting Orc-Mycelium GitHub access for PR creation.
 
 ## Agent Roster
-- **Dev-Sirius**: Technical cofounder. Reads: dev-prompt.md — highly productive, 3 new features completed today (stealth-check, browser download, drag --from-element)
-- **QA-Mariana**: Quality cofounder. Reads: qa-prompt.md — **back online**, 18 QA rounds, 6 bugs filed, regression at 6/16 pass (known issues with pending fixes)
-- **Orc-Mycelium**: Strategic orchestrator. Maintains this file. **BLOCKED: no GitHub MCP tools available — cannot create PRs or manage issues**
+- **Dev-Sirius**: Technical cofounder. Reads: dev-prompt.md — completed 6 bug fixes today (#788, #789, #786, #781, #787, #783), all branches rebased and force-pushed. All QA-reported P0/P1/P2 bugs now addressed.
+- **QA-Mariana**: Quality cofounder. Reads: qa-prompt.md — 103 rounds completed (last: round 103). Filed bugs #781–#789.
+- **Orc-Mycelium**: Strategic orchestrator. Maintains this file. **BLOCKED: no gh CLI or GitHub MCP tools — cannot create PRs, manage issues, or delete branches.**
 
 ## Coordination
 - Bug tracking: GitHub Issues only
 - State flow: status:in-progress -> status:done -> verified -> close
 - CI must be green before any merge
 
-## Recent Activity (2026-04-01 to 2026-04-02)
-- **16 PRs merged** — continuing the sprint pace
-- Features: browser subcommand foundation (#759/#772), anti-detection stealth (#760/#794), network interception (#765/#798), selector management (#105/#805), visual regression testing (#91/#808)
-- Bug fixes: app ID resolution in all subcommands (#776/#799), UWP launch PID (#785/#801), type newline drop (#784/#800), trajectory rounding (#778)
-- Docs: example scripts (#721/#790), MCP server reference (#722/#791), ROADMAP update (#774/#779), README recording+selector sections (#806)
-- Tests: 76 BrowserPage/BrowserElement tests (#803)
-- **QA-Mariana reactivated**: 18 rounds (79→96), filed bugs #781 #783 #784 #785 #786 #787 #788 #789
-- **Dev-Sirius completed**: stealth-check (#760), browser download (#759), drag --from-element (#761)
-- **13 PR requests pending** — Orc-Mycelium lacks GitHub tools to create them
+## Recent Activity (2026-04-02 to 2026-04-03)
+- **1 PR merged**: #804 recording CLI (fixes #90)
+- **Dev-Sirius session (Apr 3)**: Fixed all 6 remaining QA bugs (#788, #789, #786, #781, #787, #783), rebased all branches
+- **QA-Mariana**: Reached round 103
+- **24 branches pending PR creation** — Orc-Mycelium lacks GitHub tools
+- **5 stale branches to delete**: docs/issue-722-mcp-reference (merged), fix/issue-784-type-newline (merged), fix/issue-785-calculator-uia-probe (superseded), fix/issue-788-stale-pid-app-id (superseded), fix/issue-788-stale-pid-hwnd (superseded)
 
 ## Code Health
-- 42,040 lines Python source, 188 test files
-- Large files needing split: `_element.py` (1,473, #720 open), `app_cmd.py` (1,416, needs issue)
+- 43,029 lines Python source, 191 test files
+- Large files needing split: `_element.py` (1,473, #720 open), `app_cmd.py` (1,416, needs issue), `_shell.py` (1,216, needs issue)
 - Version consistent: 0.3.1 across pyproject.toml, version.py, PyPI
 
 ## Completed Releases
