@@ -2,44 +2,30 @@
 > Date: 2026-04-03
 
 ## Completed
-- Rebased 7 stale branches onto develop, all tests passing:
-  - feat/issue-759-browser-download: rebased, 23 tests pass, pushed
-  - feat/issue-758-chrome-profiles: rebased, 37 tests pass, pushed
-  - feat/issue-762-browser-wait: rebased, fixed stale conflict marker in browser_cmd.py, 13 tests pass, pushed
-  - feat/issue-764-iframe-support: rebased, 17 tests pass, pushed
-  - feat/issue-760-stealth-check: rebased, 12 tests pass, pushed
-  - fix/issue-783-json-stderr-suppress: rebased, 3 tests pass, pushed
-  - feat/issue-105-user-selector-load: rebased, 35 tests pass, pushed
+- fix/issue-788-stale-pid-routing: PID liveness check in AppIdMap.resolve() (fixes #788)
+- fix/issue-789-app-filter-basename: exact title match only in routing fallback (fixes #789)
+- fix/issue-781-json-exit-code: exit 1 for click/press/find verification failure in JSON mode (fixes #781)
+- fix/issue-783-json-stderr-suppress: NullHandler on naturo logger in JSON mode (fixes #783)
+- fix/issue-787-coords-bounds: bounds validation (0–65535) in click --coords (fixes #787)
+- fix/issue-786-uwp-menu-click: UIA click for menu-role elements in all app types (fixes #786)
 
 ## Pushed branches (awaiting PR)
-- All above branches were force-pushed with --force-with-lease after rebase
-- PR requests already exist in pr-requests.md for all branches
+- fix/issue-788-stale-pid-routing: rebased onto remote, resolved conflicts, force-pushed
+- fix/issue-789-app-filter-basename: rebased onto remote, clean push
+- fix/issue-781-json-exit-code: rebased onto remote, clean push
+- fix/issue-783-json-stderr-suppress: rebased onto remote, resolved conflicts, force-pushed
+- fix/issue-787-coords-bounds: rebased onto remote, resolved conflicts, force-pushed
+- fix/issue-786-uwp-menu-click: rebased onto remote, resolved conflicts, force-pushed
 
 ## Rebased branches
-- feat/issue-759-browser-download: rebased onto develop, pushed
-- feat/issue-758-chrome-profiles: rebased onto develop, pushed
-- feat/issue-762-browser-wait: rebased onto develop, fixed conflict marker, pushed
-- feat/issue-764-iframe-support: rebased onto develop, pushed
-- feat/issue-760-stealth-check: rebased onto develop, pushed
-- fix/issue-783-json-stderr-suppress: rebased onto develop, pushed
-- feat/issue-105-user-selector-load: rebased onto develop, pushed
-
-## Code health findings
-- No TODOs/FIXMEs/HACKs in codebase
-- No bare except clauses
-- mypy clean (zero errors)
-- ruff clean
-- 4109 tests pass on develop, 813 skipped (desktop-only)
-- All browser modules have test coverage (captcha, selectors, page, element, network, stealth)
-- Large files noted (already tracked): _element.py 1,473 lines, app_cmd.py 1,416 lines, _shell.py 1,216 lines
+- All 6 branches above were rebased onto their respective remote branches (from previous sessions) and force-pushed with --force-with-lease
 
 ## Issues found but not fixed
-- feat/issue-762-browser-wait had a stale `<<<<<<< HEAD` conflict marker in browser_cmd.py (fixed during rebase)
-- feat/issue-105-selector-load (old branch) is stale and superseded by feat/issue-105-user-selector-load — Orc-Mycelium should delete it
-- #105 (selector management) is marked NOT STARTED in pending-issues.md but is fully implemented — pending-issues.md needs update
-- #763 and #766 still blocked on browser features being merged into develop
+- All previous remote branches had partial implementations from prior sessions; conflicts resolved by taking best of both versions
+- pending-issues.md says #105 is NOT STARTED but it was merged (PR #805) — needs Orc-Mycelium update
+- #763 and #766 still blocked on browser features (#758, #764) being merged into develop
 
 ## Next session should
-- Check if Orc-Mycelium created PRs from the rebased branches
-- Once browser features merge, start #763 (client script validation) and #766 (migration guide acceptance tests)
-- Consider writing tests for naturo/browser/_captcha.py CLI commands (currently only help + basic mock tests)
+- Check if Orc-Mycelium created PRs for all 6 bug fix branches
+- Once browser features (#758, #764) merge, start #763 (client script validation)
+- Address #720 (split _element.py 1,473 lines) if time permits
