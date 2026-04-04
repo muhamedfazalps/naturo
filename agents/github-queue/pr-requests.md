@@ -1141,7 +1141,7 @@ Format:
 - **Body**: _get_page() accepts json_output kwarg and emits structured JSON (SERVER_ERROR) on connection failure. All RuntimeError handlers use _emit_browser_error() with ELEMENT_NOT_FOUND code. TimeoutError uses TIMEOUT, FileNotFoundError uses APP_NOT_FOUND, scroll validation uses INVALID_INPUT. 3 new tests: connection error JSON, click error format, scroll no-option JSON. All 59 browser_cmd tests pass, ruff/mypy clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-04
-- **Status**: pending (branch re-pushed 2026-04-04)
+- **Status**: pending (branch rebased 2026-04-04)
 
 ## PR Request: fix/issue-841-calculator-uia-test
 - **Base**: develop
@@ -1149,4 +1149,12 @@ Format:
 - **Body**: Calculator (WinUI 3) has the same UIA detection challenges as UWP Notepad: launcher PID differs from window-owning process, and UIA tree may not be ready immediately. Added exe="CalculatorApp.exe" and _detect_with_retry() matching the Notepad test pattern.
 - **Auto-merge**: yes
 - **Date**: 2026-04-04
-- **Status**: pending (branch re-pushed 2026-04-04)
+- **Status**: pending (branch rebased 2026-04-04)
+
+## PR Request: refactor/issue-832-split-app-cmd
+- **Base**: develop
+- **Title**: refactor: split app_cmd.py (1,416 lines) into focused modules (fixes #832)
+- **Body**: Moved all code from naturo/cli/app_cmd.py into naturo/cli/_app/ package: _common.py (shared helpers), lifecycle.py (launch/quit/relaunch/list/find), diagnostics.py (inspect), window_ops.py (focus/close/min/max/restore/move/windows), legacy.py (hide/unhide/switch). app_cmd.py remains as a thin re-export shim so all existing imports continue to work. All 4652 tests pass, ruff/mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
