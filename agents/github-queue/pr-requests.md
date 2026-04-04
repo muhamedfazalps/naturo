@@ -1134,3 +1134,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-04
 - **Status**: pending
+
+## PR Request: fix/issue-834-browser-json-flag
+- **Base**: develop
+- **Title**: fix: browser subcommand respects -j flag for all error paths (fixes #834)
+- **Body**: _get_page() now accepts json_output and emits structured JSON errors when connection fails. All error handlers use error_helpers.json_error() for consistent format matching the rest of the CLI. 4 new tests covering JSON connection errors, error format, and scroll/captcha edge cases. Net -34 lines from deduplicating error handling via _emit_browser_error helper.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
