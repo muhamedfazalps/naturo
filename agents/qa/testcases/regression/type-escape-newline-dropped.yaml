@@ -8,7 +8,7 @@ created: 2026-04-02
 last_run: 2026-04-04
 last_result: fail
 consecutive_passes: 0
-notes: "2026-04-04 R104: FAIL — type -E 'Line1\\nLine2\\nLine3' shows Line1Line2Line3 on one line (行 1, 列 16). Newlines dropped. #784 open."
+notes: "2026-04-04 R111: FAIL — type default mode drops literal newlines. 'Line1\\nLine2\\nLine3' appears as 'Line1Line2Line3' on single line. #784/#840 open."
 
 preconditions:
   - "naturo is installed and in PATH"
