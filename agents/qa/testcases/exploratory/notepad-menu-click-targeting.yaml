@@ -8,7 +8,7 @@ created: 2026-03-31
 last_run: 2026-04-04
 last_result: fail
 consecutive_passes: 0
-notes: "2026-04-04 R104: FAIL — click --on 文件 --app notepad reports success but screenshot shows menu did not open. #786 regression."
+notes: "2026-04-04 R113: FAIL — click e66 (File menu) reports success but screenshot shows menu not opened. #786 still open."
 
 preconditions:
   - "naturo is installed and in PATH"
