@@ -1,21 +1,21 @@
 # QA Status
-Last updated: 2026-04-04 23:12
-Current round: 113
+Last updated: 2026-04-05 00:16
+Current round: 114
 Current milestone: v0.3.2
 
 ## This Round
-- CI Desktop Tests: 1 passed, 1 failed, 8 skipped (commit 81b465a)
-- CI E2E Tests: 9 passed, 3 xfailed, 1 xpassed (commit 81b465a)
+- CI Desktop Tests: 1 failed (known #841), 1 passed, 8 skipped (commit 2b7e8d2)
+- CI E2E Tests: 9 passed, 3 xfailed, 1 xpassed (commit 2b7e8d2)
 - Issues verified: none (no status:done issues)
-- E2E tests: Notepad (pass), Calculator (fail — #841)
-- Regression: 4/9 passed, 5 failed, 0 retired
+- E2E tests: Notepad (pass), Calculator (fail — #841/#785)
+- Regression: 11/16 passed, 5 failed (all known), 0 retired
 - New test cases created: none
-- Test cases cleaned up: none
-- New issues created: none
-- Total active test cases: 25
-- Tests run: 9 regression + E2E + exploratory + Skeptical Evaluator simulation
+- Test cases cleaned up: TC-0005 unblocked
+- New issues created: #843
+- Total active test cases: 24
+- Tests run: 16 regression + E2E + exploratory + First-time User simulation
 
 ## Top 3 Risks
-1. Multiline text completely broken (#784/#840) — both default and -E modes drop newlines
-2. Calculator UWP invisible (#785/#841) — core UWP app automation broken
-3. Menu click silent failure (#786) — click on UWP Notepad menu reports success but nothing happens
+1. Type multiline broken (#840/#784) — core UX, blocks realistic text automation
+2. Calculator invisible (#841/#785) — UWP Calculator detection completely broken
+3. Capture misses popups (#843) — AI agent verification workflows affected

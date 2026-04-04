@@ -5,10 +5,10 @@ category: regression
 priority: P1
 source_issue: 781
 created: 2026-04-01
-last_run: 2026-04-04
+last_run: 2026-04-05
 last_result: pass
-consecutive_passes: 26
-notes: "2026-04-04 R113: PASS — see --app nonexistent -j returns exit 1. Non-JSON also exit 1. Consecutive 26."
+consecutive_passes: 27
+notes: "2026-04-05 R114: PASS — see --app nonexistent -j returns exit 1. Consecutive 27."
 
 preconditions:
   - "naturo is installed and in PATH"

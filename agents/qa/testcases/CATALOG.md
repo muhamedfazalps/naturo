@@ -31,7 +31,7 @@
 - [TC-0013](regression/type-app-not-found-silent-failure.yaml) — P1: type --app exits 0 on "App not found", types to wrong window (#474) — **retired** (5 passes, #474 closed)
 
 ## Exploratory Tests
-- [TC-0005](exploratory/capture-popup-menu.yaml) — P1: capture --app returns tiny image when popup menu is open — **blocked**
+- [TC-0005](exploratory/capture-popup-menu.yaml) — P1: capture --app returns tiny image when popup menu is open — **active**
 - [TC-0006](exploratory/press-after-menu-focus.yaml) — P1: press fails silently after menu open/close cycle — **blocked**
 - [TC-0008](exploratory/multi-window-targeting.yaml) — P1: --app targets different windows for type vs capture — **active**
 - [TC-0011](exploratory/app-filter-cross-process.yaml) — P2: --app matches wrong process when app name in other window title — **active**
