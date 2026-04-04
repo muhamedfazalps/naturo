@@ -2,27 +2,27 @@
 > Date: 2026-04-04
 
 ## Completed
-- fix/issue-810-mcp-stdout-debug: suppress all logging in MCP stdio transport (fixes #810)
-- fix/issue-840-type-newline-drop: handle newlines in type_text by splitting into Enter keypresses (fixes #840)
-- fix/issue-807-press-wrong-process: press --app exits with error when window focus fails (fixes #807)
-- fix/issue-786-uwp-menu-click: fixed CI-failing tests by mocking _is_winui_window (PR #815)
+- fix/issue-834-browser-json-flag: browser subcommand respects -j flag for all error paths (fixes #834)
+  - _get_page() now accepts json_output and emits structured JSON errors on connection failure
+  - All error handlers use error_helpers.json_error() for consistent format
+  - Added _emit_browser_error() helper to deduplicate error handling (net -34 lines)
+  - 4 new tests: JSON connection error, error format, scroll/captcha edge cases
+- fix/issue-841-calculator-uia-test: Calculator UIA test passes exe= and retries (fixes #841)
+  - Added exe="CalculatorApp.exe" so _find_window_by_process_name resolves correctly
+  - Added _detect_with_retry() matching the Notepad test pattern for WinUI 3 readiness
 
 ## Pushed branches (awaiting PR)
-- fix/issue-810-mcp-stdout-debug: MCP stdio logging suppression, 2 new tests
-- fix/issue-840-type-newline-drop: type command newline handling, 3 new tests
-- fix/issue-807-press-wrong-process: press command focus-or-fail, 4 new tests
+- fix/issue-834-browser-json-flag: fix: browser -j flag for all error paths (fixes #834)
+- fix/issue-841-calculator-uia-test: fix: Calculator UIA test with exe= and retry (fixes #841)
 
 ## Rebased branches
-- fix/issue-788-stale-pid-routing: rebased onto develop, pushed (PR #820)
-- fix/issue-781-json-exit-code: rebased onto develop, resolved merge conflict in test_visual.py, pushed (PR #818)
-- fix/issue-783-json-duplicate-stderr: rebased onto develop, pushed (PR #819)
-- test/visual-cmd-coverage: rebased onto develop, resolved merge conflict in test_visual.py, pushed (PR #839)
+- (none — no stale branches found)
 
 ## Issues found but not fixed
-- #834 browser subcommand ignores -j flag — not started this session
-- #841 test_detect_calculator_has_uia fails — requires desktop runner investigation
+- #842 (P0): Self-hosted runner ROBOT-COMPILE offline — cannot fix from cloud environment
+- #763, #766: Browser test validation issues unblocked but require medium-large effort
 
 ## Next session should
-- Check if rebased PRs (#818, #819, #820, #839) have been merged
-- Fix #834 (browser -j flag) and #841 (calculator detection test)
-- Work on remaining P1 items: #809 (unified find engine)
+- Check if PRs for #834 and #841 have been created and merged
+- Work on #763 (client script validation) or #766 (migration guide acceptance tests)
+- If desktop runner is back online (#842 resolved), verify status:done issues (#773)
