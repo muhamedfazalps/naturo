@@ -8,7 +8,7 @@ created: 2026-04-04
 last_run: 2026-04-04
 last_result: fail
 consecutive_passes: 0
-notes: "2026-04-04 R106: FAIL — browser navigate -j: empty stdout, plain text error on stderr only. No JSON output. Leaks Chinese Windows error. Issue #834 open."
+notes: "2026-04-04 R107: FAIL — browser navigate -j: plain text error only, no JSON. Leaks Chinese Windows error. Issue #834."
 
 preconditions:
   - "naturo is installed and in PATH"

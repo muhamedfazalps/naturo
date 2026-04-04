@@ -8,7 +8,7 @@ created: 2026-04-01
 last_run: 2026-04-04
 last_result: fail
 consecutive_passes: 0
-notes: "2026-04-04 R106: FAIL — click --app fakefake -j: valid JSON on stdout BUT stderr also emits plain text error. 2>&1 pipe breaks JSON parsing. Issue #783."
+notes: "2026-04-04 R107: FAIL — click --app fakefake -j: valid JSON on stdout BUT stderr emits plain text error 'App not found'. 2>&1 pipe breaks JSON parsing. Issue #783."
 
 preconditions:
   - "naturo is installed and in PATH"

@@ -1,18 +1,18 @@
 # QA Status
-Last updated: 2026-04-04 16:16
-Current round: 106
+Last updated: 2026-04-04 17:12
+Current round: 107
 Current milestone: v0.3.2
 
 ## This Round
-- CI Desktop Tests: 0 passed, 0 failed, 151 skipped (commit 2ad1ae6)
+- CI Desktop Tests: 0 passed, 0 failed, 151 skipped (commit 86e534d) — disconnected RDP session
 - Issues verified: none (no status:done issues)
-- E2E tests: Notepad (pass — see/capture/find/get/quit all work; click/type blocked by disconnected RDP)
-- Regression: 4/7 passed, 2 failed (TC-0049 #834, TC-0042-exp #783), 1 blocked
+- E2E tests: Chrome (pass), Settings/设置 (pass, partial), full desktop capture (black — expected)
+- Regression: 7/9 passed, 2 failed (TC-0042 #783, TC-0049 #834), 0 retired
 - New test cases created: none
 - Test cases cleaned up: none
-- New issues created: none
-- Total active test cases: 30
-- Tests run: 7 (16 blocked by disconnected RDP)
+- New issues created: none (all failures map to existing issues)
+- Total active test cases: 29
+- Tests run: 9 regression + 5 exploratory + 6 MCP = 20
 
 ## Top 3 Risks
 1. Disconnected RDP session blocks mouse/keyboard testing — click/type/press all fail with COM errors
