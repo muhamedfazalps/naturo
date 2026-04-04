@@ -85,3 +85,19 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 Dropped refs/stash@{0} (1fb51c929c85386239ed638d7211367b447bd73e)
 [2026/04/01 ÖÜÈý 21:00:11.70] Starting QA-Mariana round 
+## QA Round 79 Complete
+
+**Summary:**
+- **CI**: 14 passed, 1 failed (known #777 Unicode DLL), 18 skipped, 3 xfailed, 1 xpassed
+- **E2E**: Calculator (PASS), Notepad (PASS) â€” both verified with screenshots
+- **Exploratory**: All error paths, JSON, exit codes correct. #781 fix confirmed holding
+- **Persona (Accessibility User)**: Full keyboard workflow works, element roles/names screen-reader friendly
+- **Regression**: 16/16 passed, 6 skipped (infrastructure)
+- **Test case evolution**: TC-0034 retired (6 passes, #693 closed)
+- **New issues**: none
+- **Report**: pushed to develop as `0f0f3eb`
+
+**Top 3 Risks:**
+1. Unicode path in naturo_core.dll (#777) â€” CI still failing
+2. AI Vision/Hybrid mode untestable â€” 6 tests always skipped
+3. v0.3.2 scope tripled to 31 issues â€” browser features need QA plan
