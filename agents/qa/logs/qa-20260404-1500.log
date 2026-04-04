@@ -40,3 +40,18 @@ agents/qa/testcases/regression/type-stale-pid-silent-failure.yaml: needs merge
 agents/qa/testcases/regression/uwp-notepad-enumeration.yaml: needs merge
 The stash entry is kept in case you need it again.
 [2026/04/04 ���� 15:00:05.67] Starting QA-Mariana round 
+## QA Round 105 Complete
+
+**Summary:**
+
+| Phase | Result |
+|-------|--------|
+| Phase 0 — CI | 151 skipped (no desktop markers), SHA recorded |
+| Phase 1 — Verify | **14/14 status:done issues verified and closed** (#784, #774, #723, #758-765, #721, #722, #91, #90) |
+| Phase 2 — E2E | Limited (SSH session). CLI, JSON, exit codes all tested OK |
+| Phase 3 — Exploratory | **Bug found:** browser commands ignore `-j` flag |
+| Phase 4 — Skeptical Evaluator | naturo wins on CLI/JSON/MCP; gaps in browser JSON consistency |
+| Phase 5 — Regression | 4/29 ran, 4 passed (25 need desktop) |
+| Phase 6 — Evolve | Created TC-0049 (browser JSON error format) |
+| Phase 7 — Issues | Filed **#834** (P1: browser -j flag ignored) |
+| Phase 8 — Status | Report committed and pushed to develop |
