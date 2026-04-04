@@ -2,37 +2,27 @@
 > Date: 2026-04-04
 
 ## Completed
-- fix/issue-781-json-exit-code: selector clear, selector export, and visual report now exit non-zero when emitting {"success": false} in both JSON and text modes (fixes #781)
-- fix/issue-789-app-filter-basename: ntpath.basename() extraction before --app matching in _resolve_hwnd, _resolve_hwnds, and list-windows --app filter (fixes #789)
-- fix/issue-783-json-duplicate-stderr: NullHandler on root logger in JSON mode + verbose/log-level config + WARNING→DEBUG downgrade in _press.py (fixes #783)
-- fix/issue-787-coords-bounds: click --coords validates coordinates against screen bounds via GetSystemMetrics (fixes #787)
-- fix/issue-788-stale-pid-routing: _is_hwnd_alive() helper with IsWindow() check in _resolve_app_id and _resolve_hwnd (fixes #788)
-- fix/issue-785-winui3-uia-probe: rebased onto develop, tests pass (fixes #785)
-- fix/issue-786-uwp-menu-click: rebased onto develop, tests pass (fixes #786)
+- fix/issue-810-mcp-stdout-debug: suppress all logging in MCP stdio transport (fixes #810)
+- fix/issue-840-type-newline-drop: handle newlines in type_text by splitting into Enter keypresses (fixes #840)
+- fix/issue-807-press-wrong-process: press --app exits with error when window focus fails (fixes #807)
+- fix/issue-786-uwp-menu-click: fixed CI-failing tests by mocking _is_winui_window (PR #815)
 
 ## Pushed branches (awaiting PR)
-- fix/issue-781-json-exit-code: 4 new tests (selector clear JSON/text, selector export JSON, visual report JSON)
-- fix/issue-789-app-filter-basename: 5 new tests + list-windows basename fix in _list.py
-- fix/issue-783-json-duplicate-stderr: 3 new tests (NullHandler install, verbose mode, no log output)
-- fix/issue-787-coords-bounds: existing tests pass (remote already had complete fix)
-- fix/issue-788-stale-pid-routing: 8 new tests (_is_hwnd_alive, stale/live app-id, passthrough, expired, stale/live hwnd)
-- fix/issue-785-winui3-uia-probe: 4 tests (1 skipped), rebased
-- fix/issue-786-uwp-menu-click: 4 tests, rebased
+- fix/issue-810-mcp-stdout-debug: MCP stdio logging suppression, 2 new tests
+- fix/issue-840-type-newline-drop: type command newline handling, 3 new tests
+- fix/issue-807-press-wrong-process: press command focus-or-fail, 4 new tests
 
 ## Rebased branches
-- fix/issue-785-winui3-uia-probe: rebased onto develop, force-pushed
-- fix/issue-786-uwp-menu-click: rebased onto develop, force-pushed
+- fix/issue-788-stale-pid-routing: rebased onto develop, pushed (PR #820)
+- fix/issue-781-json-exit-code: rebased onto develop, resolved merge conflict in test_visual.py, pushed (PR #818)
+- fix/issue-783-json-duplicate-stderr: rebased onto develop, pushed (PR #819)
+- test/visual-cmd-coverage: rebased onto develop, resolved merge conflict in test_visual.py, pushed (PR #839)
 
 ## Issues found but not fixed
-- Previous bug-fix branches keep being deleted from remote without being merged — 6th+ session recreating these fixes
-- #105 (user selector management) already implemented: save/list/export/import/delete/test/clear all exist on develop
-- #763 (client script validation) still blocked on browser PRs being merged
-- #766 (migration guide acceptance tests) still blocked on browser PRs being merged
-- app_cmd.py (1,416 lines) and _shell.py (1,216 lines) still need split issues
+- #834 browser subcommand ignores -j flag — not started this session
+- #841 test_detect_calculator_has_uia fails — requires desktop runner investigation
 
 ## Next session should
-- CRITICAL: Verify Orc-Mycelium creates PRs from all 7 pushed bug-fix branches this time
-- If branches are deleted again without PRs, escalate to Ace — the rework cycle is wasting multiple sessions
-- Work on #763/#766 if browser PRs resolve
-- Check if #105 can be closed (fully implemented already)
-- Consider test coverage gaps
+- Check if rebased PRs (#818, #819, #820, #839) have been merged
+- Fix #834 (browser -j flag) and #841 (calculator detection test)
+- Work on remaining P1 items: #809 (unified find engine)

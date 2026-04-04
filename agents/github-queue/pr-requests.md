@@ -1110,3 +1110,27 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-04
 - **Status**: pending
+
+## PR Request: fix/issue-810-mcp-stdout-debug
+- **Base**: develop
+- **Title**: fix: suppress all logging in MCP stdio transport (fixes #810)
+- **Body**: The JSON-RPC stdio protocol requires clean stdout/stderr. Python's lastResort logging handler was emitting WARNING+ messages that corrupted the protocol. Now suppress root logger and disable lastResort when transport=stdio or --json is used. 2 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
+
+## PR Request: fix/issue-840-type-newline-drop
+- **Base**: develop
+- **Title**: fix: handle newlines in type_text by splitting into Enter keypresses (fixes #840)
+- **Body**: SendInput's UNICODE path silently drops \n and \r characters. Now split text on line breaks and insert press_key("enter") between segments. Handles \n, \r\n, and \r correctly. 3 new tests covering multi-line, CRLF, and trailing newline.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
+
+## PR Request: fix/issue-807-press-wrong-process
+- **Base**: develop
+- **Title**: fix: press --app exits with error when window focus fails (fixes #807)
+- **Body**: Previously press --app only logged a warning when focus_window() failed, then silently sent keystrokes to whatever window was in the foreground. Now exits non-zero with WINDOW_FOCUS_ERROR, consistent with the type command. 4 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
