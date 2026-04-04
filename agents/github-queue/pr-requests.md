@@ -942,3 +942,59 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-03
 - **Status**: pending
+
+## PR Request: fix/issue-781-json-exit-code
+- **Base**: develop
+- **Title**: fix: exit non-zero when JSON mode reports failure (fixes #781)
+- **Body**: selector clear, selector export, visual delete, and visual report emitted {"success": false} JSON but exited with code 0. Changed return to sys.exit(1) in all four locations. 7 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
+
+## PR Request: fix/issue-789-app-filter-basename
+- **Base**: develop
+- **Title**: fix: extract process basename before --app matching (fixes #789)
+- **Body**: process_name from the backend may contain a full path. Substring matching against the full path caused --app system to match any System32 process. Now uses ntpath.basename() in _resolve_hwnd, _resolve_hwnds, and _is_afh_window. 5 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
+
+## PR Request: fix/issue-787-coords-bounds
+- **Base**: develop
+- **Title**: fix: reject out-of-bounds click coordinates with clear error (fixes #787)
+- **Body**: click --coords silently accepted coordinates outside the virtual screen. On Windows, validates against GetSystemMetrics virtual screen bounds. On non-Windows, validates 0-65535 range. Emits INVALID_COORDINATES error. 7 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
+
+## PR Request: fix/issue-783-json-stderr-suppress
+- **Base**: develop
+- **Title**: fix: suppress stderr output in JSON mode (fixes #783)
+- **Body**: Three-part fix: (1) add NullHandler to naturo logger when --json is active, (2) downgrade routing.py app-not-found from WARNING to DEBUG, (3) downgrade press focus-failure from WARNING to DEBUG. 1 new test.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
+
+## PR Request: fix/issue-788-stale-pid-routing
+- **Base**: develop
+- **Title**: fix: detect stale PID in app-ID routing, fall back to process name (fixes #788)
+- **Body**: After an app restarts, cached app-ID entries become stale. _resolve_app_id now validates PID liveness via os.kill(0); when dead, extracts process-name basename for live window enumeration. 3 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
+
+## PR Request: fix/issue-786-uwp-menu-click
+- **Base**: develop
+- **Title**: fix: detect WinUI 3 apps for UIA click path (fixes #786)
+- **Body**: WinUI 3 apps (Win11 Notepad, Paint) run as standalone processes, not under ApplicationFrameHost. Added _is_winui_window() that detects DesktopWindowXamlSource child windows. When detected, click uses UIA patterns instead of SendInput. 4 tests (2 Windows-only).
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
+
+## PR Request: fix/issue-785-winui3-uia-probe
+- **Base**: develop
+- **Title**: fix: detect UIA for standalone WinUI 3 apps like Calculator (fixes #785)
+- **Body**: Win11 Calculator and Paint are standalone WinUI 3 apps not hosted by ApplicationFrameHost. The UIA probe only checked AFH child windows when the main HWND returned an empty tree. Added _find_winui_content_children() that enumerates DesktopWindowXamlSource children regardless of parent class. 3 new tests.
+- **Auto-merge**: yes
+- **Date**: 2026-04-04
+- **Status**: pending
