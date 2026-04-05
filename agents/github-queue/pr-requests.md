@@ -1278,3 +1278,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-05
 - **Status**: pending
+
+## PR Request: fix/issue-843-capture-popup-menus
+- **Base**: develop
+- **Title**: fix: capture --app composites popup menu windows from same process (fixes #843)
+- **Body**: When an app has popup menus/dropdowns/tooltips open, Windows creates separate top-level windows owned by the same process. Previously capture --app selected only the main window (largest area), silently excluding popups. Added capture_app_windows() that finds all visible sibling windows from the same PID, captures each via PrintWindow, and composites them using Pillow. Falls back to single-window capture when no siblings exist. CLI routes --app and --pid through this; direct --hwnd still uses single capture. 7 new tests, all 4187+ passed, ruff+mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-05
+- **Status**: pending
