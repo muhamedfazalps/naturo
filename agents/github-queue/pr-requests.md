@@ -1249,16 +1249,16 @@ Format:
 
 ## PR Request: fix/issue-834-browser-json-flag
 - **Base**: develop
-- **Title**: fix: browser subcommand emits structured JSON errors with -j flag (fixes #834)
-- **Body**: _get_page() now accepts json_output param and uses emit_error() with BROWSER_CONNECTION_FAILED code for connection failures. All 32 browser command call sites pass json_output to _get_page(). All manual if/else error handlers replaced with emit_exception_error() for consistent structured JSON format {success, error: {code, message, suggested_action, recoverable}}. Also converted scroll and captcha-solve validation errors to use emit_error(). 2 new tests (connection error JSON, command error JSON). 4685 passed, ruff clean, mypy clean.
+- **Title**: fix: browser subcommand outputs structured JSON errors with -j flag (fixes #834)
+- **Body**: _get_page() now accepts json_output and uses emit_error() with BROWSER_CONNECTION_ERROR code. All 32 browser commands pass json_output through. All manual error handlers replaced with emit_exception_error() for consistent {success, error: {code, message}} format. 2 new tests. 4685 passed, ruff clean, mypy clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-05
-- **Status**: pending (branch force-pushed with rebuilt fix)
+- **Status**: pending (branch force-pushed clean rebuild)
 
 ## PR Request: fix/issue-841-calculator-uia-test
 - **Base**: develop
-- **Title**: fix: comtypes UIA probe searches child windows for Calculator (fixes #841)
-- **Body**: Strategy 2 (comtypes fallback) now mirrors Strategy 1 (native DLL) by probing AFH and WinUI DesktopWindowXamlSource child windows when top-level ElementFromHandle returns None. Integration tests updated to pass exe="CalculatorApp.exe" and use _detect_with_retry(), matching the Notepad test pattern. 4683 passed, ruff clean, mypy clean.
+- **Title**: fix: Calculator UIA test passes exe= and retries for WinUI 3 readiness (fixes #841)
+- **Body**: Calculator (WinUI 3) has same UIA detection challenges as Notepad: launcher PID differs from window-owning process, UIA tree may not be ready immediately. Updated test_detect_calculator_has_uia and test_detect_calculator_best_method to use _detect_with_retry() with exe="CalculatorApp.exe", matching the Notepad test pattern. 22 integration tests pass (skipped on non-Windows), ruff clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-05
-- **Status**: pending (branch force-pushed with rebuilt fix)
+- **Status**: pending (branch force-pushed clean rebuild)
