@@ -1286,3 +1286,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-05
 - **Status**: pending
+
+## PR Request: fix/issue-844-mcp-pydantic-leak
+- **Base**: develop
+- **Title**: fix: MCP tool validation errors return INVALID_INPUT instead of leaking Pydantic internals (fixes #844)
+- **Body**: Pydantic ValidationError was caught by the generic Exception handler in _safe_tool, exposing raw field paths, validator names, and internal type info to MCP clients. Now detected via duck-typing and formatted into clean "Invalid input: field: message" strings with code INVALID_INPUT. Defensive fallback ensures no leak even if errors() fails. 6 new tests, all passed, ruff+mypy clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-05
+- **Status**: pending
