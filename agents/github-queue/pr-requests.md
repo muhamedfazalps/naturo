@@ -1270,3 +1270,11 @@ Format:
 - **Auto-merge**: yes
 - **Date**: 2026-04-05
 - **Status**: pending
+
+## PR Request: test/shell-mixin-coverage
+- **Base**: develop
+- **Title**: test: add 42 tests for ShellMixin (app list, dialogs, taskbar, virtual desktops)
+- **Body**: The _shell.py module (1,216 lines) had zero test coverage. Added 42 unit tests with full mocking of Windows APIs: list_apps (11 tests covering visibility, PID dedup, system process filtering, UWP resolution), open_uri (5 tests covering URL/file/error/timeout), _flatten_elements (2 tests), _collect_taskbar_buttons (4 tests), dialog_click_button (4 tests), dialog_set_input (3 tests), launch/quit_app (3 tests), virtual_desktop_list/switch/create/close (8 tests), menu_click/list (2 tests). All 4725 passed, ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-05
+- **Status**: pending
