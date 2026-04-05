@@ -1249,16 +1249,16 @@ Format:
 
 ## PR Request: fix/issue-834-browser-json-flag
 - **Base**: develop
-- **Title**: fix: browser subcommand emits structured JSON errors when -j flag is set (fixes #834)
-- **Body**: _get_page() now accepts json_output param and uses emit_error with BROWSER_CONNECTION_ERROR code for connection failures. All 30+ browser commands pass json_output to _get_page. All exception handlers replaced with _browser_error helper that delegates to emit_exception_error for consistent structured JSON format {success, error: {code, message, suggested_action, recoverable}}. 2 new tests. 4685 passed, ruff clean, mypy clean.
+- **Title**: fix: browser subcommand emits structured JSON errors with -j flag (fixes #834)
+- **Body**: _get_page() now accepts json_output param and uses emit_error() with BROWSER_CONNECTION_FAILED code for connection failures. All 32 browser command call sites pass json_output to _get_page(). All manual if/else error handlers replaced with emit_exception_error() for consistent structured JSON format {success, error: {code, message, suggested_action, recoverable}}. Also converted scroll and captcha-solve validation errors to use emit_error(). 2 new tests (connection error JSON, command error JSON). 4685 passed, ruff clean, mypy clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-05
-- **Status**: pending
+- **Status**: pending (branch force-pushed with rebuilt fix)
 
 ## PR Request: fix/issue-841-calculator-uia-test
 - **Base**: develop
 - **Title**: fix: comtypes UIA probe searches child windows for Calculator (fixes #841)
-- **Body**: Strategy 2 (comtypes fallback) now mirrors Strategy 1 by probing AFH and DesktopWindowXamlSource child windows when top-level ElementFromHandle returns None. Integration tests pass exe="CalculatorApp.exe" to help detection chain find the correct window. 2 new unit tests verify comtypes child window probing. 4685 passed, ruff clean.
+- **Body**: Strategy 2 (comtypes fallback) now mirrors Strategy 1 (native DLL) by probing AFH and WinUI DesktopWindowXamlSource child windows when top-level ElementFromHandle returns None. Integration tests updated to pass exe="CalculatorApp.exe" and use _detect_with_retry(), matching the Notepad test pattern. 4683 passed, ruff clean, mypy clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-05
-- **Status**: pending
+- **Status**: pending (branch force-pushed with rebuilt fix)
