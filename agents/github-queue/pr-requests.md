@@ -1234,7 +1234,15 @@ Format:
 ## PR Request: fix/issue-840-type-newline-drop
 - **Base**: develop
 - **Title**: fix: handle newlines in type_text by splitting into Enter keypresses (fixes #840)
-- **Body**: SendInput's UNICODE path silently drops \n and \r control characters. Now splits text on line breaks (\r\n, \r, \n) via re.split and inserts press_key("enter") between segments. 3 new unit tests covering \n, \r\n, and no-newline cases. Ruff clean, 4574 tests pass.
+- **Body**: SendInput's UNICODE path silently drops \n and \r control characters. Now splits text on line breaks (\r\n, \r, \n) via re.split and inserts press_key("enter") between segments. 5 new tests covering \n, \r\n, trailing newline, no-newline, and CLI end-to-end. Ruff clean.
+- **Auto-merge**: yes
+- **Date**: 2026-04-05
+- **Status**: pending (branch rebased on latest develop)
+
+## PR Request: fix/issue-810-mcp-stdout-debug
+- **Base**: develop
+- **Title**: fix: suppress all logging in MCP stdio transport (fixes #810)
+- **Body**: When transport is stdio, _suppress_stdout_logging() redirects any stdout StreamHandler to stderr and silences chatty library loggers (uvicorn, mcp, httpx, httpcore) so debug text does not corrupt the JSON-RPC stream. 1 new test. Ruff clean.
 - **Auto-merge**: yes
 - **Date**: 2026-04-05
 - **Status**: pending
