@@ -151,7 +151,9 @@ class TestFind:
         result = _invoke(runner, ["find", "#nope", "--json"], mock_page)
         assert result.exit_code == 1
         data = json.loads(result.output)
+        assert data["success"] is False
         assert "error" in data
+        assert data["error"]["code"] == "ELEMENT_NOT_FOUND"
 
 
 # ── click ────────────────────────────────────────────────────────────────────
@@ -325,6 +327,15 @@ class TestScreenshot:
         data = json.loads(result.output)
         assert data["status"] == "ok"
         assert data["path"] == "out.png"
+
+    def test_screenshot_error_json(self, runner: click.testing.CliRunner,
+                                   mock_page: MagicMock) -> None:
+        mock_page.screenshot.side_effect = RuntimeError("write failed")
+        result = _invoke(runner, ["screenshot", "--json"], mock_page)
+        data = json.loads(result.output)
+        assert data["success"] is False
+        assert data["error"]["code"] == "SCREENSHOT_FAILED"
+        assert "write failed" in data["error"]["message"]
 
 
 # ── eval ─────────────────────────────────────────────────────────────────────
@@ -550,3 +561,47 @@ class TestConnectionError:
             ctx.obj = {"cdp_port": 9222, "cdp_host": "localhost"}
             with pytest.raises(SystemExit):
                 _get_page(ctx)
+
+    def test_get_page_failure_json(self, runner: click.testing.CliRunner) -> None:
+        """Connection error emits structured JSON when -j is passed (#834)."""
+        with patch("naturo.browser.BrowserPage",
+                   side_effect=ConnectionRefusedError("refused")):
+            result = runner.invoke(
+                browser, ["navigate", "https://example.com", "--json"],
+            )
+        assert result.exit_code != 0
+        data = json.loads(result.output)
+        assert data["success"] is False
+        assert data["error"]["code"] == "BROWSER_CONNECTION_ERROR"
+        assert "refused" in data["error"]["message"]
+
+    def test_get_page_failure_json_url_cmd(self, runner: click.testing.CliRunner) -> None:
+        """#834: url subcommand connection error should also emit JSON."""
+        with patch("naturo.browser.BrowserPage",
+                   side_effect=ConnectionRefusedError("refused")):
+            result = runner.invoke(
+                browser, ["url", "--json"],
+            )
+        assert result.exit_code != 0
+        data = json.loads(result.output)
+        assert data["success"] is False
+        assert data["error"]["code"] == "BROWSER_CONNECTION_ERROR"
+
+    def test_click_error_json(self, runner: click.testing.CliRunner,
+                              mock_page: MagicMock) -> None:
+        """click command error emits structured JSON (#834)."""
+        mock_page.find.side_effect = RuntimeError("no such element")
+        result = _invoke(runner, ["click", "#btn", "--json"], mock_page)
+        assert result.exit_code == 1
+        data = json.loads(result.output)
+        assert data["success"] is False
+        assert data["error"]["code"] == "ELEMENT_NOT_FOUND"
+
+    def test_scroll_no_option_json(self, runner: click.testing.CliRunner,
+                                   mock_page: MagicMock) -> None:
+        """scroll without option emits structured JSON error (#834)."""
+        result = _invoke(runner, ["scroll", "--json"], mock_page)
+        assert result.exit_code == 1
+        data = json.loads(result.output)
+        assert data["success"] is False
+        assert data["error"]["code"] == "INVALID_INPUT"
