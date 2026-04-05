@@ -2,32 +2,28 @@
 > Date: 2026-04-05
 
 ## Completed
-- Rebased all 8 stale feature branches onto latest develop (all at 0 behind)
-- docs/readme-missing-commands: added 12 missing CLI commands to README tables and examples (browser launch/profiles/select/download/frames/frame-find/frame-eval/stealth-check, visual suite/update/update-all, selector load)
-- test/shell-mixin-coverage: 42 new tests for ShellMixin (list_apps, open_uri, _flatten_elements, _collect_taskbar_buttons, dialog_click_button, dialog_set_input, launch/quit_app, virtual_desktop_list/switch/create/close, menu_click, menu_list)
+- fix/issue-843-capture-popup-menus: capture --app now composites popup menu windows from same process into a single screenshot (fixes #843)
+- fix/issue-844-mcp-pydantic-leak: MCP tool validation errors return INVALID_INPUT with clean messages instead of leaking Pydantic internals (fixes #844)
+- fix/issue-810-mcp-stdout-debug: rebased onto prior remote branch; added tests for stdio logging suppression (fixes #810)
+- fix/issue-840-type-newline-drop: rebased onto prior remote branch; added 8 tests for newline handling in type_text (fixes #840)
 
 ## Pushed branches (awaiting PR)
-- docs/readme-missing-commands: README docs update, no code changes
-- test/shell-mixin-coverage: 42 tests, 4725 passed total, ruff clean, mypy clean
+- fix/issue-843-capture-popup-menus: new branch, PR request queued
+- fix/issue-844-mcp-pydantic-leak: new branch, PR request queued
+- fix/issue-810-mcp-stdout-debug: rebased onto prior remote, force-pushed, PR request queued
+- fix/issue-840-type-newline-drop: rebased onto prior remote, force-pushed, PR request queued
 
 ## Rebased branches
-- fix/issue-807-press-wrong-process: rebased onto develop, pushed
-- fix/issue-810-mcp-stdout-debug: rebased onto develop, pushed
-- fix/issue-834-browser-json-flag: rebased onto develop, pushed
-- fix/issue-840-type-newline-drop: rebased onto develop, pushed
-- fix/issue-841-calculator-uia-test: rebased onto develop, pushed
-- refactor/issue-832-split-app-cmd: rebased onto develop, pushed
-- refactor/issue-833-split-shell: rebased onto develop, pushed
-- test/recording-cmd-coverage: rebased onto develop, pushed
+- fix/issue-810-mcp-stdout-debug: rebased onto prior remote's version (had _suppress_stdout_logging helper), resolved conflicts
+- fix/issue-840-type-newline-drop: rebased onto prior remote's version (had re.split approach), resolved conflicts
 
 ## Issues found but not fixed
-- #842 (P0): Self-hosted runner ROBOT-COMPILE offline — needs Ace's intervention
-- #809 (P1): Unified find engine — large feature, needs dedicated session (image matching + OCR + unified resolver)
-- browser_cmd.py at 1,459 lines — new refactoring candidate, not yet tracked as issue
-- #763/#766: Browser client script validation — needs real browser environment
+- test_visual.py::TestEnterpriseCLI::test_report_errors_exit_nonzero — pre-existing NameError failure, not caused by my changes
+- #807, #834, #841 branches from prior sessions no longer exist on remote — need Orc-Mycelium to re-create PRs or Dev-Sirius to re-implement fixes in next session
 
 ## Next session should
-- Check if Orc-Mycelium created PRs for the 10 pending branches
-- Start work on #809 (unified find engine) if v0.3.2 milestone bugs are all merged
-- Check status of #842 (self-hosted runner) — Ace needs to bring it online
-- Consider creating issue for browser_cmd.py refactoring (1,459 lines)
+- Fix #807 (press --app sends hotkey to wrong process) — P1, needs fresh implementation
+- Fix #834 (browser subcommand ignores -j flag) — P1, needs fresh implementation
+- Fix #841 (Calculator UIA test fails) — P1, needs fresh implementation
+- Fix #777 (capture_screen fails with Unicode file path) — P1 backlog
+- Investigate PR #838 CI failure (test/recording-cmd-coverage)
