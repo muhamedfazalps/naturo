@@ -12,50 +12,50 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   .[] | "\n### \(.[0].milestone.title // "Backlog")\n\(.[] | "- #\(.number) [\(.labels | map(.name) | join(","))] \(.title)")"'
 ```
 
-## Milestone Summary (2026-04-04 afternoon review)
-- **v0.3.2**: ~18 open / ~84 closed (~82%). PRs #815 and #818 merged since last review. 5 branches ready but PRs not yet created (needs `gh` access). PRs #819/#820/#839 rebased and clean. PR #822 auto-merge enabled. 3 P1 bugs fixed on branches (#807, #810, #840). 2 P1 bugs still unstarted (#834, #841). Self-hosted runner ROBOT-COMPILE offline (#842).
+## Milestone Summary (2026-04-05 morning review)
+- **v0.3.2**: 22 open / 82 closed (~79%). 7 PRs merged since last review (#815, #818, #819, #820, #822, #837, #839). 8 branches ready for PRs (5 bug fixes, 2 refactors, 1 docs). PR #838 open but CI failing. 4 issues (#781/#783/#786/#788) have stale status:in-progress labels — PRs merged. 2 new QA bugs reported (#843, #844). Self-hosted runner still offline (#842).
 - **v0.3.3**: 6 open / 1 closed. Enterprise features. Blocked on v0.3.2.
 - **v0.3.4**: 18 open / 8 closed. Community, docs, marketing. Blocked on v0.3.2.
 - **Backlog**: ~10 open (Linux platform, #777 Unicode capture).
 
 ## Agent Roster
-- **Dev-Sirius**: Technical cofounder. Latest session (2026-04-04): 3 new bug fixes pushed (#807, #810, #840), 4 PRs rebased (#818/#819/#820/#839), 1 CI fix (#815/786). PRs #815 and #818 merged. Next: check remaining PRs merged, fix #834 (browser -j), #841 (Calculator UIA), work on remaining P1 items.
-- **QA-Mariana**: Quality cofounder. 115 rounds completed. Self-hosted runner offline — QA automation stuck in queued state.
-- **Orc-Mycelium**: Strategic orchestrator. This session (2026-04-04 afternoon): verified 8 remote branches (all conflict-free), documented 5 branches needing PRs. **BLOCKED**: no `gh` CLI or GitHub MCP tools available — cannot create PRs, manage issues, or check CI.
+- **Dev-Sirius**: Technical cofounder. Latest session (2026-04-05): pushed 2 new bug fixes (#834 browser JSON, #841 Calculator UIA). Both branches force-pushed clean rebuilds. Next: check PRs created, investigate PR #838 CI failure, fix #843 (capture popup menus), #844 (MCP Pydantic leaks), start #809 (unified find).
+- **QA-Mariana**: Quality cofounder. 115 rounds completed. Self-hosted runner offline — QA automation stuck in queued state. 2 new bugs filed (#843, #844).
+- **Orc-Mycelium**: Strategic orchestrator. This session (2026-04-05 morning): verified 9 remote branches (all conflict-free), identified 8 branches needing PRs, found 4 stale status:in-progress labels. **BLOCKED**: no `gh` CLI or GitHub MCP tools — cannot create PRs, update issue labels, or create new issues.
 
 ## Coordination
 - Bug tracking: GitHub Issues only
 - State flow: status:in-progress -> status:done -> verified -> close
 - CI must be green before any merge
 - **BLOCKER**: Self-hosted runner ROBOT-COMPILE offline — no desktop testing possible (#842)
-- **BLOCKER**: No GitHub API access in this session — 5 PRs need creation, issues need updating
+- **BLOCKER**: No GitHub API write access — 8 PRs need creation, 4 issue labels stale, new issues needed
 
 ## Pending GitHub Actions (for next session with `gh` access)
-### PRs to Create
-1. `fix/issue-810-mcp-stdout-debug` → develop: "fix: suppress all logging in MCP stdio transport (fixes #810)" — auto-merge
-2. `fix/issue-840-type-newline-drop` → develop: "fix: handle newlines in type_text by splitting into Enter keypresses (fixes #840)" — auto-merge
+### PRs to Create (8 branches, all conflict-free)
+1. `fix/issue-834-browser-json-flag` → develop: "fix: browser subcommand emits structured JSON errors with -j flag (fixes #834)" — auto-merge
+2. `fix/issue-841-calculator-uia-test` → develop: "fix: Calculator UIA detection via comtypes probes child windows (fixes #841)" — auto-merge
 3. `fix/issue-807-press-wrong-process` → develop: "fix: press --app exits with error when window focus fails (fixes #807)" — auto-merge
-4. `fix/visual-report-error-handling` → develop: "fix: surface skips, errors, and HTML failures in visual report JSON mode" — auto-merge
-5. `test/recording-cmd-coverage` → develop: "test: add 75 tests for recording CLI and engine" — auto-merge
+4. `fix/issue-810-mcp-stdout-debug` → develop: "fix: suppress all logging in MCP stdio transport (fixes #810)" — auto-merge
+5. `fix/issue-840-type-newline-drop` → develop: "fix: handle newlines in type_text by splitting into Enter keypresses (fixes #840)" — auto-merge
+6. `docs/readme-missing-commands` → develop: "docs: add 12 missing CLI commands to README tables and examples" — auto-merge
+7. `refactor/issue-832-split-app-cmd` → develop: "refactor: split app_cmd.py (1,416 lines) into focused modules (fixes #832)" — auto-merge
+8. `refactor/issue-833-split-shell` → develop: "refactor: split _shell.py (1,216 lines) into focused modules (fixes #833)" — auto-merge
 
-### PRs to Check Status
-- PR #819 (fix/issue-783-json-duplicate-stderr) — rebased, check CI
-- PR #820 (fix/issue-788-stale-pid-routing) — rebased, check CI
-- PR #822 — auto-merge enabled, should be merged
-- PR #839 (test/visual-cmd-coverage) — rebased, check CI
+### PR to Investigate
+- PR #838 (test/recording-cmd-coverage): Build & Test CI **FAILING** — needs Dev-Sirius to investigate and fix
 
-### Issues to Update
-- #810, #840, #807: add status:done label after PRs created
-- #842: check if runner is back online
+### Issues to Update Labels
+- #781, #783, #786, #788: remove status:in-progress, add status:done (PRs merged)
+- #807, #810, #834, #840, #841: add status:done after PRs created and merged
 
 ### Issues to Create
 - browser_cmd.py at 1,459 lines needs split (similar to #832/#833)
 
 ## Code Health
-- 45,488 lines Python source, 138 source files, 209 test files
-- Large files needing split: `_element.py` (1,505, #720), `browser_cmd.py` (1,459, NEW), `app_cmd.py` (1,416, #832), `_shell.py` (1,216, #833)
+- 45,565 lines Python source, 138 source files, 213 test files
+- Large files needing split: `_element.py` (1,516, #720), `browser_cmd.py` (1,459, NEW), `app_cmd.py` (1,416, #832 branch ready), `_shell.py` (1,216, #833 branch ready)
 - Version consistent: 0.3.1 across pyproject.toml, version.py, PyPI
-- CI on develop: GREEN (last merge #818 passed)
+- CI on develop: GREEN (Build & Test + CodeQL pass)
 - 5 stars, 5 forks on GitHub
 
 ## Completed Releases
