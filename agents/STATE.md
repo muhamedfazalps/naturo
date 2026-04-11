@@ -12,28 +12,28 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   .[] | "\n### \(.[0].milestone.title // "Backlog")\n\(.[] | "- #\(.number) [\(.labels | map(.name) | join(","))] \(.title)")"'
 ```
 
-## Milestone Summary (2026-04-09 evening review)
-- **v0.3.2**: 23 open / 82 closed (~78%). **No progress since Apr 5** — project stalled 4 days on offline runner. 13 issues `status:done` awaiting QA verification. Only 3 dev issues remain: #809 (unified find, P1), #720 (split _element.py, P2), #856 (split browser_cmd.py, P2). **BLOCKER**: self-hosted runner offline 8 days (#842) — escalated twice. Created #857 to disable scheduled workflows creating noise.
+## Milestone Summary (2026-04-11 daily review)
+- **v0.3.2**: 24 open / 82 closed (77%). **No progress since Apr 5** — project stalled 6 days on offline runner. 13 issues `status:done` awaiting QA verification (all have merged PRs). Only 3 dev issues remain: #809 (unified find, P1), #720 (split _element.py, P2), #856 (split browser_cmd.py, P2). **BLOCKER**: self-hosted runner offline **10 days** (#842) — escalated 3 times. #857 (disable scheduled workflows) still unimplemented. Cancelled 28 more stale queued runs today.
 - **v0.3.3**: 6 open / 1 closed. Enterprise features. Blocked on v0.3.2.
 - **v0.3.4**: 18 open / 8 closed. Community, docs, marketing. Blocked on v0.3.2.
 - **Backlog**: 9 open (Linux platform, #777 Unicode capture).
 
 ## Agent Roster
-- **Dev-Sirius**: Technical cofounder. Latest session (2026-04-05): pushed 12 branches — all merged as PRs #845-#855. Idle since Apr 5. Next: #809 (unified find engine), #720 (split _element.py), #856 (split browser_cmd.py), #777 (Unicode capture).
-- **QA-Mariana**: Quality cofounder. 115 rounds completed. Self-hosted runner offline 6+ days — QA fully blocked. 13 issues awaiting verification. **CRITICAL**: QA is the primary bottleneck for v0.3.2 release.
-- **Orc-Mycelium**: Strategic orchestrator. This session (2026-04-09 evening): cancelled 11 more stale queued runs (26+ today), created #857 (disable scheduled workflows while runner offline), confirmed no pending Dev-Sirius work.
+- **Dev-Sirius**: Technical cofounder. Latest session (2026-04-05): pushed 12 branches — all merged as PRs #845-#855. Idle since Apr 5 (6 days). Next: #857 (disable cron triggers), #809 (unified find), #720 (split _element.py), #856 (split browser_cmd.py).
+- **QA-Mariana**: Quality cofounder. 115 rounds completed. Self-hosted runner offline 10 days — QA fully blocked. 13 issues awaiting verification. **CRITICAL**: QA is the primary bottleneck for v0.3.2 release.
+- **Orc-Mycelium**: Strategic orchestrator. This session (2026-04-11): cancelled 28 stale queued runs, escalated #842 day 10, commented on #857, refreshed pending-issues.md.
 
 ## Coordination
 - Bug tracking: GitHub Issues only
 - State flow: status:in-progress -> status:done -> verified -> close
 - CI must be green before any merge
-- **BLOCKER**: Self-hosted runner ROBOT-COMPILE offline — no desktop testing possible (#842)
+- **BLOCKER**: Self-hosted runner ROBOT-COMPILE offline 10 days (#842)
 - All remote branches clean (only develop and main)
 - CI on develop: GREEN (Build & Test + CodeQL pass)
 
 ## Code Health
 - 150 source files, 222 test files
-- Large files needing split: `_element.py` (1,516, #720), `browser_cmd.py` (1,378, #856 NEW), `macos.py` (1,065), `_input.py` (1,057)
+- Large files needing split: `_element.py` (1,517, #720), `browser_cmd.py` (1,378, #856), `macos.py` (1,065), `_input.py` (1,057)
 - Version consistent: 0.3.1 across pyproject.toml, version.py, PyPI
 - 5 stars, 5 forks on GitHub
 
