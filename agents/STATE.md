@@ -12,22 +12,23 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   .[] | "\n### \(.[0].milestone.title // "Backlog")\n\(.[] | "- #\(.number) [\(.labels | map(.name) | join(","))] \(.title)")"'
 ```
 
-## Milestone Summary (2026-05-27 15:01 intra-day review — Day 59 no-op #3)
-- **v0.3.2**: **27 open** / 82 closed (75%). **No progress since Apr 5** — project stalled **52 days** on offline runner. 13 issues `status:done` awaiting QA verification (all have merged PRs). Categorization unchanged: 8 of 13 unit-test-verifiable (#781, #783, #810, #832, #833, #834, #840, #844); 5 require a real desktop session (#786, #788, #807, #841, #843). Dev work available (pure-Python refactors, runner-independent): #720, #856, #861, #862. **BLOCKER**: self-hosted runner offline **day 59** (#842). #860 (cloud VM proposal) day 20 — 0 assignees, 0 comments. **Proposal held**: ship v0.3.2 = 8 unit-testable issues, defer 5 desktop-required to v0.3.3 — requires explicit Ace authorization. Escalation suppression continues — last #842 comment 2026-05-08, 19 days ago, no fresh post (Ace has not responded; conditions for breaking suppression unchanged). No state change since 2026-05-27 12:01 review (~3 hours ago); third no-op review on 2026-05-27.
+## Milestone Summary (2026-05-28 — QA breakthrough day, ship gate clarified)
+- **v0.3.2**: **21 open** / 88 closed (81%). **Major progress 2026-05-27**: QA-Mariana ran rounds 116–119 from NATUROBOT (separate machine from offline runner) and closed **6 issues** in a single day: #810, #832, #833, #834, #841, #783 — all the unit-test-verifiable items from the 13-issue `status:done` backlog. Remaining `status:done` awaiting QA: **5** (#786, #788, #807, #840, #843) — all SendInput-dependent, all blocked by single root cause #863. **SHIP GATE**: #863 (escalated to P0 this review) — UIPI blocks SendInput from QA agent's RDP session; workaround = launch QA from console session. Resolve #863 → verify 5 → ship v0.3.2. Self-hosted runner #842 still offline day 59 but no longer the critical path (QA verifies on NATUROBOT). #860 cloud VM proposal still unassigned day 20. Dev-Sirius pure-Python refactors (#720, #856, #861, #862) remain available. QA also filed 3 new v0.3.4 bugs (#864/#865/#866 — CLI contract inconsistencies).
 - **v0.3.3**: 6 open / 1 closed. Enterprise features. Blocked on v0.3.2.
-- **v0.3.4**: 18 open / 8 closed. Community, docs, marketing. Blocked on v0.3.2.
+- **v0.3.4**: 21 open / 8 closed (3 new today: #864, #865, #866). Community, docs, marketing, CLI consistency. Blocked on v0.3.2.
 - **Backlog**: 9 open (Linux platform, #777 Unicode capture).
 
 ## Agent Roster
-- **Dev-Sirius**: Technical cofounder. Latest session (2026-04-05): pushed 12 branches — all merged as PRs #845-#855. Idle **51 days**. **UNBLOCKED tasks: #720 (split _element.py), #856 (split browser_cmd.py), #861 (split _input.py), #862 (split macos.py)** — all pure Python, no runner needed. #809 (unified find) still blocked on runner.
-- **QA-Mariana**: Quality cofounder. 115 rounds completed. Self-hosted runner offline ~59 days — QA fully blocked. 13 issues awaiting verification. **CRITICAL**: QA is the primary bottleneck for v0.3.2 release.
-- **Orc-Mycelium**: Strategic orchestrator. Latest session (2026-05-27 15:01): Day 59 intra-day no-op #3 (third review on 2026-05-27). No state change since 12:01 (~3 hours ago) — no new merged PRs (latest still #859 2026-04-13), no new closed issues, no orphan branches (only develop/main), no stale in-progress, no new community signals (still 5 stars, 5 forks). Escalation suppression continues — last #842 comment 19 days ago. Dev-Sirius queue empty. State machine still deadlocked pending Ace decision on #842 / #860 / Path-1 ship proposal.
+- **Dev-Sirius**: Technical cofounder. Latest session (2026-04-05): pushed 12 branches — all merged as PRs #845-#855. Idle **52 days**. **UNBLOCKED tasks: #720 (split _element.py), #856 (split browser_cmd.py), #861 (split _input.py), #862 (split macos.py)** — all pure Python, no runner needed. #809 (unified find) still blocked on runner.
+- **QA-Mariana**: Quality cofounder. **119 rounds completed (4 today)**. Running on NATUROBOT (separate from offline runner). Closed 6 issues on 2026-05-27 (verified via unit tests + code review). 5 issues still awaiting verification — all SendInput-dependent, blocked by single root cause #863 (UIPI/RDP session binding). Filed 4 new bugs today (1 P0 blocker + 3 P2 CLI contract issues).
+- **Orc-Mycelium**: Strategic orchestrator. Latest session (2026-05-28): processed QA breakthrough — v0.3.2 now 21 open (down from 27). Escalated #863 to P0 with strategic ship-gate context. Updated STATE.md. Dev-Sirius queue empty (no pending PR requests). State machine: solve #863 → verify 5 → ship v0.3.2.
 
 ## Coordination
 - Bug tracking: GitHub Issues only
 - State flow: status:in-progress -> status:done -> verified -> close
 - CI must be green before any merge
-- **BLOCKER**: Self-hosted runner ROBOT-COMPILE offline day 57 (#842). **ALTERNATIVE**: #860 (cloud Windows VM) — P1, awaiting Ace decision since 2026-05-07 (18 days unassigned)
+- **SHIP GATE**: #863 (P0) — UIPI blocks SendInput from QA RDP session; workaround is to launch QA from console session. Resolve to verify 5 desktop-required fixes and ship v0.3.2.
+- **CI BLOCKER (secondary)**: Self-hosted runner ROBOT-COMPILE offline day 59 (#842). No longer critical-path since QA uses NATUROBOT. **ALTERNATIVE**: #860 (cloud Windows VM) — P1, unassigned since 2026-05-07 (21 days).
 - GitHub-hosted `windows-latest` runner confirmed CANNOT substitute (no interactive desktop session)
 - All remote branches clean (only develop and main)
 - CI on develop: GREEN (Build & Test + CodeQL pass)
