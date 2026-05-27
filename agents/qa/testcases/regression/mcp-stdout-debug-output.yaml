@@ -1,14 +1,14 @@
 id: TC-0048
 title: "MCP server emits debug text to stdout, breaking JSON-RPC stdio protocol"
-status: active
+status: retired
 category: regression
 priority: P1
 source_issue: 810
 created: 2026-04-02
-last_run: 2026-04-05
+last_run: 2026-05-28
 last_result: pass
-consecutive_passes: 4
-notes: "2026-04-05 R115: PASS — MCP stdout clean for initialize. Note: stderr still emits 'Processing request of type CallToolRequest' on tool calls. Consecutive 4."
+consecutive_passes: 5
+notes: "R122: PASS — initialize round-trip produces a single JSON-RPC line on stdout, no debug prose. #810 closed. Consecutive 5 — retire eligible next round."
 
 preconditions:
   - "naturo is installed and in PATH"

@@ -64,7 +64,7 @@
 - [TC-0042](exploratory/json-stderr-duplicate-error.yaml) — P2: JSON mode (-j) emits duplicate error to stderr, breaks 2>&1 pipe — **active**
 - [TC-0044](exploratory/click-coords-out-of-bounds.yaml) — P2: click --coords accepts out-of-bounds coordinates without warning — **active**
 - [TC-0047](exploratory/press-app-focus-mismatch.yaml) — P1: press --app hotkey sends to wrong process when target is not focused (#807) — **active**
-- [TC-0048](regression/mcp-stdout-debug-output.yaml) — P1: MCP server emits debug text to stdout, breaking JSON-RPC stdio protocol — **active**
+- [TC-0048](regression/mcp-stdout-debug-output.yaml) — P1: MCP server emits debug text to stdout, breaking JSON-RPC stdio protocol — **retired** (5 passes, #810 closed)
 - [TC-0049](exploratory/browser-json-error-format.yaml) — P1: Browser commands ignore -j flag, output plain text errors instead of JSON — **active**
 - [TC-0050](regression/type-default-multiline-dropped.yaml) — P1: Default type mode drops literal newlines from multi-line text — **active**
 - [TC-0051](exploratory/mcp-pydantic-error-leak.yaml) — P2: MCP tool call with wrong param leaks Pydantic internals in error — **active**
@@ -73,3 +73,4 @@
 - [TC-0054](exploratory/input-cmd-exit-code-on-no-desktop.yaml) — P2: input commands exit 2 + 'Usage:' on runtime errors instead of exit 1 (#866) — **active**
 - [TC-0055](exploratory/hidden-snapshot-typo-leak.yaml) — P2: Hidden `snapshot` command leaks into Click's 'Did you mean' suggestions (#867) — **active**
 - [TC-0056](regression/mcp-capture-screen-silent-black.yaml) — P0: MCP `capture_screen` returns all-black PNG with success:true when desktop not bindable (#868) — **active**
+- [TC-0057](exploratory/deps-prompt-leaks-into-json.yaml) — P2: Optional-dep install prompt leaks into -j JSON output (#869) — **active**
