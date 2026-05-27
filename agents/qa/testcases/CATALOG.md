@@ -81,3 +81,5 @@
 - [TC-0062](exploratory/dialog-taskbar-tray-silent-success.yaml) — P1: dialog detect / taskbar list / tray list -j silently return success:true [] in NO_DESKTOP_SESSION (#875) — **active**
 - [TC-0063](exploratory/selector-record-list-envelope.yaml) — P2: selector list -j and record list -j omit top-level 'success' field (#876) — **active**
 - [TC-0064](exploratory/get-set-unknown-error-code.yaml) — P2: get/set -j error envelope uses UNKNOWN_ERROR code and omits suggested_action (#877) — **active**
+- [TC-0065](exploratory/app-windows-missing-desktop-guard.yaml) — P1: app windows -j silently returns real windows in NO_DESKTOP_SESSION while every other read command refuses (#878) — **active**
+- [TC-0066](exploratory/browser-launch-status-envelope.yaml) — P2: browser launch -j returns {status: ok} envelope instead of standard {success: true} (#879) — **active**
