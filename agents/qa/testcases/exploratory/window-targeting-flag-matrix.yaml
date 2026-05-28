@@ -8,7 +8,7 @@ created: 2026-05-28
 last_run: 2026-05-28
 last_result: fail
 consecutive_passes: 0
-notes: "R130: FAIL — find rejects --hwnd and --pid (No such option). see --hwnd, list windows --pid go through to NO_DESKTOP_SESSION. Matrix still inconsistent. #871 unchanged."
+notes: "R132: FAIL — extended matrix probes (minimize/maximize/restore/move) added; all reject --app. Posted expanded matrix to #871 covering full app subgroup. R130 baseline unchanged: find rejects --hwnd/--pid, highlight rejects --app, get rejects --pid."
 
 preconditions:
   - "naturo is installed and in PATH"
@@ -38,6 +38,18 @@ steps:
   - description: "app focus should accept --pid"
     command: "naturo app focus --pid 1 2>&1"
     expect: "Runtime error path, not 'No such option: --pid'"
+  - description: "app minimize should accept --app (parity with app focus/quit/close)"
+    command: "naturo app minimize --app notepad 2>&1"
+    expect: "Runtime path, not 'No such option: --app'"
+  - description: "app maximize should accept --app"
+    command: "naturo app maximize --app notepad 2>&1"
+    expect: "Runtime path, not 'No such option: --app'"
+  - description: "app restore should accept --app"
+    command: "naturo app restore --app notepad 2>&1"
+    expect: "Runtime path, not 'No such option: --app'"
+  - description: "app move should accept --app"
+    command: "naturo app move --app notepad --x 0 --y 0 2>&1"
+    expect: "Runtime path, not 'No such option: --app'"
 
 pass_criteria: "Every command that targets a window/element accepts the gold-standard set {--app, --window, --hwnd, --pid, --app-id}. None of the listed probes returns Click 'No such option' for these flags."
 fail_action: "Update #871 with the per-command/flag matrix showing which gaps remain."
