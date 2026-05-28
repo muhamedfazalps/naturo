@@ -8,7 +8,7 @@ created: 2026-05-28
 last_run: 2026-05-28
 last_result: fail
 consecutive_passes: 0
-notes: "R134: FAIL — `naturo app windows -j` returns success:true with real Chrome windows (Chinese title 要恢复页面吗？) in NO_DESKTOP_SESSION. #878 unchanged on HEAD 1323777."
+notes: "R143: FAIL — app windows -j still returns real windows + success:true in NO_DESKTOP_SESSION. Bug unchanged on HEAD 426477d."
 
 preconditions:
   - "naturo is installed and in PATH"
