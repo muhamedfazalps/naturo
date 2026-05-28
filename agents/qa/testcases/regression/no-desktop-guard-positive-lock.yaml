@@ -7,8 +7,12 @@ source_issue: 885
 created: 2026-05-29
 last_run: 2026-05-29
 last_result: pass
-consecutive_passes: 1
+consecutive_passes: 2
 notes: >
+  R149 (Accessibility User persona) reconfirm on HEAD c4342ff (source identical to e346036,
+  +1 doc-only commit): see/capture/list windows all refuse with exit 1; the buggy bypass
+  cases (TC-0065 #878, TC-0062 #875, TC-0079 #893) still return success:true exit 0.
+  Positive-lock guard holds. consecutive_passes 1->2.
   R148 (Power User persona): created as the positive counterpart to the silent-failure
   bug-repro cases (TC-0065 #878, dialog/taskbar/tray #875, TC-0079 #893). Those assert
   buggy BYPASS commands. This case locks in the commands that ALREADY refuse correctly,

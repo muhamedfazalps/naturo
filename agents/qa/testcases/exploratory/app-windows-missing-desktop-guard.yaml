@@ -8,7 +8,7 @@ created: 2026-05-28
 last_run: 2026-05-29
 last_result: fail
 consecutive_passes: 0
-notes: "R144: FAIL — re-confirmed on HEAD 893209e. `naturo app windows` (no -j) returned 14 real windows including Chinese-titled apps + Chrome + Explorer with exit 0; `naturo -j app windows` returns success:true count:14. Bug unchanged."
+notes: "R149 (Accessibility persona): FAIL — re-confirmed on HEAD c4342ff. `naturo app windows -j` returns success:true exit 0 and even leaks the QA terminal's own window (Microsoft.WindowsTerminal). Bug unchanged. R144: FAIL on HEAD 893209e — returned 14 real windows incl. Chinese-titled apps + Chrome + Explorer with exit 0."
 
 preconditions:
   - "naturo is installed and in PATH"
