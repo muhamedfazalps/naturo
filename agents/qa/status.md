@@ -1,23 +1,23 @@
 # QA Status
-Last updated: 2026-05-29 02:10 UTC
-Current round: 146
+Last updated: 2026-05-29 03:13 UTC
+Current round: 147
 Current milestone: v0.3.2 (29 open / 89 closed; v0.3.4 = 46 open / 8 closed)
 
 ## This Round
-- CI Desktop Tests: skipped (no new code commits since last SHA `17aefe6`; only QA-report commits since)
+- CI Desktop Tests: skipped (no new source commits since `17aefe6`; `e2afdcb` is QA-report-only)
 - Issues verified: none — 5 `status:done` (#786/#788/#807/#840/#843) all SendInput-blocked (#863)
-- E2E tests: Phase 2 desktop blocked by NO_DESKTOP_SESSION; MCP 62-tool sweep instead
-- Persona: Enterprise RPA Dev (hour 02 mod 8 = 2)
-- Regression: 12 MCP-relevant cases re-confirmed FAIL on HEAD `de03499` (TC-0051, TC-0056, TC-0060, TC-0062, TC-0065, TC-0068, TC-0069, TC-0070, TC-0077, TC-0078, TC-0079, TC-0085); desktop-driven cases skipped
-- New test cases created: TC-0086 (`mcp-app-inspect-bogus-pid-silent.yaml`)
-- Test cases refined: TC-0085 (matrix corrected — `wait_for_window` in Group A, `menu_inspect` has no title-key)
+- E2E tests: Phase 2 desktop blocked by NO_DESKTOP_SESSION; non-desktop CLI envelope+exit-code sweep instead
+- Persona: Chinese User (hour 03 mod 8 = 3)
+- Regression: 12 cases re-confirmed on HEAD `e2afdcb` — TC-0046 PASS (29 consecutive), TC-0054/0061/0063/0064/0067/0074/0079/0080/0083/0084 FAIL (all extending existing open issues #866/#874/#876/#877/#880/#888/#893/#894/#897/#899)
+- New test cases created: TC-0087 (`regression/selector-chinese-name-roundtrip.yaml`) — Chinese-name selector flow regression-prevention
+- Test cases refined: TC-0063 (4th callsite — `selector show`), TC-0079 (Chinese-selector repro confirms drift is language-agnostic), TC-0080 (selector domain repros), TC-0046 / TC-0054 / TC-0061 / TC-0064 / TC-0067 / TC-0074 / TC-0083 / TC-0084 (R147 notes added)
 - Test cases cleaned up: none
-- New issues created: **#901 (P1, v0.3.4, silent-failure)** — MCP `app_inspect` accepts non-existent PIDs and returns success:true with empty exe/app + fabricated win32+vision fallback
-- Issue comments: #900 (corrected window-target matrix), #893 (MCP `wait_until_gone` analogue), #885 (`menu_inspect` + `tray_list` cluster additions)
-- Total active test cases: 65
-- Tests run: ~50 MCP tool calls across 3 probe drivers (`.work/qa-r146/`)
+- New issues created: none — both genuine new findings are extensions to existing issues
+- Issue comments: #876 (selector show as 4th envelope-drift callsite, expands fix surface to `naturo/cli/selector_cmd.py:show`), #894 (selector domain repros add `selector_cmd.py` to fix-surface area)
+- Total active test cases: 66
+- Tests run: ~30 CLI invocations across exit-code / envelope / Chinese-roundtrip matrices
 
 ## Top 3 Risks
-1. #901 widens the silent-failure surface beyond #885's NO_DESKTOP_SESSION middleware scope — process-validation gaps and desktop-binding gaps share the same agent-impact class (success:true + empty/fabricated payload) but need separate fix locations. Worth deciding whether an "agent contract integrity" sweep across the MCP wrapper layer is needed in addition to #885's middleware.
-2. `menu_inspect` and `tray_list` MCP wrappers now confirmed in #885's silent-failure cluster scope (CLI counterparts already guarded). Without an `(cli_command, mcp_tool)` parity audit, future MCP tools risk reintroducing the same gap.
-3. 5 SendInput-blocked `status:done` (#786, #788, #807, #840, #843) remain unverified. Console-session QA pass is the only path forward; restructured ship gate cannot close without it.
+1. #876 `selector show <typo> -j` returns `{"user":{}, "builtin":{}}` indistinguishable from `<valid-app-no-selectors>` — Scripter who mistypes app name gets clean exit 0 + empty body and proceeds with wrong-data assumption. Same severity class as #885 silent-failures but tracked separately under #876's P2 envelope-shape bucket. Recommend Dev-Sirius treat #876's 4 callsites (list / record list / visual list / selector show) as one PR.
+2. Chinese silent-failure paths (e.g. `wait --gone '记事本'`) reach the same code paths as ASCII — confirms #885's Python-only middleware fix shape will cover both at once with no locale-specific work. Positive risk-resolution signal for the cluster.
+3. 5 SendInput-blocked `status:done` (#786, #788, #807, #840, #843) remain unverified. Console-session QA pass is the only path forward; restructured ship gate cannot close without it. Day 9+ since #863 escalation to Ace.

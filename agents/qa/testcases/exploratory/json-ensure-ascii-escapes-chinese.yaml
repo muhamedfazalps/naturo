@@ -9,6 +9,12 @@ last_run: 2026-05-29
 last_result: fail
 consecutive_passes: 0
 notes: |
+  R147: FAIL — re-confirmed on HEAD e2afdcb during Chinese User persona. New repro paths exercised:
+    1. `naturo -j selector save TestApp "中文名" 'app://x/y'` → `"name": "中文名"` (selector save echoes the Chinese name escaped).
+    2. `naturo -j selector load TestApp 中文名` → `"app": "记事本"` etc. — every selector field round-trips escaped.
+    3. `naturo -j app windows` on a desktop with `计算器`/`文件资源管理器`/`要恢复页面吗？` titles → titles serialized as `\uXXXX` (confirmed against current /tmp/aw.json dump).
+    4. `naturo selector list` (non-`-j`) — prints literal Chinese (`@记事本/保存按钮`) correctly, reaffirming the drift is per-mode.
+  Bug surface unchanged across selector/list/app-windows surfaces.
   R144: FAIL — re-confirmed on HEAD 893209e. `naturo -j clipboard set "你好"` → success; `naturo -j clipboard get` → text field serialized as `"你好"` (literal backslash-u escape sequences) instead of literal `"你好"`. Bug unchanged. (Also restored this YAML — body was inadvertently emptied during R143's testcase folder edits.)
   R139: FAIL — three reproductions:
     1. `naturo clipboard set "你好世界" -j | Out-Null; naturo clipboard get -j` → `"text": "你好世界"` instead of literal `你好世界`.

@@ -8,7 +8,9 @@ created: 2026-05-28
 last_run: 2026-05-29
 last_result: fail
 consecutive_passes: 0
-notes: "R144: FAIL — re-confirmed on HEAD 893209e. `naturo -j --version` still emits plain text 'naturo, version 0.3.1'. Bug unchanged."
+notes: |
+  R147: FAIL — re-confirmed on HEAD e2afdcb. `naturo -j --version` → plain text `naturo, version 0.3.1` EXIT=0; `naturo -j --help` → plain Click help banner EXIT=0; `naturo -j unknownXYZ` → plain Click "No such command" stderr EXIT=2. None emit the JSON envelope. Bug unchanged.
+  R144: FAIL — re-confirmed on HEAD 893209e. `naturo -j --version` still emits plain text 'naturo, version 0.3.1'. Bug unchanged.
 
 preconditions:
   - "naturo is installed and in PATH"

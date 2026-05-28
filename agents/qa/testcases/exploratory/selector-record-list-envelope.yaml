@@ -8,7 +8,10 @@ created: 2026-05-28
 last_run: 2026-05-29
 last_result: fail
 consecutive_passes: 0
-notes: "R144: FAIL — re-confirmed on HEAD 893209e. selector list -j={}, record list -j={recordings:[...]} (no success), visual list -j={baselines:[]} (no success). All three callsites unchanged."
+notes: |
+  R147: FAIL — re-confirmed on HEAD e2afdcb. `selector list -j={}`, `record list -j={recordings:[...]}` (no success), `visual list -j={baselines:[]}` (no success). All three callsites unchanged.
+  Adjacent finding (Chinese User persona): `naturo selector show <existent> -j` returns `{"user":{...}, "builtin":{...}}` and `selector show <nonexistent> -j` returns `{"user":{}, "builtin":{}}` — BOTH lack a `success` field AND the no-match case is indistinguishable from "selectors exist but empty". This is a fourth envelope-drift callsite of the same pattern. Will extend #876 with this case.
+  R144: FAIL — re-confirmed on HEAD 893209e. selector list -j={}, record list -j={recordings:[...]} (no success), visual list -j={baselines:[]} (no success). All three callsites unchanged.
 
 preconditions:
   - "naturo is installed and in PATH"

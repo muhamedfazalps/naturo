@@ -8,7 +8,9 @@ created: 2026-05-29
 last_run: 2026-05-29
 last_result: fail
 consecutive_passes: 0
-notes: "R144 (First-time User): FAIL — `naturo -h` and every subcommand `naturo <cmd> -h` reject `-h` with 'Error: No such option: -h' exit 2. Click root group lacks `context_settings={'help_option_names': ['-h', '--help']}`. Trivial one-line fix at the root propagates to all subcommands. Discovered during First-time User simulation, hour-mod-8 = 0."
+notes: |
+  R147: FAIL — re-confirmed on HEAD e2afdcb. `naturo -h` EXIT=2 with "Try 'naturo --help' for help."; `naturo see -h` EXIT=2 with same. Drift unchanged.
+  R144 (First-time User): FAIL — `naturo -h` and every subcommand `naturo <cmd> -h` reject `-h` with 'Error: No such option: -h' exit 2. Click root group lacks `context_settings={'help_option_names': ['-h', '--help']}`. Trivial one-line fix at the root propagates to all subcommands. Discovered during First-time User simulation, hour-mod-8 = 0.
 
 preconditions:
   - "naturo is installed and in PATH"

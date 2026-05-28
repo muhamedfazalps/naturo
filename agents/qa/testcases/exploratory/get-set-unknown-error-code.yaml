@@ -5,10 +5,12 @@ category: exploratory
 priority: P2
 source_issue: 877
 created: 2026-05-28
-last_run: 2026-05-28
+last_run: 2026-05-29
 last_result: fail
 consecutive_passes: 0
-notes: "R134: FAIL — get e1 -j and set e1 x -j both return {error:{code:UNKNOWN_ERROR, message:'Element ref e1 not found...'}} — no suggested_action, generic code. #877 unchanged on HEAD 1323777."
+notes: |
+  R147: FAIL — re-confirmed on HEAD e2afdcb. `naturo get e1 -j` and `naturo set e1 foo -j` both EXIT=1 with `{"success":false,"error":{"code":"UNKNOWN_ERROR","message":"Element ref 'e1' not found in snapshot cache. Run 'naturo see' first to capture elements."}}` — no `suggested_action`, generic code. #877 unchanged.
+  R134: FAIL — get e1 -j and set e1 x -j both return {error:{code:UNKNOWN_ERROR, message:'Element ref e1 not found...'}} — no suggested_action, generic code. #877 unchanged on HEAD 1323777.
 
 preconditions:
   - "naturo is installed and in PATH"

@@ -8,7 +8,9 @@ created: 2026-05-28
 last_run: 2026-05-29
 last_result: fail
 consecutive_passes: 0
-notes: "R144: FAIL — re-confirmed on HEAD 893209e. `naturo launch` / `naturo openn` still emit 'No such command' with no 'Did you mean' suggestion. Bug unchanged."
+notes: |
+  R147: FAIL — re-confirmed on HEAD e2afdcb. `naturo lauch` (probable typo for `app launch`) → "Error: No such command 'lauch'." with NO 'Did you mean' suggestion. Bug unchanged.
+  R144: FAIL — re-confirmed on HEAD 893209e. `naturo launch` / `naturo openn` still emit 'No such command' with no 'Did you mean' suggestion. Bug unchanged.
 
 preconditions:
   - "naturo is installed and in PATH"
