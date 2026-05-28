@@ -93,3 +93,5 @@
 - [TC-0074](exploratory/clipboard-set-missing-file-stdin.yaml) — P2: `naturo clipboard set` lacks `--file`/stdin asymmetric with `naturo type --file`, blocks >32KB & multi-line ergonomics — **active**
 - [TC-0075](exploratory/readme-marketing-claims-accuracy.yaml) — P1: README ✅ "Post-Action Verify" and ✅ "AI Agent Ready: JSON output" claims contradicted by silent-failure cluster (#868/#875/#878/#883) and -j envelope cluster (#864–#884) — **active**
 - [TC-0076](exploratory/typo-suggester-nonsense-match.yaml) — P2: 'Did you mean' suggester returns semantically wrong matches for short queries — `naturo ai → wait`, `naturo tap → app` (#889) — **active**
+- [TC-0077](regression/mcp-list-snapshots-broken.yaml) — P1: MCP `list_snapshots` fails 100% — wrapper passes `limit=` kwarg that `SnapshotManager.list_snapshots()` doesn't accept (#890) — **active**
+- [TC-0078](exploratory/mcp-unknown-arg-silent-drop.yaml) — P2: MCP tools silently drop unknown args — typos fall back to defaults (#891) — **active**
