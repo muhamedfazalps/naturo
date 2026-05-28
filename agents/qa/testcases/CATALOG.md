@@ -83,3 +83,4 @@
 - [TC-0064](exploratory/get-set-unknown-error-code.yaml) — P2: get/set -j error envelope uses UNKNOWN_ERROR code and omits suggested_action (#877) — **active**
 - [TC-0065](exploratory/app-windows-missing-desktop-guard.yaml) — P1: app windows -j silently returns real windows in NO_DESKTOP_SESSION while every other read command refuses (#878) — **active**
 - [TC-0066](exploratory/browser-launch-status-envelope.yaml) — P2: browser launch -j returns {status: ok} envelope instead of standard {success: true} (#879) — **active**
+- [TC-0067](exploratory/typo-suggester-ignores-subgroups.yaml) — P2: CLI typo suggester ignores subgroup commands; first-time `launch`/`open`/`screenshot` hit dead end (#880) — **active**
