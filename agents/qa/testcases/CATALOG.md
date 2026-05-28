@@ -84,3 +84,5 @@
 - [TC-0065](exploratory/app-windows-missing-desktop-guard.yaml) — P1: app windows -j silently returns real windows in NO_DESKTOP_SESSION while every other read command refuses (#878) — **active**
 - [TC-0066](exploratory/browser-launch-status-envelope.yaml) — P2: browser launch -j returns {status: ok} envelope instead of standard {success: true} (#879) — **active**
 - [TC-0067](exploratory/typo-suggester-ignores-subgroups.yaml) — P2: CLI typo suggester ignores subgroup commands; first-time `launch`/`open`/`screenshot` hit dead end (#880) — **active**
+- [TC-0068](exploratory/mcp-error-code-naturocore-leak.yaml) — P1: MCP tools surface `INTERNAL_ERROR` + `NaturoCoreError` C++ exception names instead of typed codes (#881) — **active**
+- [TC-0069](exploratory/mcp-iserror-flag-inconsistent.yaml) — P2: MCP `isError` flag used inconsistently — agents must check both isError and payload.success (#882) — **active**
