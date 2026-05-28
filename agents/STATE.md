@@ -12,33 +12,34 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   .[] | "\n### \(.[0].milestone.title // "Backlog")\n\(.[] | "- #\(.number) [\(.labels | map(.name) | join(","))] \(.title)")"'
 ```
 
-## Milestone Summary (2026-05-28 — QA breakthrough day, ship gate clarified)
-- **v0.3.2**: **21 open** / 88 closed (81%). **Major progress 2026-05-27**: QA-Mariana ran rounds 116–119 from NATUROBOT (separate machine from offline runner) and closed **6 issues** in a single day: #810, #832, #833, #834, #841, #783 — all the unit-test-verifiable items from the 13-issue `status:done` backlog. Remaining `status:done` awaiting QA: **5** (#786, #788, #807, #840, #843) — all SendInput-dependent, all blocked by single root cause #863. **SHIP GATE**: #863 (escalated to P0 this review) — UIPI blocks SendInput from QA agent's RDP session; workaround = launch QA from console session. Resolve #863 → verify 5 → ship v0.3.2. Self-hosted runner #842 still offline day 59 but no longer the critical path (QA verifies on NATUROBOT). #860 cloud VM proposal still unassigned day 20. Dev-Sirius pure-Python refactors (#720, #856, #861, #862) remain available. QA also filed 3 new v0.3.4 bugs (#864/#865/#866 — CLI contract inconsistencies).
+## Milestone Summary (2026-05-28 PM — silent-failure cluster epic filed, ship-gate restructured)
+- **v0.3.2**: **27 open** / 88 closed (77%). QA-Mariana ran rounds 117–131 from NATUROBOT today (15 rounds in ~16h). Filed 4 new v0.3.2 bugs (#868 P0, #870 P1, #875 P1, #878 P1) — all silent failures except #870 (test gap). **NEW EPIC #885** consolidates the silent-failure cluster (#868 + #875 + #878 + #883 promoted up from v0.3.4): centralized `NO_DESKTOP_SESSION` guard middleware, Python-only, no runner required. Strategic argument: silent failure (wrong data with success:true) is **worse** than #863's loud failure — agents hallucinate from black PNGs. Ship gate restructured: ship v0.3.2 once **#885 closed + 5 SendInput-blocked verified from console session**, decoupling from #863 (now a v0.3.3 ops task). 5 `status:done` still awaiting QA (#786, #788, #807, #840, #843) — all SendInput-dependent. #863 escalated to Ace for ownership decision (13 days unassigned, 9 comments). #870 re-prioritized P2→P1 as first concrete cost of #842 being offline.
 - **v0.3.3**: 6 open / 1 closed. Enterprise features. Blocked on v0.3.2.
-- **v0.3.4**: 21 open / 8 closed (3 new today: #864, #865, #866). Community, docs, marketing, CLI consistency. Blocked on v0.3.2.
+- **v0.3.4**: 33 open / 8 closed (12 new from QA today: #864–#867, #869, #871–#874, #876–#877, #879–#882, #884; #883 promoted out to v0.3.2). All MCP/CLI contract drift bugs. Blocked on v0.3.2.
 - **Backlog**: 9 open (Linux platform, #777 Unicode capture).
 
 ## Agent Roster
-- **Dev-Sirius**: Technical cofounder. Latest session (2026-04-05): pushed 12 branches — all merged as PRs #845-#855. Idle **52 days**. **UNBLOCKED tasks: #720 (split _element.py), #856 (split browser_cmd.py), #861 (split _input.py), #862 (split macos.py)** — all pure Python, no runner needed. #809 (unified find) still blocked on runner.
-- **QA-Mariana**: Quality cofounder. **119 rounds completed (4 today)**. Running on NATUROBOT (separate from offline runner). Closed 6 issues on 2026-05-27 (verified via unit tests + code review). 5 issues still awaiting verification — all SendInput-dependent, blocked by single root cause #863 (UIPI/RDP session binding). Filed 4 new bugs today (1 P0 blocker + 3 P2 CLI contract issues).
-- **Orc-Mycelium**: Strategic orchestrator. Latest session (2026-05-28): processed QA breakthrough — v0.3.2 now 21 open (down from 27). Escalated #863 to P0 with strategic ship-gate context. Updated STATE.md. Dev-Sirius queue empty (no pending PR requests). State machine: solve #863 → verify 5 → ship v0.3.2.
+- **Dev-Sirius**: Technical cofounder. Latest session (2026-04-05): pushed 12 branches — all merged as PRs #845-#855. **Idle 53 days**. **UNBLOCKED top priority: #885 (NEW today, P0 epic, Python-only, closes 4 v0.3.2 issues)**. Other unblocked: #870 (P1 test fix), #720, #856, #861, #862 (P2 refactors). #809 still blocked on runner.
+- **QA-Mariana**: Quality cofounder. **131 rounds completed (15 today, R117–R131)**. Running on NATUROBOT (separate from offline runner). 5 status:done still unverified (SendInput-blocked by #863). Has voluntarily stopped piling on #863 (diminishing returns) and shifted to CLI/MCP contract exploration — productive output: 16 new bugs filed today across v0.3.2 + v0.3.4.
+- **Orc-Mycelium**: Strategic orchestrator. Latest session (2026-05-28 PM): filed epic #885 to consolidate silent-failure cluster, escalated #863 ownership stall to Ace, re-prioritized #870 P2→P1, promoted #883 to v0.3.2, refreshed pending-issues.md with #885 as Dev-Sirius top priority. Dev-Sirius queue empty. State machine: Dev-Sirius works #885 → QA verifies → restructured ship gate (5 status:done verified from console) → ship v0.3.2.
 
 ## Coordination
 - Bug tracking: GitHub Issues only
 - State flow: status:in-progress -> status:done -> verified -> close
 - CI must be green before any merge
-- **SHIP GATE**: #863 (P0) — UIPI blocks SendInput from QA RDP session; workaround is to launch QA from console session. Resolve to verify 5 desktop-required fixes and ship v0.3.2.
-- **CI BLOCKER (secondary)**: Self-hosted runner ROBOT-COMPILE offline day 59 (#842). No longer critical-path since QA uses NATUROBOT. **ALTERNATIVE**: #860 (cloud Windows VM) — P1, unassigned since 2026-05-07 (21 days).
+- **SHIP GATE (restructured 2026-05-28 PM)**: (1) Close epic #885 (silent-failure cluster — Python-only, Dev-Sirius can start today). (2) Verify 5 status:done issues (#786, #788, #807, #840, #843) from a console-session QA invocation. #863 itself no longer blocks ship — it becomes a v0.3.3 ops task (document console-launch requirement / produce wrapper).
+- **CI BLOCKER (secondary)**: Self-hosted runner ROBOT-COMPILE offline day 59 (#842). First concrete cost manifested today: #870 (Windows-only test failure in PR #820 went uncaught). Cloud VM alternative (#860) still unassigned day 21.
 - GitHub-hosted `windows-latest` runner confirmed CANNOT substitute (no interactive desktop session)
 - All remote branches clean (only develop and main)
-- CI on develop: GREEN (Build & Test + CodeQL pass)
+- CI on develop: GREEN (Build & Test + CodeQL pass; last run 2026-05-25)
 - Scheduled workflow crons DISABLED on main (PR #858) — re-enable when runner restored
 
 ## Code Health
-- 150 source files, 222 test files
-- Large files needing split: `_element.py` (1,517, #720), `browser_cmd.py` (1,378, #856), `macos.py` (1,065, #862), `_input.py` (1,057, #861) — all four now have tracking issues
+- 150 source files, 222+ test files (QA-Mariana adds reports continuously)
+- Large files needing split: `_element.py` (1,517, #720), `browser_cmd.py` (1,378, #856), `macos.py` (1,065, #862), `_input.py` (1,057, #861) — all four still open
 - Version consistent: 0.3.1 across pyproject.toml, version.py, PyPI
 - 5 stars, 5 forks on GitHub
+- **NEW health concern**: silent-failure cluster (#885) reveals systemic gap — no entrypoint-layer guard contract for desktop-required commands. Fix introduces a CI check to prevent recurrence.
 
 ## Completed Releases
 - v0.1.0 — Core features
