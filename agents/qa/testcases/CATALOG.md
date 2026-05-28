@@ -88,3 +88,4 @@
 - [TC-0069](exploratory/mcp-iserror-flag-inconsistent.yaml) — P2: MCP `isError` flag used inconsistently — agents must check both isError and payload.success (#882) — **active**
 - [TC-0070](exploratory/mcp-list-windows-silent-success.yaml) — P1: MCP `list_windows` bypasses NO_DESKTOP_SESSION guard, returns real windows + isError:false (MCP analogue of #878) (#883) — **active**
 - [TC-0071](exploratory/envelope-shape-drift.yaml) — P2: JSON error envelope shape drifts across CLI commands — `app *` returns 6 fields, see/capture/list/type/press/click/find return 3, get/set return 2 (#884) — **active**
+- [TC-0072](exploratory/keyboard-shortcut-always-null.yaml) — P1: `see` snapshot `keyboardShortcut` always null for UIA-backed elements (87,196 elements across 2,835 snapshots, 0 populated) (#886) — **active**

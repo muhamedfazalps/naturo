@@ -1,25 +1,25 @@
 # QA Status
-Last updated: 2026-05-28 12:00
-Current round: 132
-Current milestone: v0.3.2 (21 open, ship-gated by #863)
+Last updated: 2026-05-28 13:00
+Current round: 133
+Current milestone: v0.3.2 (27 open, ship-gated by epic #885 + 5 SendInput-blocked status:done from console session)
 
 ## This Round
-- CI Desktop Tests: skipped (`.last-ci-sha=2d15274` vs `HEAD=38cea0c`; only commit since is R131 `[skip ci]` report — no source/test changes; SHA advance deferred until non-QA commit lands)
-- Persona: Power User (hour 12 mod 8 = 4)
-- Session: NO_DESKTOP_SESSION (agent shell cannot bind to interactive desktop; broader than #863's input-only scope today — all read ops also blocked)
-- Issues verified: none (5 status:done still blocked by #863; #863 already escalated by Orc-Mycelium 2026-05-28 with 13+ data points — no new comment from QA per "diminishing returns" guidance)
+- CI Desktop Tests: skipped (`.last-ci-sha=2d15274` vs `HEAD=ae3c21f`; only commits since are R131/R132 reports + orc daily review — all `[skip ci]` with no source/test changes)
+- Persona: Accessibility User (hour 13 mod 8 = 5)
+- Session: NO_DESKTOP_SESSION (agent shell cannot bind to interactive desktop — same as R132)
+- Issues verified: none (5 status:done still SendInput-blocked; #863 ship-gate restructured by Orc earlier today — verification routes through console session, not this shell)
 - E2E tests: skipped (no desktop)
-- Regression: 11 contract-level test cases re-run — 1 pass (TC-0042 bumped to 4), 10 fail (all map to open issues #864/#869/#871/#874/#875/#876/#877/#878/#880/#884; all stay at 0 consecutive passes). Desktop test cases skipped.
-- Phase 4 (Power User): cannot exercise the "10+ apps open, multi-monitor, 150% DPI" surface without desktop. Pivoted to the Power-User CLI-friction surface: probed full `naturo app *` subgroup (11 subcommands × 5 window-target flags). Found that `app minimize`, `app maximize`, `app restore`, `app move` reject `--app` (while `focus/quit/close/launch/relaunch/inspect` accept it). Eleven subcommands, eleven different flag sets — sibling gap to #871 not enumerated in its body.
-- Test cases updated: TC-0058 extended with minimize/maximize/restore/move probes (covers #871 superset)
-- New test cases created: none (finding folds into TC-0058 / #871)
+- Regression: 10 contract-level test cases re-run — 1 pass (TC-0042 bumped to **5**, retention rule N/A since source_issue is null), 9 fail (#864/#869/#871/#874/#875/#876/#877/#878/#880; all stay at 0). Desktop cases skipped.
+- Phase 4 (Accessibility User): audited the accessibility surface of `naturo see` snapshots. Found that the schema exposes `keyboardShortcut` but UIA backend (default) **never populates it** — 87,196 elements across 2,835 historical snapshots, 0 populated. Read-only source dive confirmed: `core/src/element.cpp` has no `AcceleratorKey`/`AccessKey` queries; MSAA/IA2 backends do (line 246/401); Python `_element.py:1124` docstring promises post-processing fill that doesn't actually exist in code.
+- Test cases updated: TC-0042 (consecutive_passes 4 → 5, notes refreshed)
+- New test cases created: TC-0072 `keyboard-shortcut-always-null.yaml`
 - Test cases cleaned up: none
-- New issues created: none (commented on #871 with expanded `app *` matrix instead of filing duplicate)
-- Comments added: #871 (Power User round 132 — expanded app-subgroup matrix)
-- Total active test cases: 50 (unchanged)
-- Tests run: 33 CLI probes (matrix sweep across `app *`, `list *`, `dialog`, `taskbar`, `tray`, `selector list`, `record list`, plus envelope-shape and exit-code paths)
+- New issues created: **#886** (P1, v0.3.4, bug,P1,from:qa — `keyboardShortcut` field always null for UIA-backed elements)
+- Comments added: none
+- Total active test cases: 51 (+1)
+- Tests run: 10 contract-surface probes + snapshot-corpus audit (2,835 dirs, 87,196 elements) + read-only source audit of `core/src/element.cpp` and `_element.py` accessibility path
 
 ## Top 3 Risks
-1. **#863 ship-gate still owns the v0.3.2 path** — 21+ days, 13+ data points, ownership unassigned. Today's session was even more constrained than #863 baseline (NO_DESKTOP_SESSION wholesale, not just SendInput) — suggests session-binding fragility is wider than the input-only framing in #863's body. Adding to that body would be helpful **if** Orc/Ace pick the issue up.
-2. **`naturo app *` flag matrix is the worst-offender CLI subgroup we have** — 11 subcommands, 0 share the same window-targeting flag set. #871 documents this for `find`/`get`/`set`/`highlight`/`menu-inspect`/`list-windows`/`app focus`/`app quit`. The expanded matrix posted to #871 today shows `minimize`/`maximize`/`restore`/`move` are also broken. A scripter writing `app focus … && app minimize …` hits a wall in three lines. Harmonize the entire `app` subgroup, not just focus/quit.
-3. **Contract-drift surface still widening (20 open envelope/error-code/exit-code bugs).** Nothing new filed this round — the existing cluster (#864/#869/#871/#874/#875/#876/#877/#878/#880/#884) is the next-highest QA leverage. A pytest contract harness running these as a single matrix would prevent the next 3-5 of this class.
+1. **#886 widens the silent-failure surface adjacent to epic #885.** Same symptom class — output looks success-shaped, value silently absent — but a different mechanism (UIA backend never queries the property vs NO_DESKTOP_SESSION guard inconsistency). Worth orc considering whether to fold #886 into #885's scope or leave as a separate v0.3.4 item. Accessibility metadata gap is real, affects every AI agent using keyboard-only automation.
+2. **#863 ship-gate ownership still unassigned (day 21).** R132's note holds — 5 SendInput-blocked status:done issues need console-session verification, and today's session was the same broader desktop-loss state. Orc escalated to Ace 7h ago; awaiting decision.
+3. **UIA accessibility surface beyond `keyboardShortcut`.** Snapshot schema is also missing `isKeyboardFocusable`, `isFocused`, `tabIndex`, `localizedControlType`, `helpText` — all UIA-queryable. Not file-worthy individually until there's a dedicated accessibility-feature scope; flagged for future planning.
