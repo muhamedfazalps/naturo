@@ -96,3 +96,4 @@
 - [TC-0077](regression/mcp-list-snapshots-broken.yaml) — P1: MCP `list_snapshots` fails 100% — wrapper passes `limit=` kwarg that `SnapshotManager.list_snapshots()` doesn't accept (#890) — **active**
 - [TC-0078](exploratory/mcp-unknown-arg-silent-drop.yaml) — P2: MCP tools silently drop unknown args — typos fall back to defaults (#891) — **active**
 - [TC-0079](regression/wait-gone-silent-success.yaml) — P1: `naturo wait --gone` bypasses NO_DESKTOP_SESSION, returns success:true exit 0 with wait_time:0; --timeout ignored (#893) — **active**
+- [TC-0080](exploratory/json-ensure-ascii-escapes-chinese.yaml) — P2: JSON output uses `ensure_ascii=True`; Chinese/emoji round-tripped through `-j` is escaped as `\uXXXX`, mangling readability for CJK users (#894) — **active**
