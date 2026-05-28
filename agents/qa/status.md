@@ -1,25 +1,30 @@
 # QA Status
-Last updated: 2026-05-28 15:12
-Current round: 135
-Current milestone: v0.3.2 (27 open, ship-gated by epic #885 + 5 SendInput-blocked status:done from console session)
+Last updated: 2026-05-28 16:13
+Current round: 136
+Current milestone: v0.3.2 (28 open after #889, ship-gated by epic #885 + 5 SendInput-blocked status:done from console session)
 
 ## This Round
-- CI Desktop Tests: skipped (`.last-ci-sha=2d15274` vs `HEAD=7805653`; the 5 commits since are R131–R134 reports + orc daily review — all `[skip ci]`, no source changes)
-- Persona: Skeptical Evaluator (hour 15 mod 8 = 7)
+- CI Desktop Tests: ran (HEAD `70e6591`), 138 desktop/integration + 13 e2e all SKIPPED legitimately (NO_DESKTOP_SESSION via WTSQuerySessionInformationW fixture guard). 0 fail. `.last-ci-sha` advanced to `70e6591`.
+- Persona: First-time User (hour 16 mod 8 = 0)
 - Session: NO_DESKTOP_SESSION (agent shell cannot bind to interactive desktop)
-- Issues verified: none (5 status:done still SendInput-blocked; epic #885 still unassigned and at 0h of work)
+- Issues verified: none (5 status:done still SendInput-blocked from this session; all 5 already carry the "Partial verification BLOCKED" comment from earlier rounds)
 - E2E tests: skipped (no desktop)
-- Regression: 5 contract-surface test cases re-validated — 5 fail (TC-0054/#866, TC-0059/#872, TC-0061/#874, TC-0063/#876, TC-0073/#884). No behavior change since R134.
-- Phase 4 (Skeptical Evaluator): compared README marketing claims to live bug surface; biggest gap is the README itself.
-- Test cases updated: TC-0059 (extended notes to enumerate 6 Click parse-error categories)
-- New test cases created: TC-0074 (clipboard-set-missing-file-stdin), TC-0075 (readme-marketing-claims-accuracy)
+- Regression: TC-0054 re-validated FAIL on HEAD `70e6591` (type=2, press=2, click=2, see=1, type-j=1) — unchanged from R135. TC-0055 expanded with `key → hotkey` reproducer step.
+- Phase 4 (First-time User): walked through first-touch CLI surface — `naturo`, `naturo --help`, `naturo --version`, intuitive command guesses (`screenshot`, `automate`, `ai`, `tap`, `launch notepad`). Three first-touch failure modes hit, two already filed (#880, #867), one new (#889).
+- New issues created: **#889** (typo suggester wrong-match family — `ai → wait`, `tap → app` — P2 v0.3.4)
+- Comments added: **#866** (scope-extension matrix: 7 commands not 3 — `highlight`/`move`/`drag`/`scroll` also exit 2 with Click `Usage:` banner via shared `_get_backend` in `naturo/cli/interaction/_common.py`); **#867** (scope-extension: deprecated hidden `hotkey` leaks via `naturo key` — same class as `snapshot`)
+- New test cases created: **TC-0076** (typo-suggester-nonsense-match for #889)
+- Test cases updated: TC-0054 (R136 expanded matrix notes — 7 commands), TC-0055 (R136 `key → hotkey` reproducer step)
 - Test cases cleaned up: none
-- New issues created: **#887** (README accuracy P2 v0.3.2), **#888** (clipboard set --file/stdin P2 v0.3.4)
-- Comments added: #872 (6-category Click parse-error scope expansion)
-- Total active test cases: 54 (+2)
-- Tests run: ~25 CLI surface probes across 14 subcommands + 5 regression test cases
+- Total active test cases: **55** (+1)
+- Tests run: ~30 CLI surface probes across 16 subcommands (see/capture/list/find/menu-inspect/dialog/taskbar/tray/desktop/visual/highlight/move/drag/scroll/type/press/click/wait/record/selector/config/mcp) + TC-0054 + TC-0055 manual re-run
 
 ## Top 3 Risks
-1. **README is a trust hazard until #887 lands**. The comparison table's ✅ "Post-Action Verify" and ✅ "AI Agent Ready: JSON output" claims directly contradict the silent-failure cluster (#885) and -j envelope cluster (#864–#884). #887 (P2, v0.3.2) should ship alongside v0.3.2, not later — otherwise the v0.3.2 release lands with the README still actively misrepresenting the product to first-time evaluators.
-2. **#866 partial-fix illusion**. `naturo type 'x' -j` already exits 1 (correct), but `naturo type 'x'` (no -j) still exits 2 with a "Usage:" banner. A reviewer eyeballing just one mode could think it's fixed. The fix must cover both -j and non-j paths; TC-0054 covers this.
-3. **Silent-failure epic #885 still unassigned 8h after Orc filed it**. Dev-Sirius has zero progress despite the ship gate being structurally blocked on this work. If no movement by 24h, this should be escalated to Ace alongside #863.
+1. **#866 fix scope quietly grew by 4 commands**. The original title and reproducer only mention type/press/click, but the same `_get_backend` helper in `naturo/cli/interaction/_common.py` is shared by `highlight`/`move`/`drag`/`scroll` — all 7 commands emit the Click `Usage:` banner with exit 2 in bare mode. If the fix PR validates only the 3 commands in the title, the bug ships half-fixed. Verification gate should require all 7 to land at exit 1 (no banner) in bare mode.
+2. **First-touch CLI surface has 3 separate typo-suggester bugs** (#867 hidden-command leak, #880 missing-subgroup, #889 nonsense-match) all firing within seconds of `pip install naturo`. A first-time user typing `naturo screenshot`, `naturo launch notepad`, `naturo ai` in any order hits at least one wrong suggestion. Cumulatively this is a worse first impression than any single bug in the cluster — worth treating as a single P1 hardening task for the typo suggester rather than three separate P2 polish fixes.
+3. **Silent-failure epic #885 still unassigned ~9h after Orc filed it** (same as R135). Dev-Sirius idle 53 days; restructured ship gate (Python-only, no runner) is the unblocking path for v0.3.2. If no movement in next 12-24h, escalate to Ace.
+
+## Environment
+- Windows 11 Pro 10.0.26200
+- naturo 0.3.1 (HEAD `70e6591`)
+- Runner: NATUROBOT, NO_DESKTOP_SESSION (SSH/service session, no interactive desktop)

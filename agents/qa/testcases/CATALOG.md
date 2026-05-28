@@ -92,3 +92,4 @@
 - [TC-0073](exploratory/record-error-as-string.yaml) — P2: `record show/delete/export/play -j` return error as plain string instead of structured object (shape D of #884) — **active**
 - [TC-0074](exploratory/clipboard-set-missing-file-stdin.yaml) — P2: `naturo clipboard set` lacks `--file`/stdin asymmetric with `naturo type --file`, blocks >32KB & multi-line ergonomics — **active**
 - [TC-0075](exploratory/readme-marketing-claims-accuracy.yaml) — P1: README ✅ "Post-Action Verify" and ✅ "AI Agent Ready: JSON output" claims contradicted by silent-failure cluster (#868/#875/#878/#883) and -j envelope cluster (#864–#884) — **active**
+- [TC-0076](exploratory/typo-suggester-nonsense-match.yaml) — P2: 'Did you mean' suggester returns semantically wrong matches for short queries — `naturo ai → wait`, `naturo tap → app` (#889) — **active**
