@@ -4,13 +4,13 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-16 21:24 (Orc autonomous cycle — quiet/healthy. Since 20:25: #844 (MCP Pydantic-leak) verified+closed by QA via PR #940; #777 (Unicode capture) fixed via PR #941 → status:done awaiting QA. develop CI green, no open PRs, nothing stuck. **No new human-decision items this cycle** — queue unchanged below.)._
+_Last refreshed: 2026-06-16 22:24 (Orc autonomous cycle — quiet/healthy. Since 21:24: #777 (Unicode capture) **verified+closed by QA** (screenshot-backed) → backlog Unicode bug fully closed. develop CI green, no open PRs, nothing stuck, status:in-progress empty. **No new human-decision items** — queue unchanged below; #915 evidence strengthened (2 more clean QA runner cycles → recommend close after one more clean day).)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
 |---|----------|----------------|--------------------|
 | [#935](https://github.com/AcePeak/naturo/issues/935) **(NEW)** | Two Dev cycles ran **concurrently in the shared `naturo-dev` worktree** (~18:07) — the 2nd cycle's Step 0 `reset --hard` wiped the 1st's in-flight uncommitted branch (#910). **Rule 4 violation at the orchestration layer.** | orchestration / scheduling policy (runner.ps1 / cron / lock) | Add a **per-worktree lock** in `naturo-loop-locks\` that a starting `runner:dev` must acquire (skip the round if held), and/or serialize dev so two cycles never share one tree. Self-fixing is unsafe — concurrent git ops would corrupt the peer cycle. |
-| [#915](https://github.com/AcePeak/naturo/issues/915) | QA loop auth — **recovering, no longer down.** After the proxy auto-detect fix (`2ccbcf0`) QA authenticated and **verified+closed 9 issues today**; the last 403 was the 16:00 round — **3 clean rounds since (16:43, 17:42, 18:50)**, durability now likely but unconfirmed | credentials / auth / proxy | **Watch a couple more QA rounds.** If the clean streak holds, **close #915** — the ship-gate auth block is gone. No longer the top item. |
+| [#915](https://github.com/AcePeak/naturo/issues/915) | QA loop auth — **recovering, no longer down.** After the proxy auto-detect fix (`2ccbcf0`) QA authenticated and verified real work; the last 403 was the 16:00 round — now **~5 clean runner rounds since (16:43, 17:42, 18:50, 20:45 #844, 21:40 #777)**. _Honest caveat: recovery is on the runner/proxy path; the bare hourly `claude -p` logs still 403 — not yet root-caused._ | credentials / auth / proxy | **One more clean day → close #915.** The ship-gate auth block is gone (#863 SendInput is now the binding verify gate). No longer the top item. |
 | [#863](https://github.com/AcePeak/naturo/issues/863) | **`SendInput` blocked in the unattended agent session** — true end-to-end runtime verification of `type`/`click`/`press` is impossible, so QA can't fully close input-family ship-gate bugs (#788 deferred for this) | session/desktop input policy (RDP/headless vs interactive console) | This now gates the *remaining* ship-gate verification more than #915. Decide how QA gets a real interactive input session (console autologon / unlocked physical session / dedicated VM). Unit tests pass; only live runtime closure is blocked. |
 | [#842](https://github.com/AcePeak/naturo/issues/842) / [#860](https://github.com/AcePeak/naturo/issues/860) | Desktop CI: self-hosted runner ROBOT-COMPILE offline (#842) vs fund a cloud Windows VM (#860) | infra spend | Decide: revive the runner, fund a cloud Windows VM, or accept GitHub-hosted-only CI. A cloud VM (#860) could also solve #863 (a real interactive session for input verification). |
 | [#914](https://github.com/AcePeak/naturo/issues/914) | v0.3.2 ship-gate sign-off | release / tag to `main` = PyPI publish | **Closer now** — requirement (1) (epic #885) is verified+closed. Remaining: verify 5 `status:done` bugs (#786/#788/#807/#840/#843); input-family ones gated on #863. When all flip to `verified`, cutting v0.3.2 is your call. |
@@ -32,7 +32,7 @@ community PRs are now closed (#892 superseded by merged #911, #904 by the team's
 ## Blocks
 - **#863 (P0)** — `SendInput` blocked in the unattended agent session; gates true end-to-end verification
   of input-family ship-gate bugs. This is now the binding ship-gate verification constraint.
-- **#915** — QA auth **recovering** (9 issues closed today); monitor durability, then close. No longer a hard block.
+- **#915** — QA auth **recovering** (~5 clean runner rounds, last 403 = 16:00 hourly); monitor one more day, then close. No longer a hard block.
 - Desktop CI runner **#842** offline (chronic).
 - `develop` CI: **green** (no block this cycle).
 - _Related (not a human decision):_ [#917](https://github.com/AcePeak/naturo/issues/917) (P1,

@@ -1,6 +1,6 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-16 21:24 (Orc autonomous cycle — quiet/healthy. Two Dev/QA merges since the 20:25 cycle: **#844** (MCP Pydantic-leak, P2) **verified+closed** by QA (PR #940) and **#777** (Unicode capture path, P1 backlog) fixed via PR #941 → now `status:done` awaiting QA. **develop CI green** (Build&Test success on df32203; CodeQL re-queued). No open PRs, nothing stuck, `status:in-progress` empty. needs:ace queue current (#935/#915/#914/#863/#842/#860). Recognition supremacy proofs (#931 benchmark + #933 Electron CDP) remain **verified+closed**; next recognition move still #932 (Java JAB). Remaining ship-gate verify blocker is #863. Competitive tracker baseline set today — weekly step not due.
+> Last refreshed: 2026-06-16 22:24 (Orc autonomous cycle — quiet/healthy. Since the 21:24 cycle, **QA verified+closed #777** (Unicode capture, screenshot-backed) — so the backlog Unicode bug is fully closed. **develop CI green** (Build&Test+CodeQL success on df32203; HEAD develop = 944227e). No open PRs (team/community), nothing stuck, `status:in-progress` empty. 5 `status:done` bugs remain (#786/#788/#807/#840/#843 — all input-class, gated on #863). **QA durability strengthening:** ~5 consecutive clean runner cycles (16:43/17:42/18:50/20:45/21:40), last 403 was the 16:00 hourly — commented #915 (recommend close after one more clean day; honest caveat: recovery is on the runner/proxy path, bare-auth 403 not yet root-caused). needs:ace queue current (#935/#915/#914/#863/#842/#860). Recognition proofs (#931 benchmark + #933 Electron CDP) remain **verified+closed**; next recognition move still #932 (Java JAB, env-blocked on unattended box). Remaining ship-gate verify blocker is #863. Competitive tracker baseline set today — weekly step not due.
 
 ## Current Version
 v0.3.1 (PyPI + GitHub Release). `develop` CI green.
@@ -69,7 +69,9 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   Blocked on v0.3.2.
 - **Backlog**: ~10 open (Linux platform + migrated community/docs tasks). **#777 (Unicode capture)
   fixed via PR #941** (Python bridge-level ASCII staging — ships independent of the stale DLL #842);
-  now `status:done` awaiting QA.
+  **VERIFIED+CLOSED by QA 2026-06-16 21:40** (screenshot-backed: Unicode-path Calculator capture is
+  content-identical to the ASCII control; full-screen DXGI returns black over disconnected RDP —
+  environmental, affects both paths equally, doesn't change the verdict).
 
 ## Open community PRs (external contributor @botbikamordehai2-sketch)
 - **#892** (closes #885): correct decorator, never applied, base=`main`. Team carrying forward.
