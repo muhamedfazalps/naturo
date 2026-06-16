@@ -18,8 +18,19 @@ Input simulation (`click` / `type` / `press` / `drag`) **hijacks the real mouse 
 - Run input simulation **only when the issue requires it**, prefer a throwaway target you launch
   yourself (`notepad`, `calc`), keep it brief, and **never type into an unknown foreground window**.
   Say in your report that input was simulated.
-- If confirming a fix needs risky intrusive input, **defer**: comment that it needs a supervised
-  input-verification run, leave it `status:done`.
+
+### Input verification IS possible unattended (verified 2026-06-17, #863)
+`SendInput` (`type`/`click`/`press`) **works when no human is RDP'd in** — the session falls back to
+the console (kept active by `NaturoKeepSession`) and the input-desktop binding is clean. It **fails
+only while an RDP session is attached** (UIPI denies it; `GetForegroundWindow()=0`). Since this loop
+runs **unattended**, you SHOULD now verify input-family bugs:
+- **Probe first:** launch a throwaway `notepad`, `naturo type "QA_PROBE"` into it, read it back. If it
+  succeeds → input works this round → verify the input-family `status:done` bugs (#786 click-by-id,
+  #788 type→stale-PID, #807 press→wrong-process, #840 type-newlines) on throwaway targets, then
+  `verified`+close or kick back per the normal flow.
+- **If the probe fails** (`key_type: System/COM error` / 0 chars) → a human is connected right now;
+  **defer** the input-family bugs (leave `status:done`, note "input desk busy — retry unattended").
+  Do NOT treat this as a fix failure.
 
 ## Step 0 — Setup
 ```bash
