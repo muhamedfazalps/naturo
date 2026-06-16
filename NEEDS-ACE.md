@@ -4,19 +4,20 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-17 04:23 (Orc autonomous cycle — **v0.3.2 SHIP-GATE FULLY MET — release is your
-call (#914)**; otherwise quiet/healthy. Since the 03:22 cycle, team Dev opened PR **#950**
-(`fix/issue-901-mcp-app-inspect-pid-validation`, fixes #901 — validate direct PID in MCP `app_inspect` so
-bogus PIDs fail loudly) **MERGED mid-cycle** (`4e0ca65`); Orc flipped **#901** → `status:done` (awaiting QA)
-and the branch is deleted (Rule 14). `status:in-progress` now **empty**; merge-commit CI running (no
-failures; prior HEAD `ce4694f` green). Live needs:ace queue **#935/#915/#914/#860/#842** unchanged; **#863**
-QA-owned (premise disproven — input verified working; QA to close); **#915** recommended for closure
-(durability proven). Weekly competitiveness step not due (<7d since 06-16 baseline)._
+_Last refreshed: 2026-06-17 04:24 (Orc autonomous cycle — **v0.3.2 SHIP-GATE FULLY MET — release is your
+call (#914)**; otherwise quiet/healthy. Since the 04:23 cycle, team Dev PR **#951**
+(`fix/issue-879-browser-launch-success-envelope`, fixes #879 — standardize browser launch `-j` output to the
+success-boolean envelope) **MERGED** (`d3cfe92`, both checks green); **#879** is now `status:done` (awaiting
+QA) and the branch is deleted (Rule 14 verified). `status:in-progress` **empty**. QA progressed: **#901**
+and **#887** both **verified + closed** since last cycle. `develop` CI **green** on HEAD `d3cfe92`. Live
+needs:ace queue **#935/#915/#914/#860/#842** unchanged; **#863** QA-owned (premise disproven — input
+verified working; QA to close); **#915** recommended for closure (durability proven). Weekly
+competitiveness step not due (<7d since 06-16 baseline)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
 |---|----------|----------------|--------------------|
-| [#914](https://github.com/AcePeak/naturo/issues/914) | **v0.3.2 ship-gate sign-off** | release / tag to `main` = PyPI publish | **READY TO CUT — this is now the top actionable item.** Both ship-gate requirements are met: req (1) (epic #885 cluster) verified+closed; req (2) **all 5 status:done bugs verified+closed** (#786/#788/#807/#840 @01:15Z + #843 @02:42Z). `develop` CI green on `ce4694f`. **Cutting / tagging v0.3.2 (tag→main = PyPI publish) is your call — the loop cannot and will not do it (Rule 2).** |
+| [#914](https://github.com/AcePeak/naturo/issues/914) | **v0.3.2 ship-gate sign-off** | release / tag to `main` = PyPI publish | **READY TO CUT — this is now the top actionable item.** Both ship-gate requirements are met: req (1) (epic #885 cluster) verified+closed; req (2) **all 5 status:done bugs verified+closed** (#786/#788/#807/#840 @01:15Z + #843 @02:42Z). `develop` CI green on `d3cfe92`. **Cutting / tagging v0.3.2 (tag→main = PyPI publish) is your call — the loop cannot and will not do it (Rule 2).** |
 | [#935](https://github.com/AcePeak/naturo/issues/935) | Two Dev cycles ran **concurrently in the shared `naturo-dev` worktree** — the 2nd cycle's Step 0 `reset --hard` wiped the 1st's in-flight uncommitted branch (#910). **Rule 4 violation at the orchestration layer.** | orchestration / scheduling policy (runner.ps1 / cron / lock) | Add a **per-worktree lock** in `naturo-loop-locks\` that a starting `runner:dev` must acquire (skip the round if held), and/or serialize dev so two cycles never share one tree. Self-fixing is unsafe — concurrent git ops would corrupt the peer cycle. |
 | [#842](https://github.com/AcePeak/naturo/issues/842) / [#860](https://github.com/AcePeak/naturo/issues/860) | Desktop CI: self-hosted runner ROBOT-COMPILE offline (#842) vs fund a cloud Windows VM (#860) | infra spend | Decide: revive the runner, fund a cloud Windows VM, or accept GitHub-hosted-only CI. (No longer needed for input verification — see #863 below — but still the only path to desktop-marked CI jobs.) |
 
@@ -41,7 +42,7 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
 ## Blocks
 - **None blocking the ship-gate.** #843 (capture popup compositing) **verified+closed 2026-06-17 02:42Z** —
   the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test + CodeQL success on HEAD `ce4694f`).
+- `develop` CI: **green** (Build & Test + CodeQL success on HEAD `d3cfe92`).
 - Desktop CI runner **#842** offline (chronic; infra decision above).
 - _Cleared this cycle:_ **#863** (input verification — proven possible) and **#915** (QA auth — recovered)
   are no longer blocks; both recommended for closure above.

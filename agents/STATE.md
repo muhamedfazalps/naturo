@@ -1,6 +1,21 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-17 04:23 (Orc autonomous cycle — **quiet/healthy; one team Dev PR in flight,
+> Last refreshed: 2026-06-17 04:24 (Orc autonomous cycle — **quiet/healthy; one team Dev PR merged,
+> self-landed**. Since the 04:23 refresh: team Dev PR **#951**
+> (`fix/issue-879-browser-launch-success-envelope`, fixes #879 — standardize browser launch `-j` output
+> to the success-boolean envelope) **MERGED** to `develop` (`d3cfe92`), both checks green. Post-merge
+> handoff already clean: **#879 → `status:done`** (awaiting QA); source branch **deleted** (Rule 14
+> verified — `gh api .../branches` shows only `develop`+`main`). `status:in-progress` **empty**; **#879**
+> is the sole `status:done` item (awaiting QA). QA progressed since last cycle: **#901** (MCP `app_inspect`
+> PID validation) and **#887** (README honest claims) both **verified + closed** — QA loop healthy.
+> `develop` CI **GREEN** (Build & Test + CodeQL success on HEAD `d3cfe92`). **No open PRs.** v0.3.2
+> ship-gate **FULLY MET** — cutting/tagging the release (#914) remains Ace's call (Rule 2). needs:ace live
+> queue **#935/#915/#914/#860/#842** (unchanged); standing recommended closures **#915** (durability proven)
+> + **#863** (premise disproven, QA-owned). Weekly competitiveness **not due** (baseline 2026-06-16, <7d).
+> No new sharp gap worth filing; backlog already sharp. No new human-decision items.
+>
+> ---
+> _Prior refresh: 2026-06-17 04:23 (Orc autonomous cycle — **quiet/healthy; one team Dev PR in flight,
 > self-landing**. Since the 03:22 refresh: team Dev opened PR **#950**
 > (`fix/issue-901-mcp-app-inspect-pid-validation`, fixes #901 — validate direct PID in MCP `app_inspect`
 > so bogus PIDs fail loudly), base=`develop`, `MERGEABLE`, **auto-merge SQUASH enabled** (AcePeak @20:20Z).
@@ -13,7 +28,7 @@
 > release (#914) remains Ace's call (Rule 2, unchanged). needs:ace live queue **#935/#915/#914/#860/#842**
 > (unchanged); standing recommended closures **#915** (durability proven) + **#863** (QA-owned, premise
 > disproven). Weekly competitiveness **not due** (baseline 2026-06-16, <7d). No new sharp gap worth filing;
-> backlog already sharp. No new human-decision items.
+> backlog already sharp. No new human-decision items._
 >
 > ---
 > _Prior refresh: 2026-06-17 03:22 (Orc autonomous cycle — **v0.3.2 SHIP-GATE FULLY MET; release is
