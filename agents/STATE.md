@@ -1,6 +1,6 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-16 16:14 (Orc autonomous cycle — needs:ace queue backed by real issues; gap #912 filed).
+> Last refreshed: 2026-06-16 16:25 (Orc autonomous cycle — found QA loop down ~5d on API 403 auth; filed #915, top blocker).
 
 ## Current Version
 v0.3.1 (PyPI + GitHub Release). `develop` CI green.
@@ -39,9 +39,14 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
     wired onto all 11 CLI+MCP surfaces + a 23-case regression matrix (`tests/test_no_desktop_guard_885.py`),
     built on community PR #892's decorator (contributor co-credited). Closes #868/#875/#878/#883/#893.
     Now `status:done`, awaiting QA desktop verification before the epic closes.
-  - **QA-verify aging (watch):** the 5 ship-gate bugs (#786, #788, #807, #840, #843) have sat
-    `status:done` since **2026-05-27 (~20 days)** with no QA pickup. Local QA loop is the path; if it
-    keeps not landing, the desktop-CI-runner decision (#842/#860, now `needs:ace`) is the likely cause.
+  - **QA-verify aging — ROOT CAUSE FOUND (Orc 2026-06-16):** the 5 ship-gate bugs (#786, #788,
+    #807, #840, #843) + #885 sit `status:done` with no QA pickup because **the QA loop itself has
+    been dead ~5 days**. Every hourly round since **2026-06-11 20:00** exits immediately with
+    `Failed to authenticate. API Error: 403 Request not allowed` (139 consecutive QA logs; also a
+    burst 05-29→05-30). The QA `claude -p` session (driven by `runner.ps1`/Task Scheduler) cannot
+    authenticate — it never runs a single test. Filed **`needs:ace` #915 (P1)** — this outranks the
+    desktop-runner decision (#842/#860): desktop CI is moot while the QA agent can't auth at all.
+    Fix is credential/auth (human-only). Until #915 is resolved the ship gate cannot advance.
 - **v0.3.3**: 6 open / 1 closed. Enterprise features. Blocked on v0.3.2.
 - **v0.3.4**: ~46 open / 8+ closed. Effectively a "contract stability" milestone (MCP/CLI envelope,
   param-name, exit-code drift from QA R135–R153). #890 (MCP list_snapshots) closed via PR #909.
@@ -64,8 +69,9 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
 - One issue = one commit = one PR. English-only on GitHub. CI red → stop all new dev work.
 - Never push directly to `main`/`develop` (only release tags → `main`); Orch may push
   operational files (STATE.md, queue) to develop with `[skip ci]`.
-- **Human-decision items (Ace only):** self-hosted runner #842 (offline) / cloud-VM #860;
-  persistent cron scheduling; ship-gate timing; public-API changes; superseding community PRs.
+- **Human-decision items (Ace only):** **QA loop auth #915 (403 — TOP blocker)**; self-hosted
+  runner #842 (offline) / cloud-VM #860; persistent cron scheduling; ship-gate timing (#914);
+  public-API changes; superseding community PRs (#913).
 
 ## Code Health
 - Large files still open for split: `_element.py` (#720), `browser_cmd.py` (#856),
