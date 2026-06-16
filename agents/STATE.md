@@ -1,6 +1,6 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-16 18:24 (Orc autonomous cycle — **QA loop RECOVERED**: verified+closed 9 issues today incl. ship-gate epic #885; CI green, no PRs; remaining verify blocker is #863, not #915; new ops item #935).
+> Last refreshed: 2026-06-16 19:22 (Orc autonomous cycle — **recognition supremacy advancing**: #931 coverage benchmark (PR #936) + #933 Electron CDP proof (PR #938) both MERGED→status:done; README now leads with the multi-framework pitch + links the reproducible benchmark. QA verified #843 (partial, deferred on #863). CI green, no PRs, no in-progress. Remaining ship-gate verify blocker is #863; #915 recovering (3 clean QA rounds since last 403).
 
 ## Current Version
 v0.3.1 (PyPI + GitHub Release). `develop` CI green.
@@ -48,7 +48,11 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   17:42 because input commands (`type`/`click`/`press`) drive Win32 `SendInput`, which is blocked in
   the unattended agent session (#863) — a live type-after-restart test would be confounded. #788's unit
   tests pass (76/76); only true end-to-end runtime closure is gated. #807/#840 (input-family) are likely
-  similarly gated; #786 (UWP menu click) and #843 (capture popup) may be non-intrusively verifiable.
+  similarly gated; #786 (UWP menu click) is also input-gated. **#843 (capture popup): QA verified the
+  composite path non-intrusively (18:50 — `capture --pid` on 2 same-PID windows produced one composited
+  image; `test_capture_popup_843.py` 7/7), left `status:done` — final acceptance (a live #32768 menu
+  opened via input) is deferred on #863, same pattern as #788.** Net: of the 5 remaining bugs, only
+  capture-class is partially verifiable headless; all input-class closure is blocked by #863.
 - **Detection gap #917 (Orc 2026-06-16, P1 `silent-failure`):** `runner.ps1` has no failure-streak
   watchdog — the earlier ~5-day 403 outage went undetected. Still open for Dev (code-only). Now also
   relevant for the *recovery* side: a watchdog would equally confirm QA is healthy again.
@@ -82,10 +86,20 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   **#915 confirm QA auth durable then close** (recovering, no longer TOP); self-hosted runner #842
   (offline) / cloud-VM #860; persistent cron scheduling; ship-gate timing (#914 — req (1) #885 now
   met); public-API changes; superseding community PRs (#913).
-- **STANDING #1 PRODUCT PRIORITY — recognition supremacy:** epic **#920** (P0 moat) + **#931** (P0
-  coverage benchmark, `status:in-progress`, updated today) + **#932/#933/#934** (Java/Electron/SAP
-  hardening, P1/P1/P2, milestone v0.3.3) are all filed, labeled `competitiveness`, and at queue top.
-  Pull recognition work forward each cycle. #931 publishing the proof feeds the README headline.
+- **STANDING #1 PRODUCT PRIORITY — recognition supremacy (advancing 2026-06-16 19:22):**
+  - **#931 DONE** — coverage benchmark merged (PR #936). Reproducible cascade-vs-UIA-only harness +
+    `docs/RECOGNITION.md` with measured numbers; README "Why naturo?" headline now leads with the
+    multi-framework pitch and links the proof. `status:done` awaiting QA.
+  - **#933 DONE** — owned real-Electron fixture + CDP recognition proof merged (PR #938). **Measured
+    (Win11): UIA-only 83 vs cascade 113 (+30, all via CDP)** — the literal Electron case, not a Chrome
+    proxy. `status:done` awaiting QA. (Chrome row also published: 52→89, +37.)
+  - **Still open, at queue top:** epic **#920** (P0 moat); **#932** (Java Swing/SWT JAB fixture+proof,
+    P1) — JAB is *implemented* (`core/src/jab.cpp`, `naturo/cascade/`) and marked ✅ in the matrix but
+    **not yet benchmark-measured** (no Java app on the desktop); **#934** (SAP GUI, P2, honestly marked
+    🚧 planned in the matrix); **#937** (QA validate the benchmark on mature external apps, P1).
+  - **Next move:** #932 (Java) is the last major framework lacking an owned-fixture proof — pull it
+    forward. Distribution (#922 MCP registries/.mcpb, #927 one-line install snippets) feeds the proof
+    outward once the matrix is complete. RECOGNITION.md is honest (gaps documented "no fabrication").
 
 ## Code Health
 - Large files still open for split: `_element.py` (#720), `browser_cmd.py` (#856),

@@ -4,13 +4,13 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-16 18:24 (Orc autonomous cycle — **QA RECOVERED**: 9 issues verified+closed today incl. ship-gate epic #885; #915 reframed recovering→monitor; new ops item #935; CI green)._
+_Last refreshed: 2026-06-16 19:22 (Orc autonomous cycle — **recognition supremacy advancing**: #931 benchmark (PR #936) + #933 Electron CDP proof (PR #938) merged→awaiting QA; README leads with the multi-framework pitch. QA verified #843 partial (deferred on #863). #915 recovering (3 clean QA rounds since last 403). CI green, no PRs. **No new human-decision items this cycle.**)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
 |---|----------|----------------|--------------------|
 | [#935](https://github.com/AcePeak/naturo/issues/935) **(NEW)** | Two Dev cycles ran **concurrently in the shared `naturo-dev` worktree** (~18:07) — the 2nd cycle's Step 0 `reset --hard` wiped the 1st's in-flight uncommitted branch (#910). **Rule 4 violation at the orchestration layer.** | orchestration / scheduling policy (runner.ps1 / cron / lock) | Add a **per-worktree lock** in `naturo-loop-locks\` that a starting `runner:dev` must acquire (skip the round if held), and/or serialize dev so two cycles never share one tree. Self-fixing is unsafe — concurrent git ops would corrupt the peer cycle. |
-| [#915](https://github.com/AcePeak/naturo/issues/915) | QA loop auth — **recovering, no longer down.** After the proxy auto-detect fix (`2ccbcf0`) QA authenticated and **verified+closed 9 issues today**; but the 16:00 round still 403'd, so durability is unproven | credentials / auth / proxy | **Watch the next several QA rounds.** If no more 403s, **close #915** — the ship-gate auth block is gone. No longer the top item. |
+| [#915](https://github.com/AcePeak/naturo/issues/915) | QA loop auth — **recovering, no longer down.** After the proxy auto-detect fix (`2ccbcf0`) QA authenticated and **verified+closed 9 issues today**; the last 403 was the 16:00 round — **3 clean rounds since (16:43, 17:42, 18:50)**, durability now likely but unconfirmed | credentials / auth / proxy | **Watch a couple more QA rounds.** If the clean streak holds, **close #915** — the ship-gate auth block is gone. No longer the top item. |
 | [#863](https://github.com/AcePeak/naturo/issues/863) | **`SendInput` blocked in the unattended agent session** — true end-to-end runtime verification of `type`/`click`/`press` is impossible, so QA can't fully close input-family ship-gate bugs (#788 deferred for this) | session/desktop input policy (RDP/headless vs interactive console) | This now gates the *remaining* ship-gate verification more than #915. Decide how QA gets a real interactive input session (console autologon / unlocked physical session / dedicated VM). Unit tests pass; only live runtime closure is blocked. |
 | [#842](https://github.com/AcePeak/naturo/issues/842) / [#860](https://github.com/AcePeak/naturo/issues/860) | Desktop CI: self-hosted runner ROBOT-COMPILE offline (#842) vs fund a cloud Windows VM (#860) | infra spend | Decide: revive the runner, fund a cloud Windows VM, or accept GitHub-hosted-only CI. A cloud VM (#860) could also solve #863 (a real interactive session for input verification). |
 | [#914](https://github.com/AcePeak/naturo/issues/914) | v0.3.2 ship-gate sign-off | release / tag to `main` = PyPI publish | **Closer now** — requirement (1) (epic #885) is verified+closed. Remaining: verify 5 `status:done` bugs (#786/#788/#807/#840/#843); input-family ones gated on #863. When all flip to `verified`, cutting v0.3.2 is your call. |
@@ -20,9 +20,12 @@ _Last refreshed: 2026-06-16 18:24 (Orc autonomous cycle — **QA RECOVERED**: 9 
 - (1) Epic **#885** (silent-failure cluster): **CLOSED + verified 2026-06-16** (with #868/#875/#878/#883/#893).
   Fix landed via PR #911. **Requirement (1) MET.**
 - (2) QA-verify 5 `status:done` bugs on a real desktop: **#786, #788, #807, #840, #843**. QA is running
-  again and has begun picking these up; **#788 deferred** pending **#863** (input commands need a real
-  `SendInput`-capable session). #807/#840 likely similarly gated; #786/#843 may be non-intrusively
-  verifiable. The auth block (#915) is no longer the obstacle — #863 is.
+  again and is picking these up. **#788 and #843 both deferred** pending **#863** (input commands and
+  #843's final menu-capture acceptance need a real `SendInput`-capable session); #843's composite-capture
+  path was otherwise verified non-intrusively (7/7 unit + live `capture --pid`). #807/#840 are input-class
+  (gated on #863); #786 is a UWP menu *click* (also input-gated). **Net: all 5 are now gated on #863** —
+  the auth block (#915) is no longer the obstacle. Cutting v0.3.2 effectively waits on the #863 session
+  decision (or the cloud VM #860 that would provide it).
 
 ## Blocks
 - **#863 (P0)** — `SendInput` blocked in the unattended agent session; gates true end-to-end verification
