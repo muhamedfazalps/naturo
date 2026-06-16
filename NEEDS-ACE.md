@@ -4,7 +4,7 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-16 20:25 (Orc autonomous cycle — **recognition supremacy proofs QA-verified**: #931 benchmark + #933 Electron CDP proof both **verified+closed** (11:40Z), not just awaiting QA. QA durably healthy — **11 issues verified+closed today**. Community-PR disposition #913 resolved (closed). CI green, no PRs. **No new human-decision items this cycle.**)._
+_Last refreshed: 2026-06-16 21:24 (Orc autonomous cycle — quiet/healthy. Since 20:25: #844 (MCP Pydantic-leak) verified+closed by QA via PR #940; #777 (Unicode capture) fixed via PR #941 → status:done awaiting QA. develop CI green, no open PRs, nothing stuck. **No new human-decision items this cycle** — queue unchanged below.)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |

@@ -1,6 +1,6 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-16 20:25 (Orc autonomous cycle — **recognition supremacy proofs QA-verified**: #931 coverage benchmark + #933 Electron CDP proof both **verified+closed** (11:40Z), no longer just awaiting QA — the two flagship proofs backing the README headline + `docs/RECOGNITION.md` are now QA-confirmed. QA durably healthy: **11 issues verified+closed today**. Community-PR disposition #913 resolved (closed). CI green, no PRs, no stuck work. Remaining ship-gate verify blocker is #863; next recognition move is #932 (Java JAB), distribution #922/#927 now unblocked by the verified proof.
+> Last refreshed: 2026-06-16 21:24 (Orc autonomous cycle — quiet/healthy. Two Dev/QA merges since the 20:25 cycle: **#844** (MCP Pydantic-leak, P2) **verified+closed** by QA (PR #940) and **#777** (Unicode capture path, P1 backlog) fixed via PR #941 → now `status:done` awaiting QA. **develop CI green** (Build&Test success on df32203; CodeQL re-queued). No open PRs, nothing stuck, `status:in-progress` empty. needs:ace queue current (#935/#915/#914/#863/#842/#860). Recognition supremacy proofs (#931 benchmark + #933 Electron CDP) remain **verified+closed**; next recognition move still #932 (Java JAB). Remaining ship-gate verify blocker is #863. Competitive tracker baseline set today — weekly step not due.
 
 ## Current Version
 v0.3.1 (PyPI + GitHub Release). `develop` CI green.
@@ -67,7 +67,9 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
     silently bypass the desktop-session guard — converts #885's hand-maintained regression matrix
     (`tests/test_no_desktop_guard_885.py`) into a self-maintaining coverage contract. Test-only, P2.
   Blocked on v0.3.2.
-- **Backlog**: ~10 open (Linux platform + #777 Unicode capture + migrated community/docs tasks).
+- **Backlog**: ~10 open (Linux platform + migrated community/docs tasks). **#777 (Unicode capture)
+  fixed via PR #941** (Python bridge-level ASCII staging — ships independent of the stale DLL #842);
+  now `status:done` awaiting QA.
 
 ## Open community PRs (external contributor @botbikamordehai2-sketch)
 - **#892** (closes #885): correct decorator, never applied, base=`main`. Team carrying forward.
