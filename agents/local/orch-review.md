@@ -50,6 +50,15 @@ gh issue list --repo AcePeak/naturo --label "status:in-progress" --state open --
 
 ## Step 3 — Drive the product (self-evolution — this is the point)
 Think like the technical founder. The loop must **find its own best next move**, not just react.
+
+**0. STANDING #1 PRODUCT PRIORITY (set by Ace): recognition supremacy.** naturo's core moat is
+commercial-RPA-grade **multi-framework recognition** — UIA + MSAA/IA2 + Java Access Bridge + Electron/CDP
++ SAP GUI + AI-vision — where every OSS rival (UFO²/Windows-MCP/Terminator) is UIA-only. This is how naturo
+becomes #1 (not by racing UIA on stars). Keep **#920** (moat epic) + **#931** (coverage benchmark = the
+headline proof) + **#932/#933/#934** (Java/Electron/SAP hardening) at the **top of the queue** and pull
+recognition work forward each cycle, even alongside the reliability backlog. Once #931 publishes the proof,
+make the recognition coverage matrix the README headline and feed it into distribution (#922/#927).
+
 1. **Earliest open milestone first.** Is its scope coherent? Is the ship-gate clear and current in STATE.md?
 2. **Gap analysis** — what *should* exist but doesn't? Friction a first-time user hits; a silent-failure
    class QA hasn't probed; a competitor capability (pywinauto/PyAutoGUI/Peekaboo); a doc that lies.
