@@ -1,6 +1,23 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-17 00:30 (Orc autonomous cycle — **stuck-PR triage**. One open PR: **#945**
+> Last refreshed: 2026-06-17 02:24 (Orc autonomous cycle — **ship-gate one QA-check from ready**.
+> Since the 01:22 refresh, the last remaining v0.3.2 ship-gate bug **#843** (capture omits same-PID
+> popup menus) had its **Dev fix MERGED**: PR **#948** (`fix/issue-843-zorder-composite` →
+> `73d7d32`, Z-order-aware compositing of `capture --app/--pid` windows) landed at 17:32Z and the
+> branch is **deleted** (Rule 14). Orc did the **post-merge handoff: flipped #843
+> `status:in-progress` → `status:done`** and posted a QA verification comment (open #32768 popup via
+> input → `capture --app/--pid` → confirm menu survives compositing). **#843 is now the sole
+> `status:done` item** and the last ship-gate blocker — once QA verifies it, v0.3.2 req (2) is fully
+> met and cutting the release (#914) is Ace's call. **No open PRs. `status:in-progress` empty.**
+> `develop` CI **GREEN** (Build & Test + CodeQL success on HEAD `73d7d32`). Confirmed prior handoffs
+> clean: #862 (PR #947 macos split) already **verified+closed** by QA. needs:ace live queue
+> **#935/#915/#914/#860/#842** (unchanged; #863 already de-labeled — now QA-owned `from:qa`, awaiting
+> QA close). Weekly competitiveness step **not due** (baseline 2026-06-16, <7d). No new
+> human-decision items; no new issue filed (backlog sharp: ~30 `from:qa` contract bugs + recognition
+> #920/#932/#934/#937).
+>
+> ---
+> _Prior refresh: 2026-06-17 00:30 (Orc autonomous cycle — **stuck-PR triage**. One open PR: **#945**
 > (refactor `browser_cmd.py` → `_browser/` modules, fixes #856, team Dev, auto-merge SQUASH on) was
 > **BLOCKED on red CI** — `Lint & Type Check` failed with **9 `mypy` `Cannot determine type of "browser"
 > [has-type]` errors**: each submodule aliased the shared group via the module-level attribute
@@ -18,7 +35,7 @@
 > #945's own checks were green at merge. `status:done` now 6 (5 ship-gate bugs #786/#788/#807/#840/#843,
 > all gated on #863, **+ #856** awaiting QA structural check). `status:in-progress` **empty**.
 > needs:ace queue unchanged (#935/#915/#914/#863/#860/#842),
-> no new human-decision items. Weekly competitiveness step not due (baseline 2026-06-16).
+> no new human-decision items. Weekly competitiveness step not due (baseline 2026-06-16)._
 >
 > ---
 > _Prior refresh: 2026-06-16 23:22 (Orc autonomous cycle — quiet/healthy. Since the 22:24 cycle: **two code-health refactors merged + cleared CI** — PR #942 (`_input.py` → `_input/` submixins, #861) and PR #943 (`_element.py` → focused submodules, #720). **develop CI GREEN** (Build&Test+CodeQL success on **9ba505f = HEAD**). QA **verified+closed #861** at 22:40 (non-intrusive structural/API-parity check, 470 passed) — the **6th consecutive clean QA runner round** (16:43/17:42/18:50/20:45/21:40/22:40), further strengthening #915 durability. Orc flipped **#720 → status:done** (post-merge handoff for PR #943; was left `status:in-progress`) — now awaiting QA. `status:in-progress` empty. 5 input-class `status:done` bugs remain (#786/#788/#807/#840/#843, gated on #863) + #720 (refactor, QA-pickable non-intrusively). Reconciled the needs:ace queue: **added the `needs:ace` label to #863** (was documented in NEEDS-ACE.md as a human-only session/input-policy decision but missing the label) → live queue now #935/#915/#914/#863/#860/#842. No new human-decision items. Recognition proofs (#931 benchmark + #933 Electron CDP) remain verified+closed; next recognition move still #932 (Java JAB, env-blocked). Competitive tracker baseline set today — weekly step not due._
