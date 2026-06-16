@@ -58,6 +58,28 @@ Think like the technical founder. The loop must **find its own best next move**,
    how the project advances itself between your cycles.
 3. Keep priorities honest: re-label P2→P1 if it blocks progress; move mis-milestoned issues.
 
+## Step 3.5 — Weekly competitiveness re-evaluation (every 7 days)
+The north-star goal (epic #919) is to become the **#1 Windows RPA OSS engine**. Track progress weekly.
+Read the last dated row in `docs/COMPETITIVE.md` → "Weekly Competitiveness Tracker". **Only run this step
+if ≥7 days have passed since that row** (otherwise skip — it's a weekly cadence, not hourly).
+
+When it's due:
+```bash
+for r in AcePeak/naturo mediar-ai/terminator CursorTouch/Windows-MCP microsoft/UFO; do
+  gh api "repos/$r" --jq '"\(.full_name): \(.stargazers_count)"'; done
+```
+1. Light web check (WebSearch) for any major rival release/news this week (new entrant, big version, momentum).
+2. **Append a new dated row** to the tracker: naturo ⭐, Terminator ⭐, Windows-MCP ⭐, UFO² ⭐, naturo's
+   weekly Δ, the **gap → Terminator** (nearest peer), and **Trend: closer / further** (did the gap shrink?).
+3. If the landscape shifted, update the analysis sections of `docs/COMPETITIVE.md`.
+4. Regenerate the HTML report (`C:\Users\Naturobot\naturo-competitive-report-2026-06.html`) so Ace can open it.
+5. Surface a one-line verdict to Ace in `NEEDS-ACE.md` ("Competitiveness wk of <date>: **closer/further** —
+   naturo X⭐, gap→Terminator Y, key move Z"). If the trend is negative or a strategic pivot is warranted,
+   file/refresh a `needs:ace` note tied to epic #919.
+6. Commit `docs/COMPETITIVE.md` (+ regenerated report path note) to `develop` with the other state files.
+
+This is how the project keeps score against the goal between Ace's check-ins — never let a week pass unmeasured.
+
 ## Step 4 — Maintain the needs:ace queue (Ace's 1–2 day check-in)
 For every human-only decision found this cycle, ensure a tracking issue exists:
 ```bash
