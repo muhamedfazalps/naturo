@@ -64,11 +64,22 @@ git push -u origin fix/issue-N-short-desc
 gh pr create --repo AcePeak/naturo --base develop \
   --title "<type>: <desc> (fixes #N)" --body "## What ... ## How tested ..."
 gh pr merge --repo AcePeak/naturo --squash --auto --delete-branch
-gh issue comment N --repo AcePeak/naturo --body "**[Dev-Sirius]** Fixed in PR #<num>. <summary>"
-gh issue edit N --repo AcePeak/naturo --remove-label "status:in-progress" --add-label "status:done"
+gh issue comment N --repo AcePeak/naturo --body "**[Dev-Sirius]** PR #<num> opened, auto-merge pending CI. <summary>"
 ```
-If `--auto` fails (auto-merge off / not mergeable): leave the PR open and note it in your report
-for orch. Never merge to `develop` outside the PR.
+**Do NOT mark `status:done` at PR-open time.** Local tests passing ≠ CI green — CI runs Linux/macOS
+and a cross-platform/collection break (e.g. a top-level import not on CI's `sys.path`, like #936) only
+shows there. So:
+- **Watch CI before claiming done.** After opening the PR, wait for the required checks and confirm green:
+  `gh pr checks N --repo AcePeak/naturo` (and `gh pr view N --json state` → `MERGED`). For collection-type
+  risks, prove it the way CI does: `python -m pytest <new tests> --collect-only` must succeed without
+  Windows/optional deps.
+- **Only once the PR has MERGED (CI green)** set `status:done`:
+  `gh issue edit N --remove-label "status:in-progress" --add-label "status:done"`.
+- If the cycle ends before the merge lands, **leave it `status:in-progress`** with a "PR #<num> open, auto-merge
+  pending CI" note — the Orch PR-triage flips it to `status:done` on merge. Never claim done on a red/pending PR.
+
+If `--auto` fails (auto-merge off / not mergeable / CI red): leave the PR open, note it in your report for
+orch, and fix the CI before moving on. Never merge to `develop` outside the PR.
 
 ## Time-box
 **One issue per cycle.** A small one (<10 min) may allow a second. Never leave an issue half-done.

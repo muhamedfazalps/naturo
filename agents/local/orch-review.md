@@ -34,6 +34,13 @@ gh run list --repo AcePeak/naturo --branch develop --limit 3
 - **Team Dev PRs** (head `fix/*|feat/*|refactor/*` → `develop`): Dev enables `--auto` squash, so a
   green+mergeable PR lands itself. If one is stuck (CI red, `CONFLICTING`, auto-merge off), and it is a
   clean mechanical fix, you may re-enable auto-merge; otherwise queue it. Never merge outside a PR; never to main.
+  - **A red-CI Dev PR is not "done" — it needs a fix.** If a team PR is `BLOCKED` on red CI, dispatch a Dev fix
+    (or surface it to Ace) — don't let it rot. Read the failing check log; cross-platform/collection breaks (CI
+    runs Linux/macOS) are the common cause even when it passed on the Windows desktop.
+  - **Flip `status:done` on merge.** Dev leaves its issue `status:in-progress` until the PR merges (per
+    `dev-cycle.md`). For each newly-MERGED team PR whose linked issue is still `status:in-progress`, set it
+    `status:done` (`gh issue edit N --remove-label status:in-progress --add-label status:done`). This is the
+    handoff that prevents premature `status:done` on a still-red PR.
 - **External/community PRs**: assess against the linked issue + RULES (base=`develop`, actually fixes it,
   tests, clean diff, English). If clearly good + green → `gh pr merge <n> --squash --auto`. If it needs
   work and already has a clear review comment that's gone stale (>~5 days) → this is a **takeover/close
