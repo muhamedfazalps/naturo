@@ -1,6 +1,6 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-16 16:25 (Orc autonomous cycle — found QA loop down ~5d on API 403 auth; filed #915, top blocker).
+> Last refreshed: 2026-06-16 17:24 (Orc autonomous cycle — QA still 403 at 16:00 round; CI green, no PRs; filed loop-watchdog gap #917).
 
 ## Current Version
 v0.3.1 (PyPI + GitHub Release). `develop` CI green.
@@ -47,6 +47,11 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
     authenticate — it never runs a single test. Filed **`needs:ace` #915 (P1)** — this outranks the
     desktop-runner decision (#842/#860): desktop CI is moot while the QA agent can't auth at all.
     Fix is credential/auth (human-only). Until #915 is resolved the ship gate cannot advance.
+    Still failing as of the **2026-06-16 16:00** round (117+ consecutive 403s in June logs alone).
+  - **Detection gap filed — #917 (NEW, Orc 2026-06-16, P1 `silent-failure`):** `runner.ps1` has no
+    watchdog, so the loop hammered the API hourly for ~5 days with zero alert; only an Orc cycle caught
+    it. #917 adds failure-streak detection/escalation so a stuck role surfaces automatically. Code-only
+    (NOT the 403 fix itself, which stays human-only in #915).
 - **v0.3.3**: 6 open / 1 closed. Enterprise features. Blocked on v0.3.2.
 - **v0.3.4**: ~46 open / 8+ closed. Effectively a "contract stability" milestone (MCP/CLI envelope,
   param-name, exit-code drift from QA R135–R153). #890 (MCP list_snapshots) closed via PR #909.

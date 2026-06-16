@@ -4,7 +4,7 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-16 16:25 (Orc autonomous cycle)._
+_Last refreshed: 2026-06-16 17:24 (Orc autonomous cycle — QA still 403 at the 16:00 round; filed detection gap #917)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
@@ -28,6 +28,10 @@ _Last refreshed: 2026-06-16 16:25 (Orc autonomous cycle)._
   rounds since 2026-06-11 20:00. This blocks all ship-gate verification.
 - Desktop CI runner **#842** offline (chronic) — secondary to #915 while the QA agent can't auth.
 - `develop` CI: **green** (no block this cycle).
+- _Related (not a human decision):_ the loop runner had **no watchdog**, so 117+ identical 403 rounds
+  went undetected for ~5 days. Filed [#917](https://github.com/AcePeak/naturo/issues/917) (P1,
+  `silent-failure`) for Dev to add failure-streak detection/escalation — code-only, surfaces the next
+  outage automatically instead of relying on a human noticing a stale log.
 
 ---
 _How this works: anything irreversible or human-only is queued here instead of acted on. Everything else
