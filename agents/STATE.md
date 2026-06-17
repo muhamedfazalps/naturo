@@ -1,6 +1,27 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 04:22 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap + one Dev PR
+> Last refreshed: 2026-06-18 05:23 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap (#971
+> verified+closed) + one active in-flight Dev pickup (#866); no new human-only item**. Since the 04:22
+> refresh: (a) **QA verified+closed #971** @04:39 local — the code-only loud-failure worktree-integrity
+> guard (9/9 `test_worktree_guard.py`; live WorktreeMismatchError on a mismatched root, exit 0 on
+> correct/unset; clean Dev→QA lifecycle, no Orc flip needed); (b) the 05:07 Dev cycle **picked up #866**
+> (input-command exit-code contract — type/press/click exit 2 vs see/capture/list exit 1 on
+> NO_DESKTOP_SESSION; P2, from:qa) at ~21:18Z, ~5 min old at sweep, **no branch pushed → active in-flight,
+> left untouched (Rule 4)**. **`status:in-progress` = #866** (active); **`status:done` = #972** (input-content
+> guard — close is human security sign-off, queued). **No open PRs;** branches `develop`+`main` only (Rule 14
+> clean). **Step 3 (drive product): no new issue filed** — backlog sharp, loop hourly, #866 in flight; the
+> **`-j` envelope drift class stays STRUCTURALLY CLOSED** (#979 layer-1 + #987 layer-2 both landed+verified;
+> a future `-j` regression is unmergeable). **Recommended next recognition pickup = #982** (RECOGNITION.md
+> headline matrix + per-framework how-to — confirmed OPEN/P1/v0.3.2/unassigned/pickable; the non-env-blocked
+> Step-3 follow-through; #932 Java JAB still env-blocked, no JDK); left pickable, already P1, no re-label.
+> Evidence in `.work/reviews/2026-06-18-0523-auto-review.md`. **needs:ace live queue
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop` CI:
+> last code commit `53368b3` **CodeQL success + Build & Test success** (HEAD `5fb8c16` is an orc `[skip ci]`
+> state commit) → not red. v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914). Weekly
+> competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 04:22 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap + one Dev PR
 > self-landing; no new human-only item**. Since the 03:24 refresh: (a) **QA verified+closed #987** @~03:39
 > local — the layer-2 global `-j` stdout-purity contract (180/180 + guard-teeth proof: a deliberate stdout
 > leak failed the contract across every walked node, then reverted clean; clean Dev→QA lifecycle, no Orc

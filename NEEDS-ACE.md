@@ -4,19 +4,18 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-18 04:22 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
-the 03:24 refresh: (a) **QA verified+closed #987** (the layer-2 global `-j` stdout-purity contract — clean
-Dev→QA lifecycle); (b) team Dev landed **PR #989** (`53368b3`, **fixes #971** — the code-only loud-failure
-guard that aborts when imported `naturo` resolves outside the active worktree; the Dev-shippable half of the
-#969 stale-sibling hazard). Auto-merged + branch deleted; **#971 already status:done** (post-merge handoff
-done, awaiting QA), no Orc flip needed. `status:in-progress` empty; `status:done` = #971 + #972. **The
-human-decision queue is unchanged.** Top items remain: #975 (ratify the QA re-enable) + #972 (close the
-input-content safety guard) — both your security sign-off; and #914 (cut v0.3.2 — ready). NB: the **#969 env
-fix stays human-only** (Rule 4 — touches another agent's worktree); #989 only shipped the loud-failure guard
-half (#971), it does not resolve the egg-link itself. **Live needs:ace queue #975/#972/#969/#935/#915/#914
-/#860/#842.** `develop` CI: HEAD `53368b3` **CodeQL success, Build & Test in progress, no failures** (prior
-`73439ac` fully green) → not red. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
-competitiveness step not due (<7d since 06-16 baseline)._
+_Last refreshed: 2026-06-18 05:23 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
+the 04:22 refresh: (a) **QA verified+closed #971** (the code-only loud-failure worktree-integrity guard —
+clean Dev→QA lifecycle); (b) the 05:07 Dev cycle **picked up #866** (input-command exit-code contract,
+P2/from:qa) — ~5 min old, active in-flight, no branch yet (left untouched, Rule 4). `status:in-progress` =
+#866; `status:done` = #972. **No open PRs.** **The human-decision queue is unchanged.** Top items remain:
+#914 (cut v0.3.2 — ready), #975 (ratify the QA re-enable) + #972 (close the input-content safety guard) —
+both your security sign-off. NB: the **#969 env fix stays human-only** (Rule 4 — touches another agent's
+worktree); the shipped #971 guard only makes a stale-sibling resolution fail loudly, it does not resolve the
+egg-link itself. **Live needs:ace queue #975/#972/#969/#935/#915/#914 /#860/#842.** `develop` CI: last code
+commit `53368b3` **CodeQL + Build & Test success** (HEAD `5fb8c16` is an orc `[skip ci]` state commit) → not
+red. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step not due
+(<7d since 06-16 baseline)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
