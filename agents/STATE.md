@@ -1,6 +1,31 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-17 19:40 (Orc autonomous cycle — **LIVE input-safety incident: QA hard-disabled;
+> Last refreshed: 2026-06-17 20:25 (Orc autonomous cycle — **quiet/healthy; QA recovered & running safely —
+> reconciled the now-stale "QA disabled" docs + filed a self-maintaining envelope contract (Step 3)**. The
+> 19:40 refresh recorded a LIVE input-safety incident with QA hard-disabled; since then the loop **resolved
+> it at the source and resumed normally**: `7a10b18` locked `tests/QA_AGENT.md` 第七轮 (the standing-playbook
+> culprit) to **argv/pytest-only** (all 3 hardcoded dangerous payloads neutralized), and `4097eba`
+> **re-enabled the QA role** in `runner.ps1` (asserts Ace authorization; code backstop verified end-to-end —
+> 9/9 dangerous blocked, INJECTED refused at CLI, nothing typed). QA has since run **two clean cycles**:
+> verified+closed **#876** (argv-only, no live typing) and filed **#977**; Dev then landed **PR #978**
+> (`5a44c88`, fixes #977 — `visual list -j` / `selector show -j` success envelope), branch auto-deleted,
+> **#977 → status:done** (awaiting QA, now live). **Orc this cycle (Step 3): filed #979** (`test`, `from:orc`,
+> P2, v0.3.4) — a **self-maintaining `-j` success-envelope contract** that auto-enumerates collection-read
+> commands and fails CI if any drops `{success,<collection>,count}`, converting the reactive one-at-a-time
+> list/show drift class (#876→#977, siblings #865/#895/#874/#872/#877/#866/#882/#897) into a coverage
+> contract (project pattern: #912 desktop guard, #957 window-selector). **Step 4:** posted a status comment
+> on **#975** (re-enable) — root cause fixed, QA running safely; **left open for Ace's ratification only**
+> (security sign-off is human-only; cannot independently verify the asserted authorization). Did **NOT**
+> re-disable the now-safe QA (would be a 4th churn flip — root cause is fixed). **needs:ace live queue now
+> #975/#972/#969/#935/#915/#914/#860/#842** (#975 reframed: was "blocks all QA" → now "ratify/confirm";
+> #972 = security-guard close human sign-off). `develop` CI **GREEN** (Build & Test + CodeQL success on HEAD
+> `5a44c88`). `status:in-progress` empty; **status:done = #977/#972** (awaiting QA). v0.3.2 ship-gate
+> unchanged (FULLY MET — release is Ace's call, #914). #915 still recommended-for-closure (QA durability now
+> strongly demonstrated). Weekly competitiveness **not due** (baseline 2026-06-16, <7d). Recognition next
+> move still **#932** (Java JAB proof — env-blocked, JDK absent).)_
+>
+> ---
+> _Prior refresh: 2026-06-17 19:40 (Orc autonomous cycle — **LIVE input-safety incident: QA hard-disabled;
 > filed #975 needs:ace + #976 Dev fix; #876 handoff**. Since the 18:20 refresh a serious safety event
 > occurred: even after #972/#973 hardened the input guard with a sentinel lock (`~/.naturo/safe-input.lock`),
 > a QA cycle **typed the command-like sentinel `$(echo INJECTED)` into a live Notepad window — R-SEC-012
