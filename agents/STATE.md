@@ -4,16 +4,18 @@
 > backlog triage**. Since the 14:22 refresh: team Dev opened PR **#966**
 > (`fix/issue-964-cli-window-loud-failure` → `develop`, fixes **#964** — CLI `get`/`set --window <unmatched>`
 > must fail loudly with `WINDOW_NOT_FOUND` instead of silently foregrounding) with **auto-merge SQUASH
-> enabled** (AcePeak @07:21Z); checks **in-flight** (CodeQL + Ubuntu/macOS Python lanes running, Windows
-> build green so far) — **self-landing once green**, left untouched per playbook. **#964 stays
-> `status:in-progress`** with its open PR (correct in-flight state). **`status:done` queue empty;** no Orc
-> handoff flip due this cycle (note: PR #966 base ≠ default branch, so on merge it will NOT auto-close #964 —
-> next cycle must flip #964 → `status:done`). **Step 3 triage:** milestoned two unmilestoned actionable bugs
+> enabled** (AcePeak @07:21Z) and **MERGED mid-cycle** (`64080d0`) once its checks went green. Base ≠
+> default branch, so it did NOT auto-close #964 — Orc did the **post-merge handoff: flipped #964
+> `status:in-progress` → `status:done`** and posted the QA verification note (`get`/`set --window <no-match>`
+> must now fail loudly with `WINDOW_NOT_FOUND`; special attention to `set`'s prior data-integrity hazard).
+> Source branch **deleted** (only `develop`+`main` remain — Rule 14 verified). Merge-commit CI running
+> (CodeQL/Build&Test in progress, no failures; PR checks were green at merge). **#964 is now the sole
+> `status:done` item** (awaiting QA); `status:in-progress` **empty**. **Step 3 triage:** milestoned two unmilestoned actionable bugs
 > to **v0.3.4** — **#916** (P2 from:qa — taskbar/tray list returns empty `success:true` on a populated
 > desktop, silent-failure class) and **#917** (P1 from:orc — `runner.ps1` failure-streak watchdog, code-only;
 > was P1-with-no-milestone, a priority-honesty gap). **#963** (MCP `find_element` ignores `window_title`)
-> already milestoned v0.3.4, pickable. **One open PR (#966, self-landing).** `develop` CI **GREEN** (Build &
-> Test + CodeQL success on HEAD `4d19823`). v0.3.2 ship-gate **FULLY MET** — cutting/tagging the release
+> already milestoned v0.3.4, pickable. **No open PRs.** `develop` CI **GREEN** pre-merge (HEAD before #966 was
+> `4d19823`, Build & Test + CodeQL success); merge commit `64080d0` CI in progress, no failures. v0.3.2 ship-gate **FULLY MET** — cutting/tagging the release
 > (#914) remains Ace's call (Rule 2). needs:ace live queue **#935/#915/#914/#860/#842** (unchanged, no new
 > human-only item); **#915** safe to close (loop healthy). Weekly competitiveness **not due** (baseline
 > 2026-06-16, <7d). Next recognition move still **#932** (Java JAB proof, env-blocked — no Java app on
