@@ -4,18 +4,18 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-18 00:27 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
-the 23:24 refresh: clean Dev self-land — PR #984 (`01faff8`, **fixes #869**: suppress the optional-dependency
-install prompt in `-j` JSON mode so stdout stays a clean machine-parseable envelope) merged + branch deleted;
-**Orc did the post-merge handoff** (flipped #869 → status:done, awaiting QA) and **sharpened the #979 `-j`
-contract** (commented) — #874 and #869 are both `-j` bypasses that #979's collection-read-only scope would
-**not** catch, so recommended widening it to a global "`-j` stdout = exactly one JSON envelope, nothing else"
-purity check. `status:in-progress` empty; `status:done` = #869 + #972. **The human-decision queue is
+_Last refreshed: 2026-06-18 01:24 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
+the 00:27 refresh: **QA verified+closed #869** (the `-j` install-prompt leak — clean Dev→QA lap); team Dev
+**PR #985** (`8b28270`, **fixes #872** — unknown subcommand emits plain Click usage text in `-j` mode)
+**merged mid-cycle** + branch deleted → **Orc post-merge handoff** (flipped #872 → status:done, awaiting QA).
+#872 is the **third** `-j` bypass after #874/#869 to land one-at-a-time, all caught by #979's recommended
+stdout-purity layer (P1, pickable) — **no new comment** on #979 (already documented twice; avoiding noise).
+`status:in-progress` empty; `status:done` = #872 + #972. **The human-decision queue is
 unchanged.** Top items remain: #975 (ratify the QA re-enable) + #972 (close the input-content safety guard) —
 both your security sign-off; and #914 (cut v0.3.2 — ready). **Live needs:ace queue
-#975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI **Build & Test GREEN on HEAD `01faff8`** (CodeQL
-analyzing, no failures). v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
-competitiveness step not due (<7d since 06-16 baseline)._
+#975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI **Build & Test GREEN + CodeQL GREEN on HEAD
+`01faff8`**. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step
+not due (<7d since 06-16 baseline)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
@@ -51,7 +51,7 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
   (closed #876, filed #977). #975 now awaits only Ace's *ratification* of the re-enable, not a re-enable.
 - **None blocking the ship-gate itself.** #843 (capture popup compositing) **verified+closed 2026-06-17
   02:42Z** — the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test success on HEAD `20bb15f`; CodeQL python green, c-cpp analyzing).
+- `develop` CI: **green** (Build & Test + CodeQL success on HEAD `01faff8`).
 - Desktop CI runner **#842** offline (chronic; infra decision above).
 - _Cleared this cycle:_ **#863** (input verification — proven possible) and **#915** (QA auth — recovered)
   are no longer blocks; both recommended for closure above.

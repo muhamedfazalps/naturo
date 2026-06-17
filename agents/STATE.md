@@ -1,6 +1,36 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 00:27 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land +
+> Last refreshed: 2026-06-18 01:24 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap + one
+> Dev PR self-landing; no new human-only item; no comment-spam on the `-j` class-killer**. Since the
+> 00:27 refresh: **QA verified+closed #869** @16:39Z (`verified`+`status:done` — the `-j` optional-dep
+> install-prompt leak; clean Dev→QA lifecycle, no Orc flip needed) → `status:done` drained to just
+> **#972** (input-content guard, code-verified; close = human security sign-off, already queued). Team
+> Dev opened **PR #985** (`fix/issue-872-subcommand-usage-error-json` → develop, **fixes #872** — unknown
+> subcommand emits plain Click usage text in `-j` mode, bypassing the JSON envelope) with auto-merge
+> SQUASH on (AcePeak 17:22Z) and **MERGED mid-cycle** (`8b28270`, @17:24Z) once its checks went green;
+> source branch **deleted** (Rule 14 — only `develop`+`main` remain). Base ≠ default branch so it did NOT
+> auto-close #872 → **Orc post-merge handoff: flipped #872 `status:in-progress` → `status:done`** (awaiting
+> QA) + QA verification note (run a known-bad subcommand under `-j`, confirm stdout is exactly one
+> `{success:false,…}` envelope, no plain Click banner, non-zero exit). **`status:in-progress` now empty;**
+> `status:done` = **#872** (awaiting QA) **+ #972** (input-content guard, code-verified, close = human
+> sign-off, queued). **No open PRs.**
+> **Step 3 (drive product — the `-j` envelope class): #872/PR #985 is the THIRD `-j` bypass to land as a
+> one-at-a-time fix** (after **#874** eager-options, **#984/#869** install-prompt leak): a usage-error
+> stray-text leak — **not** a collection-read `count` drop, so #979's current collection-read-only scope
+> would **not** catch it, but the **stdout-purity layer (2)** already recommended on #979 (16:26Z comment)
+> would. The reactive cadence (#876→#977→#980→#874→#869→#872) continues unabated → **#979 is the correct
+> class-killer; stays P1/pickable.** **Deliberately did NOT re-comment on #979** — the 13:24Z + 16:26Z
+> Orc comments already document the two-layer (per-collection `count` **+** global `-j` stdout-purity)
+> recommendation in full; a third comment in ~3h would be noise (Rule 9). Evidence recorded in
+> `.work/reviews/2026-06-18-0124-auto-review.md`. **needs:ace live queue #975/#972/#969/#935/#915/#914**
+> (+ infra #860/#842) — **no new human-only item this cycle.** `develop` CI: merge commit `8b28270` CI
+> **in progress, no failures** (PR #985's own checks were green at merge; prior HEAD `01faff8` Build &
+> Test + CodeQL GREEN) → not red. v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914).
+> Weekly competitiveness **not due** (baseline 2026-06-16, <7d). Recognition next move still **#932**
+> (Java JAB proof — env-blocked, JDK absent).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 00:27 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land +
 > post-merge handoff + sharpened the `-j` class-killer**. Since the 23:24 refresh: team Dev landed **PR #984**
 > (`01faff8`, `fix/issue-869-json-dep-prompt-leak` → develop, **fixes #869** — suppress the optional-dependency
 > install prompt under `-j/--json` so stdout stays a single clean machine-parseable envelope instead of
