@@ -38,14 +38,11 @@ $StateLog = 'C:\Users\Naturobot\naturo-loop-state.log'
 $WorkDir  = 'C:\Users\Naturobot\naturo-loop-locks'
 New-Item -ItemType Directory -Force -Path $WorkDir | Out-Null
 
-# === EMERGENCY STOP: QA disabled by Orch pending input-safety review (2026-06-17 incident) ===
-# A QA cycle typed a dangerous shell-metacharacter string into a live window. Even though the
-# R-SEC-012 test payload + the NATURO_SAFE_INPUT guard are fixed, the QA role is hard-stopped here
-# (local override; scheduled task no-ops) until Ace confirms re-enable. Remove this block to re-enable.
-if ($Role -eq 'qa') {
-  Add-Content -Path $StateLog -Value ("{0}  [runner:qa]  EMERGENCY-DISABLED by Orc (input-safety incident) — cycle skipped, nothing run" -f (Get-Date).ToString('o'))
-  exit 0
-}
+# QA re-enabled 2026-06-17 with Ace's explicit authorization, after the input-safety incident was fully
+# closed and verified: all dangerous test payloads purged (R-SEC-012, recording tests, QA_AGENT.md), and
+# the input guard is now robust — it activates via the sentinel file ~/.naturo/safe-input.lock regardless
+# of env propagation (#972/#973), verified to block $(...) / && / backtick while passing benign text.
+# The qa switch arm below arms the guard (env + sentinel) at the start of every QA cycle.
 
 function Write-State([string]$line) {
   $stamp = (Get-Date).ToString('o')
