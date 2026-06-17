@@ -1,6 +1,29 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 06:23 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA handoff lap
+> Last refreshed: 2026-06-18 07:24 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA handoff lap —
+> the recognition headline pickup (#982) landed; no open PRs, no new human-only item**. Since the 06:23
+> refresh: team Dev landed **PR #992** (`183b947`, `docs: copy-paste see/find/click how-to against the
+> owned Electron fixture`, **fixes #982** — the RECOGNITION.md headline coverage-matrix + per-framework
+> how-to that had been the recommended next recognition pickup since the 03:24 cycle) → `develop`. Source
+> branch auto-deleted (only `develop`+`main` remain, Rule 14). **Dev did the post-merge handoff itself** —
+> #982 already `status:done` (no Orc flip needed), awaiting QA. **`status:in-progress` empty;** `status:done`
+> = **#982** (RECOGNITION.md headline, awaiting QA) **+ #972** (input-content guard, code-verified, close =
+> human security sign-off, queued). **No open PRs.** **Step 3 (drive product): no new issue filed** — the
+> recognition moat's documentation arm is now complete: #931 (benchmark) + #933 (Electron) closed, #982
+> landed, and the **README headline is already done** (`README.md:13` "Why naturo?" leads with the
+> multi-framework claim + links `docs/RECOGNITION.md` proof) → the Step-3 "coverage matrix as README
+> headline" follow-through is SATISFIED. Remaining recognition hardening is **env-blocked** (#932 Java JAB,
+> P0 — re-confirmed no JDK on PATH; #934 SAP, P2 — needs SAP install). **Next non-env-blocked move =
+> distribution feed-forward** (#922/#927): #927 (MCP install snippets) closed; **recommended next Dev
+> pickup = #926** (Claude Desktop Extension `.mcpb` — the highest-leverage one-click-install lever now that
+> the recognition proof exists), with #923/#929 (quickstart/hero) also pickable P1. Evidence in
+> `.work/reviews/2026-06-18-0724-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop` CI:
+> HEAD `183b947` **Build & Test success + CodeQL success** → not red. v0.3.2 ship-gate unchanged (FULLY MET —
+> release is Ace's call, #914). Weekly competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 06:23 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA handoff lap
 > (#866 landed via PR #990; Dev flipped it to status:done itself) + no open PRs; no new human-only
 > item**. Since the 05:23 refresh: the in-flight Dev pickup **#866** (input-command exit-code contract —
 > type/press/click now exit **1**, not Click's usage-error **2**, on NO_DESKTOP_SESSION; P2/from:qa)

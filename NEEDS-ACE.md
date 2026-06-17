@@ -4,18 +4,19 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-18 06:23 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
-the 05:23 refresh: the in-flight Dev pickup **#866** (input-command exit-code contract — type/press/click now
-exit 1, not Click's usage-error 2, on NO_DESKTOP_SESSION; P2/from:qa) **landed via PR #990 → `a7f993b`**;
-**Dev flipped it `status:in-progress → status:done` itself** right after merge → awaiting QA. Source branch
-auto-deleted (only `develop`+`main`). `status:in-progress` empty; `status:done` = #866 + #972. **No open PRs.**
-**The human-decision queue is unchanged.** Top items remain: #914 (cut v0.3.2 — ready), #975 (ratify the QA
-re-enable) + #972 (close the input-content safety guard) — both your security sign-off. NB: the **#969 env fix
-stays human-only** (Rule 4 — touches another agent's worktree); the shipped #971 guard only makes a
-stale-sibling resolution fail loudly, it does not resolve the egg-link itself. **Live needs:ace queue
-#975/#972/#969/#935/#915/#914 /#860/#842.** `develop` CI: HEAD `a7f993b` **Build & Test + CodeQL success** →
-not red. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step not
-due (<7d since 06-16 baseline)._
+_Last refreshed: 2026-06-18 07:24 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
+the 06:23 refresh: team Dev landed **PR #992 → `183b947`** (**fixes #982** — the RECOGNITION.md headline
+coverage-matrix + per-framework how-to, the recognition pickup that had topped the queue for 5 cycles); **Dev
+flipped it `status:done` itself** → awaiting QA. Source branch auto-deleted (only `develop`+`main`).
+`status:in-progress` empty; `status:done` = #982 + #972. **No open PRs.** **The human-decision queue is
+unchanged.** The recognition moat's doc arm is now complete (benchmark #931 + Electron #933 closed, #982
+landed, README headline already live); remaining recognition hardening (#932 Java JAB, #934 SAP) is
+env-blocked — next non-env-blocked Dev move is distribution (#926 `.mcpb` / #923 quickstart). Top human items
+remain: #914 (cut v0.3.2 — ready), #975 (ratify the QA re-enable) + #972 (close the input-content safety
+guard) — both your security sign-off. NB: the **#969 env fix stays human-only** (Rule 4 — touches another
+agent's worktree). **Live needs:ace queue #975/#972/#969/#935/#915/#914 /#860/#842.** `develop` CI: HEAD
+`183b947` **Build & Test + CodeQL success** → not red. v0.3.2 ship-gate unchanged (FULLY MET — release is your
+call, #914). Weekly competitiveness step not due (<7d since 06-16 baseline)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
