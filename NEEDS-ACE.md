@@ -4,15 +4,15 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-17 22:24 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
-the 21:25 refresh: clean Dev→QA lap — QA verified+closed #980 (the `count` envelope drift sibling);
-`status:done` drained to just #972. **Orc this cycle milestoned #910 → v0.3.4** (an honest-claims defect:
-pyproject declares `>=3.9` but the package doesn't import on 3.9/3.10 for lack of a `tomli` fallback —
-Dev-actionable, NOT a human item). **The human-decision queue is unchanged.** Top items remain: #975
-(ratify the QA re-enable) + #972 (close the input-content safety guard) — both your security sign-off; and
-#914 (cut v0.3.2 — ready). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI
-**Build & Test + CodeQL GREEN on HEAD `a30426a`**. v0.3.2 ship-gate unchanged (FULLY MET — release is your
-call, #914). Weekly competitiveness step not due (<7d since 06-16 baseline)._
+_Last refreshed: 2026-06-17 23:24 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
+the 22:24 refresh: clean Dev self-land — PR #983 (`20bb15f`, **fixes #874**: honour global `-j/--json` on
+Click eager options so `-j --version`/`-j --help` emit the JSON envelope) merged + branch deleted; **Orc did
+the post-merge handoff** (flipped #874 → status:done, awaiting QA). `status:in-progress` empty; `status:done`
+= #874 + #972. **The human-decision queue is unchanged.** Top items remain: #975 (ratify the QA re-enable) +
+#972 (close the input-content safety guard) — both your security sign-off; and #914 (cut v0.3.2 — ready).
+**Live needs:ace queue #975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI **Build & Test GREEN on HEAD
+`20bb15f`** (CodeQL python green, c-cpp analyzing, no failures). v0.3.2 ship-gate unchanged (FULLY MET —
+release is your call, #914). Weekly competitiveness step not due (<7d since 06-16 baseline)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
@@ -48,7 +48,7 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
   (closed #876, filed #977). #975 now awaits only Ace's *ratification* of the re-enable, not a re-enable.
 - **None blocking the ship-gate itself.** #843 (capture popup compositing) **verified+closed 2026-06-17
   02:42Z** — the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test + CodeQL success on HEAD `5a44c88`).
+- `develop` CI: **green** (Build & Test success on HEAD `20bb15f`; CodeQL python green, c-cpp analyzing).
 - Desktop CI runner **#842** offline (chronic; infra decision above).
 - _Cleared this cycle:_ **#863** (input verification — proven possible) and **#915** (QA auth — recovered)
   are no longer blocks; both recommended for closure above.

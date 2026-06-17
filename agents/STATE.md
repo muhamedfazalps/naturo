@@ -1,6 +1,26 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-17 22:24 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap + one
+> Last refreshed: 2026-06-17 23:24 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land +
+> post-merge handoff; no new human-only item**. Since the 22:24 refresh: team Dev landed **PR #983**
+> (`20bb15f`, `fix/issue-874-json-eager-options` → develop, **fixes #874** — honour the global `-j/--json`
+> flag on Click **eager options** so `naturo -j --version` / `-j --help` emit the JSON success envelope
+> instead of plain text; +`tests/test_json_eager_options.py`, 11 cases). Auto-merged 15:21Z, branch
+> **deleted** (Rule 14 — only `develop`+`main` remain). Base ≠ default branch (`main`) so it did NOT
+> auto-close → **Orc post-merge handoff: flipped #874 `status:in-progress` → `status:done`** (awaiting QA)
+> + QA verification note. **`status:in-progress` now empty;** `status:done` = **#874** (awaiting QA) **+
+> #972** (input-content guard, code-verified, close = human sign-off, queued). **No open PRs.** **Step 3
+> observation (left for #979's owner, not filed):** #874 is an envelope-honesty sibling of the
+> #876→#977→#980 list/show drift class but is an **eager-option** bypass (`--version`/`--help`), *not* a
+> collection read — so #979's self-maintaining `-j` contract (auto-enumerates collection reads for
+> `{success,<collection>,count}`) would **not** have caught it; worth widening #979's scope to eager-option
+> commands. #979 stays P1/pickable. **needs:ace live queue #975/#972/#969/#935/#915/#914** (+ infra
+> #860/#842) — **no new human-only item this cycle.** `develop` CI: **Build & Test GREEN on HEAD
+> `20bb15f`**, CodeQL python GREEN / c-cpp analyzing (no failures) → **not red**. v0.3.2 ship-gate unchanged
+> (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not due** (baseline 2026-06-16, <7d).
+> Recognition next move still **#932** (Java JAB proof — env-blocked, JDK absent).)_
+>
+> ---
+> _Prior refresh: 2026-06-17 22:24 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap + one
 > priority-honesty triage**. Since the 21:25 refresh: **QA verified+closed #980** (the `list windows -j` /
 > `list screens -j` missing-`count` envelope drift, sibling of #876/#977) — clean Dev→QA lifecycle, no Orc
 > flip needed; `status:done` drained to just **#972** (security guard, code-verified, close = human
