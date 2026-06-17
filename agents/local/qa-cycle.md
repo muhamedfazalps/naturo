@@ -19,6 +19,20 @@ Input simulation (`click` / `type` / `press` / `drag`) **hijacks the real mouse 
   yourself (`notepad`, `calc`), keep it brief, and **never type into an unknown foreground window**.
   Say in your report that input was simulated.
 
+### 🛑 Input-content safety contract (NON-NEGOTIABLE)
+A wrong focus can deliver keystrokes to the wrong window, so the *content* you type must be harmless
+even in the worst case:
+- **Type ONLY benign marker text** — e.g. `QA_PROBE`, a timestamp, lorem/invoice text. **NEVER** type
+  shell commands, file paths, URLs, or anything destructive-looking (`rm`, `del`, `format`, `>`,
+  `sudo`, `&&`, newlines-then-command), even into a "throwaway" target. If a bug repro seems to need a
+  command-like string, substitute a harmless equivalent.
+- **Always route with `--app`/`--hwnd`** so naturo targets a specific window and reports `focused_pid`;
+  if the routing/verify does NOT confirm your intended throwaway app got focus, **ABORT — do not type**.
+- **NEVER type into a terminal/shell/console** (cmd, PowerShell, Windows Terminal, the agent's own
+  console) or any window you did not launch yourself this cycle.
+- Prefer targets where naturo uses the `method: uia` value-set path (writes directly to the element,
+  no global keystrokes) over the SendInput fallback.
+
 ### Input verification IS possible unattended (verified 2026-06-17, #863)
 `SendInput` (`type`/`click`/`press`) **works when no human is RDP'd in** — the session falls back to
 the console (kept active by `NaturoKeepSession`) and the input-desktop binding is clean. It **fails
