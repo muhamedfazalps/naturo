@@ -88,8 +88,11 @@ naturo app list
 - DLL 崩溃后下一次调用能恢复吗
 
 ### 第七轮：安全和权限（Security）
-- 命令注入：`naturo see --app "; rm -rf /"`
-- 路径穿越：`naturo capture live --path "../../etc/passwd"`
+> ⛔ **安全测试 payload 必须永远无害。** 键盘/shell 可能把片段溅进真实终端,所以**绝不用真实破坏性命令**
+> (`rm -rf`、`del`、`format`、`shutdown` 等)当注入测试输入——用无害哨兵 `$(echo INJECTED)` / `; echo INJECTED`:
+> 若被错误执行只会输出 `INJECTED`,绝不删除任何东西。同理路径穿越用无害目标。
+- 命令注入：`naturo see --app "; echo INJECTED"`(被错误执行只会打印 INJECTED,无害)
+- 路径穿越：`naturo capture live --path "../../naturo-path-traversal-probe.txt"`(无害探针路径)
 - 超长输入导致缓冲区问题
 - 敏感信息是否出现在日志或错误消息中
 
