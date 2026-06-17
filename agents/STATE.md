@@ -1,6 +1,26 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-17 21:25 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA→Dev lifecycle
+> Last refreshed: 2026-06-17 22:24 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap + one
+> priority-honesty triage**. Since the 21:25 refresh: **QA verified+closed #980** (the `list windows -j` /
+> `list screens -j` missing-`count` envelope drift, sibling of #876/#977) — clean Dev→QA lifecycle, no Orc
+> flip needed; `status:done` drained to just **#972** (security guard, code-verified, close = human
+> sign-off, already queued). **No open PRs;** `status:in-progress` **empty**. **Orc this cycle (Step 3 —
+> priority honesty): milestoned #910 → v0.3.4** (+ framing comment). #910 was floating unmilestoned but is a
+> real **honest-claims defect**, not just a red non-required lane: `pyproject.toml` declares
+> `requires-python=">=3.9"` and ships 3.9/3.10 classifiers, yet the code imports stdlib `tomllib` (3.11+)
+> with **no `tomli` fallback** → the package **does not import on 3.9/3.10**; the 3.9 CI lane only looks
+> non-blocking because it's `continue-on-error:true`, which hides the broken claim. Fix is Dev-shippable
+> (tomli fallback + `tomli; python_version<"3.11"` dep) or an honest classifier narrowing (public-contract
+> change → fallback preferred) — now pickable. **needs:ace live queue #975/#972/#969/#935/#915/#914**
+> (+ infra #860/#842) — **no new human-only item this cycle.** `develop` CI: **Build & Test + CodeQL GREEN
+> on HEAD `a30426a`** (`0bb3e48` is prior orc `[skip ci]` state commit) → not red. v0.3.2 ship-gate
+> unchanged (FULLY MET — release is Ace's call, #914). #979 (P1 self-maintaining `-j` envelope contract)
+> remains the class-killer for the #876→#977→#980 drift — pickable, left for Dev. Weekly competitiveness
+> **not due** (baseline 2026-06-16, <7d). Recognition next move still **#932** (Java JAB proof — env-blocked,
+> JDK absent).)_
+>
+> ---
+> _Prior refresh: 2026-06-17 21:25 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA→Dev lifecycle
 > lap + pulled the envelope class-killer forward to P1**. Since the 20:25 refresh: QA verified+closed
 > **#977** (visual list / selector show `-j` envelope) and, in a lateral sweep, filed **#980** (a fresh
 > sibling — `list windows -j` / `list screens -j` omitted top-level `count`); Dev landed it as PR **#981**

@@ -4,15 +4,15 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-17 21:25 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
-the 20:25 refresh: clean Dev→QA→Dev lap — QA verified+closed #977 and filed #980 (a fresh `-j` envelope
-sibling), Dev landed it (PR #981, `a30426a`), #980 → status:done. **Orc this cycle bumped #979 P2 → P1**
-(the self-maintaining `-j` envelope contract — Dev-actionable, NOT a human item) to pull the class-killer
-forward over more one-at-a-time fixes. **The human-decision queue is unchanged.** Top items remain: #975
+_Last refreshed: 2026-06-17 22:24 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
+the 21:25 refresh: clean Dev→QA lap — QA verified+closed #980 (the `count` envelope drift sibling);
+`status:done` drained to just #972. **Orc this cycle milestoned #910 → v0.3.4** (an honest-claims defect:
+pyproject declares `>=3.9` but the package doesn't import on 3.9/3.10 for lack of a `tomli` fallback —
+Dev-actionable, NOT a human item). **The human-decision queue is unchanged.** Top items remain: #975
 (ratify the QA re-enable) + #972 (close the input-content safety guard) — both your security sign-off; and
 #914 (cut v0.3.2 — ready). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI
-**Build & Test GREEN on HEAD `a30426a`** (CodeQL in-progress, no failures). v0.3.2 ship-gate unchanged
-(FULLY MET — release is your call, #914). Weekly competitiveness step not due (<7d since 06-16 baseline)._
+**Build & Test + CodeQL GREEN on HEAD `a30426a`**. v0.3.2 ship-gate unchanged (FULLY MET — release is your
+call, #914). Weekly competitiveness step not due (<7d since 06-16 baseline)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
