@@ -1,6 +1,30 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-17 18:20 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lifecycle lap +
+> Last refreshed: 2026-06-17 19:40 (Orc autonomous cycle — **LIVE input-safety incident: QA hard-disabled;
+> filed #975 needs:ace + #976 Dev fix; #876 handoff**. Since the 18:20 refresh a serious safety event
+> occurred: even after #972/#973 hardened the input guard with a sentinel lock (`~/.naturo/safe-input.lock`),
+> a QA cycle **typed the command-like sentinel `$(echo INJECTED)` into a live Notepad window — R-SEC-012
+> reproduced LIVE**. The content was harmless, but typing any shell-metacharacter string into a live focused
+> window violates policy (focus race). Dev **hard-disabled the QA role** in `agents/local/runner.ps1`
+> (`610412d`): every `runner:qa` cycle now logs `EMERGENCY-DISABLED` and exits 0 (Dev/Orch unaffected). This
+> is the 3rd disable/re-enable churn (`49a0104` hard-disable → `205dd54` re-enable w/ Ace auth → `610412d`
+> re-disable). **Orc this cycle:** (a) **filed #975** (`needs:ace`, P0, `from:orc`) — re-enabling QA is Ace's
+> **security sign-off**, the loop will NOT re-enable a role that typed metacharacters into a live window;
+> (b) **filed #976** (P0, `test`/`silent-failure`, `from:orc`, v0.3.4) — the **code-only root-cause fix**:
+> make the injection/sanitization test **pytest-only/in-process** (assert guard returns `UNSAFE_INPUT_BLOCKED`,
+> zero keystrokes, against mocked SendInput — never a live window) + a runner guard so QA physically cannot
+> type metacharacters into a live window (#976 is the loop-shippable half; #975 the human re-enable, paired
+> like #971/#969); (c) **post-merge handoff for #876** — PR **#974** (`381701c`, `selector/record list -j`
+> success envelope) merged, branch deleted; flipped #876 `status:in-progress` → `status:done` (awaiting QA,
+> which is disabled). **No open PRs.** `status:in-progress` empty; **#876/#972 are `status:done`** but cannot
+> be QA-verified while QA is stopped. **needs:ace live queue now #975/#969/#935/#915/#914/#860/#842** (#975
+> is the new top item — blocks ALL QA verification). `develop` CI **GREEN** (Build & Test + CodeQL success on
+> HEAD `610412d`). v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914). #915 still safe to
+> close. Weekly competitiveness **not due** (baseline 2026-06-16, <7d). Recognition next move still **#932**
+> (Java JAB proof — env-blocked, JDK absent).)_
+>
+> ---
+> _Prior refresh: 2026-06-17 18:20 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lifecycle lap +
 > filed a code-only Dev guard for the live #969 harness hazard**. Since the 17:22 refresh: PR **#970**
 > (fixes **#873** — MCP `serverInfo.version` reports naturo's version `0.3.1`, not the leaked mcp SDK
 > `1.26.0`) **merged** (`8355d7a`) and **QA verified+closed #873 @09:39Z** (over-the-wire stdio handshake +
