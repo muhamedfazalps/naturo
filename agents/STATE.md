@@ -1,6 +1,37 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 01:24 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap + one
+> Last refreshed: 2026-06-18 02:28 (Orc autonomous cycle — **quiet/healthy; landed the #979 `-j` envelope
+> CLASS-KILLER via a flaky-CI rescue + filed its layer-2 follow-up**. Since the 01:24 refresh: **QA
+> verified+closed #872** @17:39Z (`-j` usage-error stray text — clean Dev→QA lap, no Orc flip needed) →
+> `status:done` had drained to just **#972**. Team Dev's 02:07 cycle opened **PR #986**
+> (`test/issue-979-json-envelope-contract` → develop, **fixes #979**, auto-merge SQUASH on) — the
+> self-maintaining `-j` collection-read envelope contract I'd been pulling forward at P1. **It was BLOCKED on
+> red CI**, so this :22 sweep diagnosed it: the **Ubuntu/macOS 3.9** failures are the **#910 tomllib gap**
+> (continue-on-error, non-blocking — develop's own HEAD shows the same 3.9 reds with CI Gate still green); the
+> **required `macOS 3.12`** lane failed on a **flaky** `test_browser_download.py::test_timeout_stuck_partial`
+> timing assertion (passes on develop; #986 touches no browser code). **Root cause of the block = flakiness,
+> not anything #986 introduced** (its own new `test_json_envelope_contract.py` passed). The failed jobs were
+> already re-running; **monitored to completion → macOS 3.12 passed → CI Gate green → PR #986 auto-merged
+> (`a8402af`, 18:26:49Z)**; source branch **deleted** (Rule 14 — only develop+main remain). Base ≠ default
+> branch so no auto-close → **Orc post-merge handoff: flipped #979 `status:in-progress` → `status:done`**
+> (awaiting QA) + QA verification note (run the contract test; confirm it discovers the known collection reads
+> and that a deliberately-broken read fails it). **`status:in-progress` now empty;** `status:done` = **#979**
+> (awaiting QA) **+ #972** (input-content guard, code-verified, close = human sign-off, queued). **No open PRs.**
+> **Step 3 (drive product): filed #987** (`test`, `from:orc`, **P1**, v0.3.4) — the **global `-j` stdout-purity
+> contract (layer 2)**. #979 (just landed) is layer 1 and kills the *collection-read* drift class
+> (#876→#977→#980); it does **not** catch the **stray-text/eager-option** sub-class — **#874** (`-j --version`
+> /`--help`), **#869** (install-prompt leak), **#872** (usage-error banner), three Dev+QA rounds in ~24h, none
+> a missing `count`. #987 asserts every command + eager option under `-j` emits exactly one JSON doc with zero
+> extra stdout bytes. This is the documented "layer 2" from #979's thread — filed as its own issue so it
+> survives #979's closure; Dev-actionable, not human-only. Evidence in
+> `.work/reviews/2026-06-18-0228-auto-review.md`. **needs:ace live queue #975/#972/#969/#935/#915/#914** (+ infra
+> #860/#842) — **no new human-only item this cycle.** `develop` CI: merge commit `a8402af` Build&Test + CodeQL
+> **in progress, no failures** (PR #986's checks were green at merge; prior HEAD `8b28270` GREEN) → not red.
+> v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not due**
+> (baseline 2026-06-16, <7d). Recognition next move still **#932** (Java JAB proof — env-blocked, JDK absent).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 01:24 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap + one
 > Dev PR self-landing; no new human-only item; no comment-spam on the `-j` class-killer**. Since the
 > 00:27 refresh: **QA verified+closed #869** @16:39Z (`verified`+`status:done` — the `-j` optional-dep
 > install-prompt leak; clean Dev→QA lifecycle, no Orc flip needed) → `status:done` drained to just
@@ -510,10 +541,14 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   - **#912 (NEW, Orc 2026-06-16):** auto-enumerate CLI/MCP surfaces so a future command/tool can't
     silently bypass the desktop-session guard — converts #885's hand-maintained regression matrix
     (`tests/test_no_desktop_guard_885.py`) into a self-maintaining coverage contract. Test-only, P2.
-  - **#979 (Orc, now P1 — bumped 2026-06-17 21:25):** self-maintaining `-j` success-envelope contract —
-    auto-enumerate collection reads, fail CI if any drops `{success,<collection>,count}`. Kills the
-    recurring list/show drift class (#876→#977→#980 + open siblings #865/#895/#874/#872/#877/#866/#882/#897)
-    instead of fixing instance N+1. Highest-leverage envelope-thread item; pull forward over single fixes.
+  - **#979 (Orc, P1) — LANDED 2026-06-18 (`a8402af`, PR #986), now `status:done` awaiting QA.** Layer 1 of
+    the self-maintaining `-j` envelope contract: `@collection_read` decorator + `success_envelope()` helper +
+    a Click-tree-walking test that fails CI if any collection read drops `{success,<collection>,count}`. Kills
+    the list/show drift class (#876→#977→#980) structurally.
+  - **#987 (NEW, Orc 2026-06-18, P1):** **layer 2 — global `-j` stdout-purity contract.** #979 covers
+    collection reads only; #987 asserts every command + eager option (`--version`/`--help`) under `-j` emits
+    exactly one JSON doc with zero extra stdout bytes — catches the stray-text/eager-option sub-class
+    (#874/#869/#872) that the collection-read walk misses. Test-only, Dev-actionable, pickable.
   Blocked on v0.3.2.
 - **Backlog**: ~10 open (Linux platform + migrated community/docs tasks). **#777 (Unicode capture)
   fixed via PR #941** (Python bridge-level ASCII staging — ships independent of the stale DLL #842);

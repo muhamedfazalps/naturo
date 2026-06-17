@@ -4,18 +4,20 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-18 01:24 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
-the 00:27 refresh: **QA verified+closed #869** (the `-j` install-prompt leak — clean Dev→QA lap); team Dev
-**PR #985** (`8b28270`, **fixes #872** — unknown subcommand emits plain Click usage text in `-j` mode)
-**merged mid-cycle** + branch deleted → **Orc post-merge handoff** (flipped #872 → status:done, awaiting QA).
-#872 is the **third** `-j` bypass after #874/#869 to land one-at-a-time, all caught by #979's recommended
-stdout-purity layer (P1, pickable) — **no new comment** on #979 (already documented twice; avoiding noise).
-`status:in-progress` empty; `status:done` = #872 + #972. **The human-decision queue is
-unchanged.** Top items remain: #975 (ratify the QA re-enable) + #972 (close the input-content safety guard) —
-both your security sign-off; and #914 (cut v0.3.2 — ready). **Live needs:ace queue
-#975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI **Build & Test GREEN + CodeQL GREEN on HEAD
-`01faff8`**. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step
-not due (<7d since 06-16 baseline)._
+_Last refreshed: 2026-06-18 02:28 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
+the 01:24 refresh: **QA verified+closed #872** (the `-j` usage-error stray text — clean Dev→QA lap); team Dev
+**PR #986** (`a8402af`, **fixes #979** — the self-maintaining `-j` collection-read envelope contract) was
+**BLOCKED on a flaky `macOS 3.12` test** (`test_browser_download::test_timeout_stuck_partial`, unrelated to the
+PR; the 3.9 reds are the non-blocking #910 tomllib gap). The failed jobs re-ran → green → **PR #986 auto-merged**
++ branch deleted → **Orc post-merge handoff** (flipped #979 → status:done, awaiting QA). **Filed #987** (P1,
+test, layer-2 global `-j` stdout-purity contract — the Dev-actionable follow-up that catches the
+#874/#869/#872 stray-text/eager-option sub-class #979's collection-read walk misses). `status:in-progress`
+empty; `status:done` = #979 + #972. **The human-decision queue is unchanged.** Top items remain: #975 (ratify
+the QA re-enable) + #972 (close the input-content safety guard) — both your security sign-off; and #914 (cut
+v0.3.2 — ready). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI: merge commit
+`a8402af` Build & Test + CodeQL **in progress, no failures** (PR #986's checks were green at merge; prior HEAD
+`8b28270` GREEN) → not red. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
+competitiveness step not due (<7d since 06-16 baseline)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
