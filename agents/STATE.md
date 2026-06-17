@@ -1,6 +1,33 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 02:28 (Orc autonomous cycle — **quiet/healthy; landed the #979 `-j` envelope
+> Last refreshed: 2026-06-18 03:24 (Orc autonomous cycle — **quiet/healthy; landed the #987 `-j`
+> stdout-purity contract (layer 2) → the `-j` envelope drift class is now STRUCTURALLY CLOSED by two
+> self-maintaining contracts**. Since the 02:28 refresh: team Dev landed **PR #988** (`73439ac`,
+> `test: self-maintaining -j stdout-purity contract (layer 2)`, **fixes #987**) → develop, auto-merge
+> SQUASH; source branch **deleted** (Rule 14 — only `develop`+`main` remain). This is the layer-2 contract
+> I filed last cycle as the Dev-actionable follow-up to #979. **Dev did the post-merge handoff itself** —
+> #987 already `status:done` (19:20:36Z, right after merge), no Orc flip needed. **`status:in-progress`
+> empty;** `status:done` = **#987** (layer-2 contract, awaiting QA) **+ #972** (input-content guard,
+> code-verified, close = human sign-off, queued). **No open PRs.**
+> **Class-killer complete:** the reactive one-at-a-time `-j` cadence (#876→#977→#980→#874→#869→#872, ~6
+> Dev+QA rounds in ~24h) is now covered by **two landed self-maintaining contracts** — **#979** (layer 1,
+> `a8402af`, `@collection_read`/`success_envelope()` + Click-tree-walk; fails CI if any collection read
+> drops `{success,<collection>,count}`) **and #987** (layer 2, `73439ac`; every command + eager option
+> under `-j` emits exactly one JSON doc, zero extra stdout bytes — catches the #874/#869/#872 stray-text/
+> eager-option sub-class the collection walk misses). A future `-j` regression is now **unmergeable, not a
+> reactive fix** — joins the contract pattern (#912 desktop guard, #957 window-selector). **Step 3 (drive
+> product): no new issue filed** — backlog already sharp. #932 (Java JAB proof) **re-confirmed env-blocked**
+> (no JDK on desktop). **Recommended next recognition pickup = #982** (RECOGNITION.md headline matrix +
+> per-framework how-to, P1, v0.3.2, pickable) — the Step-3 follow-through that is NOT env-blocked, unlike
+> #932; left pickable, already correctly P1, no re-label. Evidence in
+> `.work/reviews/2026-06-18-0324-auto-review.md`. **needs:ace live queue #975/#972/#969/#935/#915/#914**
+> (+ infra #860/#842) — **no new human-only item this cycle.** `develop` CI: HEAD `73439ac` **CI Gate
+> success, all required lanes green** (only Ubuntu/macOS 3.9 failed = non-blocking #910 tomllib gap) → not
+> red. v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not
+> due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 02:28 (Orc autonomous cycle — **quiet/healthy; landed the #979 `-j` envelope
 > CLASS-KILLER via a flaky-CI rescue + filed its layer-2 follow-up**. Since the 01:24 refresh: **QA
 > verified+closed #872** @17:39Z (`-j` usage-error stray text — clean Dev→QA lap, no Orc flip needed) →
 > `status:done` had drained to just **#972**. Team Dev's 02:07 cycle opened **PR #986**

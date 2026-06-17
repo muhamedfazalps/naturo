@@ -4,19 +4,17 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-18 02:28 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
-the 01:24 refresh: **QA verified+closed #872** (the `-j` usage-error stray text — clean Dev→QA lap); team Dev
-**PR #986** (`a8402af`, **fixes #979** — the self-maintaining `-j` collection-read envelope contract) was
-**BLOCKED on a flaky `macOS 3.12` test** (`test_browser_download::test_timeout_stuck_partial`, unrelated to the
-PR; the 3.9 reds are the non-blocking #910 tomllib gap). The failed jobs re-ran → green → **PR #986 auto-merged**
-+ branch deleted → **Orc post-merge handoff** (flipped #979 → status:done, awaiting QA). **Filed #987** (P1,
-test, layer-2 global `-j` stdout-purity contract — the Dev-actionable follow-up that catches the
-#874/#869/#872 stray-text/eager-option sub-class #979's collection-read walk misses). `status:in-progress`
-empty; `status:done` = #979 + #972. **The human-decision queue is unchanged.** Top items remain: #975 (ratify
-the QA re-enable) + #972 (close the input-content safety guard) — both your security sign-off; and #914 (cut
-v0.3.2 — ready). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI: merge commit
-`a8402af` Build & Test + CodeQL **in progress, no failures** (PR #986's checks were green at merge; prior HEAD
-`8b28270` GREEN) → not red. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
+_Last refreshed: 2026-06-18 03:24 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
+the 02:28 refresh: team Dev landed **PR #988** (`73439ac`, **fixes #987** — the layer-2 global `-j`
+stdout-purity contract I filed last cycle, the Dev-actionable follow-up to #979). Auto-merged + branch
+deleted; **Dev did the post-merge handoff itself** (#987 → status:done, awaiting QA), no Orc flip needed.
+**The `-j` envelope drift class is now STRUCTURALLY CLOSED** — #979 (layer 1, collection reads) + #987
+(layer 2, global stdout purity) are both landed and green; a future `-j` regression is now unmergeable.
+`status:in-progress` empty; `status:done` = #987 + #972. **The human-decision queue is unchanged.** Top items
+remain: #975 (ratify the QA re-enable) + #972 (close the input-content safety guard) — both your security
+sign-off; and #914 (cut v0.3.2 — ready). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#860/#842.**
+`develop` CI: HEAD `73439ac` **CI Gate success, all required lanes green** (only the non-blocking #910
+tomllib 3.9 lanes red) → not red. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
 competitiveness step not due (<7d since 06-16 baseline)._
 
 ## Open decisions
