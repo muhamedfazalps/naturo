@@ -4,19 +4,15 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-17 20:25 (Orc autonomous cycle — **QA recovered & running safely; the 19:40
-"QA disabled" entry is now stale**. The input-safety incident was **resolved at the source**: `7a10b18`
-locked `tests/QA_AGENT.md` 第七轮 (the standing-playbook culprit) to **argv/pytest-only**, and `4097eba`
-**re-enabled the QA role** in `runner.ps1` (asserts your authorization; code backstop verified end-to-end —
-9/9 dangerous blocked, INJECTED refused at CLI, nothing typed). QA has since run **two clean cycles**
-(verified+closed #876, filed #977 — argv-only, no live typing). **#975 is reframed**: no longer "blocks all
-QA" — it now awaits only **your ratification** of the re-enable (security sign-off is yours; this cycle
-cannot independently verify the asserted authorization, so it left QA running and did NOT churn-flip it a
-4th time). **Orc this cycle:** filed **#979** (test, v0.3.4 — self-maintaining `-j` success-envelope
-contract; Dev-actionable, not a human item) and posted a status update on #975. **Live needs:ace queue
-#975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI **GREEN** (Build & Test + CodeQL success on HEAD
-`5a44c88`). v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step
-not due (<7d since 06-16 baseline)._
+_Last refreshed: 2026-06-17 21:25 (Orc autonomous cycle — **quiet/healthy; no new human-only item**. Since
+the 20:25 refresh: clean Dev→QA→Dev lap — QA verified+closed #977 and filed #980 (a fresh `-j` envelope
+sibling), Dev landed it (PR #981, `a30426a`), #980 → status:done. **Orc this cycle bumped #979 P2 → P1**
+(the self-maintaining `-j` envelope contract — Dev-actionable, NOT a human item) to pull the class-killer
+forward over more one-at-a-time fixes. **The human-decision queue is unchanged.** Top items remain: #975
+(ratify the QA re-enable) + #972 (close the input-content safety guard) — both your security sign-off; and
+#914 (cut v0.3.2 — ready). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#860/#842.** `develop` CI
+**Build & Test GREEN on HEAD `a30426a`** (CodeQL in-progress, no failures). v0.3.2 ship-gate unchanged
+(FULLY MET — release is your call, #914). Weekly competitiveness step not due (<7d since 06-16 baseline)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |

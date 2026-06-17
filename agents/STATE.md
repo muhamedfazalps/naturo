@@ -1,6 +1,27 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-17 20:25 (Orc autonomous cycle — **quiet/healthy; QA recovered & running safely —
+> Last refreshed: 2026-06-17 21:25 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA→Dev lifecycle
+> lap + pulled the envelope class-killer forward to P1**. Since the 20:25 refresh: QA verified+closed
+> **#977** (visual list / selector show `-j` envelope) and, in a lateral sweep, filed **#980** (a fresh
+> sibling — `list windows -j` / `list screens -j` omitted top-level `count`); Dev landed it as PR **#981**
+> (`a30426a`), branch auto-deleted, flipped **#980 → status:done** (awaiting QA — Dev did the handoff
+> itself, no Orc flip needed). **Orc this cycle (Step 3 — priority honesty): bumped #979 P2 → P1.** #979 is
+> the self-maintaining `-j` success-envelope contract (auto-enumerate collection reads, fail CI if any
+> drops `{success,<collection>,count}`). The drift class keeps recurring — **#876 → #977 → #980**, each a
+> full Dev+QA round — and #980 was found *after* #979 was filed, proving the reactive cadence won't stop on
+> its own; Dev keeps fixing instance N while the contract that makes instance N+1 unmergeable sits unpicked.
+> Raising it above further single-command fixes is justified pull-forward. **No open PRs.**
+> `status:in-progress` **empty**; **status:done = #980** (awaiting QA) **+ #972** (security guard, code
+> verified, close = human sign-off, already queued). **needs:ace live queue #975/#972/#969/#935/#915/#914**
+> (+ infra #860/#842 in NEEDS-ACE.md) — no new human-only item this cycle. `develop` CI: **Build & Test
+> GREEN on HEAD `a30426a`**, CodeQL in-progress (no failures) → not red. v0.3.2 ship-gate unchanged (FULLY
+> MET — release is Ace's call, #914). #975 (ratify QA re-enable) + #972 (close guard) remain the top safety
+> items; loop left QA running safely, did NOT churn-flip it again. #915 still recommended-for-closure (QA
+> durability demonstrated). Weekly competitiveness **not due** (baseline 2026-06-16, <7d). Recognition next
+> move still **#932** (Java JAB proof — env-blocked, JDK absent).)_
+>
+> ---
+> _Prior refresh: 2026-06-17 20:25 (Orc autonomous cycle — **quiet/healthy; QA recovered & running safely —
 > reconciled the now-stale "QA disabled" docs + filed a self-maintaining envelope contract (Step 3)**. The
 > 19:40 refresh recorded a LIVE input-safety incident with QA hard-disabled; since then the loop **resolved
 > it at the source and resumed normally**: `7a10b18` locked `tests/QA_AGENT.md` 第七轮 (the standing-playbook
@@ -397,6 +418,10 @@ gh issue list --state open --limit 100 --json milestone,number,title,labels \
   - **#912 (NEW, Orc 2026-06-16):** auto-enumerate CLI/MCP surfaces so a future command/tool can't
     silently bypass the desktop-session guard — converts #885's hand-maintained regression matrix
     (`tests/test_no_desktop_guard_885.py`) into a self-maintaining coverage contract. Test-only, P2.
+  - **#979 (Orc, now P1 — bumped 2026-06-17 21:25):** self-maintaining `-j` success-envelope contract —
+    auto-enumerate collection reads, fail CI if any drops `{success,<collection>,count}`. Kills the
+    recurring list/show drift class (#876→#977→#980 + open siblings #865/#895/#874/#872/#877/#866/#882/#897)
+    instead of fixing instance N+1. Highest-leverage envelope-thread item; pull forward over single fixes.
   Blocked on v0.3.2.
 - **Backlog**: ~10 open (Linux platform + migrated community/docs tasks). **#777 (Unicode capture)
   fixed via PR #941** (Python bridge-level ASCII staging — ships independent of the stale DLL #842);
