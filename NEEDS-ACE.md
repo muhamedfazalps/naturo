@@ -4,30 +4,31 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-18 18:23 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land (#976 via
-PR #1003) + active in-flight pickup self-opening its PR mid-sweep (#1001 / PR #1005) + one priority-honesty
-triage (#1004 → v0.3.4); no new human-only item; the queue below is unchanged**. Since the 17:22 refresh:
-(a) **PR #1003 landed** (`3f27ae7`, **fixes #976** — the QA input-injection test is now pytest-only
-**in-process**, never live `SendInput`; the R-SEC-012 root-cause **code** fix, paired with your #975
-ratification) → `develop`, branch auto-deleted (Rule 14 clean); Dev flipped #976 → `status:done` itself
-(awaiting QA). (b) The Dev cycle **picked up #1001** (the recommended next pickup — the self-maintaining
-`-j` ERROR-envelope enforcement contract) and **opened PR #1005** at sweep time with auto-merge SQUASH
-armed, MERGEABLE, BLOCKED only on pending CI = the healthy self-land path → left untouched (Rule 4),
-auto-merge will land it when green. (c) **Milestoned QA's new #1004 → v0.3.4** (`click`/`type`/`press`/
-`mouse` `-j` errors flatten a semantic `NaturoError` to `ACTION_ERROR`/`unknown` — a real semantics
-follow-up gap to #884/#877, kept P2, tightly coupled to #1001's contract). `status:in-progress` = **#1001**
-(active, PR #1005 + auto-merge); `status:done` = **#976** (awaiting QA) **+ #972** (input-content guard,
-code-verified, awaiting your security sign-off). **No open PRs** other than the freshly-opened #1005.
-**Step 3 (drive product):** the `-j` error-envelope class stays structurally addressed (convergence
-#884/#1002 landed+verified; enforcement contract #1001 now in-flight as PR #1005; #1004 = the remaining
-semantics gap, milestoned). **No duplicate filed** — recognition hardening env-blocked (#932 Java/no JDK;
-#934 SAP/no install); distribution backlog sharp (#997/#929/#930/#922/#928). Priority honesty: zero
-unmilestoned actionable issues (only the `needs:ace` items below float). Top human items unchanged: **#914**
-(cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) —
-both your security sign-off; **#915 recommended for closure** (QA durably healthy). NB: the **#969 env fix
-stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914 /#860/#842.** `develop` CI:
-HEAD `3f27ae7` (#1003) **Build & Test + CodeQL success** → **develop not red**. v0.3.2 ship-gate unchanged
-(FULLY MET — release is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
+_Last refreshed: 2026-06-18 19:25 (Orc autonomous cycle — **quiet/healthy; two Dev PRs landed clean
+(#1001 verified+closed via PR #1005; #1004 via PR #1006) → the `-j` ERROR-envelope class is now
+STRUCTURALLY CLOSED; one Orc post-merge handoff (#1004 → status:done); no new human-only item; the queue
+below is unchanged**. Since the 18:23 refresh: (a) **PR #1005 landed** (`0244512`, **fixes #1001** — the
+self-maintaining `-j` ERROR-envelope enforcement contract; Build & Test + CodeQL success) and **#1001 is
+CLOSED + `verified`** (QA closed it; merged commit present → Rule 1 clean); branch auto-deleted (Rule 14
+clean). (b) **PR #1006 landed** (`a47eb30`, **fixes #1004** — preserve `NaturoError` identity in interaction
+`-j` errors so `click`/`type`/`press`/`mouse` no longer flatten a semantic error to `ACTION_ERROR`/`unknown`,
+restoring the #877 agent self-correction contract on the most-used commands; extends the #1001 contract test
+with a semantic-identity assertion). Base `develop` ≠ default branch → did not auto-close; Dev left it
+`status:in-progress` → **Orc post-merge handoff: flipped #1004 → `status:done`** + QA note; branch
+auto-deleted (Rule 14 clean). `status:in-progress` now **empty**; `status:done` = **#1004** (interaction-error
+semantics, awaiting QA) **+ #972** (input-content guard, code-verified, awaiting your security sign-off).
+**No open PRs.** **Step 3 (drive product):** the `-j` ERROR-envelope class is now structurally closed — the
+contract test asserts canonical *shape* across the whole Click tree **and** *semantics* on the action
+commands (#1006), so future re-drift is unmergeable; the reactive one-at-a-time cadence is over. **No
+duplicate filed (Rule 9)** — recognition hardening env-blocked (#932 Java/no JDK re-confirmed; #934 SAP/no
+install); distribution backlog sharp (#997/#930/#922/#928). Priority honesty: zero unmilestoned actionable
+issues (only the `needs:ace` items below float). Top human items unchanged: **#914** (cut v0.3.2 — ready),
+**#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) — both your security
+sign-off; **#915 recommended for closure** (QA durably healthy). NB: the **#969 env fix stays human-only**
+(Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914 /#860/#842.** `develop` CI: code HEAD
+`0244512` (#1005) **Build & Test + CodeQL success**; HEAD `a47eb30` (#1006) run in progress, no failures →
+**develop not red**. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
+competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |

@@ -1,6 +1,38 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 18:23 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land
+> Last refreshed: 2026-06-18 19:25 (Orc autonomous cycle — **quiet/healthy; two Dev PRs landed clean
+> since 18:23 → the `-j` ERROR-envelope class is now STRUCTURALLY CLOSED + one Orc post-merge handoff
+> (#1004 → status:done); develop not red, no open PRs, no new human-only item**. Since the 18:23 refresh:
+> (a) **PR #1005 landed** (`0244512`, **fixes #1001** — the self-maintaining `-j` ERROR-envelope
+> enforcement contract; Build & Test + CodeQL success) and **#1001 is CLOSED + `verified`** (QA picked it
+> up and closed it; merged commit present → Rule 1 clean); source branch auto-deleted (only `develop`+`main`
+> remain, Rule 14 clean). (b) **PR #1006 landed** (`a47eb30`, **fixes #1004** — preserve `NaturoError`
+> identity in interaction `-j` errors: `_click/_common/_mouse/_press/_type.py` + extended
+> `tests/test_error_envelope_contract_1001.py`). Base `develop` ≠ default branch → did **not** auto-close;
+> Dev left it `status:in-progress` → **Orc post-merge handoff: flipped #1004 `status:in-progress` →
+> `status:done`** + QA note (run `click`/`type`/`press`/`mouse` `-j` on a missing ref; confirm
+> `code:ELEMENT_NOT_FOUND`/`category:automation`/`recoverable:true`/non-null `suggested_action`, canonical
+> six-key order intact, non-zero exit). Branch auto-deleted (Rule 14 clean). **`status:in-progress` now
+> empty;** `status:done` = **#1004** (interaction-error semantics, awaiting QA) **+ #972** (input-content
+> guard, code-verified, close = human security sign-off, queued). **No open PRs.** **Step 2 health: no
+> abandoned work.** **Step 3 (drive product): the `-j` ERROR-envelope class is now STRUCTURALLY CLOSED** —
+> `test_error_envelope_contract_1001.py` (343 lines) asserts the canonical six-key envelope across the whole
+> Click tree (≥100 leaves) for *shape*, representative runtime failures for code-in-order, **#1006's
+> `test_interaction_action_error_keeps_semantic_identity` for *semantics*** (action-phase `NaturoError` keeps
+> code/category/recoverable/suggested_action), plus a direct `_json_err`-funnel + serializer pin. Future
+> re-drift is **unmergeable**; mirrors the success-envelope posture (#979 layer-1 + #987 layer-2). The
+> reactive one-at-a-time cadence (#993/#877/#991/#884 + #1004) is over. **No new issue filed (Rule 9)** —
+> a follow-up here would be noise; recognition hardening env-blocked (#932 Java/no JDK re-confirmed; #934
+> SAP/no install); distribution backlog sharp (#997/#930/#922/#928). **Priority honesty:** unmilestoned scan
+> = only the `needs:ace` items (#975/#969/#935/#915, human-only) → **zero unmilestoned actionable Dev work.**
+> Evidence in `.work/reviews/2026-06-18-1925-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop` CI:
+> code HEAD `0244512` (#1005) **Build & Test + CodeQL success**; HEAD `a47eb30` (#1006) run in progress, no
+> failures → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914). Weekly
+> competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 18:23 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land
 > (#976 in-process input-safety test via PR #1003) + post-merge handoff already done by Dev + one
 > active in-flight Dev pickup self-opening its PR mid-sweep (#1001 / PR #1005, auto-merge armed,
 > BLOCKED only on pending CI, left untouched per Rule 4) + one priority-honesty triage of a
