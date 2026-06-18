@@ -4,29 +4,27 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-18 21:22 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land + handoff
-(#991 `press` invalid-key envelope via PR #1009); develop green, no open PRs, status:in-progress empty, no
-new human-only item; the queue below is unchanged**. Since the 20:22 refresh: (a) the 20:37 QA cycle
-**verified+closed #1007** @20:42 local (`move --to`/`--id` element-target resolution — real-desktop `-j`
-repro: missing target → `ELEMENT_NOT_FOUND`/`automation`/`recoverable:true` exit 1, stale ref →
-`REF_NOT_FOUND`, bare move → `INVALID_INPUT`, two SUCCESS paths confirming the cursor physically moved to the
-element centre via `GetCursorPos`; cursor-move only, NO keystrokes). (b) the 21:07 Dev cycle **landed PR
-#1009** (`77c4a67`, **fixes #991** — `press <bad-key>` now re-maps the native core's unknown-key rejection to
-an `INVALID_INPUT` envelope with a clean message, `suggested_action` listing valid keys, and a difflib "did
-you mean" hint; System/COM errors keep `ACTION_ERROR`, guarded against over-broad remap; +6 tests). Dev did
-the post-merge handoff itself → #991 `status:done`, **no Orc flip needed**; branch auto-deleted (Rule 14
-clean). `status:in-progress` now **empty**; `status:done` = **#991** (press invalid-key envelope, awaiting
-QA) **+ #972** (input-content guard, code-verified, awaiting your security sign-off). **No open PRs.** **Step
-3 (drive product):** the `-j` ERROR-envelope class stays structurally closed (#1001 *shape* + #1006
-*semantics*, future re-drift unmergeable); #991 was the last queued instance of the interaction-error-envelope
-theme and Dev shipped it. **No duplicate filed (Rule 9)** — recognition hardening env-blocked (#932 Java/no
-JDK; #934 SAP/no install); distribution backlog sharp (#997/#930/#922/#928). Priority honesty: zero
-unmilestoned actionable issues (only the `needs:ace` items below float). Top human items unchanged: **#914**
-(cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) —
-both your security sign-off; **#915 recommended for closure** (QA durably healthy). NB: the **#969 env fix
-stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914 /#860/#842.** `develop` CI:
-HEAD `77c4a67` (#1009) **Build & Test + CodeQL success** → **develop not red**. v0.3.2 ship-gate unchanged
-(FULLY MET — release is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
+_Last refreshed: 2026-06-18 22:22 (Orc autonomous cycle — **quiet/healthy; clean QA→Dev lap (#991
+verified+closed; Dev picked up #899) since 21:22; develop green, no open PRs, one fresh in-flight Dev pickup,
+no new human-only item; the queue below is unchanged**. Since the 21:22 refresh: (a) the 21:37 QA cycle
+**verified+closed #991** @22:30Z (`press` invalid-key → `INVALID_INPUT` envelope — `entr`/`NotARealKey`/
+`ctrl+notakey`/`""` all clean message + `suggested_action`, fuzzy "Did you mean 'enter'?" on typo, "Empty key
+name." on empty; intrusive input: none — invalid keys rejected before any keystroke). (b) the 22:07 Dev cycle
+**picked up #899** ("accept `-h` as short form of `--help`"; P2/`from:qa`/v0.3.4) at 14:10:34Z = ~13 min
+before sweep, **no branch pushed → active in-flight, left untouched (Rule 4)** (not the >24h-no-PR
+abandonment case). `status:in-progress` = **#899** (active); `status:done` = **#972** (input-content guard,
+code-verified, awaiting your security sign-off). **No open PRs;** branches `develop`+`main` only (Rule 14
+clean). **Step 3 (drive product):** the `-j` ERROR-envelope class stays structurally closed (#1001 *shape* +
+#1006 *semantics*, re-drift unmergeable); the interaction-error-envelope theme's last queued instance (#991)
+shipped+verified this lap, #899 (next `from:qa` polish) is in flight. **No duplicate filed (Rule 9)** —
+recognition hardening env-blocked (#932 Java/no JDK; #934 SAP/no install); distribution backlog sharp
+(#997/#930/#922/#928). Priority honesty: zero unmilestoned actionable issues (only the `needs:ace` items
+below float). Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA re-enable) +
+**#972** (close the input-content safety guard) — both your security sign-off; **#915 recommended for
+closure** (QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live needs:ace queue
+#975/#972/#969/#935/#915/#914 /#860/#842.** `develop` CI: code HEAD `77c4a67` (#1009) **Build & Test + CodeQL
+success** → **develop not red**. v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
+competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
