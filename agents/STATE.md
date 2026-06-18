@@ -1,6 +1,40 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 11:22 (Orc autonomous cycle — **quiet/healthy; one stuck Dev PR diagnosed +
+> Last refreshed: 2026-06-18 12:22 (Orc autonomous cycle — **quiet/healthy; two Dev PRs landed clean +
+> post-merge handoff (#926 mcpb bundle) + priority-honesty triage of 3 unmilestoned issues; develop green;
+> no new human-only item**. Since the 11:22 refresh: (a) the previously-stuck **PR #995** (`fix #867`,
+> hidden-command typo suggestions) **was fixed and merged** — Dev owned the not-found path exactly as
+> dispatched; the 11:22 click `8.4.1`-vs-`8.3.1` cross-platform diagnosis held; `develop` Build & Test +
+> CodeQL both **success** and **#867 is QA verified+closed** (clean Dev→QA lap, no Orc flip needed). (b)
+> Team Dev landed **PR #996** (`915b0a9`, `feat/issue-926-mcpb-bundle`, **fixes #926** — the Claude Desktop
+> Extension `.mcpb` manifest + builder: `packaging/mcpb/manifest.json`, `scripts/build_mcpb.py`,
+> `tests/test_mcpb_bundle.py`, +731/-9) → `develop`, auto-merge. Both source branches **auto-deleted** (only
+> `develop`+`main` remain, Rule 14 clean). **Orc post-merge handoff: flipped #926 `status:in-progress` →
+> `status:done`** + QA verification note (Dev hadn't flipped it — issue last touched 04:18Z, before the
+> 04:21Z merge; base ≠ default branch so no auto-close; the note asks QA to validate the manifest schema +
+> version against the #873 SDK-version-leak class and assert zip structure + stdio entry-point, not just that
+> the build script runs). This lands the **distribution one-click-install lever** (epic #922) — the highest-
+> leverage developer-audience install asset after the #929 quickstart. **Step 3 (drive product — priority
+> honesty): milestoned 3 unmilestoned actionable issues.** **#997** (`enhancement`/`tech-debt`, P2 — "fully
+> self-contained `.mcpb` bundle: vendor native core + Python runtime, no `pip install` prereq") → **v0.4.0**
+> (it is the v0.4.0 roadmap line — embedded Python runtime + standalone exe — the larger follow-on to #926;
+> framing comment posted: #926 ships packaging but the bundle still assumes `pip install naturo` + Python on
+> PATH, so it is **not yet true one-click install** for non-developers → #997 is what makes #922's promise
+> real for end users; kept P2). **#993** (`bug`/`from:qa`, P2 — `-j` error-envelope bare-string `error` on
+> record/selector/visual + `visual delete` omits `error`) → **v0.3.4** (the `-j` envelope bug lane). **#991**
+> (`bug`/`from:qa`, P2 — `press` invalid-key error leaks internals, lacks suggested_action) → **v0.3.4**.
+> **No new issue filed** — distribution arm advancing (mcpb bundle landed; #997 follow-on already exists;
+> quickstart #929 + registries #922/#928 + hero #930 sharp); a duplicate would be noise (Rule 9). Recognition
+> hardening remaining env-blocked (#932 Java/no JDK, #934 SAP/no install). **`status:in-progress` empty;**
+> `status:done` = **#926** (mcpb bundle, awaiting QA) **+ #972** (input-content guard, code-verified, close =
+> human security sign-off, queued). **No open PRs.** Evidence in `.work/reviews/2026-06-18-1222-auto-review.md`.
+> **needs:ace live queue unchanged #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only
+> item this cycle.** `develop` CI: merge commit `915b0a9` (#996) **Build & Test success + CodeQL success**
+> (monitored the in-progress merge run to completion) → **not red.** v0.3.2 ship-gate unchanged (FULLY MET —
+> release is Ace's call, #914). Weekly competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 11:22 (Orc autonomous cycle — **quiet/healthy; one stuck Dev PR diagnosed +
 > dispatched (#867 / PR #995, genuine red CI); develop not red; no new human-only item**. Since the 10:22
 > refresh: the in-flight **#867** pickup surfaced as **PR #995** (`fix: exclude hidden commands from typo
 > suggestions`, author AcePeak/team Dev, auto-merge SQUASH on 03:16Z) — but it is `BLOCKED` on **genuine red
