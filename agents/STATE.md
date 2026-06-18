@@ -1,6 +1,41 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 22:22 (Orc autonomous cycle — **quiet/healthy; clean QA→Dev lap (#991
+> Last refreshed: 2026-06-18 23:26 (Orc autonomous cycle — **healthy EXCEPT one team-Dev PR BLOCKED
+> on genuine red CI (#1011 / #899) — diagnosed (the #867/#995 click-version split) + dispatched a
+> version-robust fix to Dev; `develop` itself green, no new human-only item**. Since the 22:22 refresh:
+> the in-flight #899 pickup surfaced as **PR #1011** (`feat: accept -h as short form of --help`, head
+> `fix/issue-899-help-short-flag` → `develop`, author AcePeak/team-Dev, auto-merge SQUASH armed
+> 15:15:09Z). It is `MERGEABLE` but **`BLOCKED` on genuine red CI**: its own new
+> `tests/test_help_short_flag_899.py::test_short_flag_matches_long_flag` fails for **3 of 12 targets** —
+> `['click']`, `['type']`, `['app','launch']` each `exited 2: Error: No such option '-h'.` — on **every**
+> Linux/macOS lane (3.9/3.12/3.13), while `Python Tests with DLL (Windows)` passes. **Root cause = the
+> #867/#995 `click 8.3.1` (desktop) vs `8.4.1` (CI) split:** the fix sets `help_option_names=["-h",
+> "--help"]` on the **root group only** and relies on child contexts *inheriting* it — true on 8.3.1
+> (green on Windows), not uniform on **8.4.1** (confirmed `click-8.4.1` in the CI Install step). **Action
+> (Step 1 — dispatch a Dev fix, don't let it rot):** posted a precise diagnostic + fix-direction comment
+> (PR #1011 `4743513536`) — stop relying on inheritance; set `help_option_names` explicitly on every node
+> in the existing `_patch_all_commands(main)` walk (`naturo/cli/__init__.py:213`, recurse `:82-87`) via
+> `cmd.context_settings.setdefault("help_option_names", ["-h","--help"])`, and verify against
+> `pip install 'click==8.4.1'`, not the 8.3.1 desktop. **Did NOT touch the branch (Rule 4), did NOT merge
+> (red), did NOT close;** the armed auto-merge is correctly held by the red gate and will land it once
+> green. **`status:in-progress` = #899** (active — PR #1011 open, just dispatched, NOT the >24h-no-PR
+> abandonment case); **`status:done` = #972** (input-content guard, code-verified, close = human security
+> sign-off, queued). **Step 2 health: no abandoned work.** **Step 3 (drive product): no new issue filed
+> (Rule 9)** — the #1011 diagnostic dispatch was the cycle's real Step-1 work; the `-j` ERROR-envelope
+> class stays structurally closed (#1001 *shape* + #1006 *semantics*); recognition hardening env-blocked
+> (#932 Java/no JDK; #934 SAP/no install); distribution backlog sharp (#997/#930/#922/#928). NB: the click
+> 8.3.1-vs-8.4.1 desktop/CI divergence keeps biting (#867/#995, now #1011) — each fix is made
+> version-robust in-PR, so no standalone issue yet (Rule 9); a third instance would justify a click
+> floor/pin issue. **Priority honesty:** zero unmilestoned actionable Dev work (only the `needs:ace` items
+> + the parked `help wanted` community backlog float). Evidence in
+> `.work/reviews/2026-06-18-2326-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop`
+> CI: code HEAD `77c4a67` (#1009) **Build & Test + CodeQL success** → **not red** (the red is
+> PR-branch-only, #1011). v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914). Weekly
+> competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 22:22 (Orc autonomous cycle — **quiet/healthy; clean QA→Dev lap (#991
 > verified+closed by QA; Dev picked up #899) since 21:22; develop green, no open PRs, one fresh in-flight
 > Dev pickup, no new human-only item**. Since the 21:22 refresh: (a) the 21:37 **QA cycle verified+closed
 > #991** @22:30Z (`press` invalid-key → `INVALID_INPUT` envelope: `entr`/`NotARealKey`/`ctrl+notakey`/`""`
