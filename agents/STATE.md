@@ -1,6 +1,37 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 23:26 (Orc autonomous cycle — **healthy EXCEPT one team-Dev PR BLOCKED
+> Last refreshed: 2026-06-19 00:23 (Orc autonomous cycle — **quiet/healthy; both previously-diagnosed
+> red-CI team-Dev PRs landed clean since 23:26 → develop green, no open PRs, one fresh in-flight Dev
+> pickup (#894), no new human-only item**. Since the 23:26 refresh: (a) **PR #1011 landed** (`4d68b34`,
+> **fixes #899** — `feat: accept -h as short form of --help`); this is the PR that was `BLOCKED` on
+> genuine red CI last cycle (the #867/#995 `click 8.3.1`-vs-`8.4.1` `help_option_names` inheritance
+> split). Orc had dispatched a version-robust fix-direction; Dev applied it and it merged → **#899 is
+> CLOSED + `verified`** (clean Dev→QA lap, Rule 1 clean). (b) **PR #1012 landed** (`0f05099`, HEAD,
+> **fixes #910** — guard the `tomllib` import for the Python 3.9 test lane); resolves the long-standing
+> non-blocking 3.9 `continue-on-error` gap → **#910 `status:done`** (Dev flipped at merge 15:42:32Z,
+> awaiting QA; no Orc flip needed). Both source branches auto-deleted (only `develop`+`main` remain,
+> Rule 14 clean). **`status:in-progress` = #894** (`bug: JSON output escapes non-ASCII CJK/emoji with
+> \uXXXX`, P2/`from:qa`/v0.3.4 — updated 16:12:10Z, ~11 min before sweep, **no branch pushed → active
+> in-flight, left untouched, Rule 4**; not the >24h-no-PR abandonment case). **`status:done` = #910**
+> (tomllib guard, awaiting QA) **+ #972** (input-content guard, code-verified, close = human security
+> sign-off, queued). **No open PRs.** **Step 2 health: no abandoned work.** **Step 3 (drive product): no
+> new issue filed (Rule 9)** — priority-honesty scan: unmilestoned = only the four `needs:ace`
+> ops/security items (#975/#969/#935/#915, human-only) + the parked Linux/cross-platform community
+> backlog (#88/#87/#84/#77/#75/#74/#68/#66, `help wanted`) → **zero unmilestoned actionable Dev work**;
+> fresh QA bug **#1010** (`list windows --app <nonmatching>` false "no interactive desktop session"
+> warning) already milestoned v0.3.4, correctly triaged, Dev-pickable. The `-j` ERROR-envelope class
+> stays structurally closed (#1001 *shape* + #1006 *semantics*); recognition hardening env-blocked (#932
+> Java/no JDK re-confirmed; #934 SAP/no install); distribution backlog sharp (#997/#930/#922/#928). NB:
+> the click 8.3.1-vs-8.4.1 desktop/CI split (#867/#995, now #1011) was fixed version-robust in-PR each
+> time → 2 instances, still no standalone click floor/pin issue (Rule 9); a 3rd would justify one.
+> Evidence in `.work/reviews/2026-06-19-0023-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop`
+> CI: HEAD `0f05099` (#1012) **Build & Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged
+> (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not due** (baseline 2026-06-16,
+> <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 23:26 (Orc autonomous cycle — **healthy EXCEPT one team-Dev PR BLOCKED
 > on genuine red CI (#1011 / #899) — diagnosed (the #867/#995 click-version split) + dispatched a
 > version-robust fix to Dev; `develop` itself green, no new human-only item**. Since the 22:22 refresh:
 > the in-flight #899 pickup surfaced as **PR #1011** (`feat: accept -h as short form of --help`, head
