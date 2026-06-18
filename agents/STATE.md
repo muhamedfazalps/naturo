@@ -1,6 +1,52 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 17:22 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap (#884
+> Last refreshed: 2026-06-18 18:23 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land
+> (#976 in-process input-safety test via PR #1003) + post-merge handoff already done by Dev + one
+> active in-flight Dev pickup self-opening its PR mid-sweep (#1001 / PR #1005, auto-merge armed,
+> BLOCKED only on pending CI, left untouched per Rule 4) + one priority-honesty triage of a
+> genuinely-new QA bug (#1004 → v0.3.4); develop green, no new human-only item**. Since the 17:22
+> refresh: (a) **PR #1003 landed** (`3f27ae7`, **fixes #976** — make the QA input-injection/
+> sanitization test pytest-only **in-process**, never live `SendInput`; +`tests/test_input_injection_safety_976.py`
+> (124), a live-input tripwire in `tests/conftest.py`, `tests/QA_AGENT.md` note — the R-SEC-012
+> root-cause **code** fix, paired with the #975 human ratification) → `develop`, source branch
+> auto-deleted (only `develop`+`main` remain, Rule 14 clean). **Dev did the post-merge handoff
+> itself** — #976 already `status:done` (09:41Z, awaiting QA), **no Orc flip needed** (base ≠ default
+> branch → no auto-close). (b) the Dev cycle **picked up #1001** (the recommended next pickup — the
+> self-maintaining `-j` ERROR-envelope contract) and **opened PR #1005** mid-sweep
+> (`fix/issue-1001-error-envelope-contract` → `develop`, **fixes #1001**: auto-enumerate the full
+> Click command tree + representative runtime callback families + the recovery-hint/serializer
+> source-of-truth, asserting every `-j` error stays on the canonical six-key envelope). PR opened
+> 10:23:08Z ≈ sweep time, **auto-merge SQUASH armed, MERGEABLE, BLOCKED only on pending CI** = the
+> healthy team-Dev self-land path → **not merged (CI pending), branch untouched (Rule 4); auto-merge
+> will land it when green.** This is the enforcement layer that makes the #884/#1002 error-envelope
+> convergence un-droppable, mirroring #979/#987 for the success envelope. **`status:in-progress` =
+> #1001** (active, PR #1005 open + auto-merge); **`status:done` = #976** (in-process input-safety
+> test, awaiting QA) **+ #972** (input-content guard, code-verified, close = human security sign-off,
+> queued). **No open PRs** other than the freshly-opened #1005. **Step 2 health: no abandoned work**
+> (#976 just merged; #1001 is fresh — PR opened at sweep time). **Step 3 (drive product —
+> priority-honesty triage): milestoned #1004 → v0.3.4** (+ framing comment). QA filed **#1004**
+> (`bug`/`P2`/`from:qa`, unmilestoned) this cycle: `click`/`type`/`press`/`mouse` `-j` errors flatten
+> a semantic `NaturoError` (`ElementNotFoundError`) to `ACTION_ERROR`/`category:unknown`/
+> `suggested_action:null`/`recoverable:false`, while sibling `get`/`set`/`scroll` correctly surface
+> `ELEMENT_NOT_FOUND`/`automation`/recoverable. A real follow-up **gap, not a duplicate**: #884 fixed
+> envelope *shape*, #877 fixed *semantics* for `get`/`set`; #1004 is the remaining *semantics* gap on
+> the interaction commands' action-phase catch-alls (`_common._json_err(str(exc), …)` discards the
+> `NaturoError` identity) — defeats the #877 agent self-correction contract on the most-used command
+> (`click`). Milestoned **v0.3.4** (the error-envelope lane), kept **P2** per the issue's own severity
+> analysis; framing comment notes the tight coupling to #1001 (#1001 asserts *shape*; #1004's
+> acceptance asks to extend the same contract to assert *code/category* across every interaction
+> command → sequencing: land #1001 first, then #1004 = the code fix + a code/category assertion layered
+> on). **No new issue filed (Rule 9)** — #1004 is the cycle's real Step-3 work; recognition hardening
+> env-blocked (#932 Java/no JDK; #934 SAP/no install); distribution backlog sharp
+> (#997/#929/#930/#922/#928). **Priority honesty:** after milestoning #1004, the unmilestoned scan =
+> only the `needs:ace` items (#975/#969/#935/#915, human-only) — **zero unmilestoned actionable Dev
+> work.** Evidence in `.work/reviews/2026-06-18-1823-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop`
+> CI: HEAD `3f27ae7` (#1003) **Build & Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged
+> (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 17:22 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap (#884
 > verified+closed) + one active in-flight Dev pickup (#976, P0 SAFETY in-process test, ~8 min old,
 > left untouched per Rule 4); develop green, no open PRs, status:done drained to just #972, backlog
 > sharp + fully milestoned, no new human-only item**. Since the 16:22 refresh: (a) the 16:40 QA cycle
