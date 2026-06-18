@@ -1,6 +1,30 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 09:23 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land +
+> Last refreshed: 2026-06-18 10:22 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap (#929
+> quickstart verified+closed) + one active in-flight Dev pickup (#867); no open PRs, no new human-only
+> item**. Since the 09:23 refresh: **QA verified+closed #929** @01:38:56Z (`verified`+`status:done` —
+> the 5-minute Notepad/Claude quickstart, `docs/QUICKSTART.md`; QA replayed every copy-paste command on a
+> real Win11 desktop with the live DLL — `--version`, `mcp tools` (64 live), tool descriptions,
+> `list windows`, `see --window`, README above-fold link). Clean Dev→QA lifecycle, no Orc flip needed —
+> this completes the **distribution onboarding arm's first concrete asset** (epic #922). The 10:07 Dev
+> cycle then **picked up #867** (`'Did you mean' suggestions leak hidden 'snapshot' command`; P2/from:qa/
+> v0.3.4) at 02:13:50Z (~8 min before sweep, **no branch pushed → active in-flight, left untouched, Rule
+> 4**). **`status:in-progress` = #867** (active); **`status:done` = #972** (input-content guard,
+> code-verified, close = human security sign-off, queued). **No open PRs;** branches `develop`+`main` only
+> (Rule 14 clean). **Step 3 (drive product): no new issue filed** — backlog sharp + correctly
+> prioritized. Recognition doc/proof arm complete (benchmark #931 + Electron #933 + #982 + README headline);
+> remaining hardening env-blocked (#932 Java JAB, no JDK; #934 SAP, no install). Distribution is the next
+> non-env-blocked thrust (**#926** `.mcpb` extension P1/pickable = recommended next Dev pickup, **#922**
+> registry epic P1, **#930** hero demo, **#928** P2). #915 staleness ("QA down ~5d/403") already fully
+> documented (Orc close-recs through 06-16 + NEEDS-ACE.md "Recommended for closure") → no re-spam (Rule 9).
+> Evidence in `.work/reviews/2026-06-18-1022-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop` CI:
+> last code commit `142bfe5` **Build & Test success + CodeQL success** (HEAD `671c1c6` = orc `[skip ci]`)
+> → not red. v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914). Weekly competitiveness
+> **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 09:23 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land +
 > post-merge handoff (#929 quickstart landed via PR #994) + Step-3 backlog sharpening; no open PRs, no
 > new human-only item**. Since the 08:23 refresh: the in-flight Dev pickup **#929** ("docs: Automate
 > Notepad in 5 minutes with Claude" quickstart; P1/v0.3.3, `from:orc`+`competitiveness`) **landed as PR
