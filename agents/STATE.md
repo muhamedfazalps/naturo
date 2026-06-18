@@ -1,6 +1,29 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 00:23 (Orc autonomous cycle — **quiet/healthy; both previously-diagnosed
+> Last refreshed: 2026-06-19 01:23 (Orc autonomous cycle — **quiet/healthy; two more team-Dev PRs
+> landed clean since 00:23 → develop green, no open PRs, status:in-progress empty, no abandoned
+> work, no new human-only item; needs:ace queue unchanged**. Since the 00:23 refresh: (a) **PR #1013
+> landed** (`9c3377f`, **fixes #894** — emit literal non-ASCII in CLI `-j` JSON output, resolving the
+> `\uXXXX` CJK/emoji escaping bug); QA picked it up and **verified+closed #894** this window (clean
+> Dev→QA lap, Rule 1 clean). (b) **PR #1014 landed** (`a55c35f`, HEAD, **fixes #1010** — `list windows
+> --app <nonmatching>` no longer falsely warns "no interactive desktop session" when the filter empties
+> a non-empty window list); Dev did the post-merge handoff itself → **#1010 `status:done`** (17:18:55Z,
+> awaiting QA), **no Orc flip needed**. Both source branches auto-deleted (only `develop`+`main` remain,
+> Rule 14 clean). **`status:in-progress` empty** → no in-flight pickup, **no abandoned work**.
+> **`status:done` = #1010** (list-windows warning fix, awaiting QA) **+ #972** (input-content guard,
+> code-verified, close = human security sign-off, queued). **No open PRs.** **Step 2 health: clean.**
+> **Step 3 (drive product): no new issue filed (Rule 9)** — priority-honesty scan: unmilestoned open =
+> only the `needs:ace` human-only items (#975/#969/#935/#915) → **zero unmilestoned actionable Dev
+> work**; the `-j` envelope classes stay structurally closed and the latest `from:qa` polish bugs (#894
+> CJK escaping, #1010 false-warning) both shipped this window. Recognition hardening env-blocked (#932
+> Java/no JDK; #934 SAP/no install); distribution backlog sharp (#997/#930/#922/#928). Evidence in
+> `.work/reviews/2026-06-19-0123-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop`
+> CI: HEAD `a55c35f` (#1014) **Build & Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged
+> (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 00:23 (Orc autonomous cycle — **quiet/healthy; both previously-diagnosed
 > red-CI team-Dev PRs landed clean since 23:26 → develop green, no open PRs, one fresh in-flight Dev
 > pickup (#894), no new human-only item**. Since the 23:26 refresh: (a) **PR #1011 landed** (`4d68b34`,
 > **fixes #899** — `feat: accept -h as short form of --help`); this is the PR that was `BLOCKED` on
