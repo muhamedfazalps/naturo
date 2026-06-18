@@ -1,6 +1,39 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 16:22 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land of the
+> Last refreshed: 2026-06-18 17:22 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap (#884
+> verified+closed) + one active in-flight Dev pickup (#976, P0 SAFETY in-process test, ~8 min old,
+> left untouched per Rule 4); develop green, no open PRs, status:done drained to just #972, backlog
+> sharp + fully milestoned, no new human-only item**. Since the 16:22 refresh: (a) the 16:40 QA cycle
+> **verified+closed #884** @08:40:58Z (clean Dev→QA lap — real-desktop runtime repro converged the
+> previously-divergent error shapes **A** (`app focus`→`WINDOW_NOT_FOUND`), **B** (`click e999`→
+> `REF_NOT_FOUND`), **C** (`get/set e999`→`STALE_SNAPSHOT_CACHE`), **D** (`record show/delete/export/play`
+> →`RECORDING_NOT_FOUND`, was a bare string) onto the canonical six-field envelope
+> `[code,message,category,context,suggested_action,recoverable]` in order, non-zero exit; graceful
+> defaults confirmed on the no-subclass path — `category="unknown"`, `context={}`, keys present, not
+> dropped; the `wait`-family timeout carve-out documented in the close comment as the enforcement target
+> of #1001; no Orc flip needed). (b) the 17:07 Dev cycle **picked up #976** (`P0`/`silent-failure`/
+> `test`/`from:orc` — make the QA input-injection/sanitization test pytest-only **in-process**, never
+> live `SendInput`; the R-SEC-012 root-cause **code** fix, paired with the #975 human ratification) at
+> 09:15:54Z (~8 min before sweep, **no branch pushed → active in-flight, left untouched, Rule 4**) —
+> not the >24h-no-PR abandonment case. **`status:in-progress` = #976** (active); **`status:done` = #972**
+> (input-content guard, code-verified, close = human security sign-off, queued). **No open PRs;** branches
+> `develop`+`main` only (Rule 14 clean). **Step 2 health: no abandoned work** (#976 is fresh). **Step 3
+> (drive product): no new issue filed (Rule 9).** The `-j` **error**-envelope drift class is structurally
+> addressed — the convergence fix landed+verified (#884/#1002) and the self-maintaining **enforcement**
+> contract that makes future re-drift unmergeable is **#1001** (OPEN, P1, `test`/`from:orc`, v0.3.4),
+> to the error envelope what #987 is to the success envelope; QA's #884 `wait`-family carve-out IS
+> #1001's enforcement target → **recommended next Dev pickup = #1001**. #976 actively closes the
+> R-SEC-012 root-cause. Recognition hardening env-blocked (#932 Java/no JDK; #934 SAP/no install);
+> distribution backlog sharp (#997/#929/#930/#922/#928). **Priority honesty:** unmilestoned scan = only
+> the `needs:ace` items (#975/#969/#935/#915, human-only) + the deliberately-parked Linux/cross-platform
+> `help wanted` backlog (#88/#87/#84/#77/#75/#74/#68/#66) — **zero unmilestoned actionable Dev work.**
+> Evidence in `.work/reviews/2026-06-18-1722-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop`
+> CI: HEAD `ca4c976` (#1002) **Build & Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged
+> (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 16:22 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land of the
 > #884 error-envelope convergence (PR #1002 auto-merged mid-cycle) + Orc post-merge handoff (#884 →
 > status:done) + concrete pointer to the #1001 enforcement contract; develop green, status:in-progress
 > now empty, no open PRs, no new human-only item**. Since the 15:26 refresh: (a) **QA verified+closed
