@@ -1,6 +1,46 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-18 14:22 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap (#993
+> Last refreshed: 2026-06-18 15:26 (Orc autonomous cycle — **quiet/healthy; clean Dev self-land +
+> post-merge handoff (#877 via PR #1000) + one sharp Step-3 gap filed (#1001 layer-3 error-envelope
+> contract); develop green, no open PRs, one active in-flight Dev pickup (#884 error-envelope schema
+> drift, ~12 min old, left untouched per Rule 4), backlog sharp + fully milestoned, no new human-only
+> item**. Since the 14:22 refresh: team Dev landed **PR #1000** (`81d5d66`, **fixes #877** — `get/set`
+> stale-ref `-j` errors now route through a semantic envelope with a real `error_code` +
+> `suggested_action` instead of `UNKNOWN_ERROR`/missing-action; new `tests/test_error_envelope_877.py`
+> 13 cases) → `develop`, merged 06:26Z, source branch auto-deleted (only `develop`+`main` remain, Rule
+> 14 clean). **Orc post-merge handoff: flipped #877 `status:in-progress` → `status:done`** + QA note —
+> base ≠ default branch so no auto-close and Dev hadn't flipped it. **`status:in-progress` = #884**
+> (JSON error-envelope schema drift — the active in-flight pickup, updated 07:13Z ~12 min before sweep,
+> **no branch pushed → active in-flight, left untouched, Rule 4**); **`status:done` = #972** (input-
+> content guard, code-verified, close = human security sign-off, queued). **No open PRs;** branches
+> `develop`+`main` only (Rule 14 clean). **Step 2 health: no abandoned work** (#884 is fresh, not the
+> >24h-no-PR case). **Step 3 (drive product — filed #1001):** #884 has grown into a living `-j`
+> error-envelope drift inventory and QA keeps finding NEW shapes *after* it was filed — shape A (rich/6,
+> `app *`), B (flat/3, `see/capture/list/type/press/click/find`), C (minimal/2, `get/set`, fixed by
+> #877), **D (bare string/0, `record show/delete/export/play`)**, and the **`wait` family (no `error`
+> field at all)**. This is the same recurrence pattern the `-j` *success* envelope had
+> (#876→#977→#980→#874→#869→#872), only stopped by two self-maintaining contracts (#979 + #987). There
+> is NO equivalent guard for the *error* envelope (existing `test_error_envelope_877/_993.py` are
+> per-instance), so the next new command silently re-drifts; the error side has burned four reactive
+> Dev+QA rounds (#993/#877/#991/#884). **Filed #1001** (`test`/`from:orc`/**P1**/v0.3.4): auto-enumerate
+> the Click command tree, trigger a representative `-j` failure per command, assert `error` is an OBJECT
+> matching the canonical `NaturoError.to_json_response()` schema (`code,message,category,context,
+> suggested_action,recoverable`), fail CI on any drift — the **enforcement layer for #884's convergence**
+> (guarantees completeness incl. `record`/`wait`, prevents future re-drift), filed as its own issue so
+> it survives #884's closure exactly as #987 survived #979's; cross-linked from #884. Test-only, no
+> public-API change → Dev-actionable. **Priority honesty:** all actionable Dev work milestoned;
+> unmilestoned = 4 `needs:ace` items (#975/#969/#935/#915, human-only) + the long-standing Linux/cross-
+> platform community backlog (#88/#87/#84/#77/#75/#74/#68/#66, deliberately `help wanted`/`good first
+> issue`, not the Windows-RPA focus). Recognition hardening env-blocked (#932 Java/no JDK; #934 SAP/no
+> install); distribution backlog sharp (#997/#929/#930/#922/#928); no duplicate filed (Rule 9). Evidence
+> in `.work/reviews/2026-06-18-1526-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop`
+> CI: HEAD `81d5d66` (#1000) **Build & Test success + CodeQL success** → **not red.** v0.3.2 ship-gate
+> unchanged (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not due** (baseline
+> 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-18 14:22 (Orc autonomous cycle — **quiet/healthy; clean Dev→QA lap (#993
 > verified+closed) + one priority-honesty triage (#999 milestoned); develop green, no open PRs, one active
 > in-flight Dev pickup (#877 `get/set -j` stale-snapshot envelope, ~11 min old, left untouched per Rule 4),
 > backlog sharp + fully milestoned, no new human-only item**. Since the 13:22 refresh: team Dev landed **PR
