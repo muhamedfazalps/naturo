@@ -1,6 +1,37 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 03:22 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> Last refreshed: 2026-06-19 04:22 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> clean since 03:22 + one Orc post-merge handoff (#944 → status:done) → develop green, no open PRs,
+> status:in-progress now empty, no abandoned work, no new human-only item; needs:ace queue unchanged**.
+> Since the 03:22 refresh: **PR #1018 landed** (`a92bbe6`, HEAD, **fixes #944** — `test: mock
+> _is_hwnd_alive in test_valid_app_id_returns_handle_and_pid`; test-only fix — the
+> `TestResolveAppId::test_valid_app_id_returns_handle_and_pid` case supplied fixture handle
+> `MagicMock(handle=999)` but omitted the #788 stale-HWND mock, so on a real Windows host
+> `_is_hwnd_alive(999)` → `IsWindow(999)=0` → `APP_ID_STALE`/`sys.exit(1)` instead of returning
+> `(None,999,111)`; fix mocks `naturo.cli.interaction._common._is_hwnd_alive`→True per the canonical
+> #870/`test_stale_pid_routing.py` pattern, no source change — production code is correct). Merged
+> 20:14:06Z, **Build & Test + CodeQL success**; source branch auto-deleted (only `develop`+`main`
+> remain, Rule 14 clean). **Post-merge handoff:** #944 was still `status:in-progress` (Dev updated it
+> 20:10:48Z ~3 min before the 20:14:06Z merge but hadn't flipped it; base `develop` ≠ default branch →
+> no auto-close) → **Orc flipped #944 `status:in-progress` → `status:done`** + QA verification note
+> (run the named pytest on the Windows desktop, confirm `result == (None, 999, 111)`, no real window
+> handle touched). **`status:in-progress` now empty** → no in-flight pickup, no abandoned work.
+> **`status:done` = #944** (app-id test stale-HWND, awaiting QA) **+ #972** (input-content guard,
+> code-verified, close = human security sign-off, queued). **No open PRs.** **Step 2 health: clean.**
+> **Step 3 (drive product): no new issue filed (Rule 9)** — priority-honesty scan: unmilestoned open =
+> only the `needs:ace` human-only items (#975/#969/#935/#915) → **zero unmilestoned actionable Dev
+> work**; the `-j` success+error envelope classes stay structurally closed, and the recent test-honesty
+> / visual-report cluster (#894 CJK, #1010 false-warning, #999 utf-8 read, #1016 exit-code, #944
+> stale-HWND test) has all shipped. Recognition hardening env-blocked (#932 Java/no JDK; #934 SAP/no
+> install); distribution backlog sharp (#997/#930/#922/#928). Evidence in
+> `.work/reviews/2026-06-19-0422-auto-review.md`. **needs:ace live queue unchanged
+> #975/#972/#969/#935/#915/#914** (+ infra #860/#842) — **no new human-only item this cycle.** `develop`
+> CI: HEAD `a92bbe6` (#1018) **Build & Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged
+> (FULLY MET — release is Ace's call, #914). Weekly competitiveness **not due** (baseline 2026-06-16,
+> <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 03:22 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
 > clean since 02:23 + one Orc post-merge handoff (#1016 → status:done) → develop green, no open PRs,
 > status:in-progress now empty, no abandoned work, no new human-only item; needs:ace queue unchanged**.
 > Since the 02:23 refresh: **PR #1017 landed** (`98e8f34`, HEAD, **fixes #1016** — `test: align
