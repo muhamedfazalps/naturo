@@ -1,6 +1,41 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 19:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> Last refreshed: 2026-06-19 20:22 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> clean since 19:23 (#1034 → #891 — Dev self-handoff to status:done). develop not red (post-merge CI
+> in progress, all required checks were green at merge), no open PRs, status:in-progress empty, no
+> abandoned work, no new human-only item; needs:ace queue unchanged.**
+> Since the 19:23 refresh: **PR #1034 landed** (`7dc61ef`, HEAD, **fixes #891** — `fix: reject unknown
+> MCP tool arguments instead of silently dropping them`; `_SanitizingFastMCP.call_tool` now validates
+> supplied arg names against each tool's JSON-Schema properties before dispatch → an undeclared/typo'd
+> argument yields a clean `ToolError` ("unexpected argument '<name>'. Valid arguments: …") on the same
+> `isError:true` path as #844 Pydantic validation, instead of silently falling back to the default;
+> `_allowed_argument_names` returns None to skip enforcement for unknown tools or `additionalProperties:
+> true` and re-adds the `Context` kwarg; no tool uses `**kwargs` → uniformly safe across all 64 tools;
+> +`tests/test_mcp_unknown_args_891.py` 8 cases. Closes a SOUL "never lie" silent-failure class).
+> Merged 12:20:18Z, **all required CI green** (Ubuntu/macOS 3.9/3.12/3.13 + Windows-with-DLL + CodeQL +
+> C++ build + Lint); source branch auto-deleted (only `develop`+`main` remain, Rule 14 clean);
+> `git merge-base --is-ancestor 7dc61ef origin/develop` = **YES** → **Rule 1 clean**. **Post-merge
+> handoff: none needed** — #891 was already flipped `status:in-progress` → `status:done` by Dev at
+> merge (base `develop` ≠ default branch → no auto-close). **`status:in-progress` now empty** → no
+> in-flight pickup, no abandoned work. **`status:done` = #891** (MCP unknown-arg rejection, awaiting
+> QA) **+ #972** (input-content guard, code-verified, close = human security sign-off, queued). **No
+> open PRs;** branches `develop`+`main` only (Rule 14 clean). **Step 2 health: nothing to close** (Rule
+> 1 — #891 needs QA `verified`; #972 human-only), no abandoned work. **Step 3 (drive product): no new
+> issue filed (Rule 9)** — priority-honesty scan (`no:milestone` open): only the `needs:ace` human-only
+> items (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted` backlog
+> (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; backlog Dev-pickable
+> (v0.3.4 `from:qa` JSON/MCP consistency cluster #958/#865/#886/#898 + distribution #997/#922/#928/#930).
+> Standing #1 priority (recognition supremacy #920/#931/#932/#934) stays top-of-queue but **env-blocked**
+> (no JDK / no SAP install; desktop/QA-gated). **Step 3.5 competitiveness: NOT due** (tracker baseline
+> 2026-06-16, today 06-19 = 3d < 7). **Step 4 (needs:ace): no new human-only item** — live queue
+> **unchanged #975/#972/#969/#935/#915/#914/#897** (all verified open); NEEDS-ACE.md header refreshed.
+> Evidence in `.work/reviews/2026-06-19-2022-auto-review.md`. `develop` CI: HEAD `7dc61ef` (#1034)
+> post-merge **Build & Test + CodeQL in progress, no failed lanes** (all required checks were green at
+> merge; prior `91d2beb` success) → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is
+> Ace's call, #914).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 19:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
 > clean since 18:22 (#1033 → #952 — Dev self-handoff to status:done). develop green, no open PRs,
 > status:in-progress now empty, no abandoned work, no new human-only item; needs:ace queue unchanged.**
 > Since the 18:22 refresh: **PR #1033 landed** (`91d2beb`, HEAD, **fixes #952** — `fix: unify list

@@ -4,22 +4,24 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 19:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
-clean, queue unchanged.** Delta since 18:22: **PR #1033 landed** (`91d2beb`, HEAD, **fixes #952** —
-`fix: unify list windows / list apps window JSON schema`; the in-flight pickup from last cycle now
-merged so `list apps -j` and `list windows -j` use the same field name for the window handle and
-`list windows` carries the stable `id`/`--app-id`). Merged 11:13:47Z, **Build & Test + CodeQL
-success**; `91d2beb` confirmed ancestor of `develop`; source branch auto-deleted (only `develop`+`main`
-remain). #952 **already flipped `status:in-progress` → `status:done`** by Dev at merge (no Orc handoff
-needed) → awaiting QA. `status:in-progress` = **empty**; `status:done` = **#952** (list-windows schema,
+_Last refreshed: 2026-06-19 20:22 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+clean, queue unchanged.** Delta since 19:23: **PR #1034 landed** (`7dc61ef`, HEAD, **fixes #891** —
+`fix: reject unknown MCP tool arguments instead of silently dropping them`; the MCP server now rejects
+undeclared tool arguments before dispatch with a clean `ToolError` instead of letting a typo'd arg fall
+back to its default — closes a silent-failure class across all 64 tools). Merged 12:20:18Z, **all
+required CI green** (Ubuntu/macOS 3.9/3.12/3.13 + Windows-with-DLL + CodeQL + C++ build + Lint);
+`7dc61ef` confirmed ancestor of `develop`; source branch auto-deleted (only `develop`+`main` remain).
+#891 **already flipped `status:in-progress` → `status:done`** by Dev at merge (no Orc handoff needed) →
+awaiting QA. `status:in-progress` = **empty**; `status:done` = **#891** (MCP unknown-arg rejection,
 awaiting QA) + **#972** (input-content guard, code-verified, awaiting your security sign-off). **No new
 issue filed (Rule 9)**; **no new human-only item.** Top human items unchanged: **#914** (cut v0.3.2 —
 ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) — both your
 security sign-off; **#897** (pick the CLI exit-code contract); **#915 recommended for closure** (QA
 durably healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live needs:ace queue
-#975/#972/#969/#935/#915/#914/#897.** `develop` CI: HEAD `91d2beb` (#1033) **Build & Test + CodeQL
-success** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914).
-Weekly competitiveness step not due (<7d since 06-16)._
+#975/#972/#969/#935/#915/#914/#897.** `develop` CI: HEAD `7dc61ef` (#1034) post-merge **Build & Test +
+CodeQL in progress, no failed lanes** (all required checks were green at merge; prior `91d2beb` success)
+→ **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
+competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
