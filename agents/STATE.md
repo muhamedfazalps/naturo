@@ -1,6 +1,42 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 12:22 (Orc autonomous cycle — **quiet/healthy; only delta since 11:22 is
+> Last refreshed: 2026-06-19 13:22 (Orc autonomous cycle — **quiet/healthy; the top P1 (#1023) landed
+> clean since 12:22 (PR #1026 / `a5c905e`, Dev self-handoff → status:done) + one priority-honesty
+> triage: milestoned the fresh QA bug #1025 → v0.3.4. develop green, no open PRs, status:in-progress
+> empty, no abandoned work, no new human-only item; needs:ace queue unchanged.** Since the 12:22
+> refresh: (a) the 13:07 **Dev cycle finished the in-flight #1023 and landed PR #1026** (`a5c905e`, HEAD,
+> **fixes #1023** — `fix: batch process info in detect_electron_app to avoid ~23s cascade stall`;
+> `detect_electron_app()` spawned 2 `wmic` subprocesses per matching PID (~0.86 s each) inside
+> `_is_electron_process`/`_find_debug_port_from_cmdline` → 20+ s stall on multi-process apps even when
+> UIA already returned a full tree; fix fetches `_bulk_get_process_info()` once and threads it through
+> both helpers, applying the BUG-007 batching that had landed for `list_electron_apps` but never for the
+> function the **core recognition cascade** actually calls; +`test_uses_single_bulk_query_for_many_pids`).
+> Merged 05:15Z, **Build & Test + CodeQL success**; source branch auto-deleted (only `develop`+`main`
+> remain, Rule 14 clean). **Post-merge handoff: none needed** — Dev flipped **#1023
+> `status:in-progress` → `status:done`** itself at merge (base `develop` ≠ default branch → no
+> auto-close). (b) the 12:47 **QA cycle filed #1025** (`bug`/`P2`/`from:qa`, unmilestoned) — an
+> **incomplete-fix regression of #894**: PR #1013's central `_jsonio.json_dumps()` helper
+> (`ensure_ascii=False`) was added but the `import json as json_module`/`json_module.dumps(...)`
+> callsites on `see`/`find`/`menu-inspect`/`list windows`/`get`/`set` were missed → still emit `\uXXXX`
+> (runtime-confirmed 关闭/系统/无标[题]). **Step 3 (drive product): milestoned #1025 → v0.3.4** —
+> confirmed genuine gap (not a dup), Dev-actionable mechanical sweep (repoint callsites at `json_dumps`
+> + extend the #894 regression test), **no public-API/CLI change** → not human-only; kept P2 (QA's
+> rationale holds), framing comment posted; now a Dev pickup alongside **#1022** (`capture`/`see --path`
+> error envelope, P2, framed). **No new issue filed (Rule 9).** **`status:in-progress` empty** → no
+> in-flight pickup, no abandoned work. **`status:done` = #1023** (electron cascade perf, awaiting QA)
+> **+ #972** (input-content guard, code-verified, close = human security sign-off, queued). **No open
+> PRs;** branches `develop`+`main` only (Rule 14 clean). **Step 2 health: nothing to close** (Rule 1 —
+> #1023 needs QA `verified`; #972 human-only). Priority honesty: P1/P2 correct, no mis-milestone after
+> the #1025 fix. Recognition hardening env-blocked (#932 Java/no JDK; #934 SAP/no install); distribution
+> backlog sharp (#997/#930/#922/#928). **Step 3.5 competitiveness: NOT due** (tracker baseline
+> 2026-06-16, today 06-19 = 3d < 7). **Step 4 (needs:ace): no new human-only item** — live queue
+> **unchanged #975/#972/#969/#935/#915/#914/#897** (+ infra #860/#842), all verified open; NEEDS-ACE.md
+> header refreshed (drain #1023 → status:done). Evidence in
+> `.work/reviews/2026-06-19-1322-auto-review.md`. `develop` CI: HEAD `a5c905e` (#1026) **Build & Test +
+> CodeQL success** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 12:22 (Orc autonomous cycle — **quiet/healthy; only delta since 11:22 is
 > the Dev cycle picking up the top P1 (#1023) → now status:in-progress, active in-flight, no branch
 > pushed yet, left untouched (Rule 4). develop green, no open PRs, no new human-only item, needs:ace
 > queue unchanged.** Since the 11:22 refresh: the Dev cycle **picked up #1023** (`bug`/`P1`/`from:qa`/
