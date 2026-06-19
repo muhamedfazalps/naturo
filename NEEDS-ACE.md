@@ -4,22 +4,22 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 09:24 (Orc autonomous cycle — **quiet/healthy; no open PRs, `develop` green,
-one fresh in-flight Dev pickup (#895), one priority-honesty triage (new QA bug #1022 → v0.3.4). No new
-human-only item; this queue is unchanged.** Since the 08:23 refresh: QA ran an exploratory cycle @08:42Z
-(no actionable verify queue) and filed **#1022** (`capture`/`see` mislabel a missing-output-dir save
-failure as `CAPTURE_ERROR`/`UNKNOWN_ERROR` with misleading guidance) — Orc triaged it to **v0.3.4**
-(error-clarity lane, Dev-pickable; not a dup of the #884/#877/#1004 runtime-envelope cluster). The 09:07
-Dev cycle picked up **#895** (`wait` JSON success-envelope drift across sub-modes, P2/from:qa/v0.3.4) —
-active in-flight, no branch yet, left untouched (Rule 4). `status:in-progress` = **#895** (Dev).
-`status:done` = **#972** only (input-content guard, code-verified, awaiting your security sign-off).
-**No new issue filed (Rule 9).** Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975**
-(ratify the QA re-enable) + **#972** (close the input-content safety guard) — both your security sign-off;
-**#897** (pick the CLI exit-code contract); **#915 recommended for closure** (QA durably healthy). NB: the
-**#969 env fix stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#897
-/#860/#842.** `develop` CI: HEAD `2280079` (#1021) **Build & Test + CodeQL success** (prior `ccb43ec`
-#1020 success) → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914).
-Weekly competitiveness step not due (<7d since 06-16)._
+_Last refreshed: 2026-06-19 10:24 (Orc autonomous cycle — **quiet/healthy; one clean team-Dev land +
+post-merge handoff (#895 → status:done), one priority-honesty triage (new P1 QA bug #1023 → v0.3.4).
+No new human-only item; this queue is unchanged.** Since the 09:24 refresh: the 09:46 QA cycle filed
+**#1023** (`bug`/`P1`/`from:qa`): `naturo see`/`find` hangs **~23 s** on multi-process apps — the BUG-007
+bulk-process-info fix was never applied to `detect_electron_app` (the cascade's actual call path); Orc
+triaged it to **v0.3.4**, kept P1, Dev-pickable (pure internal perf fix). The 10:07 Dev cycle landed
+**PR #1024** (`1e6aa2d`, **fixes #895** — unify `wait -j` success envelope across sub-modes); Orc did the
+post-merge handoff → **#895 status:done** (awaiting QA). `status:in-progress` = **empty**. `status:done` =
+**#895** (wait envelope, awaiting QA) **+ #972** (input-content guard, code-verified, awaiting your
+security sign-off). **No new issue filed (Rule 9).** Top human items unchanged: **#914** (cut v0.3.2 —
+ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) — both your
+security sign-off; **#897** (pick the CLI exit-code contract); **#915 recommended for closure** (QA durably
+healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live needs:ace queue
+#975/#972/#969/#935/#915/#914/#897/#860/#842.** `develop` CI: HEAD `1e6aa2d` (#1024) **Build & Test +
+CodeQL success** (prior `2280079` #1021 success) → **develop not red.** v0.3.2 ship-gate unchanged (FULLY
+MET — release is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |

@@ -1,6 +1,41 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 09:24 (Orc autonomous cycle — **quiet/healthy; no open PRs, develop green,
+> Last refreshed: 2026-06-19 10:24 (Orc autonomous cycle — **quiet/healthy; one clean team-Dev land +
+> Orc post-merge handoff (#895 → status:done) + one priority-honesty triage of a fresh P1 QA bug
+> (#1023 → v0.3.4). develop green, no open PRs, status:in-progress now empty, no abandoned work, no new
+> human-only item; needs:ace queue unchanged.** Since the 09:24 refresh: (a) the 09:46 QA cycle ran an
+> exploratory round (no actionable verify queue — only #972 in `status:done`, human security sign-off,
+> untouched) and **filed #1023** (`bug`/`P1`/`from:qa`): `naturo see`/`find` (any `auto`-cascade) hangs
+> **~23 s** on multi-process apps — `detect_electron_app()` (`naturo/electron.py` ~L366) makes per-PID
+> double-`wmic` calls (2 × ~0.86 s × 27 Calculator procs ≈ 23 s); the **BUG-007 bulk-process-info fix
+> landed for `list_electron_apps` but was never applied to `detect_electron_app`**, the function the
+> cascade actually calls. (b) the 10:07 Dev cycle **picked up #895 and landed PR #1024** (`1e6aa2d`,
+> HEAD, **fixes #895** — `fix: unify wait -j success envelope across sub-modes`; duration sub-mode emitted
+> `{mode}` vs predicate modes `{found,warnings}` → now one canonical success key set/order across all
+> `wait` sub-modes, exit 0; +`tests/test_wait_cmd.py`). Merged 02:16:27Z, **Build & Test + CodeQL
+> success**; source branch auto-deleted (only `develop`+`main` remain, Rule 14 clean). **Post-merge
+> handoff:** #895 was still `status:in-progress` (base `develop` ≠ default branch → no auto-close) →
+> **Orc flipped #895 `status:in-progress` → `status:done`** + QA verification note. **`status:in-progress`
+> now empty** → no in-flight pickup, no abandoned work. **`status:done` = #895** (wait success envelope,
+> awaiting QA) **+ #972** (input-content guard, code-verified, close = human security sign-off, queued).
+> **No open PRs.** **Step 2 health: no abandoned work, nothing to close** (Rule 1 — no merged commit to
+> cite; #972 human-only). **Step 3 (drive product): triaged #1023 → v0.3.4, kept P1** (+ framing comment)
+> — confirmed a genuine **gap, not a dup** (BUG-007 batching never applied to the cascade's
+> `detect_electron_app`); high-value (hits the **core recognition cascade**, standing #1 priority);
+> Dev-actionable (pure internal perf fix, no public-API/CLI change) → Dev-pickable. **No new issue filed
+> (Rule 9)** — #1023 already captures the gap. Priority-honesty scan after triage: **zero unmilestoned
+> actionable Dev work** (only the parked Linux/cross-platform `help wanted` community backlog
+> #88/#87/#84/#77/#75/#74/#68/#66 floats). The `-j` envelope classes stay structurally closed; suggester
+> + test-honesty/cross-platform clusters shipped. Recognition hardening env-blocked (#932 Java/no JDK;
+> #934 SAP/no install); distribution backlog sharp (#997/#930/#922/#928). **Step 4 (needs:ace): no new
+> human-only item** (#1023 + #895 are Dev/QA-actionable) — live queue **unchanged
+> #975/#972/#969/#935/#915/#914/#897** (+ infra #860/#842), all verified open. Evidence in
+> `.work/reviews/2026-06-19-1024-auto-review.md`. `develop` CI: HEAD `1e6aa2d` (#1024) **Build & Test +
+> CodeQL success** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914).
+> Weekly competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 09:24 (Orc autonomous cycle — **quiet/healthy; no open PRs, develop green,
 > one fresh in-flight Dev pickup (#895 — left untouched, Rule 4), one priority-honesty triage (new QA
 > bug #1022 → milestoned v0.3.4). No new human-only item; needs:ace queue unchanged.** Since the 08:23
 > refresh: QA ran an exploratory cycle @08:42Z (no actionable verify queue — only #972 in `status:done`,
