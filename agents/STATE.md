@@ -1,21 +1,24 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 21:23 (Orc autonomous cycle — **quiet/healthy; one fresh in-flight
-> team-Dev PR (#1035 → #888 — auto-merge armed, CI pending, no failed lanes; left untouched, Rule 4).
-> develop not red, status:in-progress = the matching active pickup #888, no abandoned work, no new
-> issue (Rule 9), no new human-only item; needs:ace queue unchanged.** Since the 20:22 refresh: the Dev
-> cycle **picked up #888 and opened PR #1035** (`feat: add --file/stdin input to clipboard set`, head
+> Last refreshed: 2026-06-19 21:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> clean mid-cycle (#1035 → #888) + Orc post-merge handoff (#888 → status:done). develop not red, no
+> open PRs, status:in-progress now empty, no abandoned work, no new issue (Rule 9), no new human-only
+> item; needs:ace queue unchanged.** Since the 20:22 refresh: the Dev cycle **picked up #888 and opened
+> PR #1035** (`feat: add --file/stdin input to clipboard set`, head
 > `fix/issue-888-clipboard-set-file-stdin` → `develop`, P2/from:qa/v0.3.4 — makes `clipboard set`
-> symmetric with the existing `type --file/stdin`). Created 13:13:40Z (~10 min before sweep),
-> `mergeable=MERGEABLE`, `mergeStateStatus=BLOCKED` **only on pending CI** (Commit-Author +
-> Version-Consistency pass; Build-C++/Python-Tests×6/Lint/CodeQL still running — **no failed lanes**);
-> **auto-merge SQUASH already armed by AcePeak** at 13:13:52Z → green+mergeable lands itself; branch
-> **left untouched (Rule 4)**. **`status:in-progress` = #888** (the matching active pickup, updated
-> 13:13:55Z = freshly worked → NOT the >24h-no-PR abandonment case; already milestoned v0.3.4 + labeled
-> → no triage). **`status:done` = #972 only** (input-content guard, code-verified, close = human
-> security sign-off, queued). **One open PR (#1035, in flight);** branches `develop`+`main`+ the active
-> PR branch (Rule 14 delete applies post-merge only). **Step 2 health: nothing to close** (Rule 1 — no
-> merged commit to cite; #972 human-only), no abandoned work. **Step 3 (drive product): no new issue
+> symmetric with the existing `type --file/stdin`); at sweep it was `MERGEABLE`/`BLOCKED` only on
+> pending CI with **auto-merge SQUASH armed by AcePeak** (13:13:52Z), and **it landed mid-cycle** as
+> `7c97c87` (HEAD-1; CI went green during the cycle). Branch **untouched throughout (Rule 4)**; source
+> branch auto-deleted (only `develop`+`main` remain, Rule 14 clean); `git merge-base --is-ancestor
+> 7c97c87 origin/develop` = **YES** → **Rule 1 clean**. **Post-merge handoff:** #888 was still
+> `status:in-progress` (base `develop` ≠ default branch → no auto-close; Dev didn't self-flip) → **Orc
+> flipped #888 `status:in-progress` → `status:done`** + QA verification note (verify `clipboard set
+> --file <path>` + piped stdin set the clipboard, parity with `type --file/stdin`, clean `-j` envelope
+> on a bad file). **`status:in-progress` now empty** → no in-flight pickup, no abandoned work.
+> **`status:done` = #888** (clipboard set --file/stdin, awaiting QA) **+ #972** (input-content guard,
+> code-verified, close = human security sign-off, queued). **No open PRs;** branches `develop`+`main`
+> only (Rule 14 clean). **Step 2 health: nothing to close** (Rule 1 — #888 needs QA `verified`; #972
+> human-only), no abandoned work. **Step 3 (drive product): no new issue
 > filed (Rule 9)** — priority-honesty scan (`no:milestone` open): only the `needs:ace` human-only items
 > (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted` backlog
 > (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; #888 correctly
@@ -24,9 +27,10 @@
 > **Step 3.5 competitiveness: NOT due** (tracker baseline 2026-06-16, today 06-19 = 3d < 7). **Step 4
 > (needs:ace): no new human-only item** — live queue **unchanged #975/#972/#969/#935/#915/#914/#897**
 > (all verified open); NEEDS-ACE.md header + CI line refreshed. Evidence in
-> `.work/reviews/2026-06-19-2123-auto-review.md`. `develop` CI: code HEAD `7dc61ef` (#1034) **Build &
-> Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call,
-> #914).)_
+> `.work/reviews/2026-06-19-2123-auto-review.md`. `develop` CI: prior code HEAD `7dc61ef` (#1034)
+> **Build & Test + CodeQL success**; new HEAD `7c97c87` (#1035) post-merge CI in progress, no failed
+> lanes (all required checks were green at merge) → **not red.** v0.3.2 ship-gate unchanged (FULLY MET
+> — release is Ace's call, #914).)_
 >
 > ---
 > _Prior refresh: 2026-06-19 20:22 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
