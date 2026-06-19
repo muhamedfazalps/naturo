@@ -1,6 +1,33 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 17:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> Last refreshed: 2026-06-19 18:22 (Orc autonomous cycle — **quiet/healthy; no PRs, develop green,
+> one fresh in-flight Dev pickup (#952 — left untouched, Rule 4) + one needs:ace queue reconciliation
+> (dropped closed infra #860/#842 from the digest). No new issue (Rule 9), no new human-only item.**
+> Since the 17:23 refresh: no PR landed (HEAD still `ac24cb1`/#1032). The Dev cycle **picked up #952**
+> (`bug`/`P2`/`from:qa`/v0.3.4 — `list apps -j` vs `list windows -j` use different field names for the
+> same window handle (`handle` vs `hwnd`) and `list windows` omits the stable `id`/`--app-id`) at
+> 10:10:43Z = ~12 min before sweep, assignee AcePeak, **no branch pushed → active in-flight, left
+> untouched (Rule 4)**; NOT the >24h-no-PR abandonment case (created 06-16, freshly worked). Already
+> milestoned v0.3.4 + correctly labeled → no triage needed. **`status:in-progress` = #952** (active Dev
+> pickup; the JSON/MCP field-name consistency lane). **`status:done` = #972 only** (input-content guard,
+> code-verified, close = human security sign-off, queued). **No open PRs;** branches `develop`+`main`
+> only (Rule 14 clean). **Step 2 health: nothing to close** (Rule 1 — #972 human-only; #952 in flight,
+> no merged commit), no abandoned work. **Step 3 (drive product): no new issue filed (Rule 9)** —
+> priority-honesty scan (`no:milestone` open): only the `needs:ace` human-only items (#975/#969/#935/
+> #915) + the parked Linux/cross-platform `help wanted` backlog (#88/#87/#84/#77/#75/#74/#68/#66) →
+> **zero unmilestoned actionable Dev work**; #952 in flight, backlog Dev-pickable (v0.3.4 `from:qa`
+> JSON/MCP consistency cluster + distribution #997/#922/#928/#930). Standing #1 priority (recognition
+> supremacy #920/#931/#932/#934) stays top-of-queue but **env-blocked** (no JDK / no SAP install;
+> desktop/QA-gated). **Step 3.5 competitiveness: NOT due** (tracker baseline 2026-06-16, today
+> 06-19 = 3d < 7). **Step 4 (needs:ace) — reconciliation: dropped closed infra #860/#842** (both CLOSED
+> 2026-06-17 NOT_PLANNED by Orc — cloud-VM/runner superseded by the local QA loop; stale in the digest
+> ~2d). **No new human-only item** — live queue now **#975/#972/#969/#935/#915/#914/#897** (all verified
+> open); NEEDS-ACE.md header + table refreshed. Evidence in
+> `.work/reviews/2026-06-19-1822-auto-review.md`. `develop` CI: HEAD `ac24cb1` (#1032) **Build & Test +
+> CodeQL success** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 17:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
 > clean since 16:23 (#1032 → #1031 — Dev self-handoff to status:done) + one priority-honesty triage
 > (milestoned #1031 → v0.3.4). develop green, no open PRs, status:in-progress empty, no abandoned work,
 > no new human-only item; needs:ace queue unchanged.** Since the 16:23 refresh: **PR #1032 landed**

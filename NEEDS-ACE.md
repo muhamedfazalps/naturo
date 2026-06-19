@@ -4,22 +4,22 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 17:23 (Orc autonomous cycle — **quiet/healthy; this queue is unchanged.**
-Delta since 16:23: **PR #1032 landed** (`ac24cb1`, HEAD, fixes #1031 — `fix: emit English-only reason
-from _ensure_output_dir`; the output-dir error path on capture/see/selector/record/visual was leaking
-the localized OS `strerror` into the otherwise-English `INVALID_INPUT` envelope on a non-English host
-→ now emits a deterministic English reason, continuing the #1022/#1028/#1029 output-dir hardening lane).
-#1031 was flipped `status:done` at merge (Rule 1 clean, no Orc handoff) and Orc milestoned it → v0.3.4
-(priority-honesty tidy; no public-API/label change). `status:in-progress` empty; `status:done` =
-**#1031** (awaiting QA) **+ #972** (input-content guard, code-verified, awaiting your security sign-off).
-**No new issue filed (Rule 9)** — backlog healthy + Dev-pickable (v0.3.4 `from:qa` JSON/MCP consistency
-cluster + distribution). Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the
-QA re-enable) + **#972** (close the input-content safety guard) — both your security sign-off; **#897**
-(pick the CLI exit-code contract); **#915 recommended for closure** (QA durably healthy). NB: the **#969
-env fix stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#897/#860/#842.**
-`develop` CI: HEAD `ac24cb1` (#1032) **Build & Test + CodeQL success** → **develop not red.** v0.3.2
-ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step not due
-(<7d since 06-16)._
+_Last refreshed: 2026-06-19 18:22 (Orc autonomous cycle — **quiet/healthy; one fresh in-flight Dev
+pickup + one queue reconciliation.** Delta since 17:23: no PR landed (HEAD still `ac24cb1`/#1032). The
+Dev cycle **picked up #952** (`bug`/`P2`/`from:qa`/v0.3.4 — `list apps -j` vs `list windows -j` use
+different field names for the same window handle, `handle` vs `hwnd`, and `list windows` omits the
+stable `id`/`--app-id`) ~12 min before sweep, **no branch yet → active in-flight, left untouched
+(Rule 4)** — Dev/QA work, not yours. `status:in-progress` = **#952**; `status:done` = **#972** only
+(input-content guard, code-verified, awaiting your security sign-off). **No new issue filed (Rule 9)**;
+**no new human-only item.** **Reconciliation:** dropped the closed infra pair **#842/#860** from this
+digest (both CLOSED 2026-06-17 NOT_PLANNED by Orc — the local QA loop superseded the offline desktop
+runner / cloud-VM; they had lingered ~2d as stale rows). Top human items unchanged: **#914** (cut
+v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) —
+both your security sign-off; **#897** (pick the CLI exit-code contract); **#915 recommended for
+closure** (QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live needs:ace
+queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI: HEAD `ac24cb1` (#1032) **Build & Test + CodeQL
+success** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914).
+Weekly competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
@@ -30,7 +30,6 @@ ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competiti
 | [#969](https://github.com/AcePeak/naturo/issues/969) | **QA-harness integrity hazard** — the `naturo-qa` worktree's editable install (egg-link/`.pth`) resolves `import naturo`/`python -m naturo` to a **sibling worktree `naturo-qa-mariana`** (pre-#720 stale code). QA Step-2 runtime probes can **silently verify STALE code → false PASS/FAIL verdicts** (one FALSE FAIL already, 16:40Z #963). | machine-local env fix that touches another agent's worktree — Rule 4 forbids unattended self-fix; threatens the loop's verification signal | **Run `pip install -e .` from the `naturo-qa` worktree** (or fix the egg-link/`.pth`) so QA's import resolves to the worktree under test. The code-only loud-failure guard (assert `naturo.__file__` under the active worktree, fail loudly otherwise) is now tracked as **[#971](https://github.com/AcePeak/naturo/issues/971)** — Dev-actionable, the loop will ship it; this row remains the **env fix** which is human-only (Rule 4). Pairs with the #917 watchdog. |
 | [#935](https://github.com/AcePeak/naturo/issues/935) | Two Dev cycles ran **concurrently in the shared `naturo-dev` worktree** — the 2nd cycle's Step 0 `reset --hard` wiped the 1st's in-flight uncommitted branch (#910). **Rule 4 violation at the orchestration layer.** | orchestration / scheduling policy (runner.ps1 / cron / lock) | Add a **per-worktree lock** in `naturo-loop-locks\` that a starting `runner:dev` must acquire (skip the round if held), and/or serialize dev so two cycles never share one tree. Self-fixing is unsafe — concurrent git ops would corrupt the peer cycle. |
 | [#897](https://github.com/AcePeak/naturo/issues/897) | **Pick the canonical CLI exit-code contract for usage errors.** `type`/`press`/`find`/`wait`/`get`/`set`/`app launch` missing-required-arg exits **1**; Click-level parse errors (unknown cmd/opt) exit **2**. A POSIX `case $?` scripter misclassifies missing-arg as a transient op-failure and may infinite-retry. Fixing it fully **conflicts with the merged #872/#874 contract** (which deliberately set JSON-mode usage errors to exit 1). | **public CLI exit-code contract** (CLI-contract breaking, human-only guardrail) — reverses a recently-merged decision | **(A) usage errors = exit 2 everywhere** (text + JSON; POSIX-correct, satisfies #897, reverts #872/#874's JSON exit-1 + rewrites `test_subcommand_usage_error_json_872.py`) — **Orc + Dev recommend A**; or **(B)** keep JSON usage errors = exit 1, only fix text-mode in-body validators to exit 2 (documented text-vs-JSON split). Once you pick, Dev ships it in one cycle via a shared `exit_code_for_code` helper. Dev's full analysis is on the issue. |
-| [#842](https://github.com/AcePeak/naturo/issues/842) / [#860](https://github.com/AcePeak/naturo/issues/860) | Desktop CI: self-hosted runner ROBOT-COMPILE offline (#842) vs fund a cloud Windows VM (#860) | infra spend | Decide: revive the runner, fund a cloud Windows VM, or accept GitHub-hosted-only CI. (No longer needed for input verification — see #863 below — but still the only path to desktop-marked CI jobs.) |
 
 ## Recommended for closure (Orc cannot close needs:ace/QA items unattended — your confirm)
 | # | What changed | Orc recommendation |
@@ -56,8 +55,10 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
   (closed #876, filed #977). #975 now awaits only Ace's *ratification* of the re-enable, not a re-enable.
 - **None blocking the ship-gate itself.** #843 (capture popup compositing) **verified+closed 2026-06-17
   02:42Z** — the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test + CodeQL success on HEAD `01faff8`).
-- Desktop CI runner **#842** offline (chronic; infra decision above).
+- `develop` CI: **green** (Build & Test + CodeQL success on HEAD `ac24cb1`/#1032).
+- Desktop CI runner #842 / cloud-VM #860 **CLOSED 2026-06-17 (NOT_PLANNED)** — the local QA loop on
+  NATUROBOT superseded the offline self-hosted runner (proven on the v0.3.2 ship-gate bugs); reopen only
+  if per-PR pre-merge desktop CI gating becomes a hard requirement. No longer a human-decision block.
 - _Cleared this cycle:_ **#863** (input verification — proven possible) and **#915** (QA auth — recovered)
   are no longer blocks; both recommended for closure above.
 - _Related (not a human decision):_ [#917](https://github.com/AcePeak/naturo/issues/917) (P1,
