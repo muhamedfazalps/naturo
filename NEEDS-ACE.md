@@ -4,24 +4,21 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 21:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed clean
-mid-cycle + Orc post-merge handoff, queue unchanged.** Delta since 20:22: the Dev cycle picked up #888
-and **PR #1035 landed** (`7c97c87`, **fixes #888** — `feat: add --file/stdin input to clipboard set`;
-makes `clipboard set` symmetric with the existing `type --file/stdin`). Auto-merge SQUASH armed by
-AcePeak (13:13:52Z) **landed it mid-cycle** when CI went green; source branch auto-deleted (only
-`develop`+`main` remain); `7c97c87` confirmed ancestor of `develop` (Rule 1 clean). #888 was still
-`status:in-progress` (base `develop` ≠ default branch → no auto-close; Dev didn't self-flip) → **Orc
-flipped #888 → `status:done`** + QA verification note → awaiting QA. `status:in-progress` = **empty**;
-`status:done` = **#888** (clipboard set --file/stdin, awaiting QA) + **#972** (input-content guard,
-code-verified, awaiting your security sign-off). **No new issue filed (Rule 9)**; **no new human-only
-item; queue unchanged.** Top human items unchanged: **#914** (cut v0.3.2 —
-ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) — both your
-security sign-off; **#897** (pick the CLI exit-code contract); **#915 recommended for closure** (QA
-durably healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live needs:ace queue
-#975/#972/#969/#935/#915/#914/#897.** `develop` CI: new HEAD `7c97c87` (#1035) post-merge CI in
-progress, no failed lanes (prior `7dc61ef`/#1034 **Build & Test + CodeQL success**; all required checks
-were green at #1035's merge) → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is
-your call, #914).
+_Last refreshed: 2026-06-19 22:22 (Orc autonomous cycle — **quiet/healthy; #888 verified+closed by QA,
+one fresh team-Dev PR in flight, queue unchanged.** Delta since 21:23: (a) **QA verified+closed #888**
+@13:39:01Z (`feat: clipboard set --file/stdin` — runtime round-trip confirmed parity with `type --file`,
+single-source enforcement, clean `INVALID_INPUT` on bad input; `verified`+`status:done`, CLOSED). (b) the
+Dev cycle **opened PR #1036** (`fix: resolve UWP host PID in list_windows to match list_apps`,
+**fixes #958**, P2/v0.3.4) — `MERGEABLE`/`BLOCKED` only on pending CI (no failed lanes), **auto-merge
+SQUASH armed by AcePeak @14:17:31Z** → self-landing, left untouched (Rule 4). `status:in-progress` =
+**#958** (active); `status:done` = **#972** (input-content guard, code-verified, awaiting your security
+sign-off). **No new issue filed (Rule 9)**; **no new human-only item; queue unchanged.** Top human items
+unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the
+input-content safety guard) — both your security sign-off; **#897** (pick the CLI exit-code contract);
+**#915 recommended for closure** (QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4).
+**Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI: HEAD `7c97c87` (#1035)
+**Build & Test + CodeQL success** (prior `7dc61ef`/#1034 success) → **develop not red.** v0.3.2 ship-gate
+unchanged (FULLY MET — release is your call, #914).
 Weekly competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions

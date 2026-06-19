@@ -1,6 +1,42 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 21:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> Last refreshed: 2026-06-19 22:22 (Orc autonomous cycle — **quiet/healthy; #888 verified+closed by
+> QA mid-window, one fresh team-Dev PR in flight (#1036 → #958, auto-merge armed, left untouched per
+> Rule 4). develop not red, status:in-progress = #958 (active), status:done = #972 (human-only), no
+> abandoned work, no new issue (Rule 9), no new human-only item; needs:ace queue unchanged.** Since the
+> 21:23 refresh: (a) **QA verified+closed #888 @13:39:01Z** (`feat: clipboard set --file/stdin`, now
+> `verified`+`status:done`, state CLOSED) — runtime round-trip confirmed `--file`/stdin parity with
+> `type --file`, single-source enforcement, clean `INVALID_INPUT` on conflict/no-source/missing-file;
+> merged `7c97c87` present → Rule 1 clean, QA did the close → **no Orc handoff needed**; drains the
+> prior `status:done` queue. (b) the Dev cycle **picked up #958 and opened PR #1036** (`fix: resolve
+> UWP host PID in list_windows to match list_apps`, head `fix/issue-958-list-windows-uwp-pid` →
+> `develop`, P2/from:qa/v0.3.4 — `list windows -j` reported the ApplicationFrameHost host PID for UWP
+> apps while `list apps -j` resolves the real app PID; the #267 fix never applied to the sibling
+> surface; continues the v0.3.4 JSON/MCP field-consistency lane). At sweep it was `MERGEABLE`/`BLOCKED`
+> only on **pending CI** (Commit-Author / Lint&Type / Version-Consistency = SUCCESS; Ubuntu+macOS tests
+> + C++ build + CodeQL = IN_PROGRESS; **no failed lanes**) with **auto-merge SQUASH armed by AcePeak
+> @14:17:31Z** → standard self-landing pattern, **branch untouched (Rule 4)**; it lands itself when CI
+> goes green. **Step 0:** `git remote prune origin` cleared ~25 **stale local tracking refs** for
+> already-merged branches; authoritative `gh api .../branches` = **develop + main + the one live PR
+> branch** → Rule 14 clean (stale refs were local-only; remote already auto-pruned). **Step 2 health:**
+> `status:in-progress` = **#958** (active Dev pickup, updated 14:17:34Z = minutes before sweep, PR open
+> → NOT the >24h abandonment case; correctly milestoned/labeled, left untouched). `status:done` =
+> **#972** (input-content guard, code-verified, close = human security sign-off, queued). **Nothing to
+> close** (Rule 1 — #958 in flight, no merged commit; #972 human-only), no abandoned work. **Step 3
+> (drive product): no new issue filed (Rule 9)** — priority-honesty scan (`no:milestone` open): only
+> the `needs:ace` human-only items (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted`
+> backlog (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; #958 correctly
+> milestoned → no mis-milestone. Standing #1 priority (recognition supremacy #920/#931/#932/#934) stays
+> top-of-queue but **env-blocked** (no JDK / no SAP install; desktop/QA-gated). **Step 3.5
+> competitiveness: NOT due** (tracker baseline 2026-06-16, today 06-19 = 3d < 7). **Step 4 (needs:ace):
+> no new human-only item** — live queue **unchanged #975/#972/#969/#935/#915/#914/#897** (all verified
+> open); NEEDS-ACE.md header + CI line refreshed. Evidence in
+> `.work/reviews/2026-06-19-2222-auto-review.md`. `develop` CI: code HEAD `7c97c87` (#1035) **Build &
+> Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call,
+> #914).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 21:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
 > clean mid-cycle (#1035 → #888) + Orc post-merge handoff (#888 → status:done). develop not red, no
 > open PRs, status:in-progress now empty, no abandoned work, no new issue (Rule 9), no new human-only
 > item; needs:ace queue unchanged.** Since the 20:22 refresh: the Dev cycle **picked up #888 and opened
