@@ -1,6 +1,39 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 15:24 (Orc autonomous cycle — **quiet/healthy; two team-Dev PRs landed
+> Last refreshed: 2026-06-19 16:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> clean since 15:24 (#1030 → #1029 — Dev self-handoff to status:done) + one priority-honesty triage
+> (milestoned #1029 → v0.3.4). develop green, no open PRs, status:in-progress empty, no abandoned work,
+> no new human-only item; needs:ace queue unchanged.** Since the 15:24 refresh: **PR #1030 landed**
+> (`07542ed`, HEAD, **fixes #1029** — `fix: route selector/record/visual -o writes through
+> _ensure_output_dir`; selector export / record export / visual-diff `-o` writes now route through
+> `_common._ensure_output_dir` **before** the write → a missing parent dir is auto-created and an
+> uncreatable parent yields a clean `INVALID_INPUT` envelope (`-j` always emits an envelope, never a
+> raw traceback / `[Errno 2]` / `[WinError]`); continues the #1022/#1028 output-dir hardening lane;
+> +`tests/test_output_dir_1029.py` 7 parametrized). Merged 08:16:27Z, **Build & Test + CodeQL
+> success**; source branch `fix/issue-1029-output-dir-export` auto-deleted (only `develop`+`main`
+> remain, Rule 14 clean); `git merge-base --is-ancestor 07542ed origin/develop` = **YES** → **Rule 1
+> clean**. **Post-merge handoff: none needed** — #1029 was already flipped `status:done` (08:18:09Z;
+> base `develop` ≠ default branch → no auto-close; Dev did the handoff). **Step 3 priority-honesty
+> triage:** #1029 was `P1`/`from:qa` but **unmilestoned**, unlike its #1025/#1022/#1023 output-dir/JSON
+> siblings → **Orc milestoned #1029 → v0.3.4** (no public-API/label/CLI change → not human-only).
+> **`status:in-progress` empty** → no in-flight pickup, no abandoned work. **`status:done` = #1029**
+> (selector/record/visual `-o` output-dir, awaiting QA) **+ #972** (input-content guard, code-verified,
+> close = human security sign-off, queued). **No open PRs;** branches `develop`+`main` only (Rule 14
+> clean). **Step 2 health: nothing to close** (Rule 1 — #1029 needs QA `verified`; #972 human-only), no
+> abandoned work. **Step 3 (drive product): no new issue filed (Rule 9)** — backlog healthy +
+> Dev-pickable (v0.3.4 `from:qa` JSON/MCP consistency cluster + distribution #997/#922/#928/#930);
+> after the #1029 milestone, **zero unmilestoned actionable Dev work** (only `needs:ace` human-only
+> #975/#969/#935/#915 + parked Linux/cross-platform `help wanted` #88/#87/#84/#77/#75/#74/#68/#66).
+> Standing #1 priority (recognition supremacy #920/#931/#932/#934) stays top-of-queue but **env-blocked**
+> (no JDK / no SAP install; desktop/QA-gated). **Step 3.5 competitiveness: NOT due** (tracker baseline
+> 2026-06-16, today 06-19 = 3d < 7). **Step 4 (needs:ace): no new human-only item** — live queue
+> **unchanged #975/#972/#969/#935/#915/#914/#897** (+ infra #860/#842), all verified open; NEEDS-ACE.md
+> header refreshed. Evidence in `.work/reviews/2026-06-19-1623-auto-review.md`. `develop` CI: HEAD
+> `07542ed` (#1030) **Build & Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged (FULLY
+> MET — release is Ace's call, #914).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 15:24 (Orc autonomous cycle — **quiet/healthy; two team-Dev PRs landed
 > clean since 14:22 (#1027→#1025 QA-verified+closed; #1028→#1022 → Orc post-merge handoff to
 > status:done). develop green, no open PRs, status:in-progress now empty, no abandoned work, no new
 > human-only item; needs:ace queue unchanged.** Since the 14:22 refresh: (a) **PR #1027 landed**

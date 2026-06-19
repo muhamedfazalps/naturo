@@ -4,20 +4,20 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 15:24 (Orc autonomous cycle — **quiet/healthy; this queue is unchanged.**
-Deltas since 14:22: (a) **PR #1027 landed** (`e1e0dc5`, fixes #1025 — the #894 incomplete-fix
-JSON-escaping sweep, all CLI `-j` emit sites now route through `json_dumps`) → **QA verified+closed
-#1025** (Rule 1 clean, no Orc handoff). (b) **PR #1028 landed** (`0cf0a21`, fixes #1022 — `capture`/`see
---path` auto-creates a missing parent dir instead of leaking raw `[Errno 2]`); it was still
-`status:in-progress` at merge so Orc did the post-merge handoff → **#1022 now `status:done`, awaiting
-QA**. `status:in-progress` now empty; `status:done` = **#1022** (awaiting QA) **+ #972** (input-content
-guard, code-verified, awaiting your security sign-off). **No new issue filed (Rule 9)** — backlog healthy
-+ Dev-pickable (v0.3.4 `from:qa` JSON/MCP consistency cluster + distribution). Top human items unchanged:
+_Last refreshed: 2026-06-19 16:23 (Orc autonomous cycle — **quiet/healthy; this queue is unchanged.**
+Delta since 15:24: **PR #1030 landed** (`07542ed`, HEAD, fixes #1029 — `fix: route selector/record/visual
+-o writes through _ensure_output_dir`; the selector/record export + visual-diff `-o` writes now
+auto-create a missing parent dir and emit a clean `INVALID_INPUT` envelope instead of a raw traceback,
+continuing the #1022/#1028 output-dir hardening lane). #1029 was flipped `status:done` at merge (Rule 1
+clean, no Orc handoff) and Orc milestoned it → v0.3.4 (priority-honesty tidy; no public-API/label change).
+`status:in-progress` empty; `status:done` = **#1029** (awaiting QA) **+ #972** (input-content guard,
+code-verified, awaiting your security sign-off). **No new issue filed (Rule 9)** — backlog healthy +
+Dev-pickable (v0.3.4 `from:qa` JSON/MCP consistency cluster + distribution). Top human items unchanged:
 **#914** (cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content
 safety guard) — both your security sign-off; **#897** (pick the CLI exit-code contract); **#915
 recommended for closure** (QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4).
-**Live needs:ace queue #975/#972/#969/#935/#915/#914/#897/#860/#842.** `develop` CI: HEAD `0cf0a21`
-(#1028) **Build & Test + CodeQL success** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET —
+**Live needs:ace queue #975/#972/#969/#935/#915/#914/#897/#860/#842.** `develop` CI: HEAD `07542ed`
+(#1030) **Build & Test + CodeQL success** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET —
 release is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
