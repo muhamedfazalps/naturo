@@ -1,6 +1,49 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 23:23 (Orc autonomous cycle — **quiet/healthy; QA verified+closed #958
+> Last refreshed: 2026-06-20 00:50 (Orc autonomous cycle — **quiet/healthy; two team-Dev PRs landed
+> clean since 23:23 (#1037 → part of #871; #1039 → #1038) + one Orc post-merge handoff (#1038 →
+> status:done, milestoned v0.3.4). develop not red, no open PRs, status:in-progress now empty,
+> status:done = #1038 + #972 (human-only), no abandoned work, no new issue (Rule 9), no new human-only
+> item; needs:ace queue unchanged.** Since the 23:23 refresh: (a) **PR #1037 landed** (`981855d`,
+> **part of #871** — `fix: harmonize window-targeting flags on find/highlight/menu-inspect`; the first
+> slice of the inconsistent window-targeting matrix — `--window/--hwnd/--pid` now consistent on
+> find/highlight/menu-inspect. Merged 15:36:31Z, **Build & Test + CodeQL SUCCESS**; `git merge-base
+> --is-ancestor 981855d origin/develop` = YES → **Rule 1 clean**; source branch auto-deleted (only
+> `develop`+`main` remain, Rule 14 clean). #871 is a **multi-part** issue: the PR is "part of" not
+> "fixes", so #871 correctly **stays OPEN, status label cleared → pickable** for the remaining commands
+> (list-windows, get/set, others); milestone v0.3.4 intact; updated 15:37Z = freshly worked, NOT the
+> >24h abandonment case → left untouched). (b) **PR #1039 landed** (`08c1add`, HEAD, **fixes #1038** —
+> `fix: highlight reads newest snapshot, not oldest`; `naturo highlight --annotate/-A` **always** failed
+> `NO_SNAPSHOT` because `highlight_elements_uia()` read `snaps[-1]` (the OLDEST snapshot, whose
+> `screenshot_path` is None) while `list_snapshots()` returns **newest-first** → the just-created `see`
+> snapshot was never used; fix reads `snaps[0]`. Merged 16:18:11Z, **Build & Test + CodeQL SUCCESS**;
+> ancestor of develop confirmed → **Rule 1 clean**; source branch auto-deleted, Rule 14 clean).
+> **Post-merge handoff:** #1038 was still `status:in-progress` + **unmilestoned** (base `develop` ≠
+> default branch → no auto-close; Dev didn't self-flip) → **Orc flipped #1038 `status:in-progress` →
+> `status:done`** + **milestoned v0.3.4** (priority-honesty triage — P1/from:qa highlight bug, siblings
+> v0.3.4, no public-API/CLI change → not human-only) + QA verification note (after `see --app X --path
+> shot.png`, `highlight --app X --all -A out.png` → exit 0 + `out.png` from newest snapshot, clean `-j`
+> envelope). **Step 0:** `git fetch origin` clean; authoritative `gh api .../branches` = **develop +
+> main only** → Rule 14 clean. **Step 1:** **no open PRs.** **Step 2 health:** `status:in-progress` now
+> **empty** (was #1038, flipped this cycle); `status:done` = **#1038** (highlight snapshot-order,
+> awaiting QA) **+ #972** (input-content guard, code-verified, close = human security sign-off, queued).
+> **Nothing to close** (Rule 1 — #1038 needs QA `verified`; #972 human-only), no abandoned work (#871
+> freshly worked + pickable, not >24h). **Step 3 (drive product): no new issue filed (Rule 9)** —
+> priority-honesty scan (`no:milestone` open): after milestoning #1038, only the `needs:ace` human-only
+> items (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted` backlog
+> (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; #871 correctly v0.3.4 →
+> no mis-milestone; backlog Dev-pickable (#871 remaining window-targeting flags + the v0.3.4 `from:qa`
+> JSON/MCP consistency lane). Standing #1 priority (recognition supremacy #920/#931/#932/#934) stays
+> top-of-queue but **env-blocked** (no JDK / no SAP install; desktop/QA-gated). **Step 3.5
+> competitiveness: NOT due** (tracker baseline 2026-06-16, today 06-20 = 4d < 7). **Step 4 (needs:ace):
+> no new human-only item** — live queue **unchanged #975/#972/#969/#935/#915/#914/#897** (all verified
+> open); NEEDS-ACE.md header + CI line refreshed. Evidence in
+> `.work/reviews/2026-06-20-0050-auto-review.md`. `develop` CI: HEAD `08c1add` (#1039) **Build & Test +
+> CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-19 23:23 (Orc autonomous cycle — **quiet/healthy; QA verified+closed #958
 > mid-window (no Orc handoff needed) + the 23:07 Dev cycle picked up #871 (fresh in-flight, left
 > untouched, Rule 4). develop not red, no open PRs, `status:done` drained to #972 (human-only),
 > `status:in-progress` = #871, no abandoned work, no new issue (Rule 9), no new human-only item;
