@@ -1,6 +1,37 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 08:23 (Orc autonomous cycle — **quiet/healthy; one clean Dev→QA close
+> Last refreshed: 2026-06-19 09:24 (Orc autonomous cycle — **quiet/healthy; no open PRs, develop green,
+> one fresh in-flight Dev pickup (#895 — left untouched, Rule 4), one priority-honesty triage (new QA
+> bug #1022 → milestoned v0.3.4). No new human-only item; needs:ace queue unchanged.** Since the 08:23
+> refresh: QA ran an exploratory cycle @08:42Z (no actionable verify queue — only #972 in `status:done`,
+> human security sign-off, untouched) and **filed #1022** (`bug`/`P2`/`from:qa`): `capture`/`see` writing
+> to a missing-parent `--path` leak a raw `[Errno 2]` and **mislabel the envelope** — `capture` →
+> `CAPTURE_ERROR` + minimized-window guidance (wrong: capture succeeded, only the *save* failed); `see` →
+> raw-errno `UNKNOWN_ERROR` + null guidance. The 09:07 **Dev cycle picked up #895** (`bug: naturo wait
+> JSON success envelope drifts across sub-modes`, P2/from:qa/v0.3.4) at 01:08:46Z (~14 min before sweep,
+> **no branch pushed → active in-flight, left untouched, Rule 4**; NOT the >24h-no-PR abandonment case).
+> **`status:in-progress` = #895** (active Dev pickup). **`status:done` = #972** only (input-content guard,
+> code-verified, close = human security sign-off, queued). **No open PRs.** **Step 2 health: no abandoned
+> work, nothing to close** (Rule 1 — no merged commit to cite). **Step 3 (drive product): triaged #1022
+> → v0.3.4** (the error-clarity / `-j` envelope lane) — confirmed a genuine **gap, not a dup**: the #884
+> (shape) / #877 (`get`/`set`) / #1004 (interaction) error-envelope cluster converged *runtime/automation*
+> errors but none cover the **filesystem save-path** failure on `capture`/`see`; kept P2, posted a framing
+> comment (recommend `os.makedirs(parent, exist_ok=True)` or an early `INVALID_INPUT`, + stop mislabeling
+> save-failure as capture-failure; pointer `_capture.py:84-89` + `:300-305`) → Dev-pickable. **No new issue
+> filed (Rule 9)** — #1022 already captures the gap; a dup would be noise. Priority-honesty scan after
+> triage: **zero unmilestoned actionable Dev work** (only the `needs:ace` human-only items + the parked
+> Linux/cross-platform `help wanted` community backlog #88/#87/#84/#77/#75/#74/#68/#66 float). The `-j`
+> envelope classes stay structurally closed; the test-honesty / cross-platform cluster
+> (#894/#999/#1010/#1016/#944/#946) + the suggester cluster (#880/#889) have all shipped. Recognition
+> hardening env-blocked (#932 Java/no JDK; #934 SAP/no install); distribution backlog sharp
+> (#997/#930/#922/#928). **Step 4 (needs:ace): no new human-only item** (#1022 is Dev-actionable) — live
+> queue **unchanged #975/#972/#969/#935/#915/#914/#897** (+ infra #860/#842), all verified open. Evidence
+> in `.work/reviews/2026-06-19-0924-auto-review.md`. `develop` CI: HEAD code `2280079` (#1021) **Build &
+> Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call,
+> #914). Weekly competitiveness **not due** (baseline 2026-06-16, <7d).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 08:23 (Orc autonomous cycle — **quiet/healthy; one clean Dev→QA close
 > (#889 verified+closed by QA) + one needs:ace queue reconciliation (#897 CLI exit-code contract — it
 > carried `needs:ace` since 06-19 00:19Z but had never been in the NEEDS-ACE digest; added this cycle).
 > develop green, no open PRs, status:in-progress empty, no abandoned work, no new issue filed (Rule 9).**

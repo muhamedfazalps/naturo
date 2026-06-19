@@ -4,26 +4,22 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 08:23 (Orc autonomous cycle — **quiet/healthy; one clean Dev→QA close
-(#889 verified+closed) + one queue reconciliation: #897 (CLI exit-code contract) added below — it had
-carried `needs:ace` since 06-19 00:19Z but was never in this digest. `develop` green, no open PRs,
-status:in-progress empty, no abandoned work, no new issue filed.** Since the 07:23 refresh: **QA
-verified+closed #889** (07:38 local / 23:38Z — the short-verb suggester-precision fix from PR #1021,
-`ai`→`wait`/`tap`→`app`; merged commit `2280079` present → Rule 1 clean; Dev had already flipped it to
-`status:done`, QA closed it → no Orc handoff). This completes the #880/#889 suggester cluster (both
-halves shipped + verified). `status:in-progress` = **empty**. `status:done` = **#972** only
-(input-content guard, code-verified, awaiting your security sign-off) — drained from 2 (#889 closed).
-**No new issue filed (Rule 9)** — the `-j` envelope classes stay structurally closed, the recent
-test-honesty / cross-platform cluster (#894/#999/#1010/#1016/#944/#946) + the suggester cluster
-(#880/#889) have all shipped; recognition hardening env-blocked (#932/#934); distribution backlog sharp
-(#997/#930/#922/#928). Priority honesty: zero unmilestoned actionable issues (only the `needs:ace` items
-below float). Top human items: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972**
-(close the input-content safety guard) — both your security sign-off; **#897** (pick the CLI exit-code
-contract — new below); **#915 recommended for closure** (QA durably healthy). NB: the **#969 env fix
-stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#897 /#860/#842.**
-`develop` CI: HEAD `2280079` (#1021) **Build & Test + CodeQL success** (prior `ccb43ec` #1020 success) →
-**develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
-competitiveness step not due (<7d since 06-16)._
+_Last refreshed: 2026-06-19 09:24 (Orc autonomous cycle — **quiet/healthy; no open PRs, `develop` green,
+one fresh in-flight Dev pickup (#895), one priority-honesty triage (new QA bug #1022 → v0.3.4). No new
+human-only item; this queue is unchanged.** Since the 08:23 refresh: QA ran an exploratory cycle @08:42Z
+(no actionable verify queue) and filed **#1022** (`capture`/`see` mislabel a missing-output-dir save
+failure as `CAPTURE_ERROR`/`UNKNOWN_ERROR` with misleading guidance) — Orc triaged it to **v0.3.4**
+(error-clarity lane, Dev-pickable; not a dup of the #884/#877/#1004 runtime-envelope cluster). The 09:07
+Dev cycle picked up **#895** (`wait` JSON success-envelope drift across sub-modes, P2/from:qa/v0.3.4) —
+active in-flight, no branch yet, left untouched (Rule 4). `status:in-progress` = **#895** (Dev).
+`status:done` = **#972** only (input-content guard, code-verified, awaiting your security sign-off).
+**No new issue filed (Rule 9).** Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975**
+(ratify the QA re-enable) + **#972** (close the input-content safety guard) — both your security sign-off;
+**#897** (pick the CLI exit-code contract); **#915 recommended for closure** (QA durably healthy). NB: the
+**#969 env fix stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#897
+/#860/#842.** `develop` CI: HEAD `2280079` (#1021) **Build & Test + CodeQL success** (prior `ccb43ec`
+#1020 success) → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914).
+Weekly competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
