@@ -1,6 +1,44 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-20 03:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> Last refreshed: 2026-06-20 04:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR in flight
+> (#1045 → #916 — Win11 empty taskbar/tray warning; auto-merge SQUASH armed, CI running, zero failed
+> lanes — left untouched, Rule 4). develop not red, status:in-progress = #916 (fresh in-flight),
+> status:done = #972 (human-only), no merges/closes by Orc, no abandoned work, no new issue (Rule 9),
+> no new human-only item; needs:ace queue unchanged.** The 04:07 Dev cycle picked up **#916** and opened
+> **PR #1045** (`fix: warn on empty Win11 taskbar/tray listing instead of silent success (fixes #916)`,
+> head `fix/issue-916-win11-shell-enum-warning` → `develop`, P2/from:qa/v0.3.4). Silent-failure honesty
+> fix (SOUL "Never Lie"): on Win11 (build ≥22000) an empty `taskbar list`/`tray list` returned
+> `{success:true, items:[], count:0}` because Win11's XAML shell host is unreadable via the legacy Win32
+> `Shell_TrayWnd`/`MSTaskListWClass`/`TrayNotifyWnd` enumeration → now emits an **additive** `warning`
+> key (+ loud stderr in human mode) **only when empty AND Win11**; success/items/icons/count + exit 0
+> unchanged (non-breaking); +`tests/test_shell_win11_warning_916.py` 7 mock cases; continuation of the
+> #876/#977/#980/#1043 honesty/consistency series. At sweep (NOW 20:23:17Z, run started 20:20:40Z ~3 min
+> in): Commit-Author / Lint&Type / Version-Consistency / Ubuntu 3.9 / macOS 3.12 / C++ build (Win) =
+> SUCCESS; Ubuntu 3.12/3.13 + macOS 3.9/3.13 + Windows-with-DLL + CodeQL c-cpp = IN_PROGRESS; **zero
+> failed lanes**; **auto-merge SQUASH armed by AcePeak @20:20:47Z** → standard self-landing pattern,
+> **branch untouched (Rule 4)** — it lands itself when CI goes green. **Step 0:** `git fetch origin -p`
+> clean; `git pull --ff-only` = Already up to date (code HEAD `c1acd54`/#1044; tip `3c765b9` = orc 0324
+> [skip ci]); authoritative `gh api .../branches` = **develop + main + the one live PR-1045 branch** →
+> **Rule 14 clean** (live PR branch expected; auto-deletes on merge). **Step 1:** PR #1045 in flight
+> (left untouched); no other open PRs. **Step 2 health:** `status:in-progress` = **#916** (active Dev
+> pickup, PR open, updated 20:20:49Z = ~3 min before sweep → NOT the >24h abandonment case; correctly
+> milestoned v0.3.4 + labeled, left untouched). `status:done` (open) = **#972 only** (input-content
+> guard, code-verified, close = human security sign-off, queued). **Nothing to close** (Rule 1 — #916
+> in flight, no merged commit; #972 human-only), no abandoned work. **Step 3 (drive product): no new
+> issue filed (Rule 9)** — priority-honesty scan (`no:milestone` open): only the `needs:ace` human-only
+> items (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted` backlog
+> (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; #916 correctly v0.3.4 →
+> no mis-milestone. Standing #1 priority (recognition supremacy #920/#931/#932/#934) stays top-of-queue
+> but **env-blocked** (no JDK / no SAP install; desktop/QA-gated). **Step 3.5 competitiveness: NOT due**
+> (tracker baseline 2026-06-16, today 06-20 = 4d < 7). **Step 4 (needs:ace): no new human-only item** —
+> live queue **unchanged #975/#972/#969/#935/#915/#914/#897** (all verified open); NEEDS-ACE.md header +
+> CI line refreshed. Evidence in `.work/reviews/2026-06-20-0424-auto-review.md`. `develop` CI: code HEAD
+> `c1acd54` (#1044) **Build & Test + CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY
+> MET — release is Ace's call, #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-20 03:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
 > clean since 02:24 (#1044 → #1043 — menu-inspect count envelope) + one Orc post-merge handoff (#1043
 > → status:done, milestoned v0.3.4). develop not red, no open PRs, status:in-progress now empty,
 > status:done = #1043 (awaiting QA) + #972 (human-only), no abandoned work, no new issue (Rule 9), no

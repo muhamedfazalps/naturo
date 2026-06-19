@@ -4,24 +4,23 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-20 03:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
-clean since 02:24 (#1044 → #1043 — menu-inspect count envelope) + one Orc post-merge handoff (#1043 →
-status:done, milestoned v0.3.4). develop not red, no open PRs, status:in-progress now empty,
-status:done = #1043 (awaiting QA) + #972 (human-only), queue unchanged.** Delta since 02:24: **PR #1044
-landed** (`c1acd54`, HEAD — `fix: menu-inspect -j includes top-level count in success envelope`;
-`menu-inspect -j` was the last list-type surface omitting the top-level `count` field — sibling of the
-#980/#977/#876 envelope-consistency lane); Build & Test + CodeQL SUCCESS, Rule 1 + Rule 14 clean.
-**Post-merge handoff:** #1043 was still `status:in-progress` + unmilestoned (base `develop` ≠ default →
-no auto-close) → **Orc flipped #1043 → `status:done`** + **milestoned v0.3.4** (matching siblings
-#980/#876; P2/from:qa, no public-API/CLI change → not human-only) + QA verification note; #864 stays
-open (multi-part `--id eN` work) with `status` cleared → remaining commands pickable. **No new issue
-filed (Rule 9)**; **no new human-only item; queue unchanged.** Top human items unchanged: **#914**
-(cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety
-guard) — both your security sign-off; **#897** (pick the CLI exit-code contract); **#915 recommended
-for closure** (QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live
-needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI: code HEAD `c1acd54` (#1044)
-**Build & Test + CodeQL SUCCESS** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET —
-release is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
+_Last refreshed: 2026-06-20 04:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR in flight
+(#1045 → #916 — Win11 empty taskbar/tray warning; auto-merge armed, CI running, zero failed lanes —
+left untouched, Rule 4). develop not red, status:in-progress = #916 (fresh in-flight), status:done =
+#972 (human-only), no merges/closes by Orc, no abandoned work, queue unchanged.** Delta since 03:24:
+the 04:07 Dev cycle picked up **#916** and opened **PR #1045** (`fix: warn on empty Win11 taskbar/tray
+listing instead of silent success`; silent-failure honesty fix — empty `taskbar list`/`tray list` on
+Win11 returned `success:true, count:0` because the XAML shell host is unreadable via legacy Win32
+enumeration → now adds an **additive** `warning` key only when empty AND Win11, success/count/exit-0
+unchanged). Auto-merge SQUASH armed by AcePeak; CI in progress, zero failed lanes → self-lands when
+green (branch untouched, Rule 4). **No new issue filed (Rule 9)**; **no new human-only item; queue
+unchanged.** Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA
+re-enable) + **#972** (close the input-content safety guard) — both your security sign-off; **#897**
+(pick the CLI exit-code contract); **#915 recommended for closure** (QA durably healthy). NB: the
+**#969 env fix stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.**
+`develop` CI: code HEAD `c1acd54` (#1044) **Build & Test + CodeQL SUCCESS** → **develop not red.**
+v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step not
+due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
@@ -57,7 +56,7 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
   (closed #876, filed #977). #975 now awaits only Ace's *ratification* of the re-enable, not a re-enable.
 - **None blocking the ship-gate itself.** #843 (capture popup compositing) **verified+closed 2026-06-17
   02:42Z** — the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test + CodeQL SUCCESS on `c1acd54`/#1044). No open PRs. #1043 (menu-inspect count envelope) landed via PR #1044, handed off to `status:done` (awaiting QA). #864 stays open (multi-part `--id eN`) with `status` cleared → remaining commands pickable.
+- `develop` CI: **green** (Build & Test + CodeQL SUCCESS on `c1acd54`/#1044). **One PR in flight — #1045** (`fix: warn on empty Win11 taskbar/tray listing instead of silent success`, fixes #916), auto-merge SQUASH armed, CI running with zero failed lanes → self-lands when green (left untouched, Rule 4). #916 stays `status:in-progress` until the PR merges (Orc flips it to `status:done` post-merge on a later cycle).
 - Desktop CI runner #842 / cloud-VM #860 **CLOSED 2026-06-17 (NOT_PLANNED)** — the local QA loop on
   NATUROBOT superseded the offline self-hosted runner (proven on the v0.3.2 ship-gate bugs); reopen only
   if per-PR pre-merge desktop CI gating becomes a hard requirement. No longer a human-decision block.
