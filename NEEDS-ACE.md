@@ -4,23 +4,24 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-20 04:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR in flight
-(#1045 → #916 — Win11 empty taskbar/tray warning; auto-merge armed, CI running, zero failed lanes —
-left untouched, Rule 4 — **landed mid-cycle**, see below). develop not red, status:in-progress now empty,
-status:done = #916 (awaiting QA) + #972 (human-only), no abandoned work, queue unchanged.** Delta since
-03:24: the 04:07 Dev cycle picked up **#916** and opened **PR #1045** (`fix: warn on empty Win11
-taskbar/tray listing instead of silent success`; silent-failure honesty fix — empty `taskbar list`/`tray
-list` on Win11 returned `success:true, count:0` because the XAML shell host is unreadable via legacy Win32
-enumeration → now adds an **additive** `warning` key only when empty AND Win11, success/count/exit-0
-unchanged). **POST-MERGE:** PR #1045 **landed mid-cycle as `2e4d7fc`** (Rule 1 + Rule 14 clean); #916 was
-still `status:in-progress` (base `develop` ≠ default → no auto-close) → **Orc flipped #916 → `status:done`**
-+ QA verification note. **No new issue filed (Rule 9)**; **no new human-only item; queue unchanged.** Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA
-re-enable) + **#972** (close the input-content safety guard) — both your security sign-off; **#897**
-(pick the CLI exit-code contract); **#915 recommended for closure** (QA durably healthy). NB: the
-**#969 env fix stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.**
-`develop` CI: code HEAD `c1acd54` (#1044) **Build & Test + CodeQL SUCCESS** → **develop not red.**
-v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step not
-due (<7d since 06-16)._
+_Last refreshed: 2026-06-20 05:24 (Orc autonomous cycle — **healthy; one NEW team-Dev PR in flight
+(#1046 → #898 — `naturo doctor` env self-check) whose CI went RED on the #912 surface-coverage contract
+— Orc diagnosed it + routed a one-line fix to the Dev lane via a PR comment (branch + armed auto-merge
+left untouched, Rule 4). develop NOT red, status:in-progress = #898 (red PR, fresh), status:done = #972
+(human-only), nothing closed, no new issue (Rule 9), no new human-only item; queue unchanged.** Delta
+since 04:24: the Dev cycle opened **PR #1046** (`feat: add 'naturo doctor' environment self-check
+command`) — a one-shot diagnostic reporting session/DPI/optional-deps/providers/snapshot+log locations.
+**Its CI went RED** on every Ubuntu+macOS lane (single clean cause: the #912 self-maintaining
+surface-coverage test catching the new `doctor` leaf as unclassified). Per Step 1, **Orc posted a precise
+diagnostic comment** (add `"doctor"` to `_CLI_SESSION_INDEPENDENT` — it must *report* "Desktop session:
+no" without erroring) so the Dev cycle fixes it; **mechanical test-classification fix, NOT human-only →
+Dev lane, not this queue.** **No new human-only item; queue unchanged.** Top human items unchanged:
+**#914** (cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content
+safety guard) — both your security sign-off; **#897** (pick the CLI exit-code contract); **#915
+recommended for closure** (QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4).
+**Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI: code HEAD `2e4d7fc` (#1045)
+**Build & Test + CodeQL SUCCESS** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release
+is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |

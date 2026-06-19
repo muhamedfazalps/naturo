@@ -1,6 +1,43 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-20 04:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR in flight
+> Last refreshed: 2026-06-20 05:24 (Orc autonomous cycle — **healthy; one NEW team-Dev PR in flight
+> (#1046 → #898 — `naturo doctor` env self-check) whose CI went RED on the #912 surface-coverage
+> contract — Orc diagnosed it + routed a precise fix to the Dev lane via a PR comment (branch + armed
+> auto-merge left untouched, Rule 4). develop NOT red, status:in-progress = #898 (red PR, fresh — not
+> abandoned), status:done = #972 (human-only), nothing closed (Rule 1), no new issue (Rule 9), no new
+> human-only item; needs:ace queue unchanged.** Delta since 04:24: the Dev cycle (after 04:24) picked up
+> **#898** and opened **PR #1046** (`feat: add 'naturo doctor' environment self-check command`, head
+> `feat/issue-898-doctor-command` → develop, P?/team-Dev; auto-merge SQUASH armed @21:21:03Z) — a
+> one-shot diagnostic that reports session/DPI/optional-deps/providers/snapshot+log locations.
+> **PR CI went RED** on every Ubuntu+macOS Python-Tests lane (Windows/C++/Lint green): single clean root
+> cause `tests/test_surface_guard_coverage_912.py::test_every_cli_leaf_is_classified` →
+> *"New CLI surface(s) are not classified … ['doctor']"* (the #912 self-maintaining contract catching the
+> new `doctor` leaf, undeclared in `_CLI_DESKTOP_SESSION_REQUIRED`/`_CLI_SESSION_INDEPENDENT`). Per Step 1
+> ("a red-CI Dev PR is not done — don't let it rot") **Orc posted a precise diagnostic comment on #1046**
+> (exact failure + one-line fix: add `"doctor"` to `_CLI_SESSION_INDEPENDENT` since the spec requires it
+> to *report* "Desktop session: no" without erroring → must not hard-acquire the backend; `_CLI_DESKTOP_
+> SESSION_REQUIRED`+#885-matrix noted as the alternative + local verify cmd). **Branch + auto-merge
+> untouched (Rule 4)** — mechanical test-classification fix, no public-API/security/product ambiguity →
+> **Dev lane, not needs:ace**; it self-lands once green. **Step 0:** `git pull --ff-only` = Already up to
+> date (code HEAD `2e4d7fc`/#1045; tip `42980bb` = orc 0424 [skip ci]); authoritative `gh api .../branches`
+> = **develop + main + the one live PR-1046 branch** → Rule 14 clean. **Step 2 health:**
+> `status:in-progress` = **#898** (active Dev pickup, PR open + red, updated 21:21:06Z = fresh → NOT the
+> >24h abandonment case; left untouched). `status:done` (open) = **#972 only** (input-content guard,
+> code-verified, close = human security sign-off, queued). **Nothing to close** (Rule 1 — #898 in flight +
+> red, no merged commit; #972 human-only), no abandoned work. **Step 3 (drive product): no new issue
+> (Rule 9)** — `no:milestone` scan = only the `needs:ace` human-only items (#975/#969/#935/#915) + the
+> parked Linux/cross-platform `help wanted` backlog (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned
+> actionable Dev work**; #898 correctly milestoned. Standing #1 priority (recognition supremacy
+> #920/#931/#932/#934) stays top-of-queue but **env-blocked** (no JDK / no SAP install; desktop/QA-gated).
+> **Step 3.5 competitiveness: NOT due** (tracker baseline 2026-06-16, today 06-20 = 4d < 7). **Step 4
+> (needs:ace): no new human-only item** — live queue **unchanged #975/#972/#969/#935/#915/#914/#897** (all
+> verified open); NEEDS-ACE.md header + CI line refreshed. Evidence in
+> `.work/reviews/2026-06-20-0524-auto-review.md`. `develop` CI: code HEAD `2e4d7fc` (#1045) **Build & Test
+> + CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-20 04:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR in flight
 > (#1045 → #916 — Win11 empty taskbar/tray warning; auto-merge SQUASH armed, CI running, zero failed
 > lanes — left untouched, Rule 4). develop not red, status:in-progress = #916 (fresh in-flight),
 > status:done = #972 (human-only), no merges/closes by Orc, no abandoned work, no new issue (Rule 9),
