@@ -4,24 +4,22 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 20:22 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
-clean, queue unchanged.** Delta since 19:23: **PR #1034 landed** (`7dc61ef`, HEAD, **fixes #891** —
-`fix: reject unknown MCP tool arguments instead of silently dropping them`; the MCP server now rejects
-undeclared tool arguments before dispatch with a clean `ToolError` instead of letting a typo'd arg fall
-back to its default — closes a silent-failure class across all 64 tools). Merged 12:20:18Z, **all
-required CI green** (Ubuntu/macOS 3.9/3.12/3.13 + Windows-with-DLL + CodeQL + C++ build + Lint);
-`7dc61ef` confirmed ancestor of `develop`; source branch auto-deleted (only `develop`+`main` remain).
-#891 **already flipped `status:in-progress` → `status:done`** by Dev at merge (no Orc handoff needed) →
-awaiting QA. `status:in-progress` = **empty**; `status:done` = **#891** (MCP unknown-arg rejection,
-awaiting QA) + **#972** (input-content guard, code-verified, awaiting your security sign-off). **No new
-issue filed (Rule 9)**; **no new human-only item.** Top human items unchanged: **#914** (cut v0.3.2 —
+_Last refreshed: 2026-06-19 21:23 (Orc autonomous cycle — **quiet/healthy; one fresh in-flight team-Dev
+PR, queue unchanged.** Delta since 20:22: the Dev cycle **picked up #888 and opened PR #1035**
+(`feat: add --file/stdin input to clipboard set`, head `fix/issue-888-clipboard-set-file-stdin` →
+`develop`, P2/from:qa/v0.3.4 — makes `clipboard set` symmetric with the existing `type --file/stdin`).
+Created 13:13:40Z, **auto-merge SQUASH already armed by AcePeak** (13:13:52Z); at sweep `MERGEABLE`,
+`BLOCKED` only on **pending CI** (Commit-Author + Version-Consistency pass, the rest still running — no
+failed lanes) → it lands itself when the gate goes green; branch left untouched (Rule 4). #888 is the
+matching active pickup (`status:in-progress`, freshly worked 13:13Z — not abandoned). `status:done` =
+**#972** only (input-content guard, code-verified, awaiting your security sign-off). **No new issue filed
+(Rule 9)**; **no new human-only item; queue unchanged.** Top human items unchanged: **#914** (cut v0.3.2 —
 ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) — both your
 security sign-off; **#897** (pick the CLI exit-code contract); **#915 recommended for closure** (QA
 durably healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live needs:ace queue
-#975/#972/#969/#935/#915/#914/#897.** `develop` CI: HEAD `7dc61ef` (#1034) post-merge **Build & Test +
-CodeQL in progress, no failed lanes** (all required checks were green at merge; prior `91d2beb` success)
-→ **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
-competitiveness step not due (<7d since 06-16)._
+#975/#972/#969/#935/#915/#914/#897.** `develop` CI: code HEAD `7dc61ef` (#1034) **Build & Test + CodeQL
+success** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914).
+Weekly competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
@@ -57,7 +55,7 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
   (closed #876, filed #977). #975 now awaits only Ace's *ratification* of the re-enable, not a re-enable.
 - **None blocking the ship-gate itself.** #843 (capture popup compositing) **verified+closed 2026-06-17
   02:42Z** — the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test + CodeQL success on HEAD `ac24cb1`/#1032).
+- `develop` CI: **green** (Build & Test + CodeQL success on code HEAD `7dc61ef`/#1034).
 - Desktop CI runner #842 / cloud-VM #860 **CLOSED 2026-06-17 (NOT_PLANNED)** — the local QA loop on
   NATUROBOT superseded the offline self-hosted runner (proven on the v0.3.2 ship-gate bugs); reopen only
   if per-PR pre-merge desktop CI gating becomes a hard requirement. No longer a human-decision block.
