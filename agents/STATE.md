@@ -1,6 +1,46 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-20 05:24 (Orc autonomous cycle — **healthy; one NEW team-Dev PR in flight
+> Last refreshed: 2026-06-20 06:24 (Orc autonomous cycle — **quiet/healthy; the PR that was RED-in-flight
+> last cycle (#1046 → #898 — `naturo doctor` env self-check) LANDED CLEAN once the Dev lane applied the
+> #912 surface-coverage fix Orc had diagnosed. develop NOT red, status:in-progress now empty, status:done
+> = #898 (awaiting QA) + #972 (human-only), nothing closed (Rule 1), one priority-honesty triage
+> (milestoned new QA bug #1047 → v0.3.4), no new issue (Rule 9), no new human-only item; needs:ace queue
+> unchanged.** Since 05:24: **PR #1046 landed** as `fe175d0` (`feat: add 'naturo doctor' environment
+> self-check command (fixes #898)`) — the Ubuntu+macOS RED lanes (single cause: the #912 self-maintaining
+> surface-coverage test catching the new `doctor` leaf as unclassified) were resolved exactly as Orc had
+> routed last cycle: the Dev lane added `"doctor"` to `_CLI_SESSION_INDEPENDENT` (+5 lines in
+> `tests/test_surface_guard_coverage_912.py`) — `doctor` must *report* "Desktop session: no" without
+> hard-acquiring a backend — and the PR self-landed when CI went green. **Step 0:** `git fetch origin -p`
+> pruned `origin/feat/issue-898-doctor-command` (auto-deleted at merge); `git pull --ff-only`
+> fast-forwarded onto **`fe175d0`** (pulled in `naturo/cli/doctor_cmd.py` + `tests/test_doctor_898.py`);
+> branches = **develop + main only** → Rule 14 clean. **Step 1:** **no open PRs** (`gh pr list --state
+> open` = `[]`); `fe175d0` is HEAD → Rule 1 clean. **Post-merge handoff: none needed** — #898 was already
+> flipped `status:in-progress` → `status:done` by the Dev lane at merge (base `develop` ≠ default → no
+> auto-close; verified #898 OPEN + `status:done` + milestone v0.3.4). **Step 2 health:**
+> `status:in-progress` now **empty** → no in-flight pickup, no abandoned work; `status:done` (open) =
+> **#898** (`naturo doctor`, awaiting QA) **+ #972** (input-content guard, code-verified, close = human
+> security sign-off, queued). **Nothing to close** (Rule 1 — #898 needs QA `verified`; #972 human-only).
+> **Step 3 (drive product): priority-honesty triage** — new QA bug **#1047** (`bug: naturo find reports
+> missing target window/app as unrecoverable UNKNOWN_ERROR — siblings see/menu-inspect/highlight return
+> recoverable WINDOW_NOT_FOUND/APP_NOT_FOUND`, P2/from:qa, created 21:42Z) was **unmilestoned** unlike its
+> v0.3.4 error-envelope-consistency siblings (#980/#977/#876/#1043) → **Orc milestoned #1047 → v0.3.4**
+> (clean honesty bug w/ concrete `_find.py` Dev pointer — `get_element_tree()` raises so the dead
+> `WINDOW_NOT_FOUND` branch never fires and the broad `except` emits `UNKNOWN_ERROR`/`recoverable:false`;
+> no public-API/CLI change → not human-only; same triage class as prior #1043/#1031/#1029). **No new
+> issue (Rule 9)** — the gap already had a sharp issue (#1047); after its milestone the `no:milestone`
+> set is only the `needs:ace` human-only items (#975/#969/#935/#915) + the parked Linux/cross-platform
+> `help wanted` backlog (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**.
+> Standing #1 priority (recognition supremacy #920/#931/#932/#934) stays top-of-queue but **env-blocked**
+> (no JDK / no SAP install; desktop/QA-gated). **Step 3.5 competitiveness: NOT due** (tracker baseline
+> 2026-06-16, today 06-20 = 4d < 7). **Step 4 (needs:ace): no new human-only item** — live queue
+> **unchanged #975/#972/#969/#935/#915/#914/#897** (all verified open); NEEDS-ACE.md header + CI line
+> refreshed. Evidence in `.work/reviews/2026-06-20-0624-auto-review.md`. `develop` CI: code HEAD
+> `fe175d0` (#1046) **Build & Test + CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY
+> MET — release is Ace's call, #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-20 05:24 (Orc autonomous cycle — **healthy; one NEW team-Dev PR in flight
 > (#1046 → #898 — `naturo doctor` env self-check) whose CI went RED on the #912 surface-coverage
 > contract — Orc diagnosed it + routed a precise fix to the Dev lane via a PR comment (branch + armed
 > auto-merge left untouched, Rule 4). develop NOT red, status:in-progress = #898 (red PR, fresh — not

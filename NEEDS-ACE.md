@@ -4,22 +4,22 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-20 05:24 (Orc autonomous cycle — **healthy; one NEW team-Dev PR in flight
-(#1046 → #898 — `naturo doctor` env self-check) whose CI went RED on the #912 surface-coverage contract
-— Orc diagnosed it + routed a one-line fix to the Dev lane via a PR comment (branch + armed auto-merge
-left untouched, Rule 4). develop NOT red, status:in-progress = #898 (red PR, fresh), status:done = #972
-(human-only), nothing closed, no new issue (Rule 9), no new human-only item; queue unchanged.** Delta
-since 04:24: the Dev cycle opened **PR #1046** (`feat: add 'naturo doctor' environment self-check
-command`) — a one-shot diagnostic reporting session/DPI/optional-deps/providers/snapshot+log locations.
-**Its CI went RED** on every Ubuntu+macOS lane (single clean cause: the #912 self-maintaining
-surface-coverage test catching the new `doctor` leaf as unclassified). Per Step 1, **Orc posted a precise
-diagnostic comment** (add `"doctor"` to `_CLI_SESSION_INDEPENDENT` — it must *report* "Desktop session:
-no" without erroring) so the Dev cycle fixes it; **mechanical test-classification fix, NOT human-only →
-Dev lane, not this queue.** **No new human-only item; queue unchanged.** Top human items unchanged:
+_Last refreshed: 2026-06-20 06:24 (Orc autonomous cycle — **quiet/healthy; the PR that was RED-in-flight
+last cycle (#1046 → #898 — `naturo doctor` env self-check) LANDED CLEAN once the Dev lane applied the
+#912 surface-coverage fix Orc had diagnosed. develop NOT red, status:in-progress now empty, status:done
+= #898 (awaiting QA) + #972 (human-only), nothing closed (Rule 1), one priority-honesty triage
+(milestoned new QA bug #1047 → v0.3.4), no new issue (Rule 9), no new human-only item; queue
+unchanged.** Since 05:24: **PR #1046 landed** as `fe175d0` — the Ubuntu+macOS RED lanes (the #912
+self-maintaining surface-coverage test catching the new `doctor` leaf as unclassified) were resolved
+exactly as Orc routed: the Dev lane added `"doctor"` to `_CLI_SESSION_INDEPENDENT` and the PR self-landed
+green. #898 already flipped to `status:done` by Dev at merge (awaiting QA). New QA bug **#1047** (`find`
+reports missing window/app as unrecoverable `UNKNOWN_ERROR` vs siblings' recoverable
+`WINDOW_NOT_FOUND`/`APP_NOT_FOUND`) was unmilestoned → **Orc milestoned it v0.3.4** (Dev-actionable
+honesty bug, not human-only). **No new human-only item; queue unchanged.** Top human items unchanged:
 **#914** (cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content
 safety guard) — both your security sign-off; **#897** (pick the CLI exit-code contract); **#915
 recommended for closure** (QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4).
-**Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI: code HEAD `2e4d7fc` (#1045)
+**Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI: code HEAD `fe175d0` (#1046)
 **Build & Test + CodeQL SUCCESS** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release
 is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
 
@@ -57,7 +57,7 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
   (closed #876, filed #977). #975 now awaits only Ace's *ratification* of the re-enable, not a re-enable.
 - **None blocking the ship-gate itself.** #843 (capture popup compositing) **verified+closed 2026-06-17
   02:42Z** — the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test + CodeQL SUCCESS on `c1acd54`/#1044). **PR #1045 landed mid-cycle as `2e4d7fc`** (`fix: warn on empty Win11 taskbar/tray listing instead of silent success`, fixes #916; Rule 1 + Rule 14 clean; post-merge CI on `2e4d7fc` running, no failed lanes). #916 flipped `status:in-progress` → `status:done` (awaiting QA). No open PRs; branches `develop` + `main` only.
+- `develop` CI: **green** (Build & Test + CodeQL SUCCESS on `fe175d0`/#1046). **PR #1046 landed** (`feat: add 'naturo doctor' environment self-check command`, fixes #898; the prior-cycle RED #912 surface-coverage failure was fixed by classifying the `doctor` leaf session-independent, then self-landed green; Rule 1 + Rule 14 clean). #898 flipped `status:in-progress` → `status:done` by Dev at merge (awaiting QA). No open PRs; branches `develop` + `main` only.
 - Desktop CI runner #842 / cloud-VM #860 **CLOSED 2026-06-17 (NOT_PLANNED)** — the local QA loop on
   NATUROBOT superseded the offline self-hosted runner (proven on the v0.3.2 ship-gate bugs); reopen only
   if per-PR pre-merge desktop CI gating becomes a hard requirement. No longer a human-decision block.
