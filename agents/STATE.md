@@ -4,7 +4,16 @@
 > (#1045 → #916 — Win11 empty taskbar/tray warning; auto-merge SQUASH armed, CI running, zero failed
 > lanes — left untouched, Rule 4). develop not red, status:in-progress = #916 (fresh in-flight),
 > status:done = #972 (human-only), no merges/closes by Orc, no abandoned work, no new issue (Rule 9),
-> no new human-only item; needs:ace queue unchanged.** The 04:07 Dev cycle picked up **#916** and opened
+> no new human-only item; needs:ace queue unchanged.** **POST-MERGE UPDATE:** PR #1045 (armed
+> auto-merge) **landed mid-cycle as `2e4d7fc`** when CI went green (`git merge-base --is-ancestor
+> 2e4d7fc origin/develop` = YES → Rule 1 clean; source branch auto-deleted, only develop+main remain →
+> Rule 14 clean). #916 was still `status:in-progress` (base `develop` ≠ default → no auto-close), so
+> **Orc flipped #916 `status:in-progress` → `status:done`** + QA verification note (on real Win11 ≥22000,
+> confirm empty `taskbar list -j` / `tray list -j` now carry the additive `warning` key while
+> success/count/exit-0 stay unchanged; no `warning` when enumeration returns entries). `status:in-progress`
+> now **empty**; `status:done` = **#916** (Win11 shell-enum warning, awaiting QA) + **#972** (human-only).
+> Post-merge develop CI on `2e4d7fc` running, no failed lanes (all required checks green at merge) → not
+> red. _(Sweep snapshot below predates the mid-cycle land.)_ The 04:07 Dev cycle picked up **#916** and opened
 > **PR #1045** (`fix: warn on empty Win11 taskbar/tray listing instead of silent success (fixes #916)`,
 > head `fix/issue-916-win11-shell-enum-warning` → `develop`, P2/from:qa/v0.3.4). Silent-failure honesty
 > fix (SOUL "Never Lie"): on Win11 (build ≥22000) an empty `taskbar list`/`tray list` returned
