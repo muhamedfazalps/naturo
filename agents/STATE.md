@@ -1,6 +1,35 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 13:22 (Orc autonomous cycle — **quiet/healthy; the top P1 (#1023) landed
+> Last refreshed: 2026-06-19 14:22 (Orc autonomous cycle — **quiet/healthy; the top P1 (#1023) was
+> QA-verified+closed since 13:22, and the #1025 JSON-escaping sweep moved to an active Dev pickup.
+> develop green, no open PRs, no abandoned work, no new human-only item; needs:ace queue unchanged.**
+> Since the 13:22 refresh: (a) **QA verified+closed #1023 @05:39:05Z** (`bug`/`P1`/`from:qa`, now
+> `verified`+`status:done`, state COMPLETED) — the `naturo see`/`find` ~23 s multi-process hang (core
+> recognition cascade), fixed by PR #1026 / `a5c905e` (`detect_electron_app` bulk-process-info batching);
+> `git merge-base --is-ancestor a5c905e origin/develop` = **YES** → **Rule 1 clean**, QA did the close →
+> **no Orc post-merge handoff needed**; this drains the prior `status:done` queue. (b) the Dev cycle
+> **picked up #1025** (`-j` JSON still escapes non-ASCII on see/find/menu-inspect/list-windows/get/set —
+> #894 incomplete-fix mechanical sweep, P2/from:qa/v0.3.4) — updated **06:15:20Z**, ~minutes before
+> sweep, **no branch pushed → active in-flight, left untouched (Rule 4)**; NOT the >24h-no-PR
+> abandonment case. **`status:in-progress` = #1025** (active Dev pickup). **`status:done` = #972 only**
+> (input-content guard, code-verified, close = human security sign-off, queued). **No open PRs;**
+> branches `develop`+`main` only (Rule 14 clean). **Step 2 health: nothing to close** (Rule 1 — #972
+> human-only; #1023 already QA-closed), no abandoned work. **Step 3 (drive product): no new issue filed
+> (Rule 9)** — backlog healthy + Dev-pickable: #1025 in flight, **#1022** (`capture`/`see --path`
+> save-failure envelope, P2/v0.3.4, framed) next. Priority honesty (`no:milestone`): only the `needs:ace`
+> human-only items (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted` backlog
+> (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; P1/P2 correct, no
+> mis-milestone. Recognition hardening env-blocked (#932 Java/no JDK; #934 SAP/no install); distribution
+> backlog sharp (#997/#930/#922/#928). **Step 3.5 competitiveness: NOT due** (tracker baseline
+> 2026-06-16, today 06-19 = 3d < 7). **Step 4 (needs:ace): no new human-only item** — live queue
+> **unchanged #975/#972/#969/#935/#915/#914/#897** (+ infra #860/#842), all verified open; NEEDS-ACE.md
+> header refreshed (drain #1023 → closed; note #1025 in flight). Evidence in
+> `.work/reviews/2026-06-19-1422-auto-review.md`. `develop` CI: code HEAD `a5c905e` (#1026) **Build &
+> Test + CodeQL success** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call,
+> #914).)_
+>
+> ---
+> _Prior refresh: 2026-06-19 13:22 (Orc autonomous cycle — **quiet/healthy; the top P1 (#1023) landed
 > clean since 12:22 (PR #1026 / `a5c905e`, Dev self-handoff → status:done) + one priority-honesty
 > triage: milestoned the fresh QA bug #1025 → v0.3.4. develop green, no open PRs, status:in-progress
 > empty, no abandoned work, no new human-only item; needs:ace queue unchanged.** Since the 12:22

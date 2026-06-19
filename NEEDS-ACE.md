@@ -4,18 +4,18 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 13:22 (Orc autonomous cycle — **quiet/healthy; this queue is unchanged.**
-Deltas since 12:22: (a) the top P1 **#1023 landed** (PR #1026 / `a5c905e` — the `naturo see`/`find`
-~23 s multi-process hang, core recognition cascade); Dev self-handoff → now `status:done`, **awaiting
-QA**. (b) priority-honesty triage: **milestoned the fresh QA bug #1025 → v0.3.4** (an incomplete-fix
-regression of #894 — `-j` JSON still escapes non-ASCII on `see`/`find`/`menu-inspect`/`list windows`/
-`get`/`set`; Dev-actionable mechanical sweep, **no public-API change** → not for you). `status:done` =
-**#1023** (awaiting QA) **+ #972** (input-content guard, code-verified, awaiting your security sign-off).
-Dev-pickable backlog: **#1025** (P2, JSON escaping sweep) + **#1022** (P2, `capture`/`see --path` error
-envelope), both v0.3.4. **No new issue filed (Rule 9).** Top human items unchanged: **#914** (cut v0.3.2
-— ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) — both
-your security sign-off; **#897** (pick the CLI exit-code contract); **#915 recommended for closure** (QA
-durably healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live needs:ace queue
+_Last refreshed: 2026-06-19 14:22 (Orc autonomous cycle — **quiet/healthy; this queue is unchanged.**
+Deltas since 13:22: (a) **QA verified+closed the top P1 #1023** (`a5c905e` confirmed ancestor of develop
+→ Rule 1 clean; QA did the close, no Orc handoff) — the `naturo see`/`find` ~23 s multi-process hang
+(core recognition cascade) is now done + verified, draining the `status:done` queue. (b) the Dev cycle
+**picked up #1025** (P2 — the #894 incomplete-fix JSON-escaping sweep) → now `status:in-progress`, active
+in-flight (no branch pushed yet, left untouched per Rule 4). `status:done` now = **#972 only**
+(input-content guard, code-verified, awaiting your security sign-off). Dev-pickable backlog: **#1025**
+(P2, in flight) + **#1022** (P2, `capture`/`see --path` save-failure envelope), both v0.3.4. **No new
+issue filed (Rule 9).** Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA
+re-enable) + **#972** (close the input-content safety guard) — both your security sign-off; **#897** (pick
+the CLI exit-code contract); **#915 recommended for closure** (QA durably healthy). NB: the **#969 env
+fix stays human-only** (Rule 4). **Live needs:ace queue
 #975/#972/#969/#935/#915/#914/#897/#860/#842.** `develop` CI: code HEAD `a5c905e` (#1026) **Build & Test +
 CodeQL success** → **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call,
 #914). Weekly competitiveness step not due (<7d since 06-16)._
