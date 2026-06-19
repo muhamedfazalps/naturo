@@ -1,6 +1,41 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-19 22:22 (Orc autonomous cycle — **quiet/healthy; #888 verified+closed by
+> Last refreshed: 2026-06-19 23:23 (Orc autonomous cycle — **quiet/healthy; QA verified+closed #958
+> mid-window (no Orc handoff needed) + the 23:07 Dev cycle picked up #871 (fresh in-flight, left
+> untouched, Rule 4). develop not red, no open PRs, `status:done` drained to #972 (human-only),
+> `status:in-progress` = #871, no abandoned work, no new issue (Rule 9), no new human-only item;
+> needs:ace queue unchanged.** Since the 22:22 refresh: (a) **QA verified+closed #958 @14:55Z** (PR
+> #1036 / `ceecae8`, `fix: resolve UWP host PID in list_windows to match list_apps`) — runtime confirmed
+> Calculator (UWP) window → pid 100104/CalculatorApp.exe on BOTH `list windows -j` and `list apps -j`,
+> 42 common handles **0 pid/name mismatches** (was 1/8), non-UWP unaffected, one residual AFH child
+> ("Nahimic") consistent across both surfaces (documented fallback), `tests/test_list_windows_uwp_958.py`
+> 5 passed; now **CLOSED + `verified` + `status:done`**; `git merge-base --is-ancestor ceecae8
+> origin/develop` = YES → **Rule 1 clean**, QA did the close → **no Orc post-merge handoff needed**; drains
+> the prior `status:done` queue. (b) the **23:07 Dev cycle picked up #871** (`bug: window-targeting flags
+> (--window/--hwnd/--pid) missing from find, menu-inspect, list-windows, get/set, …`, P2/from:qa/v0.3.4 —
+> inconsistent window-targeting matrix across commands) at 15:16:59Z = ~6 min before sweep, assignee
+> AcePeak, **no branch/PR pushed → active in-flight, left untouched (Rule 4)**; NOT the >24h-no-PR
+> abandonment case; correctly milestoned v0.3.4 + labeled → no triage. **Step 0:** `git fetch origin -p`
+> pruned the already-merged `fix/issue-958-list-windows-uwp-pid` local ref (remote auto-deleted at #1036
+> merge); authoritative `gh api .../branches` = **develop + main only** → **Rule 14 clean**. **Step 1:**
+> **no open PRs.** **Step 2 health:** `status:in-progress` = **#871** (active Dev pickup, left untouched);
+> `status:done` = **#972 only** (input-content guard, code-verified, close = human security sign-off,
+> queued). **Nothing to close** (Rule 1 — #871 in flight, no merged commit; #972 human-only; #958 already
+> QA-closed), no abandoned work. **Step 3 (drive product): no new issue filed (Rule 9)** —
+> priority-honesty scan (`no:milestone` open): only the `needs:ace` human-only items (#975/#969/#935/#915)
+> + the parked Linux/cross-platform `help wanted` backlog (#88/#87/#84/#77/#75/#74/#68/#66) → **zero
+> unmilestoned actionable Dev work**; #871 correctly milestoned → no mis-milestone; backlog Dev-pickable
+> (#871 in flight on the window-targeting matrix lane). Standing #1 priority (recognition supremacy
+> #920/#931/#932/#934) stays top-of-queue but **env-blocked** (no JDK / no SAP install; desktop/QA-gated).
+> **Step 3.5 competitiveness: NOT due** (tracker baseline 2026-06-16, today 06-19 = 3d < 7). **Step 4
+> (needs:ace): no new human-only item** — live queue **unchanged #975/#972/#969/#935/#915/#914/#897** (all
+> verified open); NEEDS-ACE.md header + CI line refreshed. Evidence in
+> `.work/reviews/2026-06-19-2323-auto-review.md`. `develop` CI: HEAD `ceecae8` (#1036) **Build & Test +
+> CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-19 22:22 (Orc autonomous cycle — **quiet/healthy; #888 verified+closed by
 > QA mid-window + one team-Dev PR landed mid-cycle (#1036 → #958) + Orc post-merge handoff (#958 →
 > status:done). develop not red, status:in-progress now empty, status:done = #958 + #972 (human-only),
 > no abandoned work, no new issue (Rule 9), no new human-only item; needs:ace queue unchanged.**

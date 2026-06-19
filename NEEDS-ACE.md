@@ -4,21 +4,20 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-19 22:22 (Orc autonomous cycle — **quiet/healthy; #888 verified+closed by QA,
-one fresh team-Dev PR in flight, queue unchanged.** Delta since 21:23: (a) **QA verified+closed #888**
-@13:39:01Z (`feat: clipboard set --file/stdin` — runtime round-trip confirmed parity with `type --file`,
-single-source enforcement, clean `INVALID_INPUT` on bad input; `verified`+`status:done`, CLOSED). (b) the
-Dev cycle's **PR #1036 landed mid-cycle** as `ceecae8` (`fix: resolve UWP host PID in list_windows to
-match list_apps`, **fixes #958**, P2/v0.3.4; armed auto-merge landed it when CI went green; Rule 1 clean)
-→ Orc flipped **#958 → `status:done`** + QA note (awaiting QA). `status:in-progress` = **empty**;
-`status:done` = **#958** (UWP host-PID) + **#972** (input-content guard, code-verified, awaiting your
-security sign-off). **No new issue filed (Rule 9)**; **no new human-only item; queue unchanged.** Top human items
+_Last refreshed: 2026-06-19 23:23 (Orc autonomous cycle — **quiet/healthy; QA verified+closed #958,
+one fresh team-Dev pickup in flight, queue unchanged.** Delta since 22:22: (a) **QA verified+closed #958**
+@14:55Z (`fix: resolve UWP host PID in list_windows to match list_apps`, PR #1036 / `ceecae8` — runtime
+confirmed the real UWP app PID now matches across `list windows -j` and `list apps -j`, 0 pid/name
+mismatches, non-UWP unaffected; `verified`+`status:done`, CLOSED; Rule 1 clean, QA did the close). (b) the
+**23:07 Dev cycle picked up #871** (`window-targeting flags missing from find/menu-inspect/list-windows/
+get/set/…`, P2/v0.3.4) — active in-flight, no PR yet, left untouched (Rule 4). `status:in-progress` =
+**#871**; `status:done` = **#972** only (input-content guard, code-verified, awaiting your security
+sign-off). **No new issue filed (Rule 9)**; **no new human-only item; queue unchanged.** Top human items
 unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the
 input-content safety guard) — both your security sign-off; **#897** (pick the CLI exit-code contract);
 **#915 recommended for closure** (QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4).
-**Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI: new HEAD `ceecae8` (#1036)
-post-merge CI in progress, no failed lanes (prior `7c97c87`/#1035 **Build & Test + CodeQL success**;
-all required checks green at #1036's merge) → **develop not red.** v0.3.2 ship-gate
+**Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI: HEAD `ceecae8` (#1036)
+**Build & Test + CodeQL SUCCESS** → **develop not red.** v0.3.2 ship-gate
 unchanged (FULLY MET — release is your call, #914).
 Weekly competitiveness step not due (<7d since 06-16)._
 
@@ -56,7 +55,7 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
   (closed #876, filed #977). #975 now awaits only Ace's *ratification* of the re-enable, not a re-enable.
 - **None blocking the ship-gate itself.** #843 (capture popup compositing) **verified+closed 2026-06-17
   02:42Z** — the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test + CodeQL success on `7dc61ef`/#1034; #1035 `7c97c87` post-merge CI in progress, no failed lanes).
+- `develop` CI: **green** (Build & Test + CodeQL success on `ceecae8`/#1036).
 - Desktop CI runner #842 / cloud-VM #860 **CLOSED 2026-06-17 (NOT_PLANNED)** — the local QA loop on
   NATUROBOT superseded the offline self-hosted runner (proven on the v0.3.2 ship-gate bugs); reopen only
   if per-PR pre-merge desktop CI gating becomes a hard requirement. No longer a human-decision block.
