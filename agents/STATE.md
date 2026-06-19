@@ -1,6 +1,46 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-20 02:24 (Orc autonomous cycle — **quiet/healthy; one follow-up team-Dev PR
+> Last refreshed: 2026-06-20 03:24 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed
+> clean since 02:24 (#1044 → #1043 — menu-inspect count envelope) + one Orc post-merge handoff (#1043
+> → status:done, milestoned v0.3.4). develop not red, no open PRs, status:in-progress now empty,
+> status:done = #1043 (awaiting QA) + #972 (human-only), no abandoned work, no new issue (Rule 9), no
+> new human-only item; needs:ace queue unchanged.** Since the 02:24 refresh: **PR #1044 landed**
+> (`c1acd54`, HEAD, **fixes #1043** — `fix: menu-inspect -j includes top-level count in success
+> envelope`; `menu-inspect -j` was the last list-type surface omitting the top-level `count` field —
+> sibling of the #980/#977/#876 envelope-consistency lane — so a script counting menu entries had to
+> walk the items array instead of reading `count`; fix adds the field for parity; +`tests/
+> test_menu_envelope_1043.py`). Merged 19:13:41Z, **Build & Test + CodeQL SUCCESS**;
+> `git merge-base --is-ancestor c1acd54 origin/develop` = YES → **Rule 1 clean**; source branch
+> auto-deleted (only `develop`+`main` remain, Rule 14 clean). **Post-merge handoff:** #1043 was still
+> `status:in-progress` + **unmilestoned** (base `develop` ≠ default branch → no auto-close; Dev didn't
+> self-flip) → **Orc flipped #1043 `status:in-progress` → `status:done`** + **milestoned v0.3.4**
+> (priority-honesty triage matching milestoned siblings #980/#876; P2/from:qa envelope-consistency bug,
+> no public-API/CLI change → not human-only) + QA verification note (run `menu-inspect <target> -j`,
+> confirm top-level `count` = top-level menu-entry count, exit 0, clean `-j` envelope). **Step 0:**
+> `git fetch origin -p` pruned two already-merged remote refs (`fix/issue-1043-menu-count`,
+> `fix/issue-864-id-flag`); fast-forwarded `84eaf10 → c1acd54`; authoritative `gh api .../branches` =
+> **develop + main only** → Rule 14 clean. **Step 1:** **no open PRs.** **Step 2 health:**
+> `status:in-progress` now **empty** (was #1043, flipped this cycle); `status:done` (open) = **#1043**
+> (menu-inspect count envelope, awaiting QA) **+ #972** (input-content guard, code-verified, close =
+> human security sign-off, queued). **Nothing to close** (Rule 1 — #1043 needs QA `verified`; #972
+> human-only), no abandoned work (#864 freshly worked, `status` cleared → pickable for the remaining
+> `--id eN` commands). **Step 3 (drive product): no new issue filed (Rule 9)** — priority-honesty scan
+> (`no:milestone` open): after milestoning #1043, only the `needs:ace` human-only items
+> (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted` backlog
+> (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; no mis-milestone;
+> backlog Dev-pickable (#864 remaining `--id eN` commands + #871 remaining window-targeting flags + the
+> v0.3.4 `from:qa` JSON/MCP consistency lane). Standing #1 priority (recognition supremacy
+> #920/#931/#932/#934) stays top-of-queue but **env-blocked** (no JDK / no SAP install; desktop/QA-gated).
+> **Step 3.5 competitiveness: NOT due** (tracker baseline 2026-06-16, today 06-20 = 4d < 7). **Step 4
+> (needs:ace): no new human-only item** — live queue **unchanged #975/#972/#969/#935/#915/#914/#897**
+> (all verified open); NEEDS-ACE.md header + CI line refreshed. Evidence in
+> `.work/reviews/2026-06-20-0324-auto-review.md`. `develop` CI: HEAD `c1acd54` (#1044) **Build & Test
+> + CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call,
+> #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-20 02:24 (Orc autonomous cycle — **quiet/healthy; one follow-up team-Dev PR
 > landed clean since 01:22 (#1041 → #912 test-hardening) + QA verified+closed #912 mid-window (no Orc
 > handoff needed) + the Dev cycle picked up #864 and armed PR #1042 (self-landing, left untouched, Rule 4).
 > develop not red, no merges/closes by Orc, status:in-progress = #864 (fresh in-flight), status:done =
