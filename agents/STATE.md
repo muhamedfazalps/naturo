@@ -1,6 +1,51 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-20 11:22 (Orc autonomous cycle — **quiet/healthy; since 10:23 QA verified+closed
+> Last refreshed: 2026-06-20 12:23 (Orc autonomous cycle — **quiet/healthy; since 11:22 QA verified+closed
+> #1050 (`capture --region` off-screen message) and the Dev cycle picked up the next #871 slice and opened
+> PR #1053 (`feat: harmonize window-targeting filters on 'list windows'`) with auto-merge armed (self-landing,
+> no failed lanes — left untouched, Rule 4). develop NOT red, status:done = #972 (human-only), nothing
+> closed by Orc (Rule 1), no abandoned work, no new issue (Rule 9), no new human-only item; needs:ace queue
+> unchanged.** **POST-MERGE UPDATE:** PR #1053 (armed auto-merge) **landed mid-cycle as `9f4d12b`** when CI
+> went green (merged @04:24:21Z; `git merge-base --is-ancestor 9f4d12b origin/develop` = YES → Rule 1 clean;
+> source branch auto-deleted, only develop+main remain → Rule 14 clean). #871 is **multi-part** and the PR
+> closes only the `list windows` row (PR body: "Closes the `list windows` row of #871's matrix") → no
+> auto-close; Dev left it `status:in-progress`, so **Orc cleared #871 `status:in-progress` → pickable** for
+> the remaining rows (`get`/`set` and any other commands still missing `--window/--hwnd/--pid`) + posted the
+> handoff note; milestone v0.3.4 intact. `status:in-progress` now **empty**. Post-merge develop CI on
+> `9f4d12b` running (started 04:24:23Z), all required checks green at merge → not red. _(Sweep snapshot
+> below predates the mid-cycle land.)_ **Step 0:** `git config` Orc identity; `git fetch origin -p` clean; `git pull --ff-only` = Already up to
+> date (HEAD `2bac2d0` = orc 1122 [skip ci]; code HEAD `7e068d6` = #1052); authoritative `gh api .../branches`
+> = **develop + main + the one live PR-1053 branch** (`fix/issue-871-list-windows-targeting`) → **Rule 14
+> clean** (live PR branch expected; auto-deletes on merge). **Step 1:** **one open PR #1053** (`feat:
+> harmonize window-targeting filters on 'list windows' (#871)`, head `fix/issue-871-list-windows-targeting`
+> → develop, author AcePeak, team-Dev) — `MERGEABLE`/`BLOCKED` only on **pending CI** (Commit-Author /
+> Lint&Type / Version-Consistency = SUCCESS; Ubuntu+macOS tests + C++ build + Analyze = pending; **zero
+> failed lanes**) with **auto-merge SQUASH armed by AcePeak @04:22:00Z** (created 04:21:51Z) → standard
+> self-landing pattern, **branch untouched (Rule 4)**; next slice of the multi-part #871 window-targeting
+> matrix (continuation of merged #1037 find/highlight/menu-inspect → now `list windows`); correctly
+> milestoned v0.3.4. develop CI on `7e068d6` (#1052) **Build & Test (2m37s) + CodeQL (3m1s) SUCCESS** → not
+> red. No newly-merged team PR since 11:22 → no post-merge handoff. **Step 2 health:** **#1050 verified+
+> CLOSED by QA @03:38:34Z** (`capture --region` off-screen message — now CLOSED + `verified` + status:done;
+> merged `7e068d6`/#1052 → Rule 1 clean; QA did the close → no Orc handoff); drains the prior status:done
+> queue. `status:in-progress` = **#871** (active Dev pickup, PR #1053 open + auto-merge armed, updated
+> 04:22:02Z = ~1 min before sweep → NOT the >24h abandonment case; left untouched, Rule 4). `status:done`
+> (open) = **#972 only** (input-content guard, code-verified, close = human security sign-off, queued).
+> **Nothing to close** (Rule 1 — #972 human-only; #871 in flight, no merged commit), no abandoned work.
+> **Step 3 (drive product): no new issue (Rule 9)** — priority-honesty scan (`no:milestone` open): only the
+> `needs:ace` human-only items (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted` backlog
+> (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; #871 correctly milestoned
+> v0.3.4. The v0.3.4 backlog stays deep + Dev-pickable (#871 remaining commands + the from:qa JSON/MCP
+> envelope-consistency lane) → loop not stalled. Standing #1 priority (recognition supremacy
+> #920/#931/#932/#934) stays top-of-queue but **env-blocked** (no JDK / no SAP install; desktop/QA-gated).
+> **Step 3.5 competitiveness: NOT due** (tracker baseline 2026-06-16, today 06-20 = 4d < 7). **Step 4
+> (needs:ace): no new human-only item** — live queue **unchanged #975/#972/#969/#935/#915/#914/#897** (all
+> verified open); NEEDS-ACE.md header + CI line refreshed. Evidence in
+> `.work/reviews/2026-06-20-1223-auto-review.md`. `develop` CI: HEAD `7e068d6` (#1052) **Build & Test +
+> CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is Ace's call, #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-20 11:22 (Orc autonomous cycle — **quiet/healthy; since 10:23 QA verified+closed
 > #1048 (`naturo info` hidden alias) and the 11:07 Dev cycle picked up #1050 and LANDED it clean as
 > `7e068d6` (PR #1052 — `fix: capture --region off-screen error echoes user input, not clamped PIL box`).
 > develop NOT red, no open PRs, status:in-progress now empty, status:done = #1050 (awaiting QA) + #972

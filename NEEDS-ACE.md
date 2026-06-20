@@ -4,23 +4,23 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-20 11:22 (Orc autonomous cycle — **quiet/healthy; since 10:23 QA verified+closed
-#1048 (`naturo info` hidden alias) and the 11:07 Dev cycle picked up #1050 and LANDED it clean as `7e068d6`
-(PR #1052 — `fix: capture --region off-screen error echoes user input, not clamped PIL box`). develop NOT
-red, no open PRs, status:in-progress now empty, status:done = #1050 (awaiting QA) + #972 (human-only),
-nothing closed by Orc (Rule 1), no post-merge handoff needed (Dev self-flipped #1050 → status:done at
-merge), no new issue (Rule 9), no new human-only item; queue unchanged.** Since 10:23: **#1048 verified+
-CLOSED by QA @02:42Z** (`info` vs `doctor` byte-identical, hidden from `-h` yet runs as full alias). **PR
-#1052 landed** as `7e068d6` (**fixes #1050** — the zero-size error now echoes the user's requested
-`X,Y,W,H` + image bounds instead of the clamped PIL box, distinguishes non-positive W/H, populates
-`error.context`; additive JSON, no public-API/CLI change → not human-only); source branch auto-deleted
-(Rule 14 clean). `no:milestone` open = **zero unmilestoned actionable Dev work**. **No new human-only item;
-queue unchanged.** Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA
-re-enable) + **#972** (close the input-content safety guard) — both your security sign-off; **#897** (pick
-the CLI exit-code contract); **#915 recommended for closure** (QA durably healthy). NB: the **#969 env fix
-stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI:
-HEAD `7e068d6` (#1052) **Build & Test + CodeQL SUCCESS** → **develop not red.** v0.3.2 ship-gate
-unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
+_Last refreshed: 2026-06-20 12:23 (Orc autonomous cycle — **quiet/healthy; since 11:22 QA verified+closed
+#1050 (`capture --region` off-screen message) and the Dev cycle opened PR #1053 (`feat: harmonize
+window-targeting filters on 'list windows' (#871)`) which **landed mid-cycle as `9f4d12b`** when CI went
+green. develop NOT red, status:in-progress now empty, status:done = #972 (human-only), nothing closed by Orc
+(Rule 1), one Orc post-merge handoff (#871 multi-part — cleared status:in-progress → pickable), no new issue
+(Rule 9), no new human-only item; queue unchanged.** Since 11:22: **#1050 verified+CLOSED by QA @03:38Z**
+(the zero-size error now echoes the user's requested `X,Y,W,H` + image bounds). **PR #1053** added
+`--window/--hwnd/--pid` to `naturo list windows`, the next slice of the multi-part #871 matrix (continuation
+of merged #1037 find/highlight/menu-inspect); merged @04:24:21Z, source branch auto-deleted (Rule 14 clean).
+#871 stays OPEN with `status:in-progress` cleared → pickable for the remaining rows (`get`/`set` & others).
+`no:milestone` open = **zero unmilestoned actionable Dev work**. **No new human-only item; queue unchanged.** Top human items unchanged: **#914**
+(cut v0.3.2 — ready), **#975** (ratify the QA re-enable) + **#972** (close the input-content safety guard) —
+both your security sign-off; **#897** (pick the CLI exit-code contract); **#915 recommended for closure**
+(QA durably healthy). NB: the **#969 env fix stays human-only** (Rule 4). **Live needs:ace queue
+#975/#972/#969/#935/#915/#914/#897.** `develop` CI: HEAD `7e068d6` (#1052) **Build & Test + CodeQL SUCCESS**
+→ **develop not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is your call, #914). Weekly
+competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
 | # | Decision | Why it's yours | Orc recommendation |
@@ -56,7 +56,7 @@ _Resolved earlier: **#913** (dispose community PRs #892 / #904) — closed 2026-
   (closed #876, filed #977). #975 now awaits only Ace's *ratification* of the re-enable, not a re-enable.
 - **None blocking the ship-gate itself.** #843 (capture popup compositing) **verified+closed 2026-06-17
   02:42Z** — the last v0.3.2 ship-gate item is cleared. v0.3.2 awaits only Ace's release sign-off (#914).
-- `develop` CI: **green** (Build & Test + CodeQL SUCCESS on `7e068d6`/#1052). **PR #1052 landed** (`fix: capture --region off-screen error echoes user input, not clamped PIL box`, fixes #1050; the zero-size error now echoes the user's requested `X,Y,W,H` + image bounds instead of the clamped PIL box, distinguishes non-positive W/H, populates `error.context`; Rule 1 + Rule 14 clean, source branch auto-deleted). #1050 flipped `status:in-progress` → `status:done` by Dev at merge (awaiting QA). #1048 (`naturo info` alias) verified+closed by QA @02:42Z. No open PRs; branches `develop` + `main` only.
+- `develop` CI: **green** at sweep (Build & Test + CodeQL SUCCESS on `7e068d6`/#1052); post-merge CI on `9f4d12b` (#1053) running, all required checks green at merge → not red. **#1050 verified+closed by QA @03:38Z** (`capture --region` off-screen message — the zero-size error now echoes the user's requested `X,Y,W,H` + image bounds; Rule 1 clean). **PR #1053 landed** (`feat: harmonize window-targeting filters on 'list windows' (#871)`) as `9f4d12b` @04:24:21Z — added `--window/--hwnd/--pid` to `naturo list windows`; multi-part #871 → Orc cleared `status:in-progress` → pickable for the remaining rows (`get`/`set` & others), milestone v0.3.4 intact, source branch auto-deleted. No open PRs; branches `develop` + `main` only.
 - Desktop CI runner #842 / cloud-VM #860 **CLOSED 2026-06-17 (NOT_PLANNED)** — the local QA loop on
   NATUROBOT superseded the offline self-hosted runner (proven on the v0.3.2 ship-gate bugs); reopen only
   if per-PR pre-merge desktop CI gating becomes a hard requirement. No longer a human-decision block.
