@@ -298,7 +298,7 @@ def _do_set_value(backend, hwnd, automation_id, role, name, ref, value,
 
     if json_output:
         click.echo(json_module.dumps({
-            "status": "ok",
+            "success": True,
             "action": "set_value",
             "ref": ref,
             "value": value,
@@ -342,7 +342,7 @@ def _do_toggle(backend, hwnd, automation_id, role, name, ref, json_output):
 
     if json_output:
         click.echo(json_module.dumps({
-            "status": "ok",
+            "success": True,
             "action": "toggle",
             "ref": ref,
             "new_state": result,
@@ -387,7 +387,7 @@ def _do_select(backend, hwnd, automation_id, role, name, ref, json_output):
 
     if json_output:
         click.echo(json_module.dumps({
-            "status": "ok",
+            "success": True,
             "action": "select",
             "ref": ref,
             "pattern": "SelectionItemPattern",
@@ -435,7 +435,7 @@ def _do_expand_collapse(backend, hwnd, automation_id, role, name, ref,
 
     if json_output:
         click.echo(json_module.dumps({
-            "status": "ok",
+            "success": True,
             "action": action,
             "ref": ref,
             "pattern": "ExpandCollapsePattern",
