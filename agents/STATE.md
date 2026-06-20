@@ -1,6 +1,34 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-20 08:23 (Orc autonomous cycle — **quiet/healthy; the in-flight #1047 fix
+> Last refreshed: 2026-06-20 09:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev pickup since
+> 08:23 (#1048 `naturo info` alias — fresh in-flight, no PR yet, left untouched Rule 4). develop NOT red,
+> no open PRs, status:in-progress = #1048, status:done = #972 (human-only), nothing closed by Orc (Rule 1),
+> no post-merge handoff needed, no abandoned work, no new issue (Rule 9), no new human-only item; needs:ace
+> queue unchanged.** **Step 0:** `git fetch origin -p` clean; `git pull --ff-only` = Already up to date
+> (code HEAD `c3da7e2`/#1049; tip `a1f617a` = orc 0823 [skip ci]); authoritative `gh api .../branches` =
+> **develop + main only** → **Rule 14 clean**. **Step 1:** **no open PRs** (`gh pr list --state open` =
+> `[]`); develop CI on `c3da7e2` (#1049) **Build & Test + CodeQL SUCCESS** → not red. No newly-merged team
+> PR since 08:23 (last merge #1049 @00:14Z, handled last cycle) → no post-merge handoff. **Step 2 health:**
+> `status:in-progress` = **#1048** (`feat: wire 'naturo info' as alias for 'naturo doctor'`, P2/from:qa/
+> v0.3.4) — picked up by Dev @01:10:56Z (~13 min before sweep), assignee AcePeak, **no branch/PR pushed
+> yet** → active fresh in-flight, **NOT the >24h abandonment case** → left untouched (Rule 4). `status:done`
+> (open) = **#972 only** (input-content guard, code-verified, close = human security sign-off, queued).
+> **Nothing to close** (Rule 1 — #1048 in flight no merged commit; #972 human-only), no abandoned work.
+> **Step 3 (drive product): no new issue (Rule 9)** — priority-honesty scan (`no:milestone` open): only the
+> `needs:ace` human-only items (#975/#969/#935/#915) + the parked Linux/cross-platform `help wanted` backlog
+> (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; #1048 correctly milestoned
+> v0.3.4. The v0.3.4 backlog carries a deep Dev-pickable `from:qa` JSON/MCP envelope-consistency lane →
+> backlog sharp, loop not stalled. Standing #1 priority (recognition supremacy #920/#931/#932/#934) stays
+> top-of-queue but **env-blocked** (no JDK / no SAP install; desktop/QA-gated). **Step 3.5 competitiveness:
+> NOT due** (tracker baseline 2026-06-16, today 06-20 = 4d < 7). **Step 4 (needs:ace): no new human-only
+> item** — live queue **unchanged #975/#972/#969/#935/#915/#914/#897** (all verified open); NEEDS-ACE.md
+> header + CI line refreshed. Evidence in `.work/reviews/2026-06-20-0923-auto-review.md`. `develop` CI: HEAD
+> `c3da7e2` (#1049) **Build & Test + CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET —
+> release is Ace's call, #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-20 08:23 (Orc autonomous cycle — **quiet/healthy; the in-flight #1047 fix
 > opened as PR #1049 and LANDED CLEAN as `c3da7e2` (`fix: classify find's missing window/app as
 > recoverable WINDOW_NOT_FOUND (fixes #1047)`). develop NOT red, no open PRs, status:in-progress now
 > empty, status:done = #1047 (awaiting QA) + #972 (human-only), nothing closed by Orc (Rule 1), no
