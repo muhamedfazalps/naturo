@@ -4,19 +4,22 @@
 > This file is the short list of things **only Ace can decide**. Refreshed by the Orchestrator each
 > review cycle. Read this first on a check-in. Each item also has a GitHub issue labelled `needs:ace`.
 
-_Last refreshed: 2026-06-20 09:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev pickup since
-08:23 (#1048 `naturo info` alias — fresh in-flight, no PR yet, left untouched Rule 4). develop NOT red,
-no open PRs, status:in-progress = #1048, status:done = #972 (human-only), nothing closed by Orc (Rule 1),
-no post-merge handoff needed, no abandoned work, no new issue (Rule 9), no new human-only item; queue
-unchanged.** Since 08:23: Dev picked up **#1048** (`feat: wire 'naturo info' as an alias for 'naturo
-doctor'`, P2/from:qa/v0.3.4) @01:10:56Z — fresh in-flight, no branch/PR yet → left untouched (Rule 4).
-Priority-honesty scan = **zero unmilestoned actionable Dev work**; the v0.3.4 backlog carries a deep
-Dev-pickable `from:qa` envelope-consistency lane → loop healthy, not stalled. **No new human-only item;
+_Last refreshed: 2026-06-20 10:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed clean
+since 09:23 (#1051 → #1048 `naturo info` alias) — Dev self-flipped #1048 → status:done at merge (no Orc
+handoff needed). develop NOT red, no open PRs, status:in-progress now empty, status:done = #1048 (awaiting
+QA) + #972 (human-only), nothing closed by Orc (Rule 1), one priority-honesty triage (milestoned new QA
+bug #1050 → v0.3.4), no new issue (Rule 9), no new human-only item; queue unchanged.** Since 09:23:
+**PR #1051 landed** as `72cbe46` (**fixes #1048** — hidden `naturo info` Click alias of `doctor` + parity
+test, completing the accepted #898 proposal; additive/non-breaking); source branch auto-deleted (Rule 14
+clean). Priority-honesty triage: new QA bug **#1050** (`capture --region` off-screen echoes the clamped
+PIL box as X,Y,W,H — misleading 'zero size' message; concrete `_capture.py:241-247` Dev pointer, additive
+JSON context, no public-API/CLI change → not human-only) was unmilestoned → **Orc milestoned it → v0.3.4.**
+After triage, `no:milestone` open = **zero unmilestoned actionable Dev work**. **No new human-only item;
 queue unchanged.** Top human items unchanged: **#914** (cut v0.3.2 — ready), **#975** (ratify the QA
 re-enable) + **#972** (close the input-content safety guard) — both your security sign-off; **#897** (pick
 the CLI exit-code contract); **#915 recommended for closure** (QA durably healthy). NB: the **#969 env fix
 stays human-only** (Rule 4). **Live needs:ace queue #975/#972/#969/#935/#915/#914/#897.** `develop` CI:
-code HEAD `c3da7e2` (#1049) **Build & Test + CodeQL SUCCESS** → **develop not red.** v0.3.2 ship-gate
+HEAD `72cbe46` (#1051) **Build & Test + CodeQL SUCCESS** → **develop not red.** v0.3.2 ship-gate
 unchanged (FULLY MET — release is your call, #914). Weekly competitiveness step not due (<7d since 06-16)._
 
 ## Open decisions
