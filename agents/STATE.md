@@ -1,6 +1,45 @@
 # Naturo Project Status
 > Maintained by Orc-Mycelium. Agents: read on every startup.
-> Last refreshed: 2026-06-20 10:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed clean
+> Last refreshed: 2026-06-20 11:22 (Orc autonomous cycle — **quiet/healthy; since 10:23 QA verified+closed
+> #1048 (`naturo info` hidden alias) and the 11:07 Dev cycle picked up #1050 and LANDED it clean as
+> `7e068d6` (PR #1052 — `fix: capture --region off-screen error echoes user input, not clamped PIL box`).
+> develop NOT red, no open PRs, status:in-progress now empty, status:done = #1050 (awaiting QA) + #972
+> (human-only), nothing closed by Orc (Rule 1), no post-merge handoff needed (Dev self-flipped #1050 →
+> status:done at merge), no abandoned work, no new issue (Rule 9), no new human-only item; needs:ace queue
+> unchanged.** **Step 0:** `git fetch origin -p` pruned `origin/fix/issue-1050-capture-region-msg`
+> (auto-deleted at #1052 merge); `git pull --ff-only` fast-forwarded `fd87ee9 → 7e068d6` (pulled
+> `naturo/cli/core/_capture.py` +41 / `tests/test_capture_region_offscreen_1050.py` +124); authoritative
+> `gh api .../branches` = **develop + main only** → **Rule 14 clean**. **Step 1:** **no open PRs**
+> (`gh pr list --state open` = `[]`); **PR #1052 landed** as `7e068d6` (HEAD, **fixes #1050** — zero-size
+> error now echoes the user's requested `X,Y,W,H` + image bounds instead of the clamped PIL
+> `(left,top,right,bottom)` box, distinguishes non-positive W/H, populates `error.context
+> {requested_region,image_size}`; `--element` path gets the equivalent bounds-aware message; additive JSON,
+> no public-API/CLI change); `7e068d6` is HEAD after fast-forward → **Rule 1 clean**; source branch
+> auto-deleted → Rule 14 clean. develop CI on `7e068d6` **Build & Test + CodeQL SUCCESS** → not red. No
+> newly-merged team PR needing handoff — #1050 already self-flipped `status:in-progress` → `status:done` by
+> Dev at merge (base `develop` ≠ default → no auto-close; verified #1050 OPEN + status:done + v0.3.4).
+> **Step 2 health:** **#1048 verified+CLOSED by QA @02:42Z** (`naturo info` alias — `info` vs `doctor`
+> byte-identical plain + `-j` envelope, both exit 0, `info` hidden from `-h` yet runs as full alias; merged
+> `72cbe46`/#1051 ancestor → Rule 1 clean; QA did the close → no Orc handoff); drains the prior status:done
+> queue. `status:in-progress` now **empty** → no in-flight pickup, no abandoned work; `status:done` (open) =
+> **#1050** (capture-region message, awaiting QA) **+ #972** (input-content guard, code-verified, close =
+> human security sign-off, queued). **Nothing to close** (Rule 1 — #1050 needs QA `verified`; #972
+> human-only). **Step 3 (drive product): no new issue (Rule 9)** — priority-honesty scan (`no:milestone`
+> open): only the `needs:ace` human-only items (#975/#969/#935/#915) + the parked Linux/cross-platform
+> `help wanted` backlog (#88/#87/#84/#77/#75/#74/#68/#66) → **zero unmilestoned actionable Dev work**; #1050
+> correctly milestoned v0.3.4. The v0.3.4 backlog carries **26 Dev-pickable** issues (#917/#900/#896/#886/
+> #882/#871/#865/#864 …) → backlog sharp + deep, loop not stalled. Standing #1 priority (recognition
+> supremacy #920/#931/#932/#934) stays top-of-queue but **env-blocked** (no JDK / no SAP install;
+> desktop/QA-gated). **Step 3.5 competitiveness: NOT due** (tracker baseline 2026-06-16, today 06-20 =
+> 4d < 7). **Step 4 (needs:ace): no new human-only item** — live queue **unchanged
+> #975/#972/#969/#935/#915/#914/#897** (all verified open); NEEDS-ACE.md header + CI line refreshed.
+> Evidence in `.work/reviews/2026-06-20-1122-auto-review.md`. `develop` CI: HEAD `7e068d6` (#1052)
+> **Build & Test + CodeQL SUCCESS** → **not red.** v0.3.2 ship-gate unchanged (FULLY MET — release is
+> Ace's call, #914).)_
+>
+> ---
+>
+> _Prior refresh: 2026-06-20 10:23 (Orc autonomous cycle — **quiet/healthy; one team-Dev PR landed clean
 > since 09:23 (#1051 → #1048 `naturo info` alias) — Dev self-flipped #1048 → status:done at merge (no Orc
 > handoff needed). develop NOT red, no open PRs, status:in-progress now empty, status:done = #1048 (awaiting
 > QA) + #972 (human-only), nothing closed by Orc (Rule 1), one priority-honesty triage (milestoned new QA
